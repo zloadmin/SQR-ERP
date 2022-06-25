@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="/admin/images/favicon.ico">
-    <title>{{ config('app.name', 'SQRLoyalty') }} - @yield('title')</title>
+    <title>{{ config('app.name', 'SQR ERP') }} - @yield('title')</title>
 
     <!-- App css -->
     <link href="/css/icons.css" rel="stylesheet" type="text/css" />

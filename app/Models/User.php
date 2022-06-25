@@ -15,14 +15,21 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [ 'role' ];
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -34,7 +41,6 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
     /**
      * The attributes that should be cast.
      *
@@ -43,7 +49,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     /**
      * The accessors to append to the model's array form.
      *
@@ -52,4 +57,24 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(UserRole::class);
+    }
+
+    public function getRoleText()
+    {
+        return $this->role->name;
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role->{$role};
+    }
+
+    public function hasRoleSettings(): bool
+    {
+        return $this->hasRole('settings');
+    }
 }

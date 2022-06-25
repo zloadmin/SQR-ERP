@@ -18,6 +18,7 @@ class UserRoleFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'settings' => false,
         ];
     }
 }

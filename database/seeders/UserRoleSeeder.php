@@ -15,6 +15,7 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
+         UserRole::factory()->create([ 'name' => 'Admin', 'settings' => true ]);
          UserRole::factory()->create([ 'name' => 'Manager' ]);
          UserRole::factory()->create([ 'name' => 'Designer' ]);
          UserRole::factory()->create([ 'name' => 'Print Designer' ]);
