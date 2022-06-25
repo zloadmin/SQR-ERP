@@ -14,6 +14,7 @@
     <!-- App css -->
     <link href="/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="/css/dashboard.css" rel="stylesheet" type="text/css" />
+    @livewireStyles
 </head>
 <body class="authentication-bg">
     <div class="account-pages mt-5 mb-5">
@@ -23,7 +24,7 @@
                     <div class="card">
                         <!-- Logo -->
                         <div class="card-header pt-4 pb-4 text-center bg-primary">
-                            <a href="index.html">
+                            <a href="/">
                                 <span><img src="/images/logo.png" alt="" height="18"></span>
                             </a>
                         </div>
@@ -46,5 +47,6 @@
     </div>
     <!-- end page -->
     @include('layouts.card.footer')
+    @livewireScripts
 </body>
 </html>
