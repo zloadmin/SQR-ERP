@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SQR ERP') }} - @yield('title')</title>
+    <title>{{ config('app.name', 'SQR ERP') }} - {{ $title ?? '' }}</title>
     <!-- App css -->
     <link href="/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="/css/dashboard.css" rel="stylesheet" type="text/css" />

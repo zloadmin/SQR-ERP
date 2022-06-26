@@ -20,16 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $with = [ 'role' ];
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -49,14 +40,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+
 
     public function role()
     {
@@ -80,6 +64,6 @@ class User extends Authenticatable
     }
     public function getEditLink(): string
     {
-        return '';//route('settings.user.edit', $this);
+        return route('settings.user.edit', $this);
     }
 }

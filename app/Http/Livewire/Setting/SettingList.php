@@ -13,7 +13,7 @@ class SettingList extends Component
         return view('livewire.setting.setting-list', [ 'items' => $this->getItems() ])
             ->layoutData([
                 'title'      => 'Settings',
-                'breadcrumb' => $this->getIndexBreadcrumb()
+                'breadcrumb' => $this->getBreadcrumb()
             ]);
     }
 
@@ -31,7 +31,7 @@ class SettingList extends Component
         ];
     }
 
-    private function getIndexBreadcrumb()
+    private function getBreadcrumb()
     {
         return [
             route('dashboard') => 'Dashboard',

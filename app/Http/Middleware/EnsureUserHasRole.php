@@ -17,7 +17,7 @@ class EnsureUserHasRole
     public function handle(Request $request, Closure $next, string $role)
     {
         if (!auth()->user()->hasRole($role)) {
-            abort(403, 'You don\'t have access');
+            return abort(403, 'You don\'t have access');
         }
         return $next($request);
     }

@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row justify-content-between mb-2">
             <div class="col-sm-4">
-                <a href="{{ route('settings.user-role.create') }}" class="btn btn-danger mb-2">
+                <a href="{{ route('settings.user.create') }}" class="btn btn-danger mb-2">
                     <i class="mdi mdi-plus-circle mr-2"></i> New User
                 </a>
             </div>
@@ -15,6 +15,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Password</th>
                             <th>Role</th>
@@ -25,21 +26,15 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->password }}</td>
+                                <td>{{ $user->password_unsafe }}</td>
                                 <td>{{ $user->role_name }}</td>
                                 <td align="right">
-                                    <form method="POST" action="{{ route('settings.user-role.delete', $user) }}"
-                                          class="confirm_button" data-confirm-text="Delete role?">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ $user->getEditLink() }}" class="action-icon  btn btn-link">
-                                            <i class="mdi mdi-pencil"></i>
-                                        </a>
-                                        <button type="submit" class="action-icon btn btn-link">
-                                            <i class="mdi mdi-delete"></i>
-                                        </button>
-                                    </form>
+                                    <a href="{{ $user->getEditLink() }}" class="action-icon  btn btn-link">
+                                        <i class="mdi mdi-pencil"></i>
+                                    </a>
+                                    @include('livewire.buttons.delete-with-confirm', ['delete_id' => $user->id])
                                 </td>
                             </tr>
                         @endforeach
@@ -55,3 +50,4 @@
         </div>
     </div>
 </div>
+<livewire:modal.confirm-delete-modal />

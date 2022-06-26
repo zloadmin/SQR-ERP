@@ -6,6 +6,8 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
 use App\Http\Livewire\Setting\SettingList;
+use App\Http\Livewire\User\CreateUser;
+use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +53,8 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('user')->group(function () {
             Route::get('/', UserList::class)->name('settings.user');
+            Route::get('/create', CreateUser::class)->name('settings.user.create');
+            Route::get('/edit/{user}', EditUser::class)->name('settings.user.edit');
         });
     });
 });
