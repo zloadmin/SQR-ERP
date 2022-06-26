@@ -7,7 +7,7 @@
                 </span>
                 <span>
                     <span class="account-user-name">{{ auth()->user()->name }}</span>
-                    <span class="account-position">{{  auth()->user()->getRoleText()  }}</span>
+                    <span class="account-position">{{  auth()->user()->role_name  }}</span>
                 </span>
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

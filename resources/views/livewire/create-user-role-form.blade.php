@@ -13,14 +13,13 @@
     </div>
     <!--- Create Field --->
     <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="submit">
-        <div wire:loading wire:target="submit">
+        <div wire:loading.delay wire:target="submit">
             <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
             Loading...
         </div>
-        <div wire:loading.remove wire:target="submit">
+        <div wire:loading.delay.remove wire:target="submit">
             Create
         </div>
-
     </button>
 </form>
 

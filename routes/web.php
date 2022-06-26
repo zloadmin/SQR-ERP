@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
+use App\Http\Livewire\Setting\SettingList;
+use App\Http\Livewire\User\UserList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +37,7 @@ Route::middleware('auth')->group(function () {
     });
     // User can change settings
     Route::middleware('role:settings')->controller(SettingsController::class)->prefix('settings')->group(function () {
-        Route::get('/', 'index')->name('settings');
+        Route::get('/', SettingList::class)->name('settings');
         Route::controller(UserRoleController::class)->prefix('user-role')->group(function () {
 
             Route::get('/', 'index')->name('settings.user-role');
@@ -46,6 +48,9 @@ Route::middleware('auth')->group(function () {
             Route::post('/create', 'store');
             Route::get('/edit/{user_role}', 'edit')->name('settings.user-role.edit');
             Route::delete('/edit/{user_role}/delete', 'delete')->name('settings.user-role.delete');
+        });
+        Route::prefix('user')->group(function () {
+            Route::get('/', UserList::class)->name('settings.user');
         });
     });
 });

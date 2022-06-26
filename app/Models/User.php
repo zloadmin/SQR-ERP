@@ -63,10 +63,11 @@ class User extends Authenticatable
         return $this->belongsTo(UserRole::class);
     }
 
-    public function getRoleText()
+    public function getRoleNameAttribute() : string
     {
         return $this->role->name;
     }
+
 
     public function hasRole(string $role): bool
     {
@@ -76,5 +77,9 @@ class User extends Authenticatable
     public function hasRoleSettings(): bool
     {
         return $this->hasRole('settings');
+    }
+    public function getEditLink(): string
+    {
+        return '';//route('settings.user.edit', $this);
     }
 }
