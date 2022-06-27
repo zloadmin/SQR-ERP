@@ -31,6 +31,10 @@ class SettingList extends Component
             [
                 'title' => 'SLA',
                 'link'  => route('settings.sla')
+            ],
+            [
+                'title' => 'Tag',
+                'link'  => route('settings.tag')
             ]
         ];
     }

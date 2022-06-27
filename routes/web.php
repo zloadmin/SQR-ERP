@@ -9,6 +9,9 @@ use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
 use App\Http\Livewire\SLA\EditSLA;
 use App\Http\Livewire\SLA\SLAList;
+use App\Http\Livewire\Tag\CreateTag;
+use App\Http\Livewire\Tag\EditTag;
+use App\Http\Livewire\Tag\TagList;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
@@ -63,6 +66,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', SLAList::class)->name('settings.sla');
             Route::get('/create', CreateSLA::class)->name('settings.sla.create');
             Route::get('/edit/{sla}', EditSLA::class)->name('settings.sla.edit');
+        });
+        Route::prefix('tag')->group(function () {
+            Route::get('/', TagList::class)->name('settings.tag');
+            Route::get('/create', CreateTag::class)->name('settings.tag.create');
+            Route::get('/edit/{tag}', EditTag::class)->name('settings.tag.edit');
         });
     });
 });

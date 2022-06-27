@@ -48,7 +48,7 @@ class EditSLA extends Component
     {
         return view('livewire.sla.sla-form')
             ->layoutData([
-                'title'      => 'Edit SLA',
+                'title'      => 'Edit SLA ' . $this->sla->name,
                 'breadcrumb' => $this->getBreadcrumb()
             ]);
     }
