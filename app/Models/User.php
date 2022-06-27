@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasLinks;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,6 +14,8 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use HasLinks;
+
 
     /**
      * The relationships that should always be loaded.
@@ -62,8 +65,5 @@ class User extends Authenticatable
     {
         return $this->hasRole('settings');
     }
-    public function getEditLink(): string
-    {
-        return route('settings.user.edit', $this);
-    }
+
 }

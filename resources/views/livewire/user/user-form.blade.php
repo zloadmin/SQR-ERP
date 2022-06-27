@@ -6,7 +6,7 @@
                     <!--- Role Field --->
                     <div class="form-group">
                         <label for="role_id">Role</label>
-                        <select class="form-control @error('role_id') is-invalid @enderror" wire:model="role_id">
+                        <select class="form-control @error('role_id') is-invalid @enderror" wire:model.defer="role_id">
                             <option value=""></option>
                             @foreach($roles as $key => $value)
                                 <option value="{{ $key }}" >{{ $value }}</option>
@@ -21,7 +21,7 @@
                     <!--- Name Field --->
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name">
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                     <!--- Email Field --->
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input class="form-control @error('email') is-invalid @enderror" type="email" wire:model="email">
+                        <input class="form-control @error('email') is-invalid @enderror" type="email" wire:model.defer="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                     <!--- Password Field --->
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input class="form-control @error('password') is-invalid @enderror" type="password" wire:model="password">
+                        <input class="form-control @error('password') is-invalid @enderror" type="password" wire:model.defer="password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                     <!--- Password confirmation Field --->
                     <div class="form-group">
                         <label for="password">Password confirmation</label>
-                        <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" wire:model="password_confirmation">
+                        <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" wire:model.defer="password_confirmation">
                         @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

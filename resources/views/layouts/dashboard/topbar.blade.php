@@ -1,6 +1,6 @@
 <div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
-        <a href="" class="topnav-logo">
+        <a href="/" class="topnav-logo">
                                 <span class="topnav-logo-lg">
                                     <img src="/images/logo-light.png" alt="" height="16">
                                 </span>

@@ -6,6 +6,9 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
 use App\Http\Livewire\Setting\SettingList;
+use App\Http\Livewire\SLA\CreateSLA;
+use App\Http\Livewire\SLA\EditSLA;
+use App\Http\Livewire\SLA\SLAList;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
@@ -55,6 +58,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', UserList::class)->name('settings.user');
             Route::get('/create', CreateUser::class)->name('settings.user.create');
             Route::get('/edit/{user}', EditUser::class)->name('settings.user.edit');
+        });
+        Route::prefix('sla')->group(function () {
+            Route::get('/', SLAList::class)->name('settings.sla');
+            Route::get('/create', CreateSLA::class)->name('settings.sla.create');
+            Route::get('/edit/{sla}', EditSLA::class)->name('settings.sla.edit');
         });
     });
 });
