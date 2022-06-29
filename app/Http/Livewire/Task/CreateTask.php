@@ -89,9 +89,9 @@ class CreateTask extends ModalComponent
     }
 
 
-    public function mount()
+    public function mount(Stage $stage)
     {
-        $this->stage = Stage::first(); //TODO: make as params
+        $this->stage = $stage;
     }
     public function updatedPhoto()
     {
@@ -114,7 +114,7 @@ class CreateTask extends ModalComponent
 
     public function render()
     {
-        return view('livewire.task.create-task-form')
+        return view('livewire.task.modal-create-task-form')
             ->layout('layouts.simple');
     }
     public function deleteFile(string $var_name, int $key)

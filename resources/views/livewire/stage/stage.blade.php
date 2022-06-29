@@ -5,7 +5,17 @@
         @if ($stage->id == 1)
 
             <!-- Inside existing Livewire component -->
-            <button wire:click="$emit('openModal', 'task.create-task')">Edit User</button>
+{{--            <button wire:click="$emit('openModal', 'task.create-task', {{ json_encode(["user" => 'user']) }})">Edit User</button>--}}
+            <!-- Outside of any Livewire component -->
+
+            <button wire:click='$emit("openModal", "task.create-task", {{ json_encode(["stage_id" => $stage->id]) }})'>Edit User</button>
+{{--            <button wire:click='$emit("openModal", "edit-user", {{ json_encode(["user" => $user->email]) }})'>Edit User</button>--}}
+{{--            <button wire:click='$emit("openModal", "edit-user", {{ json_encode([$user->id, $isAdmin]) }})'>Edit User</button>--}}
+
+                <button type="button" wire:click="$emit('showModal', 'task.create-task', '{{ $stage->id }}')">
+                    {{ __('Create Task Stage ID#' . $stage->id) }}
+                </button>
+
         @endif
     </h5>
 
@@ -20,6 +30,9 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">
                             {{ $task->name }}
                         </a>
+                        <button type="button" wire:click="$emit('showModal', 'task.edit-task', '{{ $task->id }}')">
+                            {{ __('Edit Task #' . $task->id) }}
+                        </button>
                     </h5>
                 </div> <!-- end card-body -->
             </div>
