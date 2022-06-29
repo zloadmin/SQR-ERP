@@ -31,13 +31,13 @@
                     <!--- Stage Field --->
                     <div class="form-group">
                         <label for="stage">Stage</label>
-                        <select class="form-control @error('stage') is-invalid @enderror" wire:model="stage">
+                        <select class="form-control @error('stage_id') is-invalid @enderror" wire:model="stage_id">
                             <option value=""></option>
-                            @foreach(\App\Models\Stage::LIST as $stage)
-                                <option value="{{ $stage['name'] }}">{{ $stage['name'] }}</option>
+                            @foreach(\App\Models\Stage::all() as $stage)
+                                <option value="{{ $stage['id'] }}">{{ $stage['name'] }}</option>
                             @endforeach
                         </select>
-                        @error('stage')
+                        @error('stage_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

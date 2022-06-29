@@ -22,7 +22,7 @@ class SLAFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'type' => $this->faker->randomElement(SLA::getTypesNames()),
-            'stage' => $this->faker->randomElement(Stage::getListNames()),
+            'stage_id' => Stage::factory(),
             'time' => $this->faker->randomElement(SLA::TIMES),
         ];
     }

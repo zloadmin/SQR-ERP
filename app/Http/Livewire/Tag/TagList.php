@@ -27,6 +27,7 @@ class TagList extends Component
     {
         if ($tag = Tag::find($id)) {
             $tag->delete();
+            session()->flash('warning', 'Tag has been deleted');
         }
     }
     private function getBreadcrumb()

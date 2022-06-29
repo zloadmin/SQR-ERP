@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\SLA;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Stage;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class SLASeeder extends Seeder
 {
@@ -16,6 +15,8 @@ class SLASeeder extends Seeder
      */
     public function run()
     {
-        SLA::factory()->count(rand(30, 90))->create();
+        foreach (Stage::all() as $stage) {
+            SLA::factory(['stage_id' => $stage->id])->count(rand(30, 90))->create();
+        }
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
+use App\Http\Livewire\KanbanDashboard;
 use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
 use App\Http\Livewire\SLA\EditSLA;
@@ -40,9 +41,11 @@ Route::controller(LoginController::class)->group(function () {
 });
 // Auth
 Route::middleware('auth')->group(function () {
-    Route::controller(DashboardController::class)->name('dashboard')->group(function () {
-        Route::get('/', 'index');
-    });
+    Route::get('/', KanbanDashboard::class)->name('dashboard');
+
+//    Route::controller(DashboardController::class)->name('dashboard')->group(function () {
+//        Route::get('/', 'index');
+//    });
     // User can change settings
     Route::middleware('role:settings')->controller(SettingsController::class)->prefix('settings')->group(function () {
         Route::get('/', SettingList::class)->name('settings');

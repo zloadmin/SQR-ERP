@@ -27,6 +27,7 @@ class SLAList extends Component
     {
         if ($sla = SLA::find($id)) {
             $sla->delete();
+            session()->flash('warning', 'SLA has been deleted');
         }
     }
     private function getBreadcrumb()

@@ -10,27 +10,30 @@ class EditSLA extends Component
     public SLA $sla;
     public string $name;
     public string $type;
-    public string $stage;
+    public int $stage_id;
     public int $time;
 
 
     protected $rules = [
-        'name'  => 'required|max:255',
-        'type'  => 'required',
-        'stage' => 'required',
-        'time'  => 'required|integer|min:1',
+        'name'     => 'required|max:255',
+        'type'     => 'required',
+        'stage_id' => 'required|integer|exists:stages,id',
+        'time'     => 'required|integer|min:1',
     ];
     protected $messages = [
         'time.min' => 'The time field is required.',
     ];
 
+    protected $validationAttributes = [
+        'stage_id' => 'stage'
+    ];
 
     public function mount(SLA $sla)
     {
 
         $this->name = $sla->name;
         $this->type = $sla->type;
-        $this->stage = $sla->stage;
+        $this->stage_id = $sla->stage_id;
         $this->time = $sla->time;
 
     }
@@ -56,9 +59,9 @@ class EditSLA extends Component
     private function getBreadcrumb()
     {
         return [
-            route('dashboard')           => 'Dashboard',
-            route('settings')            => 'Settings',
-            route('settings.sla')        => 'SLA',
+            route('dashboard')                     => 'Dashboard',
+            route('settings')                      => 'Settings',
+            route('settings.sla')                  => 'SLA',
             route('settings.sla.edit', $this->sla) => 'Edit SLA ' . $this->sla->name,
         ];
     }

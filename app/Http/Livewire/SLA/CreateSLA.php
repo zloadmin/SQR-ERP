@@ -10,18 +10,21 @@ class CreateSLA extends Component
 
     public string $name;
     public string $type;
-    public string $stage;
+    public int $stage_id;
     public int $time;
 
 
     protected $rules = [
         'name'  => 'required|max:255',
         'type'  => 'required',
-        'stage' => 'required',
+        'stage_id' => 'required|integer|exists:stages,id',
         'time'  => 'required|integer|min:1',
     ];
     protected $messages = [
         'time.min' => 'The time field is required.',
+    ];
+    protected $validationAttributes = [
+        'stage_id' => 'stage'
     ];
 
 
@@ -29,7 +32,7 @@ class CreateSLA extends Component
     {
         $this->name = '';
         $this->type = '';
-        $this->stage = '';
+        $this->stage_id = 0;
         $this->time = 0;
     }
 

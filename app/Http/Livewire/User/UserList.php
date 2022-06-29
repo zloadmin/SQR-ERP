@@ -29,6 +29,7 @@ class UserList extends Component
     {
         if ($user = User::find($id)) {
             $user->delete();
+            session()->flash('warning', 'User has been deleted');
         }
     }
     private function getBreadcrumb()
