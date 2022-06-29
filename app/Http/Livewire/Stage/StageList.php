@@ -13,7 +13,11 @@ class StageList extends Component
 
     public function mount()
     {
-        $this->stages = Stage::with('tasks')->get();
+
+        $this->stages = Stage::with(['tasks' => function ($query) {
+            $query->orderBy('updated_at', 'desc');
+
+        }])->get();
     }
 
     public function render()

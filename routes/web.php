@@ -13,6 +13,7 @@ use App\Http\Livewire\SLA\SLAList;
 use App\Http\Livewire\Tag\CreateTag;
 use App\Http\Livewire\Tag\EditTag;
 use App\Http\Livewire\Tag\TagList;
+use App\Http\Livewire\Task\CreateTask;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
@@ -30,9 +31,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth')->get('/', function () {
-//    return view('welcome');
-//})->name('index');
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('login', 'showLoginForm')->name('login');
@@ -42,10 +40,10 @@ Route::controller(LoginController::class)->group(function () {
 // Auth
 Route::middleware('auth')->group(function () {
     Route::get('/', KanbanDashboard::class)->name('dashboard');
+    Route::prefix('task')->group(function () {
+        Route::get('/create', CreateTask::class)->name('task.create');
+    });
 
-//    Route::controller(DashboardController::class)->name('dashboard')->group(function () {
-//        Route::get('/', 'index');
-//    });
     // User can change settings
     Route::middleware('role:settings')->controller(SettingsController::class)->prefix('settings')->group(function () {
         Route::get('/', SettingList::class)->name('settings');

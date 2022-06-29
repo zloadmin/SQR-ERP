@@ -1,5 +1,9 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.bundle.js"></script>
+
+<!-- Alpine v3 -->
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 {{--    <script src="/js/metisMenu.js"></script>--}}
 {{--    <script src="/js/jquery.slimscroll.js"></script>--}}
 {{--    <script src="/js/jquery.toast.js"></script>--}}
@@ -20,5 +24,6 @@
 {{--    </script>--}}
 {{--    @include('layouts.dashboard.notifications')--}}
 @livewireScripts
+@livewire('livewire-ui-modal')
 @stack('scripts')
 

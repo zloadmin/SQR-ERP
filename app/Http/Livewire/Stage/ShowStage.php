@@ -20,12 +20,12 @@ class ShowStage extends Component
     }
     public function getListeners()
     {
-        return [ "echo:stages.{$this->stage->id},StageTasksUpdated" => 'stageTasksUpdated', ];
+        return [ "echo:stages.{$this->stage->id},StageTasksUpdated" => 'updateTasks', ];
     }
-    public function stageTasksUpdated($data)
-    {
 
-        Log::info('stageTasksUpdated', $data);
+    public function updateTasks()
+    {
+        $this->tasks = $this->stage->tasks()->orderBy('updated_at')->get();
     }
 
 }

@@ -16042,3 +16042,14 @@ div.dt-button-info h2 {
     padding: 0 2px;
     margin-left: -7px;
 }
+.file_input_hidden {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
