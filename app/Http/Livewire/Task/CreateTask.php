@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Task;
 
 
 use App\Models\Stage;
+use App\Models\Task;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
@@ -59,11 +62,7 @@ class CreateTask extends ModalComponent
         'card_details_attachments.*' => 'card details attachment',
         'qr_attachments.*' => 'qr attachment'
     ];
-    const FILES_VARS  = [
-        'design_attachments',
-        'card_details_attachments',
-        'qr_attachments',
-    ];
+
 
     public function finishUpload($name, $tmpPath, $isMultiple)
     {
@@ -93,25 +92,43 @@ class CreateTask extends ModalComponent
     {
         $this->stage = $stage;
     }
-    public function updatedPhoto()
-    {
-        Log::info('updatedPhoto');
-    }
-    public function updatedDesignAttachments()
-    {
-//        $result = $this->validate([
-//            'design_attachments.*' => 'image|max:100', // 1MB Max
-//        ]);
-        Log::info('updatedDesignAttachments');
-//        Log::info('Valid', $result);
-    }
+
 
     public function createTask()
     {
-        $data = $this->validate();
-        dd($data);
+        $this->validate();
+        $this->storeTask();
+        $this->emit('hideModal');
     }
-
+    private function storeTask()
+    {
+        $task = new Task();
+        $task->stage_id = $this->stage->id;
+        $task->company_name = $this->company_name;
+        $task->it_is = $this->it_is;
+        $task->material = $this->material;
+        $task->total_cards = $this->total_cards;
+        $task->instruction = $this->instruction;
+        $task->background = $this->background;
+        $task->design_comments = $this->design_comments;
+        $task->card_details = $this->card_details;
+        $task->contact_name = $this->contact_name;
+        $task->contact_number = $this->contact_number;
+        $task->whatsapp = $this->whatsapp;
+        $task->contact_email = $this->contact_email;
+        $task->delivery_method = $this->delivery_method;
+        $task->emirate = $this->emirate;
+        $task->address = $this->address;
+        $data = [];
+        foreach (Task::FILES_FIELDS as $field) {
+            $data[$field] = [];
+            foreach ($this->{$field} as $file) {
+                $data[$field][] = $file->store('tasks/'  . $field );
+            }
+            $task->{$field} = $data[$field];
+        }
+        $task->save();
+    }
     public function render()
     {
         return view('livewire.task.modal-create-task-form')
@@ -120,7 +137,7 @@ class CreateTask extends ModalComponent
     public function deleteFile(string $var_name, int $key)
     {
 
-        if(isset($this->{$var_name}[$key]) && in_array($var_name, self::FILES_VARS)) {
+        if(isset($this->{$var_name}[$key]) && in_array($var_name, Task::FILES_FIELDS)) {
             unset($this->{$var_name}[$key]);
         }
     }

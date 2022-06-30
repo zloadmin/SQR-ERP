@@ -16053,3 +16053,8 @@ div.dt-button-info h2 {
     position: relative;
     overflow: hidden;
 }
+
+.stage-task-card:hover
+{
+    cursor: pointer;
+}

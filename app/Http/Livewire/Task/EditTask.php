@@ -14,6 +14,8 @@ class EditTask extends Component
     }
     public function render()
     {
-        return view('livewire.task.edit-task');
+        return view('livewire.task.modal-edit-task')
+//        return view('livewire.task.edit-task-form')
+            ->layout('layouts.simple');
     }
 }

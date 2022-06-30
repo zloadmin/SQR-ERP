@@ -14,6 +14,7 @@ use App\Http\Livewire\Tag\CreateTag;
 use App\Http\Livewire\Tag\EditTag;
 use App\Http\Livewire\Tag\TagList;
 use App\Http\Livewire\Task\CreateTask;
+use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', KanbanDashboard::class)->name('dashboard');
     Route::prefix('task')->group(function () {
         Route::get('/create', CreateTask::class)->name('task.create');
+        Route::get('/edit/{task}', EditTask::class)->name('task.edit');
     });
 
     // User can change settings
