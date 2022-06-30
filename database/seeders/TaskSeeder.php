@@ -17,7 +17,7 @@ class TaskSeeder extends Seeder
     public function run()
     {
         foreach (Stage::all() as $stage) {
-            Task::factory(['stage_id' => $stage->id])->count(rand(30, 90))->create();
+            Task::factory(['stage_id' => $stage->id])->count(rand(10, 30))->create();
         }
     }
 }

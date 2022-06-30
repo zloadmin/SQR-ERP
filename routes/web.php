@@ -14,6 +14,7 @@ use App\Http\Livewire\Tag\CreateTag;
 use App\Http\Livewire\Tag\EditTag;
 use App\Http\Livewire\Tag\TagList;
 use App\Http\Livewire\Task\CreateTask;
+use App\Http\Livewire\Task\EditForm\EditOrderDetails;
 use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
@@ -41,10 +42,13 @@ Route::controller(LoginController::class)->group(function () {
 // Auth
 Route::middleware('auth')->group(function () {
     Route::get('/', KanbanDashboard::class)->name('dashboard');
+    // TODO: Delete start
     Route::prefix('task')->group(function () {
         Route::get('/create', CreateTask::class)->name('task.create');
         Route::get('/edit/{task}', EditTask::class)->name('task.edit');
+        Route::get('/edit/{task}/edit-order-details', EditOrderDetails::class)->name('task.edit.edit-order-detail');
     });
+    // TODO: Delete end
 
     // User can change settings
     Route::middleware('role:settings')->controller(SettingsController::class)->prefix('settings')->group(function () {

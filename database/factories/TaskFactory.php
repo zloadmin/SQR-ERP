@@ -19,7 +19,21 @@ class TaskFactory extends Factory
     {
         return [
             'stage_id' => Stage::factory(),
-            'name' => $this->faker->name(),
+            'company_name'    => $this->faker->name(),
+            'it_is'           => $this->faker->name(),
+            'material'        => $this->faker->name(),
+            'total_cards'     => $this->faker->name(),
+            'instruction'     => $this->faker->name(),
+            'background'      => $this->faker->name(),
+            'design_comments' => $this->faker->text(),
+            'card_details'    => $this->faker->text(),
+            'contact_name'    => $this->faker->name(),
+            'contact_number'  => $this->faker->name(),
+            'whatsapp'        => $this->faker->name(),
+            'contact_email'   => $this->faker->email(),
+            'delivery_method' => $this->faker->name(),
+            'emirate'         => $this->faker->city(),
+            'address'         => $this->faker->address(),
         ];
     }
 }

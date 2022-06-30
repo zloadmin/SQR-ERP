@@ -24,32 +24,35 @@
                         <div :style="`width: ${progress}%;`" class="progress-bar bg-success"></div>
                     </div>
                 </div>
-
-{{--                <div class="progress" x-show="isUploading">--}}
-
-{{--                    --}}
-{{--                    <progress max="100" aria-valuemin="0" aria-valuemax="100" x-bind:aria-valuenow="progress" class="progress-bar progress-bar-striped progress-bar-animated"></progress>--}}
-{{--                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"  x-bind:aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                </div>--}}
             </div>
 
             @error($var_name . '.*')
-            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
                     {{ $message }}
                 </div>
             @enderror
 
             @foreach($$var_name as $key => $file)
-
-
                 <div class="card mb-1 shadow-none border">
                     <div class="p-2">
                         <div class="row align-items-center">
                             <div class="col ps-0">
                                 <a href="javascript:void(0);" class="text-muted fw-bold">
-                                    {{ substr($file->getClientOriginalName(), 0, 30) }}
+                                    @if(is_array($file))
+                                        {{ substr($file['options']['file']['name'], 0, 30) }}
+                                    @else
+                                        {{ substr($file->getClientOriginalName(), 0, 30) }}
+                                    @endif
+
                                 </a>
-                                <p class="mb-0">{{ number_format($file->getSize() / 100000, 2)  }} MB</p>
+
+                                <p class="mb-0">
+                                    @if(is_array($file))
+                                        {{ number_format($file['options']['file']['size'] / 100000, 2)  }} MB
+                                    @else
+                                        {{ number_format($file->getSize() / 100000, 2)  }} MB
+                                    @endif
+                                </p>
                             </div>
                             <div class="col-auto">
                                 <!-- Button -->
