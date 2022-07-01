@@ -97,41 +97,19 @@ class Task extends Model
         return $this->hasMany(TaskFile::class);
     }
 
-    public function getFilesByType(string $type) : array
+    public function getFilesByType(string $type) : Collection
     {
-        $result = [];
-        foreach ($this->files()->where('type', $type)->get() as $file) {
-
-            $tmpFile = tmpfile();
-//            dd($file);
-            $result[$file->id] = new UploadedFile($file->real_path, $file->original_name);
-//            $result[] = [
-//                'source' => $file->id,
-//                'options' => [
-//                    'type' => 'local',
-//                    'file' => [
-//                        'name' => $file->original_name,
-//                        'size' => $file->getSize(),
-//                        'type' => $file->getMimeType(),
-//                    ],
-//                    'metadata' => [
-//                        'poster' => $file->getUrl(),
-//                    ],
-//                ],
-//            ];;
-        }
-//        dd($result);
-        return  $result;
+        return $this->files()->where('type', $type)->get();
     }
-    public function getDesignAttachmentsAttribute() : array
+    public function getDesignAttachments() : Collection
     {
         return $this->getFilesByType(TaskFile::DESIGN_ATTACHMENTS);
     }
-    public function getCardDetailsAttachmentsAttribute() : array
+    public function getCardDetailsAttachments() : Collection
     {
         return $this->getFilesByType(TaskFile::CARD_DETAILS_ATTACHMENTS);
     }
-    public function getQrAttachmentsAttribute() : array
+    public function getQrAttachments() : Collection
     {
         return $this->getFilesByType(TaskFile::QR_ATTACHMENTS);
     }

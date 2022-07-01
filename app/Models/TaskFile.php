@@ -13,6 +13,9 @@ class TaskFile extends Model
     const DESIGN_ATTACHMENTS = 'design_attachments';
     const CARD_DETAILS_ATTACHMENTS = 'card_details_attachments';
     const QR_ATTACHMENTS = 'qr_attachments';
+    const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
+    const EXIST_CARD_DETAILS_ATTACHMENTS = 'exist_card_details_attachments';
+    const EXIST_QR_ATTACHMENTS = 'exist_qr_attachments';
     const TYPES = [
         self::DESIGN_ATTACHMENTS,
         self::CARD_DETAILS_ATTACHMENTS,
@@ -22,6 +25,11 @@ class TaskFile extends Model
         self::DESIGN_ATTACHMENTS,
         self::CARD_DETAILS_ATTACHMENTS,
         self::QR_ATTACHMENTS,
+    ];
+    const EXIST_MAIN_FIELDS = [
+        self::EXIST_DESIGN_ATTACHMENTS,
+        self::EXIST_CARD_DETAILS_ATTACHMENTS,
+        self::EXIST_QR_ATTACHMENTS,
     ];
     public function getClientOriginalName() : string
     {

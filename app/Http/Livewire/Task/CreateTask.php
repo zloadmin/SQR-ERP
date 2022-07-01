@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Task;
 
 
+use App\Http\Livewire\Traits\HasTaskFiles;
 use App\Models\Stage;
 use App\Models\Task;
 
@@ -15,7 +16,7 @@ use LivewireUI\Modal\ModalComponent;
 
 class CreateTask extends ModalComponent
 {
-    use WithFileUploads;
+    use WithFileUploads, HasTaskFiles;
 
     public Stage $stage;
     public string $company_name = '';
@@ -54,9 +55,9 @@ class CreateTask extends ModalComponent
         'delivery_method' => 'nullable|max:255',
         'emirate'         => 'nullable|max:255',
         'address'         => 'nullable',
-//        'design_attachments.*' => 'file|max:10000',
-//        'card_details_attachments.*' => 'file|max:10000',
-//        'qr_attachments.*' => 'file|max:10000',
+        'design_attachments.*' => 'file|max:10000',
+        'card_details_attachments.*' => 'file|max:10000',
+        'qr_attachments.*' => 'file|max:10000',
     ];
     protected $validationAttributes = [
         'design_attachments.*' => 'design attachment',
@@ -77,15 +78,7 @@ class CreateTask extends ModalComponent
         $files = array_merge($this->getPropertyValue($name), $files);
         $this->syncInput($name, $files);
     }
-//    public function getCollectionProperty()
-//    {
-//        return TemporaryUploadedFile::unserializeFromLivewireRequest(session()->get("report.{$this->collectionName}", 'livewire-files:'));
-//    }
-//    public function saveFilesToSession($collection)
-//    {
-//        session()->put("report.{$this->collectionName}", TemporaryUploadedFile::serializeMultipleForLivewireResponse($collection));
-//        return $collection;
-//    }
+
 
 
     public function mount(Stage $stage)
@@ -123,28 +116,11 @@ class CreateTask extends ModalComponent
         $task->save();
         return $task;
     }
-    public function storeFiles(Task $task)
-    {
-        foreach (TaskFile::MAIN_FIELDS as $field) {
-            foreach ($this->{$field} as $file) {
-                $task->files()->create([
-                    'type' => $field,
-                    'path' => $file->store('tasks/'  . $field ),
-                    'original_name' => $file->getClientOriginalName(),
-                    'size' => $file->getSize(),
-                ]);
-            }
-        }
-    }
+
     public function render()
     {
         return view('livewire.task.modal-create-task-form')
             ->layout('layouts.simple');
     }
-    public function deleteFile(string $var_name, int $key)
-    {
-        if(isset($this->{$var_name}[$key]) && in_array($var_name, Task::FILES_FIELDS)) {
-            unset($this->{$var_name}[$key]);
-        }
-    }
+
 }

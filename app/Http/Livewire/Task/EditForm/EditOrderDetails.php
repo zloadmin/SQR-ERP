@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Task\EditForm;
 
+use App\Http\Livewire\Traits\HasTaskFiles;
 use App\Models\Task;
 use App\Models\TaskFile;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,7 @@ use Livewire\WithFileUploads;
 
 class EditOrderDetails extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, HasTaskFiles;
     public Task $task;
     public string $company_name;
     public string $it_is;
@@ -21,9 +22,16 @@ class EditOrderDetails extends Component
     public string $background;
     public string $design_comments;
     public string $card_details;
-    public  $design_attachments = [];
-    public  $card_details_attachments = [];
-    public  $qr_attachments = [];
+
+    public $design_attachments = [];
+    public $card_details_attachments = [];
+    public $qr_attachments = [];
+
+    public  $exist_design_attachments = [];
+    public  $exist_card_details_attachments = [];
+    public  $exist_qr_attachments = [];
+
+
 
 
     protected $rules = [
@@ -50,20 +58,24 @@ class EditOrderDetails extends Component
         $this->background = $task->background;
         $this->design_comments = $task->design_comments;
         $this->card_details = $task->card_details;
-        $this->design_attachments = $task->design_attachments;
-        $this->card_details_attachments = $task->card_details_attachments;;
-        $this->qr_attachments = $task->qr_attachments;;
+
+        $this->exist_design_attachments = $task->getDesignAttachments();
+        $this->exist_card_details_attachments = $task->getCardDetailsAttachments();;
+        $this->exist_qr_attachments = $task->getQrAttachments();
+
 
     }
     public function editOrderDetails()
     {
         $this->validate();
-        $this->updateTask();
-        $this->updateTaskFiles();
-        $this->emit('showModal', 'task.edit-task', $this->task->id);
+        $task = $this->updateTask();
+        $this->storeFiles($task);
+        $this->deleteExistFiles();
+//        $this->updateTaskFiles();
+//        $this->emit('showModal', 'task.edit-task', $this->task->id);
 
     }
-    public function updateTask()
+    public function updateTask() : Task
     {
         $this->task->company_name = $this->company_name;
         $this->task->it_is = $this->it_is;
@@ -73,43 +85,40 @@ class EditOrderDetails extends Component
         $this->task->background = $this->background;
         $this->task->design_comments = $this->design_comments;
         $this->task->update();
+        return $this->task;
     }
-    public function updateTaskFiles()
-    {
-        foreach (TaskFile::MAIN_FIELDS as $field) {
-            foreach ($this->{$field} as $file) {
-                var_dump($file);
-//                $this->task->files()->create([
-//                    'type' => $field,
-//                    'path' => $file->store('tasks/'  . $field ),
-//                    'original_name' => $file->getClientOriginalName(),
-//                    'size' => $file->getSize(),
-//                ]);
-            }
-        }
-        exit;
-    }
+//    public function updateTaskFiles()
+//    {
+//        foreach (TaskFile::MAIN_FIELDS as $field) {
+//            foreach ($this->{$field} as $file) {
+////                var_dump($file);
+////                $this->task->files()->create([
+////                    'type' => $field,
+////                    'path' => $file->store('tasks/'  . $field ),
+////                    'original_name' => $file->getClientOriginalName(),
+////                    'size' => $file->getSize(),
+////                ]);
+//            }
+//        }
+////        exit;
+//    }
 
     public function finishUpload($name, $tmpPath, $isMultiple)
     {
-        Log::info('finish upload', $this->design_attachments);
         $this->cleanupOldUploads();
 
         $files = collect($tmpPath)->map(function ($i) {
             return TemporaryUploadedFile::createFromLivewire($i);
         })->toArray();
         $this->emitSelf('upload:finished', $name, collect($files)->map->getFilename()->toArray());
+
         $files = array_merge($this->getPropertyValue($name), $files);
         $this->syncInput($name, $files);
     }
+
     public function render()
     {
         return view('livewire.task.edit-form.modal-edit-order-details');
     }
-    public function deleteFile(string $var_name, int $key)
-    {
-        if(isset($this->{$var_name}[$key]) && in_array($var_name, Task::FILES_FIELDS)) {
-            unset($this->{$var_name}[$key]);
-        }
-    }
+
 }
