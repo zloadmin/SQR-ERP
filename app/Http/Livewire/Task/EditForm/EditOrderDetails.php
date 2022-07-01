@@ -63,7 +63,6 @@ class EditOrderDetails extends Component
         $this->exist_card_details_attachments = $task->getCardDetailsAttachments();;
         $this->exist_qr_attachments = $task->getQrAttachments();
 
-
     }
     public function editOrderDetails()
     {
@@ -71,9 +70,7 @@ class EditOrderDetails extends Component
         $task = $this->updateTask();
         $this->storeFiles($task);
         $this->deleteExistFiles();
-//        $this->updateTaskFiles();
-//        $this->emit('showModal', 'task.edit-task', $this->task->id);
-
+        $this->emit('showModal', 'task.edit-task', $this->task->id);
     }
     public function updateTask() : Task
     {

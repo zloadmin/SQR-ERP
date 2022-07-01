@@ -113,4 +113,16 @@ class Task extends Model
     {
         return $this->getFilesByType(TaskFile::QR_ATTACHMENTS);
     }
+    public function design_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_ATTACHMENTS);
+    }
+    public function card_details_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::CARD_DETAILS_ATTACHMENTS);
+    }
+    public function qr_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
+    }
 }

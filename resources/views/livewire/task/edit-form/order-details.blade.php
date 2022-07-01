@@ -7,11 +7,65 @@
             </button>
         </div>
     </div>
-    <div class="card-body">
-        <h4 class="header-title">Default Tabs</h4>
-        <p class="text-muted font-14 mb-3">Simple widget of tabbable panes of local content.</p>
-        <pre>
-            {{ var_export($task) }}
-        </pre>
+    <div class="card-body p-0">
+        <table class="table table-bordered table-centered mb-0 border-0" style="    margin-top: -1px;">
+            <tbody>
+                <tr>
+                    <td style="width: 33%">
+                        <p><b>Company name:</b> {{ $task->company_name }}</p>
+                    </td>
+                    <td style="width: 33%">
+                        <p><b>Total cards:</b> {{ $task->total_cards }}</p>
+                    </td>
+                    <td style="width: 34%">
+                        <p><b>Design attachments:</b> {{ $task->design_attachments()->count() }} files</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>It is:</b> {{ $task->it_is }}</p>
+                    </td>
+                    <td>
+                        <p><b>Background:</b> {{ $task->background }}</p>
+                    </td>
+                    <td>
+                        <p><b>Details attachments:</b> {{ $task->card_details_attachments()->count() }} files</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Material:</b> {{ $task->material }}</p>
+                    </td>
+                    <td>
+                        <p><b>Instruction:</b> {{ $task->instruction }}</p>
+                    </td>
+                    <td>
+                        <p><b>QR attachments:</b> {{ $task->qr_attachments()->count() }} files</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Design comments:</b><br> {{ $task->material }}</p>
+                    </td>
+                    <td>
+                        <p><b>Card details:</b><br> {{ $task->instruction }}</p>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Approved Design:</b> will_soon</p>
+                    </td>
+                    <td>
+                        <p><b>Approved Content:</b> will_soon</p>
+                    </td>
+                    <td>
+                        <p><b>Print File:</b> will_soon</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div> <!-- end card-body -->
 </div>
