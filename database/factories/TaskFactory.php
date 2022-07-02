@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Stage;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class TaskFactory extends Factory
     {
         return [
             'stage_id' => Stage::factory(),
+//            'name'    => $this->faker->name(),
             'company_name'    => $this->faker->name(),
             'it_is'           => $this->faker->name(),
             'material'        => $this->faker->name(),

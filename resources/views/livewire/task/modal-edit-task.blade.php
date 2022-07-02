@@ -1,10 +1,28 @@
 <div class="modal-dialog modal-full-width modal-dialog-scrollable">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{ $task->company_name }}</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <div class="d-flex justify-content-between align-items-center">
+
+                <button type="button" class="btn btn-success mr-2" wire:click="$emit('showModal', 'task.edit-form.edit-main-info', '{{ $task->id }}')" >
+                    Edit
+                </button>
+
+                <h5 class=" modal-title">
+                    {{ $task->name }}
+                    <span class="tag-list ml-2">
+                        @foreach($task->tags()->get() as $tag)
+                            <span class="badge bg-success">{{ $tag->name }}</span>
+                        @endforeach
+                    </span>
+                </h5>
+            </div>
+
+            <button type="button" class="close" wire:click="closeTaskModal()">
                 <i class="mdi mdi-close"></i>
             </button>
+
+
+
         </div>
         <div class="modal-body">
             @include('livewire.task.edit-task-form')

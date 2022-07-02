@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
+            $table->string('name')->default('');
             $table->string('company_name');
             $table->string('it_is')->nullable();
             $table->string('material')->nullable();

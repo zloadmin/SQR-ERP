@@ -17,11 +17,11 @@ class TaskFileSeeder extends Seeder
     public function run()
     {
         foreach (Task::all() as $task) {
-//            for ($i = 0; $i <= rand(3, 10); $i++) {
+            for ($i = 0; $i <= rand(3, 10); $i++) {
                 foreach (TaskFile::TYPES as $type) {
-//                    TaskFile::factory([ 'task_id' => $task->id, 'type' => $type ])->create();
+                    TaskFile::factory([ 'task_id' => $task->id, 'type' => $type ])->create();
                 }
-//            }
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ class Task extends Model
         'qr_attachments',
     ];
 
+
     /**
      * The "booted" method of the model.
      *
@@ -42,6 +43,27 @@ class Task extends Model
             self::updatedStageTasksUpdatedListener($task);
         });
     }
+//    public function tags()
+//    {
+//        return $this->hasManyThrough(Tag::class, TaskTag::class, 'task_id', 'id',);
+//    }
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+    public function getTagsIds() : array
+    {
+        $result = [];
+        foreach ($this->tags()->get() as $tag) {
+            $result[] = $tag->id;
+        }
+        return  $result;
+    }
+
 
     public function isChangedStage(): bool
     {

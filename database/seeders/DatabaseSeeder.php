@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             SLASeeder::class,
             TagSeeder::class,
             TaskSeeder::class,
-            TaskFileSeeder::class,
+//            TaskFileSeeder::class,
+
         ]);
 
     }

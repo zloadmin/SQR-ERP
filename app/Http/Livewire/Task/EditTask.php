@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Task;
 
 use App\Models\Task;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class EditTask extends Component
@@ -17,5 +18,11 @@ class EditTask extends Component
         return view('livewire.task.modal-edit-task')
 //        return view('livewire.task.edit-task-form')
             ->layout('layouts.simple');
+    }
+    public function closeTaskModal()
+    {
+//        Log::info('closeTaskModal');
+        $this->emit('refreshStage', $this->task->stage_id);
+        $this->emit('hideModal');
     }
 }

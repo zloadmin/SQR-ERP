@@ -18,14 +18,24 @@ class ShowStage extends Component
     {
         return view('livewire.stage.stage');
     }
+
     public function getListeners()
     {
-        return [ "echo:stages.{$this->stage->id},StageTasksUpdated" => 'updateTasks', ];
+        return [
+            "echo:stages.{$this->stage->id},StageTasksUpdated" => 'updateTasks',
+            'refreshStage' => 'refreshStageEvent'
+        ];
     }
 
+    public function refreshStageEvent(int $stage_id) {
+        if($stage_id == $this->stage->id) {
+            $this->updateTasks();
+        }
+    }
     public function updateTasks()
     {
         $this->tasks = $this->stage->tasks()->orderBy('updated_at')->get();
     }
+
 
 }
