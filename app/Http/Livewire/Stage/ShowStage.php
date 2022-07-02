@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Stage;
 
 use App\Models\Stage;
+use App\Models\Task;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -13,7 +14,15 @@ class ShowStage extends Component
     public Stage $stage;
     public Collection $tasks;
 
-
+    function mount(Stage $stage)
+    {
+        $this->stage = $stage;
+        $this->tasks = $this->getTasks();
+    }
+    private function getTasks(): Collection
+    {
+        return $this->stage->tasks()->with('tags')->orderBy('updated_at', 'desc')->get();
+    }
     public function render()
     {
         return view('livewire.stage.stage');
@@ -34,8 +43,6 @@ class ShowStage extends Component
     }
     public function updateTasks()
     {
-        $this->tasks = $this->stage->tasks()->orderBy('updated_at')->get();
+        $this->tasks = $this->getTasks();
     }
-
-
 }

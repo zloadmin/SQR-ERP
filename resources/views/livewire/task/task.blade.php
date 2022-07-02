@@ -2,7 +2,7 @@
     <div class="card-body p-3">
         <small class="float-end text-muted">Last update: {{ $task->updated_at->diffForHumans() }}</small>
         <br>
-        @foreach($task->tags()->get() as $tag)
+        @foreach($task->tags as $tag)
             <span class="badge bg-success">{{ $tag->name }}</span>
         @endforeach
         <h5 class="mt-2 mb-2">
