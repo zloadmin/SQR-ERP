@@ -27,6 +27,10 @@ class Task extends Model
         'card_details_attachments',
         'qr_attachments',
     ];
+    /**
+     * @var mixed|string
+     */
+    private mixed $username;
 
 
     /**

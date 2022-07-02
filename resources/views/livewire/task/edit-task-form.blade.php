@@ -4,6 +4,7 @@
             <livewire:task.edit-form.actions :task="$task"/>
             <livewire:task.edit-form.order-details :task="$task"/>
             <livewire:task.edit-form.delivery-details :task="$task"/>
+            <livewire:task.edit-form.sqr-card :task="$task"/>
         </div>
     </div>
 </form>
