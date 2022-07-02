@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('original_name');
             $table->unsignedBigInteger('size');
             $table->enum('type', TaskFile::TYPES);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

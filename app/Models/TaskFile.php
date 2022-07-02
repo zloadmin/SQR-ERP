@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class TaskFile extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = [];
     const DESIGN_ATTACHMENTS = 'design_attachments';
     const CARD_DETAILS_ATTACHMENTS = 'card_details_attachments';

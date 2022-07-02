@@ -151,4 +151,8 @@ class Task extends Model
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
     }
+    public function messages()
+    {
+        return $this->belongsTo(TaskMessage::class);
+    }
 }

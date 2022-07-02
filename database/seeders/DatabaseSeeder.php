@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             SLASeeder::class,
             TagSeeder::class,
             TaskSeeder::class,
+            TaskMessageSeeder::class,
 //            TaskFileSeeder::class,
 
         ]);
