@@ -20,7 +20,9 @@
                     Save
                 </div>
             </button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" wire:click="$emit('showModal', 'task.edit-task', '{{ $task->id }}')">
+                Cancel
+            </button>
         </div>
     </div>
 </div>
