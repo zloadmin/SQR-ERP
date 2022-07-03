@@ -153,6 +153,6 @@ class Task extends Model
     }
     public function messages()
     {
-        return $this->belongsTo(TaskMessage::class);
+        return $this->hasMany(TaskMessage::class);
     }
 }
