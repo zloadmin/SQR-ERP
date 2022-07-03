@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Stage extends Model
 {
+    const LIST = [
+        ['key' => 'account_setup', 'name' => 'Account Setup'],
+        ['key' => 'design', 'name' => 'Design'],
+        ['key' => 'design_approval', 'name' => 'Design Approval'],
+        ['key' => 'content', 'name' => 'Content'],
+        ['key' => 'content_approval', 'name' => 'Content Approval'],
+        ['key' => 'print_file', 'name' => 'Print File'],
+        ['key' => 'production', 'name' => 'Production'],
+        ['key' => 'collection', 'name' => 'Collection'],
+        ['key' => 'done', 'name' => 'Done'],
+    ];
     use HasFactory;
     static function getListNames()
     {

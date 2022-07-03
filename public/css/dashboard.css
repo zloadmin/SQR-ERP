@@ -12307,7 +12307,7 @@ input[data-switch]:checked+label:after {
 }
 
 input[data-switch=bool]+label {
-    background-color: #fa5c7c
+    background-color: #6c757d
 }
 
 input[data-switch=bool]+label:before,input[data-switch=bool]:checked+label:before {

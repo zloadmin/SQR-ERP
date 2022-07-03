@@ -18,6 +18,7 @@ class StageFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'key' => $this->faker->name(),
         ];
     }
 }

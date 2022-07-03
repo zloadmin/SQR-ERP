@@ -24,12 +24,12 @@ class UserRoleController extends Controller
         ]);
     }
 
-    public function edit(UserRole $user_role)
+    public function edit(UserRole $userRole)
     {
         return view('user-role.edit', [
-            'title'      => $user_role->getEditTitle(),
-            'breadcrumb' => $this->getEditBreadcrumb($user_role),
-            'user_role'  => $user_role
+            'title'      => $userRole->getEditTitle(),
+            'breadcrumb' => $this->getEditBreadcrumb($userRole),
+            'user_role'  => $userRole
         ]);
     }
 

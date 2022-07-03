@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +17,12 @@ class UserRoleFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'name' => $this->faker->name(),
-            'settings' => false,
-        ];
+        $role = [];
+        $role['name'] = $this->faker->name();
+        $role['settings'] = false;
+        foreach (UserRole::getAccessFieldNames() as $key => $value) {
+            $role[$key] = (bool)rand(0,1);
+        }
+        return $role;
     }
 }
