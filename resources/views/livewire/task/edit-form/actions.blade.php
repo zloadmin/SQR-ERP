@@ -1,13 +1,31 @@
-<div class="card">
-    <div class="card-header modal-colored-header bg-danger">
-        <div class="d-flex justify-content-between align-items-center">
-            <h4>Actions</h4>
-            <button type="button" class="btn btn-success"  >
-                Submit
-            </button>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        <p style="padding: 100px;text-align: center">Actions coming soon</p>
-    </div> <!-- end card-body -->
+<div class="action_wrapper">
+    @switch($stage->key)
+        @case('account_setup')
+            <livewire:task.edit-form.action.action-account-setup :task="$task" />
+        @break
+        @case('design')
+            <livewire:task.edit-form.action.action-design :task="$task" />
+        @break
+        @case('design_approval')
+            <livewire:task.edit-form.action.action-design-approval :task="$task" />
+        @break
+        @case('content')
+            <livewire:task.edit-form.action.action-content :task="$task" />
+        @break
+        @case('content_approval')
+            <livewire:task.edit-form.action.action-content-approval :task="$task" />
+        @break
+        @case('print_file')
+            <livewire:task.edit-form.action.action-print-file :task="$task" />
+        @break
+        @case('production')
+            <livewire:task.edit-form.action.action-production :task="$task" />
+        @break
+        @case('collection')
+            <livewire:task.edit-form.action.action-collection :task="$task" />
+        @break
+        @case('done')
+            <livewire:task.edit-form.action.action-done :task="$task" />
+        @break
+    @endswitch
 </div>

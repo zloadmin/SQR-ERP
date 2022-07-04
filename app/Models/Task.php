@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\StageTasksUpdated;
+use App\Events\UpdateTaskStage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -59,13 +60,14 @@ class Task extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
-    public function getTagsIds() : array
+
+    public function getTagsIds(): array
     {
         $result = [];
         foreach ($this->tags()->get() as $tag) {
             $result[] = $tag->id;
         }
-        return  $result;
+        return $result;
     }
 
 
@@ -84,19 +86,21 @@ class Task extends Model
         if ($task->isChangedStage()) {
             event(new StageTasksUpdated($task->getOriginal('stage_id')));
             event(new StageTasksUpdated($task->stage_id));
+            event(new UpdateTaskStage($task->id));
         }
     }
+
     static function getFiles(array $files)
     {
         $result = [];
         foreach ($files as $key => $file) {
 
 //            $result[] =  new TemporaryUploadedFile(Storage::path($file), 'local');
-            $result[] =  [
-                'source' => $key,
+            $result[] = [
+                'source'  => $key,
                 'options' => [
-                    'type' => 'local',
-                    'file' => [
+                    'type'     => 'local',
+                    'file'     => [
                         'name' => $key,
                         'size' => 1,
                         'type' => 'jpeg',
@@ -118,41 +122,54 @@ class Task extends Model
 //        dd($result);
         return $result;
     }
+
     public function files()
     {
         return $this->hasMany(TaskFile::class);
     }
 
-    public function getFilesByType(string $type) : Collection
+    public function getFilesByType(string $type): Collection
     {
         return $this->files()->where('type', $type)->get();
     }
-    public function getDesignAttachments() : Collection
+
+    public function getDesignAttachments(): Collection
     {
         return $this->getFilesByType(TaskFile::DESIGN_ATTACHMENTS);
     }
-    public function getCardDetailsAttachments() : Collection
+
+    public function getCardDetailsAttachments(): Collection
     {
         return $this->getFilesByType(TaskFile::CARD_DETAILS_ATTACHMENTS);
     }
-    public function getQrAttachments() : Collection
+
+    public function getQrAttachments(): Collection
     {
         return $this->getFilesByType(TaskFile::QR_ATTACHMENTS);
     }
+
     public function design_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_ATTACHMENTS);
     }
+
     public function card_details_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::CARD_DETAILS_ATTACHMENTS);
     }
+
     public function qr_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
     }
+
     public function messages()
     {
         return $this->hasMany(TaskMessage::class);
+    }
+
+    public function stage()
+    {
+        return $this->belongsTo(Stage::class);
     }
 }
