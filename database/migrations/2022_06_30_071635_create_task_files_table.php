@@ -18,10 +18,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('task_id');
             $table->foreign('task_id')->on('tasks')->references('id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->on('users')->references('id');
             $table->string('path');
             $table->string('original_name');
             $table->unsignedBigInteger('size');
             $table->enum('type', TaskFile::TYPES);
+            $table->boolean('approved')->nullable();
+            $table->text('approved_comment')->nullable();
+            $table->unsignedBigInteger('approved_user_id')->nullable();
+            $table->foreign('approved_user_id')->on('users')->references('id');
             $table->softDeletes();
             $table->timestamps();
         });

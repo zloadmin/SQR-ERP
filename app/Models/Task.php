@@ -20,7 +20,7 @@ class Task extends Model
     protected $casts = [
         'design_attachments'       => 'array',
         'card_details_attachments' => 'array',
-        'qr_attachments'           => 'array'
+        'qr_attachments'           => 'array',
     ];
 
     const FILES_FIELDS = [
@@ -172,6 +172,7 @@ class Task extends Model
     {
         return $this->belongsTo(Stage::class);
     }
+
     public function getNextStageId(): int
     {
         return Stage::getNextStageId($this->stage_id);
@@ -180,5 +181,25 @@ class Task extends Model
     public function getPrevStageId(): int
     {
         return Stage::getPrevStageId($this->stage_id);
+    }
+    public function getLastFile(string $type)
+    {
+        return $this->files()->where('type', $type)->latest()->first();
+    }
+    public function getLastNotApproveFile(string $type)
+    {
+        return $this->files()->where('type', $type)->where('approved', false)->latest()->first();
+    }
+    public function getLastQRAttachment()
+    {
+        return $this->getLastFile(TaskFile::QR_ATTACHMENTS);
+    }
+    public function getLastDesignAttachment()
+    {
+        return $this->getLastFile(TaskFile::DESIGN_ATTACHMENTS);
+    }
+    public function getLastNotApproveDesignAttachment()
+    {
+        return $this->getLastNotApproveFile(TaskFile::DESIGN_ATTACHMENTS);
     }
 }

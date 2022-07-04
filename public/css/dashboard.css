@@ -12369,6 +12369,16 @@ input[data-switch=dark]:checked+label {
 .table .action-icon:hover {
     color: #6c757d
 }
+.file_item .action-icon {
+    color: #98a6ad;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 0 3px
+}
+
+.file_item .action-icon:hover {
+    color: #6c757d
+}
 
 .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;

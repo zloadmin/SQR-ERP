@@ -37,8 +37,8 @@ return new class extends Migration
             $table->json('card_details_attachments')->nullable();
             $table->json('qr_attachments')->nullable();
 
-            $table->string('sqr_card_username')->nullable();
-            $table->string('sqr_card_password')->nullable();
+            $table->string('sqr_card_username')->default('');
+            $table->string('sqr_card_password')->default('');
 
             $table->timestamps();
         });

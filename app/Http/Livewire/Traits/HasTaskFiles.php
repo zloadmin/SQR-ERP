@@ -51,6 +51,7 @@ trait HasTaskFiles
                     'path' => $file->store('tasks/'  . $field ),
                     'original_name' => $file->getClientOriginalName(),
                     'size' => $file->getSize(),
+                    'user_id' => auth()->id()
                 ]);
             }
         }
