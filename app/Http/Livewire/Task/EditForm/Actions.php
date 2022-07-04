@@ -26,9 +26,9 @@ class Actions extends Component
             "echo:task.{$this->task->id},UpdateTaskStage" => 'updateTask',
         ];
     }
-    public function updateTask()
+    public function updateTask(array $data)
     {
-        \Illuminate\Support\Facades\Log::info('updateTask');
+        \Illuminate\Support\Facades\Log::info('updateTask', $data);
         $this->mount($this->task->refresh());
     }
 }

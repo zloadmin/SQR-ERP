@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class ActionDesignApproval extends Action
 {
-    public function render()
-    {
-        return view('livewire.task.edit-form.action.action-design-approval');
-    }
+//    public function render()
+//    {
+//        return view('livewire.task.edit-form.action.action-design-approval');
+//    }
 }

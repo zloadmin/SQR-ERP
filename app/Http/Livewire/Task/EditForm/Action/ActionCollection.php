@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class ActionCollection extends Action
 {
-    public function render()
-    {
-        return view('livewire.task.edit-form.action.action-collection');
-    }
+//    public function render()
+//    {
+//        return view('livewire.task.edit-form.action.action-collection');
+//    }
 }

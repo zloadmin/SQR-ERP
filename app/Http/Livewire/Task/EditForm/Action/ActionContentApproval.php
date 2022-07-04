@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class ActionContentApproval extends Action
 {
-    public function render()
-    {
-        return view('livewire.task.edit-form.action.action-content-approval');
-    }
+//    public function render()
+//    {
+//        return view('livewire.task.edit-form.action.action-content-approval');
+//    }
 }

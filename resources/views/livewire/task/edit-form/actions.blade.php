@@ -1,21 +1,22 @@
 <div class="action_wrapper">
+{{--    Not work in another way--}}
     @switch($stage->key)
-        @case('account_setup')
+        @case('account-setup')
             <livewire:task.edit-form.action.action-account-setup :task="$task" />
         @break
         @case('design')
             <livewire:task.edit-form.action.action-design :task="$task" />
         @break
-        @case('design_approval')
+        @case('design-approval')
             <livewire:task.edit-form.action.action-design-approval :task="$task" />
         @break
         @case('content')
             <livewire:task.edit-form.action.action-content :task="$task" />
         @break
-        @case('content_approval')
+        @case('content-approval')
             <livewire:task.edit-form.action.action-content-approval :task="$task" />
         @break
-        @case('print_file')
+        @case('print-file')
             <livewire:task.edit-form.action.action-print-file :task="$task" />
         @break
         @case('production')

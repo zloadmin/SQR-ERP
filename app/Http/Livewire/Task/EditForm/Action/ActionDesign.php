@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class ActionDesign extends Action
 {
-    public function render()
-    {
-        return view('livewire.task.edit-form.action.action-design');
-    }
+//    public function render()
+//    {
+//        return view('livewire.task.edit-form.action.action-design');
+//    }
 }

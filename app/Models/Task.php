@@ -172,4 +172,13 @@ class Task extends Model
     {
         return $this->belongsTo(Stage::class);
     }
+    public function getNextStageId(): int
+    {
+        return Stage::getNextStageId($this->stage_id);
+    }
+
+    public function getPrevStageId(): int
+    {
+        return Stage::getPrevStageId($this->stage_id);
+    }
 }

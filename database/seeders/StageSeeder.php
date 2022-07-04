@@ -17,8 +17,8 @@ class StageSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Stage::LIST as $stage) {
-            Stage::factory($stage)->create();
-        }
+//        foreach (Stage::LIST as $stage) {
+//            Stage::factory($stage)->create();
+//        }
     }
 }
