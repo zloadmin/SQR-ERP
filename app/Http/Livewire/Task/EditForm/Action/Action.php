@@ -34,13 +34,21 @@ class Action extends Component
 
     public function storeFile($file, $type)
     {
-        $this->task->files()->create([
+        TaskFile::create([
+            'task_id' => $this->task->id,
             'type'          => $type,
             'path'          => $file->store('tasks/' . $type),
             'original_name' => $file->getClientOriginalName(),
             'size'          => $file->getSize(),
             'user_id'       => auth()->check() ? auth()->id() : null,
         ]);
+//        $this->task->files()->create([
+//            'type'          => $type,
+//            'path'          => $file->store('tasks/' . $type),
+//            'original_name' => $file->getClientOriginalName(),
+//            'size'          => $file->getSize(),
+//            'user_id'       => auth()->check() ? auth()->id() : null,
+//        ]);
     }
 
     public function storeAttacheFile($type)

@@ -43,9 +43,14 @@ class Task extends Model
     {
         static::created(function (Task $task) {
             self::createdStageTasksUpdatedListener($task);
+            TaskMessage::addCreateTask($task);
         });
         static::updated(function (Task $task) {
-            self::updatedStageTasksUpdatedListener($task);
+            if ($task->isChangedStage()) {
+                self::updatedStageTasksUpdatedListener($task);
+                TaskMessage::addChangeStageTask($task);
+            }
+
         });
     }
 //    public function tags()
@@ -83,11 +88,9 @@ class Task extends Model
 
     static function updatedStageTasksUpdatedListener(Task $task)
     {
-        if ($task->isChangedStage()) {
-            event(new StageTasksUpdated($task->getOriginal('stage_id')));
-            event(new StageTasksUpdated($task->stage_id));
-            event(new UpdateTaskStage($task->id));
-        }
+        event(new StageTasksUpdated($task->getOriginal('stage_id')));
+        event(new StageTasksUpdated($task->stage_id));
+        event(new UpdateTaskStage($task->id));
     }
 
     static function getFiles(array $files)
@@ -222,4 +225,5 @@ class Task extends Model
     {
         return $this->getLastNotApproveFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
+
 }

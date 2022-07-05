@@ -14,10 +14,17 @@ class Log extends Component
     protected $rules = [
         'text'    => 'nullable|min:10',
     ];
+
     public function mount(Task $task)
     {
         $this->task = $task;
         $this->setLogMessages();
+    }
+    public function getListeners()
+    {
+        return [
+            "echo:message_task.{$this->task->id},CreateTaskMessage" => 'setLogMessages',
+        ];
     }
     public function setLogMessages()
     {
@@ -44,4 +51,6 @@ class Log extends Component
     {
         return view('livewire.task.edit-form.log');
     }
+
+
 }

@@ -1,12 +1,16 @@
-<div class="d-flex align-items-start mt-1 p-2 {{ $log_message->user_id == auth()->id() ? 'bg-light' : '' }}">
+<div class="d-flex align-items-start mt-1 p-2 {{ $log_message->user_id && $log_message->user_id == auth()->id() ? 'bg-light' : '' }}">
     <div class="w-100 overflow-hidden">
         <h5 class="mt-0 mb-0 font-14">
             <span class="float-end text-muted font-12">{{ $log_message->created_at->diffForHumans() }}</span>
             <br>
-            {{ $log_message->user->role_name }} ({{ $log_message->user->email }})
+            @if($log_message->user)
+                {{ $log_message->user->role_name }} ({{ $log_message->user->email }})
+            @else
+                Guest
+            @endif
         </h5>
         <p class="mt-1 mb-0 text-muted font-14">
-            <span class="w-100">{{ $log_message->text }}</span>
+            <span class="w-100">{!! $log_message->text !!}</span>
         </p>
     </div>
 </div>

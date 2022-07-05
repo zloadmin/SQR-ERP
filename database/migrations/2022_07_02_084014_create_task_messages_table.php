@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('task_id');
             $table->foreign('task_id')->on('tasks')->references('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->on('users')->references('id');
             $table->text('text');
             $table->timestamps();
