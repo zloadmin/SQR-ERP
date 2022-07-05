@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Stage;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -42,6 +43,10 @@ return new class extends Migration
 
             $table->string('card_collected')->default('');
             $table->string('delivery_reference')->default('');
+
+            foreach (Stage::LIST as $stage) {
+                $table->dateTime('start-stage-' . $stage['key'])->nullable();
+            }
 
             $table->timestamps();
         });

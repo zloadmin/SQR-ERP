@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\StageTasksUpdated;
 use App\Events\UpdateTaskStage;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
@@ -21,6 +22,8 @@ class Task extends Model
         'design_attachments'       => 'array',
         'card_details_attachments' => 'array',
         'qr_attachments'           => 'array',
+
+
     ];
 
     const FILES_FIELDS = [
@@ -44,14 +47,39 @@ class Task extends Model
         static::created(function (Task $task) {
             self::createdStageTasksUpdatedListener($task);
             TaskMessage::addCreateTask($task);
+//            $task->setStageStart();
+        });
+        static::creating(function (Task $task) {
+            $task->setStageStart();
         });
         static::updated(function (Task $task) {
             if ($task->isChangedStage()) {
                 self::updatedStageTasksUpdatedListener($task);
                 TaskMessage::addChangeStageTask($task);
             }
-
+//            $task->setStageStart();
         });
+        static::updating(function (Task $task) {
+            $task->setStageStart();
+        });
+    }
+
+    public function getStartStageKey(): string
+    {
+        return 'start-stage-' . $this->stage->key;
+    }
+
+    public function getStageStart(): Carbon
+    {
+        return Carbon::parse($this->{$this->getStartStageKey()});
+    }
+
+    public function setStageStart()
+    {
+        $key = $this->getStartStageKey();
+        if (is_null($this->{$key})) {
+            $this->{$key} = now()->toDateTimeString();
+        }
     }
 //    public function tags()
 //    {
@@ -65,6 +93,12 @@ class Task extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function sla()
+    {
+        return $this->hasOne(SLA::class, 'stage_id', 'stage_id');
+    }
+
 
     public function getTagsIds(): array
     {
@@ -185,45 +219,74 @@ class Task extends Model
     {
         return Stage::getPrevStageId($this->stage_id);
     }
+
     public function getLastFile(string $type)
     {
         return $this->files()->where('type', $type)->latest()->first();
     }
+
     public function getLastNotApproveFile(string $type)
     {
         return $this->files()->where('type', $type)->where('approved', false)->latest()->first();
     }
+
     public function getLastQRAttachment()
     {
         return $this->getLastFile(TaskFile::QR_ATTACHMENTS);
     }
+
     public function getLastDesignAttachment()
     {
         return $this->getLastFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+
     public function getLastContentAttachment()
     {
         return $this->getLastFile(TaskFile::CONTENT_ATTACHMENTS);
     }
+
     public function getLastPrintFileAttachment()
     {
         return $this->getLastFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
+
     public function getLastDeliverySlipAttachment()
     {
         return $this->getLastFile(TaskFile::DELIVERY_SLIP_ATTACHMENTS);
     }
+
     public function getLastNotApproveDesignAttachment()
     {
         return $this->getLastNotApproveFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+
     public function getLastNotApproveContentAttachment()
     {
         return $this->getLastNotApproveFile(TaskFile::CONTENT_ATTACHMENTS);
     }
+
     public function getLastNotApprovePrintFileAttachment()
     {
         return $this->getLastNotApproveFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
+
+    public function getNotApprovedFilesCount($type) : int
+    {
+        return $this->files()->where('type', $type)->where('approved', false)->count();
+    }
+    public function getRevisions(): int
+    {
+        switch ($this->stage->key) {
+            case('design'):
+            case('design-approval'):
+                return $this->getNotApprovedFilesCount(TaskFile::DESIGN_ATTACHMENTS);
+            case ('content'):
+            case ('content-approval'):
+                return $this->getNotApprovedFilesCount(TaskFile::CONTENT_ATTACHMENTS);
+            default:
+                return 0;
+        }
+    }
+
 
 }

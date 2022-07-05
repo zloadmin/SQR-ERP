@@ -67,4 +67,8 @@ class SLA extends Model
         $min = intval($time / 60);
         return $min > 1 ? $min . ' minutes' : $min . ' minute';
     }
+    public function getTotalTimeText()
+    {
+        return  Carbon::now()->subSeconds($this->time)->longAbsoluteDiffForHumans();
+    }
 }
