@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             UserRoleSeeder::class,
             UserSeeder::class,
 //            StageSeeder::class,
-            SLASeeder::class,
+//            SLASeeder::class,
             TagSeeder::class,
             TaskSeeder::class,
             TaskMessageSeeder::class,

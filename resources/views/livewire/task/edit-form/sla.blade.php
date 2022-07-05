@@ -5,6 +5,6 @@
         </div>
     </div>
     <div class="card-body p-0">
-        <p style="padding: 100px;text-align: center">SLA coming soon</p>
+        <p style="padding: 100px;text-align: center">{{ $task->stage_id }}</p>
     </div> <!-- end card-body -->
 </div>

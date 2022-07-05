@@ -28,7 +28,6 @@ class Actions extends Component
     }
     public function updateTask(array $data)
     {
-        \Illuminate\Support\Facades\Log::info('updateTask', $data);
         $this->mount($this->task->refresh());
     }
 }

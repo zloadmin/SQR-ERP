@@ -120,7 +120,7 @@ class TaskFile extends Model
 
     public function getHTMLLink(): string
     {
-        return sprintf('<a href="%s">%s</a>', $this->getUrl(), $this->getClientOriginalName());
+        return sprintf('<a href="%s" target="_blank">%s</a>', $this->getUrl(), $this->getClientOriginalName());
     }
     public function getTypeText() : string
     {

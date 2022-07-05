@@ -2,9 +2,9 @@
     <div class="card-body">
         <div class="row justify-content-between mb-2">
             <div class="col-sm-4">
-                <a href="{{ route('settings.sla.create') }}" class="btn btn-danger mb-2">
-                    <i class="mdi mdi-plus-circle mr-2"></i> New SLA
-                </a>
+{{--                <a href="{{ route('settings.sla.create') }}" class="btn btn-danger mb-2">--}}
+{{--                    <i class="mdi mdi-plus-circle mr-2"></i> New SLA--}}
+{{--                </a>--}}
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                                     <a href="{{ $sla->getEditLink() }}" class="action-icon  btn btn-link">
                                         <i class="mdi mdi-pencil"></i>
                                     </a>
-                                    @include('livewire.buttons.delete-with-confirm', ['delete_id' => $sla->id])
+{{--                                    @include('livewire.buttons.delete-with-confirm', ['delete_id' => $sla->id])--}}
                                 </td>
                             </tr>
                         @endforeach

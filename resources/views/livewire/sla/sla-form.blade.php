@@ -6,7 +6,7 @@
                     <!--- Name Field --->
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name">
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
                     <!--- Type Field --->
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <select class="form-control @error('type') is-invalid @enderror" wire:model="type">
+                        <select class="form-control @error('type') is-invalid @enderror" wire:model.defer="type">
                             <option value=""></option>
                             @foreach(\App\Models\SLA::TYPES as $type)
                                 <option value="{{ $type['name'] }}">{{ $type['name'] }}</option>
@@ -31,7 +31,7 @@
                     <!--- Stage Field --->
                     <div class="form-group">
                         <label for="stage">Stage</label>
-                        <select class="form-control @error('stage_id') is-invalid @enderror" wire:model="stage_id">
+                        <select class="form-control @error('stage_id') is-invalid @enderror" wire:model.defer="stage_id" disabled>
                             <option value=""></option>
                             @foreach(\App\Models\Stage::all() as $stage)
                                 <option value="{{ $stage['id'] }}">{{ $stage['name'] }}</option>
@@ -46,7 +46,7 @@
                     <!--- Time Field --->
                     <div class="form-group">
                         <label for="time">Time</label>
-                        <select class="form-control @error('time') is-invalid @enderror" wire:model="time">
+                        <select class="form-control @error('time') is-invalid @enderror" wire:model.defer="time">
                             <option value=""></option>
                             @foreach(\App\Models\SLA::getTimes() as $secs => $secs_title)
                                 <option value="{{ $secs }}">{{ $secs_title }}</option>

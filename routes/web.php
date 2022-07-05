@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('sla')->group(function () {
             Route::get('/', SLAList::class)->name('settings.sla');
-            Route::get('/create', CreateSLA::class)->name('settings.sla.create');
+//            Route::get('/create', CreateSLA::class)->name('settings.sla.create');
             Route::get('/edit/{sla}', EditSLA::class)->name('settings.sla.edit');
         });
         Route::prefix('tag')->group(function () {

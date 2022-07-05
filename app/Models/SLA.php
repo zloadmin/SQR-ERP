@@ -30,7 +30,17 @@ class SLA extends Model
         60 * 45,
         60 * 60
     ];
-
+    static function init()
+    {
+        foreach (Stage::LIST as $stage) {
+            self::create([
+                'name' => 'SLA of stage ' . $stage['name'],
+                'type' => self::getTypesNames('name')[0],
+                'stage_id' => $stage['id'],
+                'time' => 60 * 45,
+            ]);
+        }
+    }
     static function getTypesNames()
     {
         return self::getTypesByKey('name');

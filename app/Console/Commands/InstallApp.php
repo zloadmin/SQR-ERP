@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\SLA;
 use App\Models\Stage;
 use Illuminate\Console\Command;
 
@@ -34,6 +35,7 @@ class InstallApp extends Command
 //        $this->exec('npm run dev');
         $this->call('migrate:refresh');
         Stage::init();
+        SLA::init();
         $this->call('db:seed');
 
         return 0;
