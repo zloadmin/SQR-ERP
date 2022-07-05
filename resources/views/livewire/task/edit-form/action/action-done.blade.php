@@ -17,10 +17,12 @@
                         Start Date
                         <span class="">{{ $start_date->format('d.m.Y') }}</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        End Date
-                        <span class="">{{ $end_date->format('d.m.Y') }}</span>
-                    </li>
+                    @if($end_date)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                End Date
+                                <span class="">{{ $end_date->format('d.m.Y') }}</span>
+                        </li>
+                    @endif
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         NET Date
                         <span class="">{{ $start_date->diffInDays($end_date) }}</span>

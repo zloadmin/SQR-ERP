@@ -23,7 +23,8 @@ class Log extends Component
     public function getListeners()
     {
         return [
-            "echo:message_task.{$this->task->id},CreateTaskMessage" => 'setLogMessages',
+//            "echo:message_task.{$this->task->id},CreateTaskMessage" => 'setLogMessages',
+            "updateEditTaskLog" => 'setLogMessages',
         ];
     }
     public function setLogMessages()

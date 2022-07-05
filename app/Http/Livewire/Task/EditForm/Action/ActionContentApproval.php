@@ -28,12 +28,14 @@ class ActionContentApproval extends Action
     {
         $this->content_attache->approve($this->comment);
         $this->increaseTaskStageId();
+        $this->updateBlocks();
     }
     public function decline()
     {
         $this->validate();
         $this->content_attache->decline($this->comment);
         $this->decreaseTaskStageId();
+        $this->updateBlocks();
     }
 
     public function render()

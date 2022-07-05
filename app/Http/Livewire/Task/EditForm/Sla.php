@@ -42,11 +42,12 @@ class Sla extends Component
     public function getListeners()
     {
         return [
-            "echo:task.{$this->task->id},UpdateTaskStage" => 'updateTask',
+//            "echo:task.{$this->task->id},UpdateTaskStage" => 'updateTask',
+            "updateEditTaskSLA" => 'updateTask',
         ];
     }
 
-    public function updateTask(array $data)
+    public function updateTask()
     {
         $this->mount($this->task->refresh());
     }

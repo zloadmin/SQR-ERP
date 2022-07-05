@@ -15,7 +15,7 @@ class ActionDone extends Action
     public $print_file_attache;
     public $delivery_slip_attache;
     public Carbon $start_date;
-    public Carbon $end_date;
+    public $end_date;
     public string $card_collected;
     public string $delivery_reference;
 
@@ -36,9 +36,9 @@ class ActionDone extends Action
     {
         return $this->task->created_at;
     }
-    private function getEndDate() : Carbon
+    private function getEndDate()
     {
-        return $this->delivery_slip_attache->created_at;
+        return $this->delivery_slip_attache ? $this->delivery_slip_attache->created_at : null;
     }
     public function render()
     {

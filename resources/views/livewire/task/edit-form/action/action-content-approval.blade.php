@@ -11,7 +11,9 @@
             </div>
 
             <div class="col-md-8">
-                @include('livewire.task.edit-form.action.blocks.approve-decline-form')
+                @if($this->content_attache)
+                    @include('livewire.task.edit-form.action.blocks.approve-decline-form')
+                @endif
             </div>
         </div>
     </div> <!-- end card-body -->

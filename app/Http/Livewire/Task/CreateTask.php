@@ -92,7 +92,9 @@ class CreateTask extends ModalComponent
         $this->validate();
         $task = $this->storeTask();
         $this->storeFiles($task);
+        $this->emit('refreshStage', $task->stage_id);
         $this->emit('hideModal');
+
     }
     private function storeTask() : Task
     {

@@ -42,13 +42,7 @@ class Action extends Component
             'size'          => $file->getSize(),
             'user_id'       => auth()->check() ? auth()->id() : null,
         ]);
-//        $this->task->files()->create([
-//            'type'          => $type,
-//            'path'          => $file->store('tasks/' . $type),
-//            'original_name' => $file->getClientOriginalName(),
-//            'size'          => $file->getSize(),
-//            'user_id'       => auth()->check() ? auth()->id() : null,
-//        ]);
+
     }
 
     public function storeAttacheFile($type)
@@ -83,5 +77,11 @@ class Action extends Component
         $this->task->update();
         $this->mount($this->task->refresh());
     }
-
+    public function updateBlocks()
+    {
+        $this->emit('updateEditTaskActions');
+        $this->emit('updateEditTaskSLA');
+        $this->emit('updateEditTaskLog');
+        $this->emit('refreshStage', $this->task->stage_id);
+    }
 }

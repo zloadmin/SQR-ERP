@@ -50,6 +50,7 @@ class EditMainInfo extends Component
     {
         $this->validate();
         $this->updateTask();
+        $this->emit('refreshStage', $this->task->stage_id);
         $this->emit('showModal', 'task.edit-task', $this->task->id);
     }
 

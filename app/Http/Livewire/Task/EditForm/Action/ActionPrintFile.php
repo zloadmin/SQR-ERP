@@ -35,6 +35,7 @@ class ActionPrintFile extends Action
         $this->validate();
         $this->storePrintFileAttacheFile();
         $this->increaseTaskStageId();
+        $this->updateBlocks();
     }
     public function render()
     {

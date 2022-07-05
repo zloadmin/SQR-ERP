@@ -35,7 +35,7 @@ class ActionAccountSetup extends Action
         $this->validate();
         $this->storeAttache();
         $this->updateTask();
-
+        $this->updateBlocks();
     }
 
     public function storeAttache()

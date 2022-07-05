@@ -29,12 +29,14 @@ class ActionDesignApproval extends Action
     {
         $this->design_attache->approve($this->comment);
         $this->increaseTaskStageId();
+        $this->updateBlocks();
     }
     public function decline()
     {
         $this->validate();
         $this->design_attache->decline($this->comment);
         $this->decreaseTaskStageId();
+        $this->updateBlocks();
     }
 
 

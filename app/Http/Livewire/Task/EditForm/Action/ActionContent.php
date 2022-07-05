@@ -33,6 +33,7 @@ class ActionContent extends Action
         $this->validate();
         $this->storeContentAttacheFile();
         $this->increaseTaskStageId();
+        $this->updateBlocks();
     }
     public function render()
     {

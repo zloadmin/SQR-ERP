@@ -32,6 +32,7 @@ class ActionDesign extends Action
         $this->validate();
         $this->storeDesignAttacheFile();
         $this->increaseTaskStageId();
+        $this->updateBlocks();
     }
 
     public function render()

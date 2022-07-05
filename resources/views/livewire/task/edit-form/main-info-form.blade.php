@@ -11,7 +11,6 @@
     <!--- Stage Field --->
     <div class="form-group">
         <select class="form-control form-control-light @error('stage_id') is-invalid @enderror" wire:model="stage_id">
-            <option value="0"></option>
             @foreach($stages as $stage)
                 <option value="{{ $stage->id }}">{{ $stage->name }}</option>
             @endforeach

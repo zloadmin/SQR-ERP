@@ -23,6 +23,11 @@ class ActionProduction extends Action
         $this->print_file_attache = $task->getLastPrintFileAttachment();
     }
 
+    public function nextActionProduction()
+    {
+        $this->nextAction();
+        $this->updateBlocks();
+    }
     public function render()
     {
         return view('livewire.task.edit-form.action.action-production');
