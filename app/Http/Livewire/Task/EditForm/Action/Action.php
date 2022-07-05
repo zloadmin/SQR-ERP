@@ -51,6 +51,14 @@ class Action extends Component
     {
         $this->storeAttacheFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+    public function storeContentAttacheFile()
+    {
+        $this->storeAttacheFile(TaskFile::CONTENT_ATTACHMENTS);
+    }
+    public function storePrintFileAttacheFile()
+    {
+        $this->storeAttacheFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
+    }
     public function render()
     {
         return view('livewire.task.edit-form.action.action');

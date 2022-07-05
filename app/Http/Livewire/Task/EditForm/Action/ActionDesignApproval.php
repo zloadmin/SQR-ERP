@@ -27,28 +27,15 @@ class ActionDesignApproval extends Action
     }
     public function approve()
     {
-        $this->updateDesignApproveAttach();
+        $this->design_attache->approve($this->comment);
         $this->increaseTaskStageId();
     }
     public function decline()
     {
         $this->validate();
-        $this->updateDesignDeclineAttach();
+        $this->design_attache->decline($this->comment);
         $this->decreaseTaskStageId();
     }
-    public function updateDesignDeclineAttach()
-    {
-        $this->design_attache->approved = false;
-        $this->design_attache->approved_comment = $this->comment;
-        $this->design_attache->approved_user_id = auth()->check() ? auth()->id() : null;
-        $this->design_attache->update();
-    }
-    public function updateDesignApproveAttach()
-    {
-        $this->design_attache->approved = true;
-        $this->design_attache->approved_comment = $this->comment;
-        $this->design_attache->approved_user_id = auth()->check() ? auth()->id() : null;
-        $this->design_attache->update();
-    }
+
 
 }

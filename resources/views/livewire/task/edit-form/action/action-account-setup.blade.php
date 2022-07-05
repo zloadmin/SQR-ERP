@@ -2,28 +2,13 @@
     <div class="card-header modal-colored-header bg-danger">
         <div class="d-flex justify-content-between align-items-center">
             <h4>Actions Account Setup</h4>
-
         </div>
     </div>
     <div class="card-body">
         <form wire:submit.prevent="submitQR" id="submitQRForm">
             <div class="row">
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary btn-file w-100">
-                        <i class="mdi mdi-upload mr-1"></i>
-                        @if ($attache)
-                            {{ $attache->getClientOriginalName() }}
-                        @else
-                            Attache QR's
-                        @endif
-                        <!-- File Input -->
-                        <input class="file_input_hidden" type="file" wire:model="attache">
-                    </button>
-                    @error('attache')
-                        <span class="invalid-feedback d-block" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'QR\'s'])
                 </div>
                 <div class="col-md-3">
                     <!--- Username Field --->

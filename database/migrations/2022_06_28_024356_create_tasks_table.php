@@ -40,6 +40,9 @@ return new class extends Migration
             $table->string('sqr_card_username')->default('');
             $table->string('sqr_card_password')->default('');
 
+            $table->string('card_collected')->default('');
+            $table->string('delivery_reference')->default('');
+
             $table->timestamps();
         });
     }

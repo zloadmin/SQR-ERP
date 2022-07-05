@@ -27,7 +27,7 @@ class ActionDesign extends Action
         $this->qr_arrache = $task->getLastQRAttachment();
         $this->not_approve_design_attache = $task->getLastNotApproveDesignAttachment();
     }
-    public function submitDesign()
+    public function submitAttache()
     {
         $this->validate();
         $this->storeDesignAttacheFile();

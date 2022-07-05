@@ -198,8 +198,28 @@ class Task extends Model
     {
         return $this->getLastFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+    public function getLastContentAttachment()
+    {
+        return $this->getLastFile(TaskFile::CONTENT_ATTACHMENTS);
+    }
+    public function getLastPrintFileAttachment()
+    {
+        return $this->getLastFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
+    }
+    public function getLastDeliverySlipAttachment()
+    {
+        return $this->getLastFile(TaskFile::DELIVERY_SLIP_ATTACHMENTS);
+    }
     public function getLastNotApproveDesignAttachment()
     {
         return $this->getLastNotApproveFile(TaskFile::DESIGN_ATTACHMENTS);
+    }
+    public function getLastNotApproveContentAttachment()
+    {
+        return $this->getLastNotApproveFile(TaskFile::CONTENT_ATTACHMENTS);
+    }
+    public function getLastNotApprovePrintFileAttachment()
+    {
+        return $this->getLastNotApproveFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
 }
