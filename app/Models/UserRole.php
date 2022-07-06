@@ -16,6 +16,16 @@ class UserRole extends Model
         'edit'
     ];
 
+    static function init()
+    {
+        self::create([ 'name' => 'Admin', 'settings' => true ]);
+        self::create([ 'name' => 'Manager' ]);
+        self::create([ 'name' => 'Designer' ]);
+        self::create([ 'name' => 'Print Designer' ]);
+        self::create([ 'name' => 'Account Setup' ]);
+        self::create([ 'name' => 'Operator' ]);
+        self::create([ 'name' => 'Client' ]);
+    }
     static function getAccessFieldNames(): array
     {
         $names = [];

@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\SLA;
 use App\Models\Stage;
+use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Console\Command;
 
 class InstallApp extends Command
@@ -36,7 +38,9 @@ class InstallApp extends Command
         $this->call('migrate:refresh');
         Stage::init();
         SLA::init();
-        $this->call('db:seed');
+        UserRole::init();
+        User::init();
+//        $this->call('db:seed');
 
         return 0;
     }
