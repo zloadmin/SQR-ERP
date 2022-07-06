@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('recipient');
             $table->string('subject');
             $table->string('text');
+            $table->boolean('sent')->default(false);
             $table->timestamps();
         });
     }
