@@ -13120,7 +13120,7 @@ body.authentication-bg {
 }
 
 .task-list-items:before {
-    content: "No Tasks";
+    content: "No Cards";
     position: absolute;
     line-height: 110px;
     width: 100%;
