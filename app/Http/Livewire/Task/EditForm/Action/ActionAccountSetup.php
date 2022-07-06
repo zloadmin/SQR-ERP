@@ -15,6 +15,7 @@ class ActionAccountSetup extends Action
     public string $username;
     public string $password;
     public Task $task;
+    public bool $editable;
 
 
     protected $rules = [
@@ -26,6 +27,7 @@ class ActionAccountSetup extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
+        $this->editable = $this->getEditable($task);
         $this->username = $task->sqr_card_username;
         $this->password = $task->sqr_card_password;
     }

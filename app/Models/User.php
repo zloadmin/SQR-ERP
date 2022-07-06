@@ -69,7 +69,7 @@ class User extends Authenticatable
     {
         $stage_keys = [];
         foreach (Stage::LIST as $stage) {
-            $key = UserRole::getAccessFieldStageShowKey($stage['key']);
+            $key = UserRole::getAccessFieldShowStageKey($stage['key']);
             if(isset($this->role->{$key}) && $this->role->{$key}) {
                 $stage_keys[] = $stage['key'];
             }
@@ -78,7 +78,57 @@ class User extends Authenticatable
     }
     public function canEditTask(Task $task) : bool
     {
-        $key = UserRole::getAccessFieldStageEditKey($task->stage->key);
+        $key = UserRole::getAccessFieldEditStageKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canShowActions(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldShowActionsKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canShowOrderDetails(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldShowOrderDetailsKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canShowDeliveryDetails(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldShowDeliveryDetailsKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canEditDeliveryDetails(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldEditDeliveryDetailsKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canShowSQRCard(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldShowSQRCardKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canEditSQRCard(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldEditSQRCardKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canShowLog(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldShowLogKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canEditLog(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldEditLogKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canEditOrderDetails(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldEditOrderDetailsKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
+    public function canEditActions(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldEditActionsKey($task->stage->key);
         return isset($this->role->{$key}) && $this->role->{$key};
     }
 

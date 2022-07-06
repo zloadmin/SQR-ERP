@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-md-8">
-                @if($this->content_attache)
+                @if($this->content_attache && $editable)
                     @include('livewire.task.edit-form.action.blocks.approve-decline-form')
                 @endif
             </div>

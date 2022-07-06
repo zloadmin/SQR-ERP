@@ -8,6 +8,7 @@ use Livewire\Component;
 class ActionProduction extends Action
 {
     public Task $task;
+    public bool $editable;
     public $qr_arrache;
     public $design_attache;
     public $content_attache;
@@ -17,6 +18,7 @@ class ActionProduction extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
+        $this->editable = $this->getEditable($task);
         $this->qr_arrache = $task->getLastQRAttachment();
         $this->design_attache = $task->getLastDesignAttachment();
         $this->content_attache = $task->getLastContentAttachment();

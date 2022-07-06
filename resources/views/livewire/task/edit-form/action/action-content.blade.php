@@ -13,7 +13,9 @@
                @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_content_attache])
             </div>
             <div class="col-md-4">
-                @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Content'])
+                @if ($editable)
+                    @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Content'])
+                @endif
             </div>
         </div>
     </div> <!-- end card-body -->

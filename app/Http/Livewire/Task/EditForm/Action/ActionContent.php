@@ -12,6 +12,7 @@ class ActionContent extends Action
 
     public $attache;
     public Task $task;
+    public bool $editable;
     public $qr_arrache;
     public $design_attache;
     public $not_approve_content_attache;
@@ -24,6 +25,7 @@ class ActionContent extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
+        $this->editable = $this->getEditable($task);
         $this->qr_arrache = $task->getLastQRAttachment();
         $this->design_attache = $task->getLastDesignAttachment();
         $this->not_approve_content_attache = $task->getLastNotApproveContentAttachment();

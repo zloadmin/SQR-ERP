@@ -9,6 +9,7 @@ use Livewire\Component;
 class ActionDone extends Action
 {
     public Task $task;
+    public bool $editable;
     public $qr_arrache;
 //    public $design_attache;
     public $content_attache;

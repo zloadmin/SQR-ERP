@@ -11,7 +11,9 @@
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Print File'])
+                @if($editable)
+                    @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Print File'])
+                @endif
             </div>
         </div>
     </div> <!-- end card-body -->

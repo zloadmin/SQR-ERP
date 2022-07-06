@@ -11,10 +11,11 @@ class Actions extends Component
 {
     public Task $task;
     public Stage $stage;
-
-    public function mount(Task $task)
+    public bool $editable;
+    public function mount(Task $task, bool $editable)
     {
         $this->task = $task;
+        $this->editable = $editable;
         $this->stage = $task->stage;
     }
 
@@ -33,6 +34,6 @@ class Actions extends Component
 
     public function updateTask()
     {
-        $this->mount($this->task->refresh());
+        $this->mount($this->task->refresh(), $this->editable);
     }
 }

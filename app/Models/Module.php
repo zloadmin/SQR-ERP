@@ -9,7 +9,7 @@ class Module
 {
     const LIST = [
         ['key' => 'stage', 'name' => 'Stage'],
-        ['key' => 'card_details_module', 'name' => 'Card Details Module'],
+        ['key' => 'order_details_module', 'name' => 'Order Details Module'],
         ['key' => 'delivery_details_module', 'name' => 'Delivery Details Module'],
         ['key' => 'action_module', 'name' => 'Action Module'],
         ['key' => 'sqr_card_module', 'name' => 'SQR CARD Module'],

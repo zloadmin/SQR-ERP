@@ -2,10 +2,12 @@
     <div class="card-header modal-colored-header bg-primary">
         <div class="d-flex justify-content-between align-items-center">
             <h4>SQR CARD</h4>
-            <button type="button" class="btn btn-danger"
-                    wire:click="$emit('showModal', 'task.edit-form.edit-sqr-card', '{{ $task->id }}')">
-                Edit
-            </button>
+            @if ($editable)
+                <button type="button" class="btn btn-danger"
+                        wire:click="$emit('showModal', 'task.edit-form.edit-sqr-card', '{{ $task->id }}')">
+                    Edit
+                </button>
+            @endif
         </div>
     </div>
     <div class="card-body p-0">

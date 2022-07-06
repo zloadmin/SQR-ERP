@@ -8,6 +8,7 @@ use Livewire\Component;
 class SqrCard extends Component
 {
     public Task $task;
+    public bool $editable;
 
     public function render()
     {

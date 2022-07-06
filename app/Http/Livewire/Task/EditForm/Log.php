@@ -9,15 +9,17 @@ use Livewire\Component;
 class Log extends Component
 {
     public Task $task;
+    public bool $editable;
     public Collection $log_messages;
     public string $text = '';
     protected $rules = [
         'text'    => 'nullable|min:10',
     ];
 
-    public function mount(Task $task)
+    public function mount(Task $task, bool $editable)
     {
         $this->task = $task;
+        $this->editable = $editable;
         $this->setLogMessages();
     }
     public function getListeners()

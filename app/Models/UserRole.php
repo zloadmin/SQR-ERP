@@ -41,13 +41,56 @@ class UserRole extends Model
         return sprintf('%s_%s_%s', $stage['key'], $module['key'], $type);
     }
 
-    static function getAccessFieldStageShowKey(string $stage_key): string
+    static function getAccessFieldShowStageKey(string $stage_key): string
     {
         return sprintf('%s_%s_%s', $stage_key, 'stage', 'show');
     }
-    static function getAccessFieldStageEditKey(string $stage_key): string
+    static function getAccessFieldEditStageKey(string $stage_key): string
     {
         return sprintf('%s_%s_%s', $stage_key, 'stage', 'edit');
+    }
+    static function getAccessFieldShowActionsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'action_module', 'show');
+    }
+    static function getAccessFieldShowOrderDetailsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'order_details_module', 'show');
+    }
+    static function getAccessFieldEditOrderDetailsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'order_details_module', 'edit');
+    }
+
+    static function getAccessFieldShowDeliveryDetailsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'delivery_details_module', 'show');
+    }
+    static function getAccessFieldEditDeliveryDetailsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'delivery_details_module', 'edit');
+    }
+    static function getAccessFieldShowSQRCardKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'sqr_card_module', 'show');
+    }
+    static function getAccessFieldEditSQRCardKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'sqr_card_module', 'edit');
+    }
+
+    static function getAccessFieldShowLogKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'log_module', 'show');
+    }
+    static function getAccessFieldEditLogKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'log_module', 'edit');
+    }
+
+    static function getAccessFieldEditActionsKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'action_module', 'edit');
     }
 
     public function users()

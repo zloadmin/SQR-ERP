@@ -9,6 +9,8 @@ use Livewire\Component;
 class EditTask extends Component
 {
     public Task $task;
+    protected $listeners = ['updateEditTaskActions' => 'updateTask'];
+
     public function mount(Task $task)
     {
         $this->task = $task;
@@ -24,5 +26,9 @@ class EditTask extends Component
 //        Log::info('closeTaskModal');
         $this->emit('refreshStage', $this->task->stage_id);
         $this->emit('hideModal');
+    }
+    public function updateTask()
+    {
+        $this->mount($this->task->refresh());
     }
 }

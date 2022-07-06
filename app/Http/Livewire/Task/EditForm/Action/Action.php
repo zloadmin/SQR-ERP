@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Task\EditForm\Action;
 use App\Models\Stage;
 use App\Models\Task;
 use App\Models\TaskFile;
+use App\Models\UserRole;
 use Livewire\Component;
 
 class Action extends Component
 {
     public Task $task;
+
 
     public function mount(Task $task)
     {
@@ -21,7 +23,7 @@ class Action extends Component
         $this->task->update([
             'stage_id' => $this->task->getNextStageId()
         ]);
-        $this->mount($this->task->refresh());
+        $this->mount($this->task->refresh(), $this->editable);
     }
 
     public function prevAction()
@@ -29,7 +31,7 @@ class Action extends Component
         $this->task->update([
             'stage_id' => $this->task->getPrevStageId()
         ]);
-        $this->mount($this->task->refresh());
+        $this->mount($this->task->refresh(), $this->editable);
     }
 
     public function storeFile($file, $type)
@@ -69,13 +71,13 @@ class Action extends Component
     {
         $this->task->stage_id = $this->task->getPrevStageId();
         $this->task->update();
-        $this->mount($this->task->refresh());
+        $this->mount($this->task->refresh(), $this->editable);
     }
     public function increaseTaskStageId()
     {
         $this->task->stage_id = $this->task->getNextStageId();
         $this->task->update();
-        $this->mount($this->task->refresh());
+        $this->mount($this->task->refresh(), $this->editable);
     }
     public function updateBlocks()
     {
@@ -83,5 +85,11 @@ class Action extends Component
         $this->emit('updateEditTaskSLA');
         $this->emit('updateEditTaskLog');
         $this->emit('refreshStage', $this->task->stage_id);
+    }
+    public function getEditable(Task $task) : bool
+    {
+        // TODO: if use secret url
+        if(!auth()->check()) return true;
+        return auth()->user()->canEditActions($task);
     }
 }

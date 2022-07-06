@@ -15,6 +15,7 @@ class ActionCollection extends Action
     public string $card_collected;
     public string $delivery_reference;
     public Task $task;
+    public bool $editable;
 
 
     protected $rules = [
@@ -26,6 +27,7 @@ class ActionCollection extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
+        $this->editable = $this->getEditable($task);
         $this->card_collected = $task->card_collected;
         $this->delivery_reference = $task->delivery_reference;
     }
