@@ -8,7 +8,7 @@ use Livewire\Component;
 class ActionDesignApproval extends Action
 {
     public Task $task;
-    public $qr_arrache;
+//    public $qr_arrache;
     public $design_attache;
     public $comment;
     protected $rules = [
@@ -17,7 +17,7 @@ class ActionDesignApproval extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
-        $this->qr_arrache = $task->getLastQRAttachment();
+//        $this->qr_arrache = $task->getLastQRAttachment();
         $this->design_attache = $task->getLastDesignAttachment();
         $this->comment = '';
     }

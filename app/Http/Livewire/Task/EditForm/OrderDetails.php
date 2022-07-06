@@ -8,6 +8,21 @@ use Livewire\Component;
 class OrderDetails extends Component
 {
     public Task $task;
+    public $latest_design_attachments_attachment;
+    public $latest_qr_attachments_attachment;
+    public $latest_card_details_attachment;
+
+
+    public function mount(Task $task)
+    {
+        $this->task = $task;
+
+        $this->latest_design_attachments_attachment = $task->design_attachments()->latest()->first();
+        $this->latest_qr_attachments_attachment = $task->qr_attachments()->latest()->first();
+        $this->latest_card_details_attachment = $task->card_details_attachments()->latest()->first();
+
+
+    }
     public function render()
     {
         return view('livewire.task.edit-form.order-details');

@@ -8,8 +8,8 @@ use Livewire\Component;
 class ActionContentApproval extends Action
 {
     public Task $task;
-    public $qr_arrache;
-    public $design_attache;
+//    public $qr_arrache;
+//    public $design_attache;
     public $content_attache;
     public $comment;
     protected $rules = [
@@ -18,8 +18,8 @@ class ActionContentApproval extends Action
     public function mount(Task $task)
     {
         $this->task = $task;
-        $this->qr_arrache = $task->getLastQRAttachment();
-        $this->design_attache = $task->getLastDesignAttachment();
+//        $this->qr_arrache = $task->getLastQRAttachment();
+//        $this->design_attache = $task->getLastDesignAttachment();
         $this->content_attache = $task->getLastContentAttachment();
         $this->comment = '';
     }

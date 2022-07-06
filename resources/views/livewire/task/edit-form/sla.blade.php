@@ -9,7 +9,7 @@
             <tbody>
             <tr>
                 <td style="width: 30%">
-                    <p class="mb-0">Time left</p>
+                    <p class="mb-0">Time passed</p>
                 </td>
                 <td>
                     <p class="mb-0" wire:poll.60s>{{ $time_left }}</p>
@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="mb-0">Totla time</p>
+                    <p class="mb-0">Adjust time</p>
                 </td>
                 <td>
                     <p class="mb-0" wire:poll.60s>{{ $total_time }}</p>

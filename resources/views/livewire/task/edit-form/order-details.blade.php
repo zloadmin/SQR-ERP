@@ -18,7 +18,14 @@
                         <p><b>Total cards:</b> {{ $task->total_cards }}</p>
                     </td>
                     <td style="width: 34%">
-                        <p><b>Design attachments:</b> {{ $task->design_attachments()->count() }} files</p>
+                        <p>
+                            <b>Design attachments:</b>
+                            {{ $task->design_attachments()->count() }} files
+                            @if($latest_design_attachments_attachment)
+                                <br>
+                                {!! $latest_design_attachments_attachment->getHTMLLink() !!}
+                            @endif
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +36,14 @@
                         <p><b>Background:</b> {{ $task->background }}</p>
                     </td>
                     <td>
-                        <p><b>Details attachments:</b> {{ $task->card_details_attachments()->count() }} files</p>
+                        <p>
+                            <b>Details attachments:</b>
+                            {{ $task->card_details_attachments()->count() }} files
+                            @if($latest_design_attachments_attachment)
+                                <br>
+                                {!! $latest_design_attachments_attachment->getHTMLLink() !!}
+                            @endif
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +54,14 @@
                         <p><b>Instruction:</b> {{ $task->instruction }}</p>
                     </td>
                     <td>
-                        <p><b>QR attachments:</b> {{ $task->qr_attachments()->count() }} files</p>
+                        <p>
+                            <b>QR attachments:</b>
+                            {{ $task->qr_attachments()->count() }} files
+                            @if($latest_qr_attachments_attachment)
+                                <br>
+                                {!! $latest_qr_attachments_attachment->getHTMLLink() !!}
+                            @endif
+                        </p>
                     </td>
                 </tr>
                 <tr>
