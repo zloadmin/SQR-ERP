@@ -2,10 +2,12 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="d-flex justify-content-between align-items-center">
+                @if (auth()->user()->canEditTask($task))
+                    <button type="button" class="btn btn-success mr-2" wire:click="$emit('showModal', 'task.edit-form.edit-main-info', '{{ $task->id }}')" >
+                        Edit
+                    </button>
+                @endif
 
-                <button type="button" class="btn btn-success mr-2" wire:click="$emit('showModal', 'task.edit-form.edit-main-info', '{{ $task->id }}')" >
-                    Edit
-                </button>
 
                 <h5 class=" modal-title">
                     {{ $task->name }}

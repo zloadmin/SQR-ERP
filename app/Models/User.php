@@ -65,5 +65,21 @@ class User extends Authenticatable
     {
         return $this->hasRole('settings');
     }
+    public function getAccessStagesShowKeys() : array
+    {
+        $stage_keys = [];
+        foreach (Stage::LIST as $stage) {
+            $key = UserRole::getAccessFieldStageShowKey($stage['key']);
+            if(isset($this->role->{$key}) && $this->role->{$key}) {
+                $stage_keys[] = $stage['key'];
+            }
+        }
+        return $stage_keys;
+    }
+    public function canEditTask(Task $task) : bool
+    {
+        $key = UserRole::getAccessFieldStageEditKey($task->stage->key);
+        return isset($this->role->{$key}) && $this->role->{$key};
+    }
 
 }

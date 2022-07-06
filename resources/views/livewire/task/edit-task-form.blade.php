@@ -1,6 +1,3 @@
-{{--<form wire:submit.prevent="editTask" id="editTaskForm">--}}
-{{--    --}}
-{{--</form>--}}
 <div class="row">
     <div class="col-md-9">
         <livewire:task.edit-form.actions :task="$task"/>

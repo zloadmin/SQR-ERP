@@ -12,7 +12,7 @@ class UserRole extends Model
 
     protected $guarded = [];
     const FIELD_TYPES = [
-        'create',
+        'show',
         'edit'
     ];
 
@@ -36,9 +36,18 @@ class UserRole extends Model
         return $names;
     }
 
-    static function getAccessFieldKey($stage, $module, $type) : string
+    static function getAccessFieldKey(array $stage, array $module, string $type): string
     {
         return sprintf('%s_%s_%s', $stage['key'], $module['key'], $type);
+    }
+
+    static function getAccessFieldStageShowKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'stage', 'show');
+    }
+    static function getAccessFieldStageEditKey(string $stage_key): string
+    {
+        return sprintf('%s_%s_%s', $stage_key, 'stage', 'edit');
     }
 
     public function users()
