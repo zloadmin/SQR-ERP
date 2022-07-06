@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
+use App\Http\Livewire\EmailAlert\CreateEmailAlert;
+use App\Http\Livewire\EmailAlert\EditEmailAlert;
+use App\Http\Livewire\EmailAlert\EmailAlertList;
 use App\Http\Livewire\KanbanDashboard;
 use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
@@ -78,6 +81,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', TagList::class)->name('settings.tag');
             Route::get('/create', CreateTag::class)->name('settings.tag.create');
             Route::get('/edit/{tag}', EditTag::class)->name('settings.tag.edit');
+        });
+        Route::prefix('email_alert')->group(function () {
+            Route::get('/', EmailAlertList::class)->name('settings.emailalert');
+            Route::get('/create', CreateEmailAlert::class)->name('settings.emailalert.create');
+            Route::get('/edit/{emailAlert}', EditEmailAlert::class)->name('settings.emailalert.edit');
         });
     });
 });

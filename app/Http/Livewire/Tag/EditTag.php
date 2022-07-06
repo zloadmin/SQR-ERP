@@ -13,8 +13,6 @@ class EditTag extends Component
         'name'  => 'required|max:255',
     ];
 
-
-
     public function mount(Tag $tag)
     {
 

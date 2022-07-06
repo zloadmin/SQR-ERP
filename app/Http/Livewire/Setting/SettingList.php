@@ -35,6 +35,10 @@ class SettingList extends Component
             [
                 'title' => 'Tag',
                 'link'  => route('settings.tag')
+            ],
+            [
+                'title' => 'Email Alert',
+                'link'  => route('settings.emailalert')
             ]
         ];
     }

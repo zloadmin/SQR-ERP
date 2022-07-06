@@ -61,6 +61,10 @@ class Stage extends Model
     {
         return self::pluck('name');
     }
+    static function getListIDs()
+    {
+        return self::pluck('id');
+    }
 
     public function tasks(): HasMany
     {
