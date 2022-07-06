@@ -30,6 +30,7 @@ class ActionsSecret extends Component
 
     public function updateTask()
     {
+        \Illuminate\Support\Facades\Log::info('updateEditTaskActions listener');
         $this->mount($this->uuid, $this->editable);
     }
 

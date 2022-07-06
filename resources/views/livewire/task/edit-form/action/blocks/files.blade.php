@@ -3,8 +3,8 @@
     @isset($qr_arrache)
         @include('livewire.task.edit-form.action.blocks.file', ['file' => $qr_arrache, 'name' => 'QR\'s'])
     @endisset
-    @isset($design_attache)
-        @include('livewire.task.edit-form.action.blocks.file', ['file' => $design_attache, 'name' => 'Design'])
+    @isset($design_file)
+        @include('livewire.task.edit-form.action.blocks.file', ['file' => $design_file, 'name' => 'Design'])
     @endisset
     @isset($content_attache)
         @include('livewire.task.edit-form.action.blocks.file', ['file' => $content_attache, 'name' => 'Content'])

@@ -225,6 +225,11 @@ class Task extends Model
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_ATTACHMENTS);
     }
 
+    public function design_files()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_FILE);
+    }
+
     public function card_details_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::CARD_DETAILS_ATTACHMENTS);
@@ -233,6 +238,14 @@ class Task extends Model
     public function qr_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
+    }
+    public function content_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::CONTENT_ATTACHMENTS);
+    }
+    public function print_file_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
 
     public function messages()
@@ -274,6 +287,10 @@ class Task extends Model
     {
         return $this->getLastFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+    public function getLastDesignFile()
+    {
+        return $this->getLastFile(TaskFile::DESIGN_FILE);
+    }
 
     public function getLastContentAttachment()
     {
@@ -290,9 +307,9 @@ class Task extends Model
         return $this->getLastFile(TaskFile::DELIVERY_SLIP_ATTACHMENTS);
     }
 
-    public function getLastNotApproveDesignAttachment()
+    public function getLastNotApproveDesignFile()
     {
-        return $this->getLastNotApproveFile(TaskFile::DESIGN_ATTACHMENTS);
+        return $this->getLastNotApproveFile(TaskFile::DESIGN_FILE);
     }
 
     public function getLastNotApproveContentAttachment()
@@ -314,7 +331,7 @@ class Task extends Model
         switch ($this->stage->key) {
             case('design'):
             case('design-approval'):
-                return $this->getNotApprovedFilesCount(TaskFile::DESIGN_ATTACHMENTS);
+                return $this->getNotApprovedFilesCount(TaskFile::DESIGN_FILE);
             case ('content'):
             case ('content-approval'):
                 return $this->getNotApprovedFilesCount(TaskFile::CONTENT_ATTACHMENTS);

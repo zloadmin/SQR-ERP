@@ -31,6 +31,7 @@ class Log extends Component
     }
     public function setLogMessages()
     {
+        \Illuminate\Support\Facades\Log::info('updateEditTaskLog listener');
         $this->log_messages = $this->task->messages()->with(['user', 'user.role'])->latest()->get();
     }
     public function createMessage()

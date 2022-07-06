@@ -49,6 +49,7 @@ class Sla extends Component
 
     public function updateTask()
     {
+        \Illuminate\Support\Facades\Log::info('updateEditTaskSLA listener');
         $this->mount($this->task->refresh());
     }
 

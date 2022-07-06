@@ -9,7 +9,12 @@ class SqrCard extends Component
 {
     public Task $task;
     public bool $editable;
+    protected $listeners = ['updateEditCardSQRCardBlock'];
 
+    public function updateEditCardSQRCardBlock()
+    {
+        $this->task = $this->task->refresh();
+    }
     public function render()
     {
         return view('livewire.task.edit-form.sqr-card');

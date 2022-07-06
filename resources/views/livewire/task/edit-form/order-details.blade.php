@@ -79,13 +79,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <p><b>Approved Design:</b> will_soon</p>
+                        <p>
+                            <b>Approved Design:</b>
+                            <br>
+                            {!!  $latest_design_file_attachment->getHTMLLink()  !!}
+                        </p>
                     </td>
                     <td>
-                        <p><b>Approved Content:</b> will_soon</p>
+                        <p>
+                            <b>Approved Content:</b>
+                            <br>
+                            {!! $latest_content_file_attachment->getHTMLLink()  !!}
+                        </p>
                     </td>
                     <td>
-                        <p><b>Print File:</b> will_soon</p>
+                        <p>
+                            <b>Print File:</b>
+                            <br>
+                            {!! $latest_print_file_attachment->getHTMLLink() !!}
+                        </p>
                     </td>
                 </tr>
             </tbody>

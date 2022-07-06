@@ -14,7 +14,7 @@ class ActionContent extends Action
     public Task $task;
     public bool $editable;
     public $qr_arrache;
-    public $design_attache;
+    public $design_file;
     public $not_approve_content_attache;
 
 
@@ -27,7 +27,7 @@ class ActionContent extends Action
         $this->task = $task;
         $this->editable = $this->getEditable($task);
         $this->qr_arrache = $task->getLastQRAttachment();
-        $this->design_attache = $task->getLastDesignAttachment();
+        $this->design_file = $task->getLastDesignFile();
         $this->not_approve_content_attache = $task->getLastNotApproveContentAttachment();
     }
     public function submitAttache()

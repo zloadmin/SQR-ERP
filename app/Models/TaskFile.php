@@ -15,6 +15,7 @@ class TaskFile extends Model
 
     protected $guarded = [];
     const DESIGN_ATTACHMENTS = 'design_attachments';
+    const DESIGN_FILE = 'design_file';
     const CARD_DETAILS_ATTACHMENTS = 'card_details_attachments';
     const QR_ATTACHMENTS = 'qr_attachments';
     const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
@@ -23,13 +24,19 @@ class TaskFile extends Model
     const CONTENT_ATTACHMENTS = 'content_attachments';
     const PRINTING_FILE_ATTACHMENTS = 'printing_file_attachments';
     const DELIVERY_SLIP_ATTACHMENTS = 'delivery_slip_attachments';
+
     const TYPES = [
         self::DESIGN_ATTACHMENTS,
         self::CARD_DETAILS_ATTACHMENTS,
         self::QR_ATTACHMENTS,
+
+        // not attachments
+        self::DESIGN_FILE,
         self::CONTENT_ATTACHMENTS,
         self::PRINTING_FILE_ATTACHMENTS,
         self::DELIVERY_SLIP_ATTACHMENTS,
+
+
     ];
     const MAIN_FIELDS = [
         self::DESIGN_ATTACHMENTS,

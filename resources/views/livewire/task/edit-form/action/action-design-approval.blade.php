@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="col-md-8">
-                    @if ($this->design_attache && $editable)
+                    @if ($this->design_file && $editable)
                         @include('livewire.task.edit-form.action.blocks.approve-decline-form')
                     @endif
                 </div>

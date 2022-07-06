@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Task\EditForm\Action;
 
+use App\Http\Livewire\Task\EditForm\Log;
 use App\Models\Stage;
 use App\Models\Task;
 use App\Models\TaskFile;
@@ -51,9 +52,9 @@ class Action extends Component
     {
         $this->storeFile($this->attache, $type);
     }
-    public function storeDesignAttacheFile()
+    public function storeDesignFile()
     {
-        $this->storeAttacheFile(TaskFile::DESIGN_ATTACHMENTS);
+        $this->storeAttacheFile(TaskFile::DESIGN_FILE);
     }
     public function storeContentAttacheFile()
     {
@@ -81,6 +82,7 @@ class Action extends Component
     }
     public function updateBlocks()
     {
+        $this->emit('updateEditCardSQRCardBlock');
         $this->emit('updateEditTaskActions');
         $this->emit('updateEditTaskSLA');
         $this->emit('updateEditTaskLog');

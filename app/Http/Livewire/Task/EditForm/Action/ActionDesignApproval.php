@@ -20,7 +20,7 @@ class ActionDesignApproval extends Action
         $this->task = $task;
         $this->editable = $this->getEditable($task);
 //        $this->qr_arrache = $task->getLastQRAttachment();
-        $this->design_attache = $task->getLastDesignAttachment();
+        $this->design_file = $task->getLastDesignFile();
         $this->comment = '';
     }
     public function render()
@@ -29,14 +29,14 @@ class ActionDesignApproval extends Action
     }
     public function approve()
     {
-        $this->design_attache->approve($this->comment);
+        $this->design_file->approve($this->comment);
         $this->increaseTaskStageId();
         $this->updateBlocks();
     }
     public function decline()
     {
         $this->validate();
-        $this->design_attache->decline($this->comment);
+        $this->design_file->decline($this->comment);
         $this->decreaseTaskStageId();
         $this->updateBlocks();
     }

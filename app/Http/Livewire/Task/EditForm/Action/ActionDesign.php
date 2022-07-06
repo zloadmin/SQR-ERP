@@ -15,7 +15,7 @@ class ActionDesign extends Action
     public Task $task;
     public bool $editable;
     public $qr_arrache;
-    public $not_approve_design_attache;
+    public $not_approve_design_file;
 
 
     protected $rules = [
@@ -27,12 +27,12 @@ class ActionDesign extends Action
         $this->task = $task;
         $this->editable = $this->getEditable($task);
         $this->qr_arrache = $task->getLastQRAttachment();
-        $this->not_approve_design_attache = $task->getLastNotApproveDesignAttachment();
+        $this->not_approve_design_file = $task->getLastNotApproveDesignFile();
     }
     public function submitAttache()
     {
         $this->validate();
-        $this->storeDesignAttacheFile();
+        $this->storeDesignFile();
         $this->increaseTaskStageId();
         $this->updateBlocks();
     }

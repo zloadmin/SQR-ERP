@@ -11,7 +11,7 @@
                     @include('livewire.task.edit-form.action.blocks.files')
                 </div>
                 <div class="col-md-4">
-                    @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_design_attache])
+                    @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_design_file])
                 </div>
                 <div class="col-md-4">
                     @if ($editable)

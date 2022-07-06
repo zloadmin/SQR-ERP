@@ -20,7 +20,7 @@ class ActionProduction extends Action
         $this->task = $task;
         $this->editable = $this->getEditable($task);
         $this->qr_arrache = $task->getLastQRAttachment();
-        $this->design_attache = $task->getLastDesignAttachment();
+        $this->design_file = $task->getLastDesignFile();
         $this->content_attache = $task->getLastContentAttachment();
         $this->print_file_attache = $task->getLastPrintFileAttachment();
     }
