@@ -81,22 +81,28 @@
                     <td>
                         <p>
                             <b>Approved Design:</b>
-                            <br>
-                            {!!  $latest_design_file_attachment->getHTMLLink()  !!}
+                            @if($latest_design_file_attachment)
+                                <br>
+                                {!!  $latest_design_file_attachment->getHTMLLink()  !!}
+                            @endif
                         </p>
                     </td>
                     <td>
                         <p>
                             <b>Approved Content:</b>
-                            <br>
-                            {!! $latest_content_file_attachment->getHTMLLink()  !!}
+                            @if($latest_content_file_attachment)
+                                <br>
+                                {!! $latest_content_file_attachment->getHTMLLink()  !!}
+                            @endif
                         </p>
                     </td>
                     <td>
                         <p>
                             <b>Print File:</b>
-                            <br>
-                            {!! $latest_print_file_attachment->getHTMLLink() !!}
+                            @if($latest_print_file_attachment)
+                                <br>
+                                {!! $latest_print_file_attachment->getHTMLLink() !!}
+                            @endif
                         </p>
                     </td>
                 </tr>

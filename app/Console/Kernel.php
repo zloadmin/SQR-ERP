@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Email\SendEmail;
 use App\Console\Commands\Task\TaskCheckSla;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command(TaskCheckSla::class)->everyFiveMinutes();
+         $schedule->command(SendEmail::class)->everyMinute()->withoutOverlapping();
     }
 
     /**
