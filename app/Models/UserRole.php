@@ -16,9 +16,21 @@ class UserRole extends Model
         'edit'
     ];
 
+    static function initAdmin()
+    {
+        $admin_role = new UserRole();
+        $admin_role->name = 'Admin';
+        $admin_role->settings = true;
+        foreach (UserRole::getAccessFieldNames() as $key => $value) {
+            $admin_role->{$key} = true;
+        }
+        $admin_role->save();
+    }
     static function init()
     {
-        UserRole::factory()->create([ 'name' => 'Admin', 'settings' => true ]);
+
+//        UserRole::factory()->create([ 'name' => 'Admin', 'settings' => true ]);
+        UserRole::initAdmin();
         UserRole::factory()->create([ 'name' => 'Manager' ]);
         UserRole::factory()->create([ 'name' => 'Designer' ]);
         UserRole::factory()->create([ 'name' => 'Print Designer' ]);

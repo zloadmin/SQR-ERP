@@ -48,7 +48,7 @@ class ActionAccountSetup extends Action
     public function updateTask()
     {
         $this->task->sqr_card_username = $this->username;
-        $this->task->sqr_card_password = $this->username;
+        $this->task->sqr_card_password = $this->password;
         $this->task->stage_id = $this->task->getNextStageId();
         $this->task->update();
     }

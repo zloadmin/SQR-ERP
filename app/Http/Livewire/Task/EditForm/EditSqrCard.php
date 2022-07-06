@@ -21,6 +21,12 @@ class EditSqrCard extends Component
         $this->sqr_card_username = $task->sqr_card_username;
         $this->sqr_card_password = $task->sqr_card_password;
     }
+    public function getListeners()
+    {
+        return [
+            "updateEditTaskLog" => 'refreshTask',
+        ];
+    }
 
     public function editSQRCard()
     {
@@ -37,5 +43,10 @@ class EditSqrCard extends Component
     public function render()
     {
         return view('livewire.task.edit-form.modal-edit-sqr-card');
+    }
+    public function refreshTask()
+    {
+        \Illuminate\Support\Facades\Log::info('refreshTask');
+        $this->mount($this->task->refresh());
     }
 }
