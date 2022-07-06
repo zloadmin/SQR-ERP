@@ -18,13 +18,13 @@ class UserRole extends Model
 
     static function init()
     {
-        self::create([ 'name' => 'Admin', 'settings' => true ]);
-        self::create([ 'name' => 'Manager' ]);
-        self::create([ 'name' => 'Designer' ]);
-        self::create([ 'name' => 'Print Designer' ]);
-        self::create([ 'name' => 'Account Setup' ]);
-        self::create([ 'name' => 'Operator' ]);
-        self::create([ 'name' => 'Client' ]);
+        UserRole::factory()->create([ 'name' => 'Admin', 'settings' => true ]);
+        UserRole::factory()->create([ 'name' => 'Manager' ]);
+        UserRole::factory()->create([ 'name' => 'Designer' ]);
+        UserRole::factory()->create([ 'name' => 'Print Designer' ]);
+        UserRole::factory()->create([ 'name' => 'Account Setup' ]);
+        UserRole::factory()->create([ 'name' => 'Operator' ]);
+        UserRole::factory()->create([ 'name' => 'Client' ]);
     }
     static function getAccessFieldNames(): array
     {
