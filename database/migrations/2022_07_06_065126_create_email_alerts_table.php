@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', EmailAlert::TYPES);
-            $table->unsignedBigInteger('stage_id')->nullable();
+            $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
             $table->unsignedBigInteger('recipient_id');
             $table->string('subject');

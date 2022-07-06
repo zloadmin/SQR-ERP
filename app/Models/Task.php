@@ -4,6 +4,10 @@ namespace App\Models;
 
 use App\Events\StageTasksUpdated;
 use App\Events\UpdateTaskStage;
+use App\Jobs\EmailAlertChangeStageType;
+use App\Jobs\EmailAlertCreateType;
+use App\Jobs\EmailAlertExpiredSLA;
+use App\Traits\HasUUID;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,14 +20,14 @@ use Livewire\TemporaryUploadedFile;
 class Task extends Model
 {
     use HasFactory;
+    use HasUUID;
+
 
     protected $guarded = [];
     protected $casts = [
         'design_attachments'       => 'array',
         'card_details_attachments' => 'array',
         'qr_attachments'           => 'array',
-
-
     ];
 
     const FILES_FIELDS = [
@@ -31,6 +35,14 @@ class Task extends Model
         'card_details_attachments',
         'qr_attachments',
     ];
+
+    const EMAIL_VARIABLE_ACTION_URL = 'action_url';
+    const EMAIL_VARIABLE_CARD_CLIENT_NAME = 'card_client_name';
+    const EMAIL_VARIABLE = [
+        self::EMAIL_VARIABLE_ACTION_URL,
+        self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+    ];
+
     /**
      * @var mixed|string
      */
@@ -47,7 +59,7 @@ class Task extends Model
         static::created(function (Task $task) {
             self::createdStageTasksUpdatedListener($task);
             TaskMessage::addCreateTask($task);
-//            $task->setStageStart();
+            EmailAlertCreateType::dispatch($task);
         });
         static::creating(function (Task $task) {
             $task->setStageStart();
@@ -56,6 +68,7 @@ class Task extends Model
             if ($task->isChangedStage()) {
                 self::updatedStageTasksUpdatedListener($task);
                 TaskMessage::addChangeStageTask($task);
+                EmailAlertChangeStageType::dispatch($task);
             }
 //            $task->setStageStart();
         });
@@ -63,10 +76,32 @@ class Task extends Model
             $task->setStageStart();
         });
     }
+    public function getEmailVariables() : array
+    {
+        $result = [];
+        foreach (self::EMAIL_VARIABLE as $variable) {
+            $result['{{'.$variable.'}}'] = $this->getEmailVariable($variable);
+        }
+        return  $result;
+    }
+    public function getEmailVariable(string $key) {
+        switch ($key) {
+            case self::EMAIL_VARIABLE_ACTION_URL:
+                return $this->getSecretActionsLink();
+            case self::EMAIL_VARIABLE_CARD_CLIENT_NAME:
+                return $this->contact_name;
+        }
+    }
 
     public function getStartStageKey(): string
     {
+
         return 'start-stage-' . $this->stage->key;
+    }
+    public function getExpiredNotifyKey(): string
+    {
+
+        return 'expired-notify-stage-' . $this->stage->key;
     }
 
     public function getStageStart(): Carbon
@@ -287,6 +322,15 @@ class Task extends Model
                 return 0;
         }
     }
-
+    public function getSecretActionsLink() : string
+    {
+        return route('task-secret.task.edit.action', $this->uuid);
+    }
+    public function setExpiredSLA()
+    {
+        $this->{$this->getExpiredNotifyKey()} = true;
+        $this->update();
+        EmailAlertExpiredSLA::dispatch($this);
+    }
 
 }

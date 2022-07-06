@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserRoleController;
 
+use App\Http\Livewire\Email\EmailList;
 use App\Http\Livewire\EmailAlert\CreateEmailAlert;
 use App\Http\Livewire\EmailAlert\EditEmailAlert;
 use App\Http\Livewire\EmailAlert\EmailAlertList;
@@ -17,6 +18,8 @@ use App\Http\Livewire\Tag\CreateTag;
 use App\Http\Livewire\Tag\EditTag;
 use App\Http\Livewire\Tag\TagList;
 use App\Http\Livewire\Task\CreateTask;
+use App\Http\Livewire\Task\EditForm\Actions;
+use App\Http\Livewire\Task\EditForm\ActionsSecret;
 use App\Http\Livewire\Task\EditForm\EditOrderDetails;
 use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\User\CreateUser;
@@ -42,6 +45,10 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('logout', 'logout')->name('logout');
 });
+Route::prefix('task-secret')->group(function () {
+    Route::get('/edit/{uuid}/actions', ActionsSecret::class)->name('task-secret.task.edit.action');
+});
+
 // Auth
 Route::middleware('auth')->group(function () {
     Route::get('/', KanbanDashboard::class)->name('dashboard');
@@ -49,10 +56,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('task')->group(function () {
         Route::get('/create', CreateTask::class)->name('task.create');
         Route::get('/edit/{task}', EditTask::class)->name('task.edit');
-        Route::get('/edit/{task}/edit-order-details', EditOrderDetails::class)->name('task.edit.edit-order-detail');
+        Route::get('/edit/{task_uuid}/actions', EditOrderDetails::class)->name('task.edit.edit-order-detail');
     });
     // TODO: Delete end
 
+    Route::middleware('role:settings')->group(function () {
+        Route::get('emails', EmailList::class)->name('emails');
+    });
     // User can change settings
     Route::middleware('role:settings')->controller(SettingsController::class)->prefix('settings')->group(function () {
         Route::get('/', SettingList::class)->name('settings');

@@ -11,7 +11,7 @@ class EditEmailAlert extends Component
     public EmailAlert $emailAlert;
     public string $name;
     public string $type;
-    public $stage_id;
+    public int $stage_id;
     public int $recipient_id;
     public string $subject;
     public string $text;
@@ -20,7 +20,7 @@ class EditEmailAlert extends Component
         return [
             'name' => ['required', 'max:255'],
             'type' => ['required', Rule::in(EmailAlert::TYPES)],
-            'stage_id' => ['nullable', 'exists:stages,id'],
+            'stage_id' => ['required', 'exists:stages,id'],
             'recipient_id' => ['required', 'integer'],
             'subject' => ['required', 'max:255'],
             'text' => ['required'],
@@ -41,23 +41,24 @@ class EditEmailAlert extends Component
 
     public function submit()
     {
-        $this->validate();
-        $this->updateEmailAlert();
+        $data = $this->validate();
+        $this->emailAlert->update($data);
+//        $this->updateEmailAlert();
         session()->flash('status', 'Email alert has been updated');
         return redirect()->route('settings.emailalert');
     }
 
-    public function updateEmailAlert()
-    {
-        $this->emailAlert->name = $this->name;
-        $this->emailAlert->type = $this->type;
-        $this->emailAlert->stage_id = $this->stage_id ? intval($this->stage_id) : null;
-
-        $this->emailAlert->recipient_id = $this->recipient_id;
-        $this->emailAlert->subject = $this->subject;
-        $this->emailAlert->text = $this->text;
-        $this->emailAlert->update();
-    }
+//    public function updateEmailAlert()
+//    {
+//        $this->emailAlert->name = $this->name;
+//        $this->emailAlert->type = $this->type;
+//        $this->emailAlert->stage_id = $this->stage_id ? intval($this->stage_id) : null;
+//
+//        $this->emailAlert->recipient_id = $this->recipient_id;
+//        $this->emailAlert->subject = $this->subject;
+//        $this->emailAlert->text = $this->text;
+//        $this->emailAlert->update();
+//    }
     public function render()
     {
         return view('livewire.email-alert.email-alert-form')

@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
             $table->string('name')->default('');
@@ -46,6 +47,7 @@ return new class extends Migration
 
             foreach (Stage::LIST as $stage) {
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
+                $table->boolean('expired-notify-stage-' . $stage['key'])->default(false);
             }
 
             $table->timestamps();

@@ -18,7 +18,7 @@ class TaskMessageSeeder extends Seeder
     public function run()
     {
         foreach (Task::all() as $task) {
-            for ($i = 0; $i <= rand(10, 30); $i++) {
+            for ($i = 0; $i <= rand(3, 5); $i++) {
                 $user = User::query()->inRandomOrder()->first();
                 TaskMessage::factory([ 'task_id' => $task->id, 'user_id' => $user->id ])->create();
             }

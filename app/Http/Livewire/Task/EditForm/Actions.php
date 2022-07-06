@@ -12,7 +12,7 @@ class Actions extends Component
     public Task $task;
     public Stage $stage;
     public bool $editable;
-    public function mount(Task $task, bool $editable)
+    public function mount(Task $task, bool $editable = true)
     {
         $this->task = $task;
         $this->editable = $editable;

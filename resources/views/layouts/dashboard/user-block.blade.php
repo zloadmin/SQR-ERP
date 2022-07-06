@@ -23,8 +23,13 @@
     @if(auth()->user()->hasRoleSettings())
         <!-- item-->
             <a href="{{ route('settings') }}" class="dropdown-item notify-item">
-                <i class="mdi mdi-account-settings mr-1"></i>
+                <i class="mdi mdi-format-letter-case mr-1"></i>
                 <span>Settings</span>
+            </a>
+            <!-- item-->
+            <a href="{{ route('emails') }}" class="dropdown-item notify-item">
+                <i class="mdi mdi-mail-ru mr-1"></i>
+                <span>Emails</span>
             </a>
     @endif
     <!-- item-->

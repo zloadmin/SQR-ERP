@@ -25,14 +25,14 @@ class EmailAlertSeeder extends Seeder
                         EmailAlert::factory()->create([
                             'name' => sprintf('Alert type: %s. Stage: %s. User: %s (%s)', $type, $stage->name, $user->email, $user->role_name),
                             'type' => $type,
-                            'stage_id' => rand(0,5) ? $stage->id : null,
+                            'stage_id' => $stage->id,
                             'recipient_id' => $user->id
                         ]);
                     } else {
                         EmailAlert::factory()->create([
                             'name' => sprintf('Alert type: %s. Stage: %s. User: client', $type, $stage->name),
                             'type' => $type,
-                            'stage_id' => rand(0,5) ? $stage->id : null,
+                            'stage_id' => $stage->id,
                             'recipient_id' => 0
                         ]);
                     }
