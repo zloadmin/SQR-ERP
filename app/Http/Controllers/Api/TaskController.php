@@ -12,7 +12,7 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         Log::info('API request', $request->toArray());
-        Task::createAPI([
+        $data = [
             'stage_id' => 1,
             'name' => $this->getValue($request, 'name'),
             'company_name' => $this->getValue($request, 'company_name'),
@@ -30,7 +30,9 @@ class TaskController extends Controller
             'delivery_method' => $this->getValue($request, 'delivery_method'),
             'emirate' => $this->getValue($request, 'emirate'),
             'address' => $this->getValue($request, 'address')
-        ]);
+        ];
+        Task::createAPI($data);
+        Log::info('API request save ', $data);
     }
     public function getValue(Request $request, string $name) : string
     {
