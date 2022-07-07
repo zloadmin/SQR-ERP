@@ -11,7 +11,7 @@ class CreateWebHook extends Component
 {
     public string $name;
     public string $url;
-    public $stage_id;
+    public int $stage_id;
     public array $variables;
 
     protected function rules()
@@ -28,7 +28,7 @@ class CreateWebHook extends Component
     {
         $this->name = '';
         $this->url = '';
-        $this->stage_id = null;
+        $this->stage_id = 1;
         $this->variables = [];
     }
 

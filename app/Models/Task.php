@@ -7,6 +7,8 @@ use App\Events\UpdateTaskStage;
 use App\Jobs\EmailAlertChangeStageType;
 use App\Jobs\EmailAlertCreateType;
 use App\Jobs\EmailAlertExpiredSLA;
+use App\Jobs\SendWebHook;
+use App\Jobs\SendWebHooks;
 use App\Traits\HasUUID;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,6 +62,7 @@ class Task extends Model
             self::createdStageTasksUpdatedListener($task);
             TaskMessage::addCreateTask($task);
             EmailAlertCreateType::dispatch($task);
+            SendWebHooks::dispatch($task);
         });
         static::creating(function (Task $task) {
             $task->setStageStart();
@@ -69,6 +72,7 @@ class Task extends Model
                 self::updatedStageTasksUpdatedListener($task);
                 TaskMessage::addChangeStageTask($task);
                 EmailAlertChangeStageType::dispatch($task);
+                SendWebHooks::dispatch($task);
             }
 //            $task->setStageStart();
         });
@@ -352,5 +356,19 @@ class Task extends Model
     static function createAPI(array $data) {
         $data['is_api'] = true;
         return self::create($data);
+    }
+    public function getWebHookData(WebHook $webHook) : array
+    {
+        $data = [];
+        foreach ($webHook->variables as $variable) {
+            if(isset($this->{$variable})) {
+                if ($this->{$variable} instanceof \Illuminate\Database\Eloquent\Collection) {
+                    $data[$variable] = $this->{$variable}->toArray();
+                } else {
+                    $data[$variable] = $this->{$variable};
+                }
+            }
+        }
+        return $data;
     }
 }

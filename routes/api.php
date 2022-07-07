@@ -18,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/vH6iXDwYyRg6BFiJ^ZvCk@tzdbbeS$D!2%%VdrgF3QtpQCR35HnqaWe^4pxFXniWQETbpmF5mWsUU$zMtbYnFnp2DA$c3yEw4TEKb7QxBvxoYcGmzk2L%5Ajm9wESf%Y/')->group(function () {
     Route::post('/task/create', [TaskController::class, 'create'])->name('api.create.task');
 });
+
+Route::post('test-webhook', function (Request $request) {
+   \Illuminate\Support\Facades\Log::info('Test webhook', $request->toArray());
+});
