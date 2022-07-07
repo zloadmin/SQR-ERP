@@ -41,7 +41,7 @@ class TaskController extends Controller
         if ($value && is_object($value) && method_exists($value, 'toArray')) {
             $value = $value->toArray();
         }
-        if(is_array($value)) self::getArrayText($value);
+        if(is_array($value)) return self::getArrayText($value);
         return '';
     }
     static function getArrayText(array $data) : string
