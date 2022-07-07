@@ -14,7 +14,7 @@ class TaskController extends Controller
         Log::info('API request', $request->toArray());
         Task::createAPI([
             'stage_id' => 1,
-            'name' => $this->getValue($request, 'name') ?? '',
+            'name' => $this->getValue($request, 'name'),
             'company_name' => $this->getValue($request, 'company_name'),
             'it_is' => $this->getValue($request, 'it_is'),
             'material' => $this->getgetValue($request, 'material'),
@@ -32,7 +32,7 @@ class TaskController extends Controller
             'address' => $this->getValue($request, 'address')
         ]);
     }
-    public function getValue(Request $request, string $name)
+    public function getValue(Request $request, string $name) : string
     {
 
         $value = $request->get($name);
@@ -52,6 +52,6 @@ class TaskController extends Controller
             }
             return $return_value;
         }
-        return null;
+        return '';
     }
 }
