@@ -42,6 +42,7 @@ class TaskController extends Controller
         if(is_iterable($value)) {
             $return_value = '';
             foreach ($value as $k => $v) {
+                Log::info($value, [$k => $v]);
                 if(is_string($k)) {
                     $return_value .= $k . ': ';
                 }
