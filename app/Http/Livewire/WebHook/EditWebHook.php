@@ -28,7 +28,7 @@ class EditWebHook extends Component
         $this->webHook = $webHook;
         $this->name = $webHook->name;
         $this->url = $webHook->url;
-        $this->stage_id = $webHook->stage;
+        $this->stage_id = $webHook->stage_id;
         $this->variables = $webHook->variables;
     }
 
