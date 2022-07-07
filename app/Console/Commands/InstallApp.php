@@ -40,7 +40,7 @@ class InstallApp extends Command
         SLA::init();
         UserRole::init();
         User::init();
-        $this->call('db:seed');
+//        $this->call('db:seed');
 
         return 0;
     }
