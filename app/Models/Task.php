@@ -349,5 +349,8 @@ class Task extends Model
         $this->update();
         EmailAlertExpiredSLA::dispatch($this);
     }
-
+    static function createAPI(array $data) {
+        $data['is_api'] = true;
+        return self::create($data);
+    }
 }

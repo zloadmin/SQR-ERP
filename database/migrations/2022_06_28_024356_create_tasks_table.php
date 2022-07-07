@@ -49,7 +49,7 @@ return new class extends Migration
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
                 $table->boolean('expired-notify-stage-' . $stage['key'])->default(false);
             }
-
+            $table->boolean('is_api')->default(false);
             $table->timestamps();
         });
     }
