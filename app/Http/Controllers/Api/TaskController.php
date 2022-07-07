@@ -17,7 +17,7 @@ class TaskController extends Controller
             'name' => $this->getValue($request, 'name'),
             'company_name' => $this->getValue($request, 'company_name'),
             'it_is' => $this->getValue($request, 'it_is'),
-            'material' => $this->getgetValue($request, 'material'),
+            'material' => $this->getValue($request, 'material'),
             'total_cards' => $this->getValue($request, 'total_cards'),
             'instruction' => $this->getValue($request, 'instruction'),
             'background' => $this->getValue($request, 'background'),
