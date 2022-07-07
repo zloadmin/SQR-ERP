@@ -36,7 +36,7 @@ class ActionsSecret extends Component
 
     public function render()
     {
-        return view('livewire.task.edit-form.actions')
+        return view('livewire.task.edit-form.client-actions')
             ->layout('layouts.simple');
     }
 }
