@@ -15,6 +15,7 @@ class WebHook extends Model
     ];
     protected $guarded = [];
     const VARIABLES = [
+        'client_link',
         'files',
         'stage',
         'name',

@@ -361,6 +361,10 @@ class Task extends Model
     {
         return route('task-secret.task.edit.action', $this->uuid);
     }
+    public function getClientLinkAttribute() : string
+    {
+        return  $this->getSecretActionsLink();
+    }
     public function setExpiredSLA()
     {
         $this->{$this->getExpiredNotifyKey()} = true;
