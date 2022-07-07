@@ -35,11 +35,23 @@ class TaskController extends Controller
     public function getValue(Request $request, string $name)
     {
 
-//        $value = $request->get($name);
-//        if(is_string($value)) return $value;
-//        if()
-//        $value = $request->get('card_details');
-//        if(is_string($value))
-//        return ''
+        $value = $request->get($name);
+        if(is_string($value)) return $value;
+
+        $value = $request->get($name);
+        if(is_iterable($value)) {
+            $return_value = '';
+            foreach ($value as $k => $v) {
+                if(is_string($k)) {
+                    $return_value .= $k . ': ';
+                }
+                if(is_string($v)) {
+                    $return_value .= $v;
+                }
+                $return_value .= PHP_EOL;
+            }
+            return $return_value;
+        }
+        return null;
     }
 }
