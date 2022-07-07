@@ -34,25 +34,26 @@ class TaskController extends Controller
     }
     public function getValue(Request $request, string $name) : string
     {
-
         $value = $request->get($name);
         if(is_string($value)) return $value;
-
-        $value = $request->get($name);
-        if(is_iterable($value)) {
-            $return_value = '';
-            foreach ($value as $k => $v) {
-                Log::info($value, [$k => $v]);
-                if(is_string($k)) {
-                    $return_value .= $k . ': ';
-                }
-                if(is_string($v)) {
-                    $return_value .= $v;
-                }
-                $return_value .= PHP_EOL;
-            }
-            return $return_value;
-        }
+        if(is_array($value)) self::getArrayText($value);
         return '';
+    }
+    static function getArrayText(array $data) : string
+    {
+        $result = '';
+        foreach ($data as $key => $value) {
+            if(is_array($value)) {
+                $result .= self::getArrayText($value);
+            }
+            if(is_string($key) && strlen($key) > 2) {
+                $result .= $key . ': ';
+            }
+            if(is_string($value)) {
+                $result .= $value;
+            }
+            $result .= PHP_EOL;
+        }
+        return $result;
     }
 }
