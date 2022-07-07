@@ -6,7 +6,7 @@
                     <!--- Name Field --->
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name">
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
                     <!--- Url Field --->
                     <div class="form-group">
                         <label for="url">Url</label>
-                        <input class="form-control @error('url') is-invalid @enderror" type="text" wire:model="url">
+                        <input class="form-control @error('url') is-invalid @enderror" type="text" wire:model.defer="url">
                         @error('url')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -26,7 +26,7 @@
                     <!--- Witch Phase Field --->
                     <div class="form-group">
                         <label for="stage_id">Witch Phase</label>
-                        <select class="form-control @error('stage_id') is-invalid @enderror" wire:model="stage_id">
+                        <select class="form-control @error('stage_id') is-invalid @enderror" wire:model.defer="stage_id">
                             @foreach(\App\Models\Stage::all() as $stage)
                                 <option value="{{ $stage->id }}">{{ $stage->name }}</option>
                             @endforeach
@@ -47,7 +47,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" value="{{ $variable }}" wire:model="variables"> {{ $variable }}
+                                    <input type="checkbox" value="{{ $variable }}" wire:model.defer="variables"> {{ $variable }}
                                 </label>
                             </div>
                         </div>
