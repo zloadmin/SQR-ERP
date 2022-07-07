@@ -29,10 +29,7 @@ class TaskController extends Controller
             'contact_email' => $request->get('contact_email'),
             'delivery_method' => $request->get('delivery_method'),
             'emirate' => $request->get('emirate'),
-            'address' => $request->get('address'),
-            'design_attachments' => $request->get('design_attachments'),
-            'card_details_attachments' => $request->get('card_details_attachments'),
-            'qr_attachments' => $request->get('qr_attachments'),
+            'address' => $request->get('address')
         ]);
     }
 }
