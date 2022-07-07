@@ -14,22 +14,32 @@ class TaskController extends Controller
         Log::info('API request', $request->toArray());
         Task::createAPI([
             'stage_id' => 1,
-            'name' => $request->get('name'),
-            'company_name' => $request->get('company_name'),
-            'it_is' => $request->get('it_is'),
-            'material' => $request->get('material'),
-            'total_cards' => $request->get('total_cards'),
-            'instruction' => $request->get('instruction'),
-            'background' => $request->get('background'),
-            'design_comments' => $request->get('design_comments'),
-            'card_details' => $request->get('card_details'),
-            'contact_name' => $request->get('contact_name'),
-            'contact_number' => $request->get('contact_number'),
-            'whatsapp' => $request->get('whatsapp'),
-            'contact_email' => $request->get('contact_email'),
-            'delivery_method' => $request->get('delivery_method'),
-            'emirate' => $request->get('emirate'),
-            'address' => $request->get('address')
+            'name' => $this->getValue($request, 'name') ?? '',
+            'company_name' => $this->getValue($request, 'company_name'),
+            'it_is' => $this->getValue($request, 'it_is'),
+            'material' => $this->getgetValue($request, 'material'),
+            'total_cards' => $this->getValue($request, 'total_cards'),
+            'instruction' => $this->getValue($request, 'instruction'),
+            'background' => $this->getValue($request, 'background'),
+            'design_comments' => $this->getValue($request, 'design_comments'),
+            'card_details' => $this->getValue($request, 'card_details'),
+            'contact_name' => $this->getValue($request, 'contact_name'),
+            'contact_number' => $this->getValue($request, 'contact_number'),
+            'whatsapp' => $this->getValue($request, 'whatsapp'),
+            'contact_email' => $this->getValue($request, 'contact_email'),
+            'delivery_method' => $this->getValue($request, 'delivery_method'),
+            'emirate' => $this->getValue($request, 'emirate'),
+            'address' => $this->getValue($request, 'address')
         ]);
+    }
+    public function getValue(Request $request, string $name)
+    {
+
+//        $value = $request->get($name);
+//        if(is_string($value)) return $value;
+//        if()
+//        $value = $request->get('card_details');
+//        if(is_string($value))
+//        return ''
     }
 }

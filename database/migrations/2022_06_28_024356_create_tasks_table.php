@@ -19,8 +19,8 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
-            $table->string('name')->default('');
-            $table->string('company_name');
+            $table->string('name')->nullable();
+            $table->string('company_name')->nullable()
             $table->string('it_is')->nullable();
             $table->string('material')->nullable();
             $table->string('total_cards')->nullable();
