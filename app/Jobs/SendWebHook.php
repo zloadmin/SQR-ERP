@@ -42,9 +42,10 @@ class SendWebHook implements ShouldQueue
      */
     public function handle()
     {
-        $response = Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
-        if(!$response->ok()) {
-            $this->release(5);
-        }
+        Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
+//        $response = Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
+//        if(!$response->ok()) {
+//            $this->release(5);
+//        }
     }
 }
