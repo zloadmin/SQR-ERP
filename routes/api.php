@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/vH6iXDwYyRg6BFiJ^ZvCk@tzdbbeS$D!2%%VdrgF3QtpQCR35HnqaWe^4pxFXniWQETbpmF5mWsUU$zMtbYnFnp2DA$c3yEw4TEKb7QxBvxoYcGmzk2L%5Ajm9wESf%Y/')->group(function () {
+Route::prefix('/hNsVPep3ZHJ2pEGvqNWG4YhGCdPYWKquAkvuuyWyndBRcSytPvR6FM2kZgczrdnQdJ7ttPerCbB3uuCvyNsXcrk6BtBiMDkQuUB6ro77TPXMNvB4MuXbV56jzzGtwv3n/')->group(function () {
     Route::post('/task/create', [TaskController::class, 'create'])->name('api.create.task');
 });
 
