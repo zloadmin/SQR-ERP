@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             TaskMessageSeeder::class,
 //            TaskFileSeeder::class,
             EmailAlertSeeder::class,
+            WebHookSeeder::class,
 
         ]);
 

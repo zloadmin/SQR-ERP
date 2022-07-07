@@ -25,6 +25,9 @@ use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
+use App\Http\Livewire\WebHook\CreateWebHook;
+use App\Http\Livewire\WebHook\EditWebHook;
+use App\Http\Livewire\WebHook\WebHookList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -96,6 +99,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', EmailAlertList::class)->name('settings.emailalert');
             Route::get('/create', CreateEmailAlert::class)->name('settings.emailalert.create');
             Route::get('/edit/{emailAlert}', EditEmailAlert::class)->name('settings.emailalert.edit');
+        });
+        Route::prefix('web_hooks')->group(function () {
+            Route::get('/', WebHookList::class)->name('settings.webhook');
+            Route::get('/create', CreateWebHook::class)->name('settings.webhook.create');
+            Route::get('/edit/{webHook}', EditWebHook::class)->name('settings.webhook.edit');
         });
     });
 });

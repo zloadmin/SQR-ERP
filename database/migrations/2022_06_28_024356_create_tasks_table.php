@@ -35,21 +35,18 @@ return new class extends Migration
             $table->string('delivery_method')->nullable();
             $table->string('emirate')->nullable();
             $table->text('address')->nullable();
-            $table->json('design_attachments')->nullable();
-            $table->json('card_details_attachments')->nullable();
-            $table->json('qr_attachments')->nullable();
 
             $table->string('sqr_card_username')->default('');
             $table->string('sqr_card_password')->default('');
 
             $table->string('card_collected')->default('');
             $table->string('delivery_reference')->default('');
-
+            $table->boolean('is_api')->default(false);
             foreach (Stage::LIST as $stage) {
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
                 $table->boolean('expired-notify-stage-' . $stage['key'])->default(false);
             }
-            $table->boolean('is_api')->default(false);
+
             $table->timestamps();
         });
     }

@@ -45,17 +45,7 @@ class CreateEmailAlert extends Component
         session()->flash('status', 'Email alert has been created');
         return redirect()->route('settings.emailalert');
     }
-//    public function createEmailAlert()
-//    {
-//        EmailAlert::create([
-//            'name' => $this->name,
-//            'type' => $this->type,
-//            'stage_id' => $this->stage_id ? intval($this->stage_id) : null,
-//            'recipient_id' => $this->recipient_id,
-//            'subject' => $this->subject,
-//            'text' => $this->text,
-//        ]);
-//    }
+
 
 
     public function render()
@@ -76,8 +66,5 @@ class CreateEmailAlert extends Component
             route('settings.emailalert.create') => 'Create email alert',
         ];
     }
-//    public function render()
-//    {
-//        return view('livewire.email-alert.create-email-alert');
-//    }
+
 }

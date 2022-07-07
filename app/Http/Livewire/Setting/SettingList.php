@@ -39,6 +39,10 @@ class SettingList extends Component
             [
                 'title' => 'Email Alert',
                 'link'  => route('settings.emailalert')
+            ],
+            [
+                'title' => 'WebHook',
+                'link'  => route('settings.webhook')
             ]
         ];
     }
