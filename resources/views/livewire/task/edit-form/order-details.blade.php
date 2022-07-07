@@ -68,10 +68,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <p><b>Design comments:</b><br> {{ $task->material }}</p>
+                        <p>
+                            <b>Design comments:</b>
+                            <br>
+                            {!! str_replace("\n", '<br />', $task->design_comments) !!}
+                        </p>
                     </td>
                     <td>
-                        <p><b>Card details:</b><br> {{ $task->instruction }}</p>
+                        <p><b>Card details:</b><br>
+                            {!! str_replace("\n", '<br />', $task->card_details) !!}
+                        </p>
                     </td>
                     <td>
 

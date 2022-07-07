@@ -33,9 +33,11 @@ class SendWebHooks implements ShouldQueue
      */
     public function handle()
     {
-        $webHooks = WebHook::where('stage_id', $this->task->stage_id)->get();
-        foreach ($webHooks as $webHook) {
-            SendWebHook::dispatch($webHook, $this->task);
+        if($this->task->isSendWebHook()) {
+            $webHooks = WebHook::where('stage_id', $this->task->stage_id)->get();
+            foreach ($webHooks as $webHook) {
+                SendWebHook::dispatch($webHook, $this->task);
+            }
         }
     }
 }

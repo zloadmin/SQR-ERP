@@ -21,7 +21,7 @@ class ShowStage extends Component
     }
     private function getTasks(): Collection
     {
-        return $this->stage->tasks()->with('tags')->orderBy('updated_at', 'desc')->get();
+        return $this->stage->tasks()->with('tags')->orderBy('updated_at')->get();
     }
     public function render()
     {

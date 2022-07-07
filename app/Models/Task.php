@@ -49,10 +49,18 @@ class Task extends Model
         self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
     ];
     const EMAIL_VARIABLE_BLOCK = [
-        ['key' => self::EMAIL_VARIABLE_ACTION_URL, 'text' => 'action url link'],
-        ['key' => self::EMAIL_VARIABLE_CARD_CLIENT_NAME, 'text' =>  'name of client of card'],
-        ['key' => self::EMAIL_VARIABLE_SQR_CARD_USERNAME, 'text' =>  'sqr card username'],
-        ['key' => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD, 'text' =>  'sqr card password'],
+        [ 'key'  => self::EMAIL_VARIABLE_ACTION_URL,
+          'text' => 'action url link'
+        ],
+        [ 'key'  => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+          'text' => 'name of client of card'
+        ],
+        [ 'key'  => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
+          'text' => 'sqr card username'
+        ],
+        [ 'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
+          'text' => 'sqr card password'
+        ],
     ];
 
     /**
@@ -90,15 +98,18 @@ class Task extends Model
             $task->setStageStart();
         });
     }
-    public function getEmailVariables() : array
+
+    public function getEmailVariables(): array
     {
         $result = [];
         foreach (self::EMAIL_VARIABLE as $variable) {
-            $result['{{'.$variable.'}}'] = $this->getEmailVariable($variable);
+            $result['{{' . $variable . '}}'] = $this->getEmailVariable($variable);
         }
-        return  $result;
+        return $result;
     }
-    public function getEmailVariable(string $key) {
+
+    public function getEmailVariable(string $key)
+    {
         switch ($key) {
             case self::EMAIL_VARIABLE_ACTION_URL:
                 return $this->getSecretActionsLink();
@@ -116,6 +127,7 @@ class Task extends Model
 
         return 'start-stage-' . $this->stage->key;
     }
+
     public function getExpiredNotifyKey(): string
     {
 
@@ -257,10 +269,12 @@ class Task extends Model
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
     }
+
     public function content_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::CONTENT_ATTACHMENTS);
     }
+
     public function print_file_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::PRINTING_FILE_ATTACHMENTS);
@@ -305,6 +319,7 @@ class Task extends Model
     {
         return $this->getLastFile(TaskFile::DESIGN_ATTACHMENTS);
     }
+
     public function getLastDesignFile()
     {
         return $this->getLastFile(TaskFile::DESIGN_FILE);
@@ -340,10 +355,11 @@ class Task extends Model
         return $this->getLastNotApproveFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
 
-    public function getNotApprovedFilesCount($type) : int
+    public function getNotApprovedFilesCount($type): int
     {
         return $this->files()->where('type', $type)->where('approved', false)->count();
     }
+
     public function getRevisions(): int
     {
         switch ($this->stage->key) {
@@ -357,29 +373,35 @@ class Task extends Model
                 return 0;
         }
     }
-    public function getSecretActionsLink() : string
+
+    public function getSecretActionsLink(): string
     {
         return route('task-secret.task.edit.action', $this->uuid);
     }
-    public function getClientLinkAttribute() : string
+
+    public function getClientLinkAttribute(): string
     {
-        return  $this->getSecretActionsLink();
+        return $this->getSecretActionsLink();
     }
+
     public function setExpiredSLA()
     {
         $this->{$this->getExpiredNotifyKey()} = true;
         $this->update();
         EmailAlertExpiredSLA::dispatch($this);
     }
-    static function createAPI(array $data) {
+
+    static function createAPI(array $data)
+    {
         $data['is_api'] = true;
         return self::create($data);
     }
-    public function getWebHookData(WebHook $webHook) : array
+
+    public function getWebHookData(WebHook $webHook): array
     {
         $data = [];
         foreach ($webHook->variables as $variable) {
-            if(isset($this->{$variable})) {
+            if (isset($this->{$variable})) {
                 if ($this->{$variable} instanceof \Illuminate\Database\Eloquent\Collection) {
                     $data[$variable] = $this->{$variable}->toArray();
                 } else {
@@ -389,10 +411,16 @@ class Task extends Model
         }
         return $data;
     }
+
     public function deleteFull()
     {
         $this->files()->forceDelete();
         $this->messages()->delete();
         $this->delete();
+    }
+
+    public function isSendWebHook(): bool
+    {
+        return (bool)$this->is_api;
     }
 }
