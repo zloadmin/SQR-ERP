@@ -40,9 +40,19 @@ class Task extends Model
 
     const EMAIL_VARIABLE_ACTION_URL = 'action_url';
     const EMAIL_VARIABLE_CARD_CLIENT_NAME = 'card_client_name';
+    const EMAIL_VARIABLE_SQR_CARD_USERNAME = 'sqr_card_sqr_username';
+    const EMAIL_VARIABLE_SQR_CARD_PASSWORD = 'sqr_card_sqr_password';
     const EMAIL_VARIABLE = [
         self::EMAIL_VARIABLE_ACTION_URL,
         self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+        self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
+        self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
+    ];
+    const EMAIL_VARIABLE_BLOCK = [
+        ['key' => self::EMAIL_VARIABLE_ACTION_URL, 'text' => 'action url link'],
+        ['key' => self::EMAIL_VARIABLE_CARD_CLIENT_NAME, 'text' =>  'name of client of card'],
+        ['key' => self::EMAIL_VARIABLE_SQR_CARD_USERNAME, 'text' =>  'sqr card username'],
+        ['key' => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD, 'text' =>  'sqr card password'],
     ];
 
     /**
@@ -94,6 +104,10 @@ class Task extends Model
                 return $this->getSecretActionsLink();
             case self::EMAIL_VARIABLE_CARD_CLIENT_NAME:
                 return $this->contact_name;
+            case self::EMAIL_VARIABLE_SQR_CARD_USERNAME:
+                return $this->sqr_card_username;
+            case self::EMAIL_VARIABLE_SQR_CARD_PASSWORD:
+                return $this->sqr_card_password;
         }
     }
 
@@ -370,5 +384,11 @@ class Task extends Model
             }
         }
         return $data;
+    }
+    public function deleteFull()
+    {
+        $this->files()->forceDelete();
+        $this->messages()->delete();
+        $this->delete();
     }
 }

@@ -10,6 +10,9 @@
             @include('livewire.task.edit-form.main-info-form')
         </div>
         <div class="modal-footer">
+            <button type="button" class="btn btn-danger" wire:click="$emit('showModal', 'task.edit-form.modal-delete-task', '{{ $task->id }}')">
+                Delete
+            </button>
             <!--- Create Field --->
             <button class="btn btn-primary" form="editMainInfoForm" wire:loading.attr="disabled" wire:target="editMainInfo">
                 <div wire:loading.delay wire:target="editMainInfo">

@@ -80,10 +80,15 @@
                     </div>
                     <div class="alert alert-secondary bg-transparent text-secondary" role="alert">
                         Variables for text
-                        <br>
-                        <strong>@{{action_url}}</strong> - action url link
-                        <br>
-                        <strong>@{{card_client_name}}</strong> - name of client of card
+                        @foreach(\App\Models\Task::EMAIL_VARIABLE_BLOCK as $value)
+                            <br>
+                            <strong>
+                                @php
+                                    echo '{{' . $value['key'] . '}}';
+                                @endphp
+                            </strong> - {{ $value['text'] }}
+                        @endforeach
+
 
                     </div>
                     <!--- Save Field --->
