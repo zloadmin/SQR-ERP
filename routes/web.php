@@ -108,7 +108,15 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::get('/test-socket', function (){
+    return view('test.socket');
+});
+Route::post('/test-socket', function (){
+    event(new \App\Events\TestSocket());
+});
 
+//event(new \App\Events\TestSocket());
+//exit;
 //Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
