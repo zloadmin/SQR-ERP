@@ -90,8 +90,6 @@ class Action extends Component
     }
     public function getEditable(Task $task) : bool
     {
-        // TODO: if use secret url
-        if(!auth()->check()) return true;
         return auth()->user()->canEditActions($task);
     }
 }

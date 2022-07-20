@@ -13,6 +13,7 @@ class ActionsSecret extends Component
     public Task $task;
     public Stage $stage;
     public bool $editable;
+
     public function mount($uuid)
     {
         $this->uuid = $uuid;
@@ -24,7 +25,7 @@ class ActionsSecret extends Component
     public function getListeners()
     {
         return [
-            'updateEditTaskActions'                        => 'updateTask'
+            'updateEditTaskActions' => 'updateTask'
         ];
     }
 

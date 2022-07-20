@@ -15,10 +15,11 @@ class ActionDesignApproval extends Action
     protected $rules = [
         'comment'  => 'required'
     ];
-    public function mount(Task $task)
+    public function mount(Task $task, bool $guest = false)
     {
+//        var_dump($this->editable);
         $this->task = $task;
-        $this->editable = $this->getEditable($task);
+        $this->editable = $guest || $this->getEditable($task);
 //        $this->qr_arrache = $task->getLastQRAttachment();
         $this->design_file = $task->getLastDesignFile();
         $this->comment = '';

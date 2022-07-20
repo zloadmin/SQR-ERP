@@ -419,8 +419,12 @@ class Task extends Model
         $this->delete();
     }
 
-    public function isSendWebHook(): bool
+    public function isApi(): bool
     {
         return (bool)$this->is_api;
+    }
+    public function isSendWebHook(): bool
+    {
+        return !$this->isApi();
     }
 }

@@ -16,10 +16,10 @@ class ActionContentApproval extends Action
     protected $rules = [
         'comment'  => 'required'
     ];
-    public function mount(Task $task)
+    public function mount(Task $task, bool $guest = false)
     {
         $this->task = $task;
-        $this->editable = $this->getEditable($task);
+        $this->editable = $guest || $this->getEditable($task);
 //        $this->qr_arrache = $task->getLastQRAttachment();
 //        $this->design_attache = $task->getLastDesignAttachment();
         $this->content_attache = $task->getLastContentAttachment();

@@ -38,14 +38,14 @@
                         <p><b>Background:</b> {{ $task->background }}</p>
                     </td>
                     <td>
-                        <p>
-                            <b>Details attachments:</b>
-                            {{ $task->card_details_attachments()->count() }} files
-                            @if($latest_design_attachments_attachment)
-                                <br>
-                                {!! $latest_design_attachments_attachment->getHTMLLink() !!}
-                            @endif
-                        </p>
+{{--                        <p>--}}
+{{--                            <b>Details attachments:</b>--}}
+{{--                            {{ $task->card_details_attachments()->count() }} files--}}
+{{--                            @if($latest_design_attachments_attachment)--}}
+{{--                                <br>--}}
+{{--                                {!! $latest_design_attachments_attachment->getHTMLLink() !!}--}}
+{{--                            @endif--}}
+{{--                        </p>--}}
                     </td>
                 </tr>
                 <tr>
