@@ -18,11 +18,6 @@ class StageList extends Component
 
         $this->stages = Stage::whereIn('key', $stage_keys)->get();
 
-
-
-//        $this->stages = Stage::with(['tasks' => function ($query) {
-//            $query->orderBy('updated_at', 'desc');
-//        }])->get();
     }
 
     public function render()

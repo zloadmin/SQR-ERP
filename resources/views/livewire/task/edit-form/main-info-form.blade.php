@@ -1,7 +1,7 @@
 <form wire:submit.prevent="editMainInfo" id="editMainInfoForm">
     <!--- Card Name Field --->
     <div class="form-group">
-        <input class="form-control form-control-light @error('name') is-invalid @enderror" type="text" wire:model="name">
+        <input class="form-control form-control-light @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="Name">
         @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

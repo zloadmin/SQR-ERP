@@ -43,20 +43,43 @@
                             </span>
                         @enderror
                     </div>
-                    <!--- Time Field --->
-                    <div class="form-group">
-                        <label for="time">Time</label>
-                        <select class="form-control @error('time') is-invalid @enderror" wire:model.defer="time">
-                            <option value=""></option>
-                            @foreach(\App\Models\SLA::getTimes() as $secs => $secs_title)
-                                <option value="{{ $secs }}">{{ $secs_title }}</option>
-                            @endforeach
-                        </select>
-                        @error('time')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!--- Time minutes Field --->
+                            <div class="form-group">
+                                <label for="time_minutes">Time minutes</label>
+                                <input class="form-control @error('time_minutes') is-invalid @enderror" type="text" wire:model="time_minutes">
+                                @error('time_minutes')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!--- Time hours Field --->
+                            <div class="form-group">
+                                <label for="time_hours">Time hours</label>
+                                <input class="form-control @error('time_hours') is-invalid @enderror" type="text" wire:model="time_hours">
+                                @error('time_hours')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!--- Time Days Field --->
+                            <div class="form-group">
+                                <label for="time_days">Time Days</label>
+                                <input class="form-control @error('time_days') is-invalid @enderror" type="text" wire:model="time_days">
+                                @error('time_days')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
 

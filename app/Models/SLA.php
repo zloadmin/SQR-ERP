@@ -30,17 +30,19 @@ class SLA extends Model
         60 * 45,
         60 * 60
     ];
+
     static function init()
     {
         foreach (Stage::LIST as $stage) {
             self::create([
-                'name' => 'SLA of stage ' . $stage['name'],
-                'type' => self::getTypesNames('name')[0],
+                'name'     => 'SLA of stage ' . $stage['name'],
+                'type'     => self::getTypesNames('name')[0],
                 'stage_id' => $stage['id'],
-                'time' => 60 * 45,
+                'time'     => 60 * 45,
             ]);
         }
     }
+
     static function getTypesNames()
     {
         return self::getTypesByKey('name');
@@ -67,8 +69,35 @@ class SLA extends Model
         $min = intval($time / 60);
         return $min > 1 ? $min . ' minutes' : $min . ' minute';
     }
-    public function getTotalTimeText()
+
+    public function getTotalTimeTextAttribute(): string
     {
-        return  Carbon::now()->subSeconds($this->time)->longAbsoluteDiffForHumans();
+        $result = [];
+        if ($this->time_days) {
+            $result[] = Carbon::now()->subDays($this->time_days)->longAbsoluteDiffForHumans();
+        }
+        if ($this->time_hours) {
+            $result[] = Carbon::now()->subHours($this->time_hours)->longAbsoluteDiffForHumans();
+        }
+        if ($this->time_minutes) {
+            $result[] = Carbon::now()->subMinutes($this->time_minutes)->longAbsoluteDiffForHumans();
+        }
+
+        return implode(" ", $result);
+    }
+
+    public function getTimeDaysAttribute(): int
+    {
+        return $this->time / (60 * 60 * 24);
+    }
+
+    public function getTimeHoursAttribute(): int
+    {
+        return ($this->time % (60 * 60 * 24)) / (60 * 60);
+    }
+
+    public function getTimeMinutesAttribute(): int
+    {
+        return ($this->time % (60 * 60)) / 60;
     }
 }

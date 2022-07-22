@@ -53,7 +53,7 @@
                         <p><b>Material:</b> {{ $task->material }}</p>
                     </td>
                     <td>
-                        <p><b>Instruction:</b> {{ $task->instruction }}</p>
+                        <p><b>Instruction:</b> {!! WL($task->instruction) !!}</p>
                     </td>
                     <td>
                         <p>
@@ -71,12 +71,12 @@
                         <p>
                             <b>Design comments:</b>
                             <br>
-                            {!! str_replace("\n", '<br />', $task->design_comments) !!}
+                            {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
                         </p>
                     </td>
                     <td>
                         <p><b>Card details:</b><br>
-                            {!! str_replace("\n", '<br />', $task->card_details) !!}
+                            {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
                         </p>
                     </td>
                     <td>

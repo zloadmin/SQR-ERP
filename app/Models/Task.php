@@ -84,6 +84,7 @@ class Task extends Model
         });
         static::creating(function (Task $task) {
             $task->setStageStart();
+            $task->setDefaultName();
         });
         static::updated(function (Task $task) {
             if ($task->isChangedStage()) {
@@ -145,6 +146,10 @@ class Task extends Model
         if (is_null($this->{$key})) {
             $this->{$key} = now()->toDateTimeString();
         }
+    }
+    public function setDefaultName()
+    {
+        $this->name = $this->name ?? $this->company_name;
     }
 //    public function tags()
 //    {

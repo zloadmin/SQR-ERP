@@ -20,7 +20,7 @@ class Sla extends Component
         $this->task = $task;
         $this->sla = $task->sla;
         $this->time_left = $this->getTimeLeft();
-        $this->total_time = $this->sla->getTotalTimeText();
+//        $this->total_time = $this->sla->getTotalTimeText();
         $this->revisions = $this->task->getRevisions();
         $this->start_stage = $this->task->getStageStart()->toDateTimeString();
         $this->late = $this->getLate();
@@ -57,5 +57,7 @@ class Sla extends Component
     {
         return view('livewire.task.edit-form.sla');
     }
+
+
 
 }

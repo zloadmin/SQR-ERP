@@ -13,16 +13,28 @@ class ShowStage extends Component
 {
     public Stage $stage;
     public Collection $tasks;
+    public string $search_text = "";
 
     function mount(Stage $stage)
     {
         $this->stage = $stage;
         $this->tasks = $this->getTasks();
     }
+
     private function getTasks(): Collection
     {
-        return $this->stage->tasks()->with('tags')->orderBy('updated_at')->get();
+        $result = $this->stage->tasks()->with('tags')->orderBy('updated_at');
+        if ($this->search_text) {
+            $result->where(function ($query) {
+                $query->orWhere('company_name', 'LIKE', '%' . $this->search_text . '%');
+                $query->orWhere('contact_name', 'LIKE', '%' . $this->search_text . '%');
+                $query->orWhere('contact_number', 'LIKE', '%' . $this->search_text . '%');
+                $query->orWhere('contact_email', 'LIKE', '%' . $this->search_text . '%');
+            });
+        }
+        return $result->get();
     }
+
     public function render()
     {
         return view('livewire.stage.stage');
@@ -32,17 +44,26 @@ class ShowStage extends Component
     {
         return [
             "echo:stages.{$this->stage->id},StageTasksUpdated" => 'updateTasks',
-            'refreshStage' => 'refreshStageEvent'
+            'refreshStage'                                     => 'refreshStageEvent',
+            'searchTasksEvent'                                 => 'searchTasksListener'
         ];
     }
 
-    public function refreshStageEvent(int $stage_id) {
-        if($stage_id == $this->stage->id) {
+    public function refreshStageEvent(int $stage_id)
+    {
+        if ($stage_id == $this->stage->id) {
             $this->updateTasks();
         }
     }
+
     public function updateTasks()
     {
         $this->tasks = $this->getTasks();
+    }
+
+    public function searchTasksListener(string $search_text)
+    {
+        $this->search_text = $search_text;
+        $this->updateTasks();
     }
 }
