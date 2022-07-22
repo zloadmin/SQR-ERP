@@ -14,14 +14,17 @@ class ActionAccountSetup extends Action
     public $attache;
     public string $username;
     public string $password;
+    public int $next_stage = 2;
     public Task $task;
     public bool $editable;
+
 
 
     protected $rules = [
         'username' => 'required|string|max:255',
         'password' => 'required|string|max:255',
-        'attache'  => 'required|file'
+        'attache'  => 'required|file',
+        'next_stage' => 'required|in:2,4'
     ];
 
     public function mount(Task $task)
@@ -47,9 +50,10 @@ class ActionAccountSetup extends Action
 
     public function updateTask()
     {
+
         $this->task->sqr_card_username = $this->username;
         $this->task->sqr_card_password = $this->password;
-        $this->task->stage_id = $this->task->getNextStageId();
+        $this->task->stage_id = $this->next_stage;
         $this->task->update();
     }
 

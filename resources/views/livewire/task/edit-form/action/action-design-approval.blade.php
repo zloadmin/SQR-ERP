@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header modal-colored-header bg-danger">
         <div class="d-flex justify-content-between align-items-center">
-            <h4>Actions Design Approval</h4>
+            <h4>Action Required: Design Approval</h4>
         </div>
     </div>
     <div class="card-body">

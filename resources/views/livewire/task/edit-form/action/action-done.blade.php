@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header modal-colored-header bg-danger">
         <div class="d-flex justify-content-between align-items-center">
-            <h4>Actions Done</h4>
+            <h4>Action Required: Done</h4>
         </div>
     </div>
     <div class="card-body">

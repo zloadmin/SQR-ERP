@@ -18,7 +18,8 @@
         "pusher/pusher-php-server": "^7.0",
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
-        "wire-elements/modal": "^1.0"
+        "wire-elements/modal": "^1.0",
+        "asika/autolink": "1.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

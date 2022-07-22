@@ -81,6 +81,9 @@ class EditOrderDetails extends Component
         $this->task->instruction = $this->instruction;
         $this->task->background = $this->background;
         $this->task->design_comments = $this->design_comments;
+        $this->task->card_details = $this->card_details;
+
+
         $this->task->update();
         return $this->task;
     }

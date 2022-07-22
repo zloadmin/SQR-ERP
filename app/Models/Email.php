@@ -13,8 +13,12 @@ class Email extends Model
     protected $guarded = [];
     public function alert()
     {
-        return $this->hasOne(EmailAlert::class, 'id', 'email_alert_id');
+        return $this->hasOne(EmailAlert::class, 'id', 'email_alert_id')->withTrashed();;
     }
+//    public function alertWithTrashed()
+//    {
+//        return $this->hasOne(EmailAlert::class, 'id', 'email_alert_id')->withTrashed();;
+//    }
     public function send()
     {
         Mail::to($this->recipient)->send(new SimpleEmail($this));

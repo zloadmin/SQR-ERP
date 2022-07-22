@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header modal-colored-header bg-danger">
         <div class="d-flex justify-content-between align-items-center">
-            <h4>Actions {{ $task->stage_id }}</h4>
+            <h4>Action Required: {{ $task->stage_id }}</h4>
             <button type="button" class="btn btn-success"  >
                 Submit
             </button>

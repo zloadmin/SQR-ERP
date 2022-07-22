@@ -5,12 +5,14 @@ namespace App\Models;
 use App\Traits\HasLinks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 class EmailAlert extends Model
 {
     use HasFactory;
     use HasLinks;
+    use SoftDeletes;
 
     protected $guarded = [];
     const TYPE_CREATE = 'create';

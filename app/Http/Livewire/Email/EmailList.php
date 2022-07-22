@@ -10,19 +10,13 @@ class EmailList extends Component
 
     public function render()
     {
-
-
-
-
         return view('livewire.email.email-list', [
             'emails' => Email::with('alert')->latest()->paginate()
-        ])
-            ->layoutData([
-                'title'      => 'Emails',
-                'breadcrumb' => $this->getBreadcrumb()
-            ]);
+        ])->layoutData([
+            'title'      => 'Emails',
+            'breadcrumb' => $this->getBreadcrumb()
+        ]);
     }
-
 
 
     private function getBreadcrumb()
