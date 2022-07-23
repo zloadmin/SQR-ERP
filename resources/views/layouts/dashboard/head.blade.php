@@ -5,6 +5,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'SQR ERP') }} - @yield('title')</title>
+
+    <link rel="manifest" href="/manifest.json" />
+
     <!-- App css -->
     <link href="/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="/css/dashboard.css" rel="stylesheet" type="text/css" />
@@ -17,4 +20,24 @@
 
     @stack('styles')
     @livewireStyles
+    <script>
+        // serviceWorker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/js/service-worker.js').then(function(registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+
+        // let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', function(event) {
+            console.log('beforeinstallprompt');
+            event.prompt();
+        });
+    </script>
 </head>
