@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class CreateTaskMessage implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
 
 
     public int $task_id;

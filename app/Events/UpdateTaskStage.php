@@ -14,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 
 class UpdateTaskStage implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
 
     public int $task_id;
 

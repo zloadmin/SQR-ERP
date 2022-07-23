@@ -37,7 +37,7 @@ class TestMoveTasks extends Command
             $task = Task::where('stage_id', '!=', $stage)->inRandomOrder()->first();
             $this->info(sprintf('Update task ID: %d. Old stage ID: %d. New stage ID: %d', $task->id, $task->stage_id, $stage->id));
             $task->update(['stage_id' => $stage->id]);
-//            sleep(2);
+            sleep(2);
         }
         return 0;
     }

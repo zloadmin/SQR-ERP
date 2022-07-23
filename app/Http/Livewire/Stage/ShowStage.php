@@ -58,6 +58,7 @@ class ShowStage extends Component
 
     public function updateTasks()
     {
+        Log::info('updateTasks');
         $this->tasks = $this->getTasks();
     }
 

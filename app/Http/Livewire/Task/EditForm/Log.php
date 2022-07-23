@@ -25,13 +25,13 @@ class Log extends Component
     public function getListeners()
     {
         return [
-//            "echo:message_task.{$this->task->id},CreateTaskMessage" => 'setLogMessages',
+            "echo:message_task.{$this->task->id},CreateTaskMessage" => 'setLogMessages',
             "updateEditTaskLog" => 'setLogMessages',
         ];
     }
     public function setLogMessages()
     {
-        \Illuminate\Support\Facades\Log::info('updateEditTaskLog listener');
+//        \Illuminate\Support\Facades\Log::info('updateEditTaskLog listener');
         $this->log_messages = $this->task->messages()->with(['user', 'user.role'])->latest()->get();
     }
     public function createMessage()

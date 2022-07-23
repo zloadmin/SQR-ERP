@@ -1,11 +1,12 @@
 <div>
-    <form wire:submit.prevent="searchTasks">
-        <!--- Search Field --->
-        <div class="form-group">
-            <input class="form-control form-control-light" type="text" wire:model="search_text" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-link">
-            <i class="mdi mdi-search-web"></i>
-        </button>
-    </form>
+    <div class="app-search dropdown d-none d-lg-block">
+        <form wire:submit.prevent="searchTasks">
+            <div class="input-group">
+                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." wire:model="search_text">
+                <span class="mdi mdi-magnify search-icon"></span>
+                <button class="input-group-text btn-primary" type="submit">Search</button>
+
+            </div>
+        </form>
+    </div>
 </div>

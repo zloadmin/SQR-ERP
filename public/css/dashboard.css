@@ -16173,3 +16173,25 @@ div.dt-button-info h2 {
     margin: 0;
     -webkit-overflow-scrolling: touch;
 }
+
+.app-search .form-control {
+    border: none;
+    height: calc(1.5em + 0.9rem + 2px);
+    padding-left: 40px;
+    padding-right: 20px;
+    background-color: #f1f3fa;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #727cf5;
+    border-color: #727cf5;
+}

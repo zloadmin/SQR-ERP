@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class TestSocket implements ShouldBroadcast
 {
@@ -23,6 +24,7 @@ class TestSocket implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        Log::info('class TestSocket implements ShouldBroadcast');
         return new Channel('test-socket');
     }
 

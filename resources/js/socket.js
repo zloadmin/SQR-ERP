@@ -9,9 +9,14 @@ window.Echo = new Echo({
 });
 
 
-window.Echo.channel('sqr-erp-redis-test-socket')
+window.Echo.channel('test-socket')
     .listen('.App\\Events\\TestSocket', (e) => {
         console.log('TestSocket WORK!!!! ');
         console.log(e);
     });
+// window.Echo.channel('stages.1')
+//     .listen('.App\\Events\\StageTasksUpdated', (e) => {
+//         console.log('StageTasksUpdated WORK!!!! ');
+//         console.log(e);
+//     });
 

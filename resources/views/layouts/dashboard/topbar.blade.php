@@ -14,9 +14,10 @@
         </ul>
         <div class="float-right mb-0 mr-3">
 {{--            if route name is 'dashboard'--}}
-            @if(true)
+            @if(Route::currentRouteName() === 'dashboard')
                 <livewire:search />
             @endif
+
         </div>
         <button class="button-menu-mobile open-left disable-btn">
             <i class="mdi mdi-menu"></i>

@@ -49,6 +49,7 @@ class CreateUser extends Component
 
     public function createUser()
     {
+
         User::create([
             'name'            => $this->name,
             'email'           => $this->email,

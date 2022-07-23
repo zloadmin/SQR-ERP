@@ -66,7 +66,7 @@ window.Echo.channel('test-socket')
     $(document).ready(function () {
         setTimeout(function () {
             testSocket();
-        }, 500);
+        }, 2000);
 
     })
 

@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Livewire\Task\EditForm\Log;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -12,16 +13,17 @@ use Illuminate\Queue\SerializesModels;
 
 class StageTasksUpdated implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
     public int $stage_id;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(int $stage_id)
+    public function __construct(int $stage_id = 1)
     {
         $this->stage_id = $stage_id;
+        \Illuminate\Support\Facades\Log::info('class StageTasksUpdated implements ShouldBroadcast ' . $this->stage_id);
     }
 
     /**
