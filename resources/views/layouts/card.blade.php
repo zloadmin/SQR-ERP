@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="/admin/images/favicon.ico">
-    <title>{{ config('app.name', 'SQR ERP') }} - @yield('title')</title>
-
-    <!-- App css -->
-    <link href="/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="/css/dashboard.css" rel="stylesheet" type="text/css" />
-    @livewireStyles
-</head>
+@include('layouts.dashboard.head')
 <body class="authentication-bg">
     <div class="account-pages mt-5 mb-5">
         <div class="container">
