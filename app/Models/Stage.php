@@ -9,41 +9,50 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Stage extends Model
 {
     const LIST = [
-        [ 'id'   => 1,
-          'key'  => 'account-setup',
-          'name' => 'Account Setup'
+        [
+            'id'   => 1,
+            'key'  => 'account-setup',
+            'name' => 'Account Setup'
         ],
-        [ 'id'   => 2,
-          'key'  => 'design',
-          'name' => 'Design'
+        [
+            'id'   => 2,
+            'key'  => 'design',
+            'name' => 'Design'
         ],
-        [ 'id'   => 3,
-          'key'  => 'design-approval',
-          'name' => 'Design Approval'
+        [
+            'id'   => 3,
+            'key'  => 'design-approval',
+            'name' => 'Design Approval'
         ],
-        [ 'id'   => 4,
-          'key'  => 'content',
-          'name' => 'Content'
+        [
+            'id'   => 4,
+            'key'  => 'content',
+            'name' => 'Content'
         ],
-        [ 'id'   => 5,
-          'key'  => 'content-approval',
-          'name' => 'Content Approval'
+        [
+            'id'   => 5,
+            'key'  => 'content-approval',
+            'name' => 'Content Approval'
         ],
-        [ 'id'   => 6,
-          'key'  => 'print-file',
-          'name' => 'Print File'
+        [
+            'id'   => 6,
+            'key'  => 'print-file',
+            'name' => 'Print File'
         ],
-        [ 'id'   => 7,
-          'key'  => 'production',
-          'name' => 'Production'
+        [
+            'id'   => 7,
+            'key'  => 'production',
+            'name' => 'Production'
         ],
-        [ 'id'   => 8,
-          'key'  => 'collection',
-          'name' => 'Collection'
+        [
+            'id'   => 8,
+            'key'  => 'collection',
+            'name' => 'Collection'
         ],
-        [ 'id'   => 9,
-          'key'  => 'done',
-          'name' => 'Done'
+        [
+            'id'   => 9,
+            'key'  => 'done',
+            'name' => 'Done'
         ],
     ];
     use HasFactory;
@@ -61,6 +70,7 @@ class Stage extends Model
     {
         return self::pluck('name');
     }
+
     static function getListIDs()
     {
         return self::pluck('id');
@@ -95,5 +105,20 @@ class Stage extends Model
             }
         }
         return $result;
+    }
+
+    static function getStageById(int $id): array
+    {
+        foreach (self::LIST as $stage) {
+            if ($stage['id'] === $id) {
+                return $stage;
+            }
+        }
+
+    }
+
+    static function getStartKeyById(int $id)
+    {
+        return 'start-stage-' . self::getStageById($id)['key'];
     }
 }

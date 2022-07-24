@@ -133,8 +133,7 @@ class Task extends Model
 
     public function getStartStageKey(): string
     {
-
-        return 'start-stage-' . $this->stage->key;
+        return Stage::getStartKeyById($this->stage_id);
     }
 
     public function getExpiredNotifyKey(): string
