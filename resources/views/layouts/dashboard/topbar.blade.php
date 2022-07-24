@@ -12,16 +12,12 @@
         <ul class="list-unstyled topbar-right-menu float-right mb-0">
             @include('layouts.dashboard.user-block')
         </ul>
-        <div class="float-right mb-0 mr-3">
-{{--            if route name is 'dashboard'--}}
-            @if(Route::currentRouteName() === 'dashboard')
-                <livewire:search />
-            @endif
-
-        </div>
-        <button class="button-menu-mobile open-left disable-btn">
-            <i class="mdi mdi-menu"></i>
-        </button>
+        @if(Route::currentRouteName() === 'dashboard')
+            <livewire:search />
+        @endif
+{{--        <button class="button-menu-mobile open-left disable-btn">--}}
+{{--            <i class="mdi mdi-menu"></i>--}}
+{{--        </button>--}}
     </div>
 
 </div>

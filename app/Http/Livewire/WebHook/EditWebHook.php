@@ -35,7 +35,7 @@ class EditWebHook extends Component
     public function submit()
     {
         $data = $this->validate();
-        WebHook::create($data);
+        $this->webHook->update($data);
         session()->flash('status', 'Webhook has been created');
         return redirect()->route('settings.webhook');
     }
@@ -44,7 +44,7 @@ class EditWebHook extends Component
     {
         return view('livewire.web-hook.webhook-form')
             ->layoutData([
-                'title'      => 'Create WebHook',
+                'title'      => 'Edit WebHook',
                 'breadcrumb' => $this->getBreadcrumb()
             ]);
     }

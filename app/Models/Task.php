@@ -30,7 +30,11 @@ class Task extends Model
         'design_attachments'       => 'array',
         'card_details_attachments' => 'array',
         'qr_attachments'           => 'array',
+        'tag_list'                 => 'array',
     ];
+//    protected $appends = [
+//        'tag_list',
+//    ];
 
     const FILES_FIELDS = [
         'design_attachments',
@@ -49,17 +53,21 @@ class Task extends Model
         self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
     ];
     const EMAIL_VARIABLE_BLOCK = [
-        [ 'key'  => self::EMAIL_VARIABLE_ACTION_URL,
-          'text' => 'action url link'
+        [
+            'key'  => self::EMAIL_VARIABLE_ACTION_URL,
+            'text' => 'action url link'
         ],
-        [ 'key'  => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
-          'text' => 'name of client of card'
+        [
+            'key'  => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+            'text' => 'name of client of card'
         ],
-        [ 'key'  => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
-          'text' => 'sqr card username'
+        [
+            'key'  => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
+            'text' => 'sqr card username'
         ],
-        [ 'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
-          'text' => 'sqr card password'
+        [
+            'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
+            'text' => 'sqr card password'
         ],
     ];
 
@@ -147,6 +155,7 @@ class Task extends Model
             $this->{$key} = now()->toDateTimeString();
         }
     }
+
     public function setDefaultName()
     {
         $this->name = $this->name ?? $this->company_name;
@@ -175,6 +184,15 @@ class Task extends Model
         $result = [];
         foreach ($this->tags()->get() as $tag) {
             $result[] = $tag->id;
+        }
+        return $result;
+    }
+
+    public function getTagsNames(): array
+    {
+        $result = [];
+        foreach ($this->tags()->get() as $tag) {
+            $result[] = $tag->name;
         }
         return $result;
     }
@@ -417,6 +435,11 @@ class Task extends Model
         return $data;
     }
 
+    public function getTagListAttribute(): array
+    {
+        return self::getTagsNames();
+    }
+
     public function deleteFull()
     {
         $this->files()->forceDelete();
@@ -428,6 +451,7 @@ class Task extends Model
     {
         return (bool)$this->is_api;
     }
+
     public function isSendWebHook(): bool
     {
         return !$this->isApi();

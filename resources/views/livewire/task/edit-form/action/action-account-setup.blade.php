@@ -42,9 +42,6 @@
                                   <label class="form-check-label" for="radio_next_stage_design">
                                     Design
                                   </label>
-                                  @error('next_stage')
-                                	<div class="invalid-feedback">{{ $message }}</div>
-                                  @enderror
                                 </div>
                                 <!--- Content Field --->
                                 <div class="form-check  form-check-inline">
@@ -52,10 +49,12 @@
                                   <label class="form-check-label" for="radio_next_stage_content">
                                     Content
                                   </label>
-                                  @error('next_stage')
-                                	<div class="invalid-feedback">{{ $message }}</div>
-                                  @enderror
                                 </div>
+                            </div>
+                            <div class="col-md-12">
+                                @error('next_stage')
+                                    <span class="invalid-feedback d-block">The field is required.</span>
+                                @enderror
                             </div>
                         </div>
                         <button class="btn btn-success w-100" wire:loading.attr="disabled" wire:target="submitQR">

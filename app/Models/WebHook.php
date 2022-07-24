@@ -39,5 +39,6 @@ class WebHook extends Model
         'card_collected',
         'delivery_reference',
         'is_api',
+        'tag_list'
     ];
 }

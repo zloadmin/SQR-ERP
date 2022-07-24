@@ -23,7 +23,8 @@ class ShowStage extends Component
 
     private function getTasks(): Collection
     {
-        $result = $this->stage->tasks()->with('tags')->orderBy('updated_at');
+        $result = $this->stage->tasks()->with('tags')->orderByDesc('updated_at');
+
         if ($this->search_text) {
             $result->where(function ($query) {
                 $query->orWhere('company_name', 'LIKE', '%' . $this->search_text . '%');
