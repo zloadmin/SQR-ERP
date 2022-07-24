@@ -21,7 +21,7 @@ class ActionCollection extends Action
     protected $rules = [
         'card_collected' => 'required|string|max:255',
         'delivery_reference' => 'required|string|max:255',
-        'attache'  => 'required|file'
+        'attache'  => 'required|file|max:204800'
     ];
 
     public function mount(Task $task)

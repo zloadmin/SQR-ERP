@@ -42,9 +42,9 @@ class EditOrderDetails extends Component
         'instruction'     => 'nullable|max:255',
         'background'      => 'nullable|max:255',
         'design_comments' => 'nullable',
-        'design_attachments.*' => 'file|max:200000',
-        'card_details_attachments.*' => 'file|max:200000',
-        'qr_attachments.*' => 'file|max:200000',
+        'design_attachments.*' => 'file|max:204800',
+        'card_details_attachments.*' => 'file|max:204800',
+        'qr_attachments.*' => 'file|max:204800',
     ];
 
     public function mount(Task $task)

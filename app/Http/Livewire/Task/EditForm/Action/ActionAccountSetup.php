@@ -23,8 +23,9 @@ class ActionAccountSetup extends Action
     protected $rules = [
         'username' => 'required|string|max:255',
         'password' => 'required|string|max:255',
-        'attache'  => 'required|file',
+        'attache'  => 'required|file|max:204800',
         'next_stage' => 'required|in:2,4'
+
     ];
 
     public function mount(Task $task)

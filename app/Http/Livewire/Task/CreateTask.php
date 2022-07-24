@@ -55,9 +55,9 @@ class CreateTask extends ModalComponent
         'delivery_method' => 'nullable|max:255',
         'emirate'         => 'nullable|max:255',
         'address'         => 'nullable',
-        'design_attachments.*' => 'file|max:200000',
-        'card_details_attachments.*' => 'file|max:200000',
-        'qr_attachments.*' => 'file|max:200000',
+        'design_attachments.*' => 'file|max:204800',
+        'card_details_attachments.*' => 'file|max:204800',
+        'qr_attachments.*' => 'file|max:204800',
     ];
     protected $validationAttributes = [
         'design_attachments.*' => 'design attachment',
