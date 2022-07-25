@@ -19,7 +19,7 @@ class Sla extends Component
     {
         $this->task = $task;
         $this->sla = $task->sla;
-        $this->time_left = $this->getTimeLeft();
+        $this->time_left = $task->getCurrentSLATimeLeft();
 //        $this->total_time = $this->sla->getTotalTimeText();
         $this->revisions = $this->task->getRevisions();
         $this->start_stage = $this->task->getStageStart()->toDateTimeString();

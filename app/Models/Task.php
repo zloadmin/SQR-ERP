@@ -455,4 +455,8 @@ class Task extends Model
     {
         return !$this->isApi();
     }
+    public function getCurrentSLATimeLeft()
+    {
+        return $this->getStageStart()->longAbsoluteDiffForHumans(now());
+    }
 }
