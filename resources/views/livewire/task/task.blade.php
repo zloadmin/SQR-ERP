@@ -2,8 +2,8 @@
     <div class="card-body p-3">
         <small class="float-end text-muted">Time passed: {{ $task->getCurrentSLATimeLeft() }}</small>
         <br>
-        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>
-        <br>
+{{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
+{{--        <br>--}}
         @foreach($task->tags as $tag)
             <span class="badge bg-success">{{ $tag->name }}</span>
         @endforeach
