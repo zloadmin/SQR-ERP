@@ -459,4 +459,8 @@ class Task extends Model
     {
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());
     }
+    public function getTimeLeft()
+    {
+        return $this->created_at->longAbsoluteDiffForHumans(now());
+    }
 }
