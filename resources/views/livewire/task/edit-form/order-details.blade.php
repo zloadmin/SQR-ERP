@@ -42,9 +42,9 @@
                         <p>
                             <b>Details attachments:</b>
                             {{ $task->card_details_attachments()->count() }} files
-                            @if($latest_design_attachments_attachment)
+                            @if($latest_card_details_attachment)
                                 <br>
-                                {!! $latest_design_attachments_attachment->getHTMLLink() !!}
+                                {!! $latest_card_details_attachment->getHTMLLink() !!}
                             @endif
                         </p>
                     </td>
@@ -150,9 +150,9 @@
                     <p>
                         <b>Details attachments:</b>
                         {{ $task->card_details_attachments()->count() }} files
-                        @if($latest_design_attachments_attachment)
+                        @if($latest_card_details_attachment)
                             <br>
-                            {!! $latest_design_attachments_attachment->getHTMLLink() !!}
+                            {!! $latest_card_details_attachment->getHTMLLink() !!}
                         @endif
                     </p>
                 </td>
