@@ -453,6 +453,7 @@ class Task extends Model
 
     public function isSendWebHook(): bool
     {
+        return true;
         return !$this->isApi();
     }
     public function getCurrentSLATimeLeft()
