@@ -23,7 +23,7 @@ class ShowStage extends Component
 
     private function getTasks(): Collection
     {
-        $result = $this->stage->tasks()->with('tags')->orderByDesc('updated_at');
+        $result = $this->stage->tasks()->with('tags')->latest();
 
         if ($this->search_text) {
             $result->where(function ($query) {
