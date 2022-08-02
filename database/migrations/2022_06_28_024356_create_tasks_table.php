@@ -19,28 +19,28 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
-            $table->string('name')->nullable();
-            $table->string('company_name')->nullable();
-            $table->string('it_is')->nullable();
-            $table->string('material')->nullable();
-            $table->string('total_cards')->nullable();
-            $table->string('instruction')->nullable();
-            $table->string('background')->nullable();
+            $table->text('name')->nullable();
+            $table->text('company_name')->nullable();
+            $table->text('it_is')->nullable();
+            $table->text('material')->nullable();
+            $table->text('total_cards')->nullable();
+            $table->text('instruction')->nullable();
+            $table->text('background')->nullable();
             $table->text('design_comments')->nullable();
             $table->text('card_details')->nullable();
-            $table->string('contact_name')->nullable();
-            $table->string('contact_number')->nullable();
-            $table->string('whatsapp')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('delivery_method')->nullable();
-            $table->string('emirate')->nullable();
+            $table->text('contact_name')->nullable();
+            $table->text('contact_number')->nullable();
+            $table->text('whatsapp')->nullable();
+            $table->text('contact_email')->nullable();
+            $table->text('delivery_method')->nullable();
+            $table->text('emirate')->nullable();
             $table->text('address')->nullable();
 
-            $table->string('sqr_card_username')->default('');
-            $table->string('sqr_card_password')->default('');
+            $table->text('sqr_card_username')->nullable();
+            $table->text('sqr_card_password')->nullable();
 
-            $table->string('card_collected')->default('');
-            $table->string('delivery_reference')->default('');
+            $table->text('card_collected')->nullable();
+            $table->text('delivery_reference')->nullable();
             $table->boolean('is_api')->default(false);
             foreach (Stage::LIST as $stage) {
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
