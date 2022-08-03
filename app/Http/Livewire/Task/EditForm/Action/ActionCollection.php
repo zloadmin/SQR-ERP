@@ -12,8 +12,8 @@ class ActionCollection extends Action
     use WithFileUploads;
 
     public $attache;
-    public string $card_collected;
-    public string $delivery_reference;
+    public string $card_collected = '';
+    public string $delivery_reference = '';
     public Task $task;
     public bool $editable;
 
@@ -28,8 +28,8 @@ class ActionCollection extends Action
     {
         $this->task = $task;
         $this->editable = $this->getEditable($task);
-        $this->card_collected = $task->card_collected;
-        $this->delivery_reference = $task->delivery_reference;
+        $this->card_collected = $task->card_collected ?? '';
+        $this->delivery_reference = $task->delivery_reference ?? '';
     }
 
     public function submitDeliverySlip()

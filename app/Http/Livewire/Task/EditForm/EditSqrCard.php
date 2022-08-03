@@ -8,8 +8,8 @@ use Livewire\Component;
 class EditSqrCard extends Component
 {
     public Task $task;
-    public string $sqr_card_username;
-    public string $sqr_card_password;
+    public string $sqr_card_username = '';
+    public string $sqr_card_password = '';
     protected $rules = [
         'sqr_card_username' => 'nullable|max:255',
         'sqr_card_password' => 'nullable|max:255',
@@ -19,8 +19,8 @@ class EditSqrCard extends Component
     public function mount(Task $task)
     {
         $this->task = $task;
-        $this->sqr_card_username = $task->sqr_card_username;
-        $this->sqr_card_password = $task->sqr_card_password;
+        $this->sqr_card_username = $task->sqr_card_username ?? '';
+        $this->sqr_card_password = $task->sqr_card_password ?? '';
     }
 
 

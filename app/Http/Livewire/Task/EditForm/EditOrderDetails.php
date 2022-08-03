@@ -14,14 +14,14 @@ class EditOrderDetails extends Component
 {
     use WithFileUploads, HasTaskFiles;
     public Task $task;
-    public string $company_name;
-    public string $it_is;
-    public string $material;
-    public string $total_cards;
-    public string $instruction;
-    public string $background;
-    public string $design_comments;
-    public string $card_details;
+    public string $company_name = '';
+    public string $it_is = '';
+    public string $material = '';
+    public string $total_cards = '';
+    public string $instruction = '';
+    public string $background = '';
+    public string $design_comments = '';
+    public string $card_details = '';
 
     public $design_attachments = [];
     public $card_details_attachments = [];
@@ -50,14 +50,14 @@ class EditOrderDetails extends Component
     public function mount(Task $task)
     {
         $this->task = $task;
-        $this->company_name = $task->company_name;
-        $this->it_is = $task->it_is;
-        $this->material = $task->material;
-        $this->total_cards = $task->total_cards;
-        $this->instruction = $task->instruction;
-        $this->background = $task->background;
-        $this->design_comments = $task->design_comments;
-        $this->card_details = $task->card_details;
+        $this->company_name = $task->company_name ?? '';
+        $this->it_is = $task->it_is ?? '';
+        $this->material = $task->material ?? '';
+        $this->total_cards = $task->total_cards ?? '';
+        $this->instruction = $task->instruction ?? '';
+        $this->background = $task->background ?? '';
+        $this->design_comments = $task->design_comments ?? '';
+        $this->card_details = $task->card_details ?? '';
 
         $this->exist_design_attachments = $task->getDesignAttachments();
         $this->exist_card_details_attachments = $task->getCardDetailsAttachments();;

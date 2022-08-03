@@ -1,7 +1,7 @@
 <?php
-function WL(string $string): string
+function WL($string): string
 {
-    return emailize(autolink($string));
+    return $string ? emailize(autolink($string)) : '';
 }
 
 function emailize($text)

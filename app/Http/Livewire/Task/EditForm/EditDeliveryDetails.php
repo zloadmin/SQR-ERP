@@ -29,13 +29,13 @@ class EditDeliveryDetails extends Component
     public function mount(Task $task)
     {
         $this->task = $task;
-        $this->contact_name = $task->contact_name;
-        $this->contact_number = $task->contact_number;
-        $this->whatsapp = $task->whatsapp;
-        $this->contact_email = $task->contact_email;
-        $this->delivery_method = $task->delivery_method;
-        $this->emirate = $task->emirate;
-        $this->address = $task->address;
+        $this->contact_name = $task->contact_name ?? '';
+        $this->contact_number = $task->contact_number ?? '';
+        $this->whatsapp = $task->whatsapp ?? '';
+        $this->contact_email = $task->contact_email ?? '';
+        $this->delivery_method = $task->delivery_method ?? '';
+        $this->emirate = $task->emirate ?? '';
+        $this->address = $task->address ?? '';
 
     }
     public function render()

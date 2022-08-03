@@ -17,7 +17,7 @@ class EditMainInfo extends Component
     public Collection $stages;
 
     // Fields
-    public string $name;
+    public string $name = '';
     public int $stage_id;
 
     protected $rules = [
@@ -35,7 +35,7 @@ class EditMainInfo extends Component
         $this->task = $task;
         $this->tags = $task->tags;
         $this->selected_tags = $task->getTagsIds();
-        $this->name = $task->name;
+        $this->name = $task->name ?? '';
         $this->stages = Stage::all();
         $this->stage_id = $task->stage_id;
     }
