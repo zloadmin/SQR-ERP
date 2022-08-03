@@ -12,8 +12,8 @@ class ActionAccountSetup extends Action
     use WithFileUploads;
 
     public $attache;
-    public string $username;
-    public string $password;
+    public ?string $username;
+    public ?string $password;
     public ?int $next_stage = null;
     public Task $task;
     public bool $editable;
