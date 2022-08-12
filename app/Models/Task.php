@@ -456,12 +456,37 @@ class Task extends Model
         return true;
         return !$this->isApi();
     }
+
     public function getCurrentSLATimeLeft()
     {
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());
     }
+
     public function getTimeLeft()
     {
         return $this->created_at->longAbsoluteDiffForHumans(now());
     }
+
+    public function getSQRCardClientLoginLink(): string
+    {
+        return sprintf('https://%s/login/%s', $this->getSQRCardClientDomain(), $this->getSQRCardClientLoginSecret());
+    }
+    private function getSQRCardKey()
+    {
+        return config('services.sqrcard.key');
+    }
+    private function getSQRCardClientDomain()
+    {
+        return config('services.sqrcard.client_domain');
+    }
+    public function getSQRCardClientLoginSecret(): string
+    {
+        return openssl_encrypt($this->getSQRCardClientLoginLoginAndPassword(), 'AES-128-CTR', $this->getSQRCardKey());
+    }
+
+    public function getSQRCardClientLoginLoginAndPassword(): string
+    {
+        return sprintf('%s;%s', $this->sqr_card_username, $this->sqr_card_password);
+    }
+
 }
