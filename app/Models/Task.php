@@ -486,7 +486,10 @@ class Task extends Model
 
     public function getSQRCardClientLoginLoginAndPassword(): string
     {
-        return sprintf('%s;%s', $this->sqr_card_username, $this->sqr_card_password);
+        return serialize([
+            'username' => $this->sqr_card_username,
+            'password' => $this->sqr_card_password,
+        ]);
     }
 
 }
