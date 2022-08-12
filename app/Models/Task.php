@@ -469,7 +469,7 @@ class Task extends Model
 
     public function getSQRCardClientLoginLink(): string
     {
-        return sprintf('https://%s/login/%s', $this->getSQRCardClientDomain(), $this->getSQRCardClientLoginSecret());
+        return sprintf('https://%s/login?secret=%s', $this->getSQRCardClientDomain(), urlencode($this->getSQRCardClientLoginSecret()));
     }
     private function getSQRCardKey()
     {
