@@ -20,8 +20,18 @@
                 </tr>
                 <tr>
                     <td>
-                        <p><b>Password:</b> {{ $task->sqr_card_password }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><b>Password:</b> {{ $task->sqr_card_password }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <a  class="btn btn-success float-right" href="{{ $task->getSQRCardClientLoginLink() }}" target="_blank">
+                                    Login <i class="mdi mdi-login pr-1"></i>
+                                </a>
+                            </div>
+                        </div>
                     </td>
+
                 </tr>
             </tbody>
         </table>

@@ -469,7 +469,7 @@ class Task extends Model
 
     public function getSQRCardClientLoginLink(): string
     {
-        return sprintf('https://%s/secret_login?secret=%s', $this->getSQRCardClientDomain(), urlencode($this->getSQRCardClientLoginSecret()));
+        return sprintf('//%s/secret_login?secret=%s', $this->getSQRCardClientDomain(), urlencode($this->getSQRCardClientLoginSecret()));
     }
     private function getSQRCardKey()
     {
@@ -481,7 +481,8 @@ class Task extends Model
     }
     public function getSQRCardClientLoginSecret(): string
     {
-        return openssl_encrypt($this->getSQRCardClientLoginLoginAndPassword(), 'AES-128-CTR', $this->getSQRCardKey());
+
+        return openssl_encrypt($this->getSQRCardClientLoginLoginAndPassword(), 'AES-128-CTR', $this->getSQRCardKey(), 0, substr($this->getSQRCardKey(), 0, 16));
     }
 
     public function getSQRCardClientLoginLoginAndPassword(): string
