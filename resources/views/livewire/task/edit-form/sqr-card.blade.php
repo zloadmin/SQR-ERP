@@ -25,9 +25,11 @@
                                 <p><b>Password:</b> {{ $task->sqr_card_password }}</p>
                             </div>
                             <div class="col-md-6">
-                                <a  class="btn btn-success float-right" href="{{ $task->getSQRCardClientLoginLink() }}" target="_blank">
-                                    Login <i class="mdi mdi-login pr-1"></i>
-                                </a>
+                                @if ($task->sqr_card_username && $task->sqr_card_password)
+                                    <a  class="btn btn-success float-right" href="{{ $task->getSQRCardClientLoginLink() }}" target="_blank">
+                                        Login <i class="mdi mdi-login pr-1"></i>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </td>
