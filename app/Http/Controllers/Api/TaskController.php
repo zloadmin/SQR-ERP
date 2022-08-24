@@ -29,7 +29,11 @@ class TaskController extends Controller
             'contact_email' => $this->getValue($request, 'contact_email'),
             'delivery_method' => $this->getValue($request, 'delivery_method'),
             'emirate' => $this->getValue($request, 'emirate'),
-            'address' => $this->getValue($request, 'address')
+            'address' => $this->getValue($request, 'address'),
+
+            'sqr_card_username' => $this->getValue($request, 'sqr_card_username'),
+            'sqr_card_password' => $this->getValue($request, 'sqr_card_password'),
+
         ];
         Task::createAPI($data);
         Log::info('API request save ', $data);
