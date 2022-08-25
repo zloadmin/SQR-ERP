@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c2ccabcb6e36368c3b8fb1c79044fd7",
+    "content-hash": "20b27e9fa6bc1b77d555f274c3f4d2e4",
     "packages": [
         {
             "name": "alighasemzadeh/livewire-bootstrap-modal",
@@ -7329,6 +7329,48 @@
             "time": "2018-02-04T20:29:27+00:00"
         },
         {
+            "name": "windwalker/3to4",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/3to4.git",
+                "reference": "be639a58685d34f5b6873c22013706a0d5c072d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/3to4/zipball/be639a58685d34f5b6873c22013706a0d5c072d9",
+                "reference": "be639a58685d34f5b6873c22013706a0d5c072d9",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "W3to4\\": "src/W3to4",
+                    "Phoenix\\": "src/Phoenix",
+                    "Lyrasoft\\Luna\\": "src/Luna",
+                    "Windwalker\\Legacy\\": "src/Framework",
+                    "Windwalker\\Legacy\\Core\\": "src/Core"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Asika",
+                    "email": "asika32764@gmail.com"
+                }
+            ],
+            "description": "Windwalker 3 to 4 package",
+            "support": {
+                "issues": "https://github.com/windwalker-io/3to4/issues",
+                "source": "https://github.com/windwalker-io/3to4/tree/main"
+            },
+            "time": "2022-02-07T06:07:11+00:00"
+        },
+        {
             "name": "windwalker/dom",
             "version": "3.5.23",
             "source": {
@@ -7376,6 +7418,65 @@
                 "source": "https://github.com/ventoviro/windwalker-dom/tree/3.5.23"
             },
             "time": "2020-10-18T10:15:43+00:00"
+        },
+        {
+            "name": "windwalker/scalars",
+            "version": "4.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/scalars.git",
+                "reference": "a0baabad4d01abbffe0e9f68e7eeaa2689314cfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/scalars/zipball/a0baabad4d01abbffe0e9f68e7eeaa2689314cfd",
+                "reference": "a0baabad4d01abbffe0e9f68e7eeaa2689314cfd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "doctrine/inflector": "^2.0",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "doctrine/inflector": "Install ~1.0 to use inflector."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Scalars\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Scalars package",
+            "homepage": "https://github.com/windwalker-io/scalars",
+            "keywords": [
+                "Array object",
+                "framework",
+                "scalar object",
+                "utilities",
+                "windwalker"
+            ],
+            "support": {
+                "issues": "https://github.com/windwalker-io/scalars/issues",
+                "source": "https://github.com/windwalker-io/scalars/tree/4.0.18"
+            },
+            "time": "2022-04-01T16:23:28+00:00"
         },
         {
             "name": "windwalker/string",
@@ -7431,6 +7532,57 @@
                 "source": "https://github.com/ventoviro/windwalker-string/tree/3.5.23"
             },
             "time": "2021-01-12T09:05:23+00:00"
+        },
+        {
+            "name": "windwalker/test",
+            "version": "4.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/test.git",
+                "reference": "e4b4facac7f698f32ed3dcc72e868670a1e115a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/test/zipball/e4b4facac7f698f32ed3dcc72e868670a1e115a8",
+                "reference": "e4b4facac7f698f32ed3dcc72e868670a1e115a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Test\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Test package",
+            "homepage": "https://github.com/windwalker-io/test",
+            "keywords": [
+                "framework",
+                "test",
+                "windwalker"
+            ],
+            "support": {
+                "issues": "https://github.com/windwalker-io/test/issues",
+                "source": "https://github.com/windwalker-io/test/tree/4.0.18"
+            },
+            "time": "2021-09-18T23:20:15+00:00"
         },
         {
             "name": "windwalker/utilities",
@@ -10081,7 +10233,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "alighasemzadeh/livewire-bootstrap-modal": 20
+        "alighasemzadeh/livewire-bootstrap-modal": 20,
+        "windwalker/3to4": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
