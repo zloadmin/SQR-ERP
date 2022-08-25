@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GenerateQRCodeAttachment;
 use App\Models\Task;
+use App\Models\TaskFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -36,9 +38,10 @@ class TaskController extends Controller
 
         ];
         $task = Task::createAPI($data);
-        if($request->has('cards_qr_attachments') && is_array($request->get('cards_qr_attachments'))) {
-            foreach ($request->get('cards_qr_attachments') as $cards_qr_attachment) {
-                Log::info('Attachment URL: ' . $cards_qr_attachment);
+        if($request->has('card_urls') && is_array($request->get('card_urls'))) {
+            foreach ($request->get('card_urls') as $card_url) {
+                Log::info('Card URL: ' . $card_url);
+                GenerateQRCodeAttachment::dispatch($task, $card_url, $card_slug);
             }
         }
         Log::info('API request save ', $data);

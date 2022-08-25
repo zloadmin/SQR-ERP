@@ -19,7 +19,8 @@
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
         "wire-elements/modal": "^1.0",
-        "asika/autolink": "1.*"
+        "asika/autolink": "1.*",
+        "werneckbh/laravel-qr-code": "^0.1.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

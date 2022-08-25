@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -60,10 +63,10 @@ class TaskFile extends Model
             TaskMessage::addCreateFile($task_file);
         });
         static::updated(function (self $task_file) {
-            if($task_file->isApprove()) {
+            if ($task_file->isApprove()) {
                 TaskMessage::addApproveFile($task_file);
             }
-            if($task_file->isDecline()) {
+            if ($task_file->isDecline()) {
                 TaskMessage::addDeclineFile($task_file);
             }
         });
@@ -129,11 +132,13 @@ class TaskFile extends Model
     {
         return sprintf('<a href="%s" target="_blank">%s</a>', $this->getUrl(), $this->getClientOriginalName());
     }
-    public function getTypeText() : string
+
+    public function getTypeText(): string
     {
         return str_replace('_', ' ', str_replace('_attachments', '', $this->type));
     }
-    public function getTypeTitle() : string
+
+    public function getTypeTitle(): string
     {
         return Str::title($this->getTypeText());
     }
@@ -142,17 +147,43 @@ class TaskFile extends Model
     {
         return sprintf('Added <b>%s</b> file %s.', $this->getTypeText(), $this->getHTMLLink());
     }
+
     public function getApproveDeclineComment(): string
     {
         return $this->approved_comment ? sprintf(' Comment %s.', $this->approved_comment) : '';
     }
+
     public function getApproveMessage(): string
     {
         return sprintf('%s file %s has been approved.%s', $this->getTypeTitle(), $this->getHTMLLink(), $this->getApproveDeclineComment());
     }
+
     public function getDeclineMessage(): string
     {
         return sprintf('%s file %s has been decline.%s', $this->getTypeTitle(), $this->getHTMLLink(), $this->getApproveDeclineComment());
+    }
+
+    static function storeUploadFile(Task $task, string $type, UploadedFile $file)
+    {
+        self::create([
+            'task_id'       => $task->id,
+            'type'          => $type,
+            'path'          => $file->store('tasks/' . $type),
+            'original_name' => $file->getClientOriginalName(),
+            'size'          => $file->getSize(),
+            'user_id'       => auth()->check() ? auth()->id() : null,
+        ]);
+    }
+    static function getUploadSVGFileByUrl(string $url) : UploadedFile
+    {
+        $client = new Client();
+        $client->request('GET', $url, [
+            'sink' => storage_path('file.log')
+        ]);
+//        $info = pathinfo($url);
+//        $file = '/tmp/' . $info['basename'];
+//        file_put_contents($file, file_get_contents($url));
+//        return new UploadedFile($file, $info['basename'] . '.svg' );
     }
 
 }
