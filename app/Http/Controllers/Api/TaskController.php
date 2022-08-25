@@ -38,13 +38,12 @@ class TaskController extends Controller
 
         ];
         $task = Task::createAPI($data);
-        if ($request->has('cards') && is_array($request->get('cards'))) {
-            foreach ($request->get('cards') as $card) {
+        if ($request->has('card_links') && is_array($request->get('card_links'))) {
+            foreach ($request->get('card_links') as $card) {
                 Log::info('Card ', $card);
                 if (isset($card['url']) && isset($card['slug'])) {
                     GenerateQRCodeAttachment::dispatch($task, $card['url'], $card['slug']);
                 }
-
             }
         }
         Log::info('API request save ', $data);
