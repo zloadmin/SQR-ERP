@@ -35,7 +35,12 @@ class TaskController extends Controller
             'sqr_card_password' => $this->getValue($request, 'sqr_card_password'),
 
         ];
-        Task::createAPI($data);
+        $task = Task::createAPI($data);
+        if($request->has('cards_qr_attachments') && is_array($request->get('cards_qr_attachments'))) {
+            foreach ($request->get('cards_qr_attachments') as $cards_qr_attachment) {
+                Log::info('Attachment URL: ' . $cards_qr_attachment);
+            }
+        }
         Log::info('API request save ', $data);
     }
     public function getValue(Request $request, string $name) : string
