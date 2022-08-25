@@ -20,10 +20,6 @@
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
         "werneckbh/laravel-qr-code": "^0.1.3",
-        "windwalker/3to4": "dev-main",
-        "windwalker/scalars": "^4.0",
-        "windwalker/test": "^4.0",
-        "windwalker/utilities": "^4.0",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
