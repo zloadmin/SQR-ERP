@@ -13,6 +13,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use LaravelQRCode\Facades\QRCode;
 
+//use LaravelQRCode\Facades\QRCode;
+
 class GenerateQRCodeAttachment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
