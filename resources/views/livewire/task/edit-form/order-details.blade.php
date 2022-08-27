@@ -59,9 +59,10 @@
                     <td>
                         <p>
                             <b>QR attachments:</b>
+                            <br>
                             @foreach($task->qr_attachments()->get() as $attachment)
-                                <br>
                                 {!! $attachment->getHTMLLink() !!}
+                                <br>
                             @endforeach
                             {{ $task->qr_attachments()->count() }} files
 {{--                            @if($latest_qr_attachments_attachment)--}}
