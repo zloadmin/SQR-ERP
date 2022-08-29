@@ -328,7 +328,7 @@ class Task extends Model
 
     public function getLastFile(string $type)
     {
-        return $this->files()->where('type', $type)->latest()->first();
+        return $this->files()->where('type', $type)->latest('updated_at')->first();
     }
 
     public function getLastNotApproveFile(string $type)
