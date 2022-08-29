@@ -12,6 +12,7 @@ class ActionAccountSetup extends Action
     use WithFileUploads;
 
     public ?TaskFile $attache;
+    public ?TaskFile $preload_attache;
     public ?TaskFile $last_attache;
     public string $username = '';
     public string $password = '';
@@ -27,7 +28,7 @@ class ActionAccountSetup extends Action
             'password'   => 'required|string|max:255',
             'next_stage' => 'required|in:2,4'
         ];
-        if(!$this->attache) {
+        if(!$this->preload_attache) {
             $rules['attache']    = 'required|file|max:204800';
         }
         return $rules;
@@ -39,7 +40,7 @@ class ActionAccountSetup extends Action
         $this->editable = $this->getEditable($task);
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
-        $this->attache = $task->preload_qr_attachments()->latest()->first();
+        $this->preload_attache = $task->preload_qr_attachments()->latest()->first();
 //        dd($this->attache);
 
     }
@@ -47,8 +48,8 @@ class ActionAccountSetup extends Action
     public function submitQR()
     {
         $this->validate();
-        if($this->attache) {
-            $this->attache->changeType(TaskFile::QR_ATTACHMENTS);
+        if($this->preload_attache) {
+            $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
         } else {
             $this->storeAttache();
         }
