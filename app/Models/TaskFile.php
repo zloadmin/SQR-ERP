@@ -198,12 +198,12 @@ class TaskFile extends Model
         return filesize(self::getPreloadQRAttachmentsFilePath($task));
     }
 
-    static function getPreloadQRAttachmentsFileStoragePath(Task $task)
+    static function getPreloadQRAttachmentsFileStoragePath(Task $task): string
     {
         return sprintf('tasks/%s/%s', self::PRELOAD_QR_ATTACHMENTS, self::getPreloadQRAttachmentsFileName($task));
     }
 
-    static function getPreloadQRAttachmentsFileName(Task $task)
+    static function getPreloadQRAttachmentsFileName(Task $task): string
     {
         return sprintf('%d.zip', $task->id);
     }
