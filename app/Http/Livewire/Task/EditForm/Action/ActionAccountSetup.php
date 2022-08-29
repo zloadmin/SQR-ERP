@@ -11,7 +11,8 @@ class ActionAccountSetup extends Action
 {
     use WithFileUploads;
 
-    public $attache;
+    public ?TaskFile $attache;
+    public ?TaskFile $last_attache;
     public string $username = '';
     public string $password = '';
     public ?int $next_stage = null;
@@ -25,7 +26,6 @@ class ActionAccountSetup extends Action
         'password' => 'required|string|max:255',
         'attache'  => 'required|file|max:204800',
         'next_stage' => 'required|in:2,4'
-
     ];
 
     public function mount(Task $task)
@@ -34,6 +34,8 @@ class ActionAccountSetup extends Action
         $this->editable = $this->getEditable($task);
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
+        $this->last_attache = $task->qr_attachments()->latest()->first();
+//        dd($this->attache);
 
     }
 

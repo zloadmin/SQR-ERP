@@ -9,6 +9,12 @@
             <form wire:submit.prevent="submitQR" id="submitQRForm">
                 <div class="row">
                     <div class="col-md-3">
+                        @if($last_attache)
+                            <p class="text-center mb-0">
+                                {!! $last_attache->getHTMLLink() !!}
+                            </p>
+                            <br>
+                        @endif
                         @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'QR\'s'])
                     </div>
                     <div class="col-md-3">

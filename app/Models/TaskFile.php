@@ -21,6 +21,7 @@ class TaskFile extends Model
     const DESIGN_FILE = 'design_file';
     const CARD_DETAILS_ATTACHMENTS = 'card_details_attachments';
     const QR_ATTACHMENTS = 'qr_attachments';
+    const PRELOAD_QR_ATTACHMENTS = 'preload_qr_attachments';
     const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
     const EXIST_CARD_DETAILS_ATTACHMENTS = 'exist_card_details_attachments';
     const EXIST_QR_ATTACHMENTS = 'exist_qr_attachments';
@@ -32,13 +33,13 @@ class TaskFile extends Model
         self::DESIGN_ATTACHMENTS,
         self::CARD_DETAILS_ATTACHMENTS,
         self::QR_ATTACHMENTS,
+        self::PRELOAD_QR_ATTACHMENTS,
 
         // not attachments
         self::DESIGN_FILE,
         self::CONTENT_ATTACHMENTS,
         self::PRINTING_FILE_ATTACHMENTS,
         self::DELIVERY_SLIP_ATTACHMENTS,
-
 
     ];
     const MAIN_FIELDS = [

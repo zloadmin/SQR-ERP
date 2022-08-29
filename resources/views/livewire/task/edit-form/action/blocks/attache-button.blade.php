@@ -15,7 +15,7 @@
     <input class="file_input_hidden" type="file" wire:model="attache">
 </button>
 @error('attache')
-<span class="invalid-feedback d-block" role="alert">
+    <span class="invalid-feedback d-block" role="alert">
         <strong>{{ $message }}</strong>
     </span>
 @enderror

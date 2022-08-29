@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GeneratePreloadQRAttachments;
 use App\Jobs\GenerateQRCodeAttachment;
 use App\Models\Task;
 use App\Models\TaskFile;
@@ -45,6 +46,7 @@ class TaskController extends Controller
                     GenerateQRCodeAttachment::dispatch($task, $card['url'], $card['slug']);
                 }
             }
+            GeneratePreloadQRAttachments::dispatch($task);
         }
         Log::info('API request save ', $data);
     }

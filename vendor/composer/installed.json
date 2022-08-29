@@ -10259,51 +10259,6 @@
             "install-path": "../werneckbh/qr-code"
         },
         {
-            "name": "windwalker/3to4",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/windwalker-io/3to4.git",
-                "reference": "be639a58685d34f5b6873c22013706a0d5c072d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/3to4/zipball/be639a58685d34f5b6873c22013706a0d5c072d9",
-                "reference": "be639a58685d34f5b6873c22013706a0d5c072d9",
-                "shasum": ""
-            },
-            "time": "2022-02-07T06:07:11+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "W3to4\\": "src/W3to4",
-                    "Phoenix\\": "src/Phoenix",
-                    "Lyrasoft\\Luna\\": "src/Luna",
-                    "Windwalker\\Legacy\\": "src/Framework",
-                    "Windwalker\\Legacy\\Core\\": "src/Core"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Simon Asika",
-                    "email": "asika32764@gmail.com"
-                }
-            ],
-            "description": "Windwalker 3 to 4 package",
-            "support": {
-                "issues": "https://github.com/windwalker-io/3to4/issues",
-                "source": "https://github.com/windwalker-io/3to4/tree/main"
-            },
-            "install-path": "../windwalker/3to4"
-        },
-        {
             "name": "windwalker/dom",
             "version": "3.5.23",
             "version_normalized": "3.5.23.0",
@@ -10354,68 +10309,6 @@
                 "source": "https://github.com/ventoviro/windwalker-dom/tree/3.5.23"
             },
             "install-path": "../windwalker/dom"
-        },
-        {
-            "name": "windwalker/scalars",
-            "version": "4.0.18",
-            "version_normalized": "4.0.18.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/windwalker-io/scalars.git",
-                "reference": "a0baabad4d01abbffe0e9f68e7eeaa2689314cfd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/scalars/zipball/a0baabad4d01abbffe0e9f68e7eeaa2689314cfd",
-                "reference": "a0baabad4d01abbffe0e9f68e7eeaa2689314cfd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0",
-                "windwalker/utilities": "^4.0"
-            },
-            "require-dev": {
-                "doctrine/inflector": "^2.0",
-                "phpunit/phpunit": "^8.0||^9.0||^10.0",
-                "windwalker/test": "^4.0"
-            },
-            "suggest": {
-                "doctrine/inflector": "Install ~1.0 to use inflector."
-            },
-            "time": "2022-04-01T16:23:28+00:00",
-            "type": "windwalker-package",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "files": [
-                    "src/bootstrap.php"
-                ],
-                "psr-4": {
-                    "Windwalker\\Scalars\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Windwalker Scalars package",
-            "homepage": "https://github.com/windwalker-io/scalars",
-            "keywords": [
-                "Array object",
-                "framework",
-                "scalar object",
-                "utilities",
-                "windwalker"
-            ],
-            "support": {
-                "issues": "https://github.com/windwalker-io/scalars/issues",
-                "source": "https://github.com/windwalker-io/scalars/tree/4.0.18"
-            },
-            "install-path": "../windwalker/scalars"
         },
         {
             "name": "windwalker/string",
@@ -10474,123 +10367,6 @@
                 "source": "https://github.com/ventoviro/windwalker-string/tree/3.5.23"
             },
             "install-path": "../windwalker/string"
-        },
-        {
-            "name": "windwalker/test",
-            "version": "4.0.18",
-            "version_normalized": "4.0.18.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/windwalker-io/test.git",
-                "reference": "e4b4facac7f698f32ed3dcc72e868670a1e115a8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/test/zipball/e4b4facac7f698f32ed3dcc72e868670a1e115a8",
-                "reference": "e4b4facac7f698f32ed3dcc72e868670a1e115a8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.0||^9.0||^10.0"
-            },
-            "time": "2021-09-18T23:20:15+00:00",
-            "type": "windwalker-package",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "files": [
-                    "src/bootstrap.php"
-                ],
-                "psr-4": {
-                    "Windwalker\\Test\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Windwalker Test package",
-            "homepage": "https://github.com/windwalker-io/test",
-            "keywords": [
-                "framework",
-                "test",
-                "windwalker"
-            ],
-            "support": {
-                "issues": "https://github.com/windwalker-io/test/issues",
-                "source": "https://github.com/windwalker-io/test/tree/4.0.18"
-            },
-            "install-path": "../windwalker/test"
-        },
-        {
-            "name": "windwalker/utilities",
-            "version": "4.0.18",
-            "version_normalized": "4.0.18.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/windwalker-io/utilities.git",
-                "reference": "1c997a285b125d1f27913de98b877374ca0c7028"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/utilities/zipball/1c997a285b125d1f27913de98b877374ca0c7028",
-                "reference": "1c997a285b125d1f27913de98b877374ca0c7028",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0"
-            },
-            "require-dev": {
-                "myclabs/php-enum": "^1.8",
-                "phpunit/phpunit": "^8.0||^9.0||^10.0",
-                "symfony/options-resolver": "^5.0||^6.0",
-                "symfony/string": "^5.2||^6.0",
-                "windwalker/scalars": "^4.0",
-                "windwalker/test": "^4.0"
-            },
-            "suggest": {
-                "laravel/serializable-closure": "Install ^1.0 to support serializable Closure.",
-                "symfony/string": "Install to use inflector."
-            },
-            "time": "2022-08-06T07:43:59+00:00",
-            "type": "windwalker-package",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "files": [
-                    "src/bootstrap.php"
-                ],
-                "psr-4": {
-                    "Windwalker\\Utilities\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Windwalker Utilities package",
-            "homepage": "https://github.com/windwalker-io/utilities",
-            "keywords": [
-                "framework",
-                "utilities",
-                "windwalker"
-            ],
-            "support": {
-                "issues": "https://github.com/windwalker-io/utilities/issues",
-                "source": "https://github.com/windwalker-io/utilities/tree/4.0.18"
-            },
-            "install-path": "../windwalker/utilities"
         },
         {
             "name": "wire-elements/modal",
@@ -10652,6 +10428,81 @@
                 "source": "https://github.com/wire-elements/modal/tree/1.0.7"
             },
             "install-path": "../wire-elements/modal"
+        },
+        {
+            "name": "zanysoft/laravel-zip",
+            "version": "2.0.2",
+            "version_normalized": "2.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zanysoft/laravel-zip.git",
+                "reference": "9ab79b988f9394b428215bb48f3153f168f03345"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zanysoft/laravel-zip/zipball/9ab79b988f9394b428215bb48f3153f168f03345",
+                "reference": "9ab79b988f9394b428215bb48f3153f168f03345",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.24",
+                "phpunit/phpunit": "^9.5",
+                "scrutinizer/ocular": "^1.9"
+            },
+            "time": "2022-08-22T16:13:20+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ZanySoft\\Zip\\ZipServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zip": "ZanySoft\\Zip\\ZipFacade"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ZanySoft\\Zip\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zany Soft",
+                    "email": "info@zanysoft.net",
+                    "homepage": "http://www.zanysoft.net"
+                }
+            ],
+            "description": "laravel-zip is the world's leading zip utility for file compression and backup.",
+            "homepage": "http://www.zanysoft.net",
+            "keywords": [
+                "backup",
+                "extract",
+                "laravel",
+                "laravel-zip",
+                "laravel8",
+                "laravel9",
+                "merge",
+                "multiple",
+                "unzip",
+                "zip",
+                "ziparchive"
+            ],
+            "support": {
+                "issues": "https://github.com/zanysoft/laravel-zip/issues",
+                "source": "https://github.com/zanysoft/laravel-zip/tree/2.0.2"
+            },
+            "install-path": "../zanysoft/laravel-zip"
         }
     ],
     "dev": true,
