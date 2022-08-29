@@ -471,14 +471,17 @@ class Task extends Model
     {
         return sprintf('//%s/secret_login?secret=%s', $this->getSQRCardClientDomain(), urlencode($this->getSQRCardClientLoginSecret()));
     }
+
     private function getSQRCardKey()
     {
         return config('services.sqrcard.key');
     }
+
     private function getSQRCardClientDomain()
     {
         return config('services.sqrcard.client_domain');
     }
+
     public function getSQRCardClientLoginSecret(): string
     {
 
@@ -491,6 +494,29 @@ class Task extends Model
             'username' => $this->sqr_card_username,
             'password' => $this->sqr_card_password,
         ]);
+    }
+
+
+    public function getQrAttachmentsFileNames(): array
+    {
+        $result = [];
+        foreach ($this->getQrAttachments() as $file) {
+            if (file_exists($file->real_path)) {
+                $result[] = pathinfo($file->real_path, PATHINFO_BASENAME);
+            }
+        }
+        return $result;
+    }
+
+    public function getQrAttachmentsFilePaths(): array
+    {
+        $result = [];
+        foreach ($this->getQrAttachments() as $file) {
+            if (file_exists($file->real_path)) {
+                $result[] = $file->real_path;
+            }
+        }
+        return $result;
     }
 
 }

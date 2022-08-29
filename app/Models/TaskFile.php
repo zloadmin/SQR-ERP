@@ -175,7 +175,8 @@ class TaskFile extends Model
             'user_id'       => auth()->check() ? auth()->id() : null,
         ]);
     }
-    static function getUploadSVGFileByUrl(string $url) : UploadedFile
+
+    static function getUploadSVGFileByUrl(string $url): UploadedFile
     {
         $client = new Client();
         $client->request('GET', $url, [
@@ -185,6 +186,21 @@ class TaskFile extends Model
 //        $file = '/tmp/' . $info['basename'];
 //        file_put_contents($file, file_get_contents($url));
 //        return new UploadedFile($file, $info['basename'] . '.svg' );
+    }
+
+    static function getPreloadQRAttachmentsFilePath(Task $task)
+    {
+        return sprintf('%s/%d.zip', self::getPreloadQRAttachmentsPath(), $task->id);
+//        return Storage::path('tasks/' . self::PRELOAD_QR_ATTACHMENTS . '/' . $task->id . '.zip');
+    }
+
+    static function getPreloadQRAttachmentsPath() : string
+    {
+        return Storage::path('tasks/' . self::PRELOAD_QR_ATTACHMENTS);
+    }
+    static function getQRAttachmentsPath() : string
+    {
+        return Storage::path('tasks/' . self::QR_ATTACHMENTS);
     }
 
 }

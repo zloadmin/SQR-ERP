@@ -1,2 +1,9 @@
 *
+!card_details_attachments
+!content_attachments
+!delivery_slip_attachments
+!design_attachments
+!design_file
+!printing_file_attachments
+!qr_attachments
 !.gitignore
