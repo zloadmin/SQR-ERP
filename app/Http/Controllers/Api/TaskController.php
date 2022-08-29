@@ -43,7 +43,7 @@ class TaskController extends Controller
             foreach ($request->get('card_links') as $card) {
                 Log::info('Card ', $card);
                 if (isset($card['url']) && isset($card['slug'])) {
-                    GenerateQRCodeAttachment::dispatch($task, $card['url'], $card['slug']);
+                    GenerateQRCodeAttachment::dispatch($task, $card['url'], $card['slug'])->onQueue('high');
                 }
             }
             GeneratePreloadQRAttachments::dispatch($task);
