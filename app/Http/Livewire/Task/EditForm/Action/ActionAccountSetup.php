@@ -20,13 +20,18 @@ class ActionAccountSetup extends Action
     public bool $editable;
 
 
-
-    protected $rules = [
-        'username' => 'required|string|max:255',
-        'password' => 'required|string|max:255',
-        'attache'  => 'required|file|max:204800',
-        'next_stage' => 'required|in:2,4'
-    ];
+    protected function rules()
+    {
+        $rules = [
+            'username'   => 'required|string|max:255',
+            'password'   => 'required|string|max:255',
+            'next_stage' => 'required|in:2,4'
+        ];
+        if(!$this->attache) {
+            $rules['attache']    = 'required|file|max:204800';
+        }
+        return $rules;
+    }
 
     public function mount(Task $task)
     {
@@ -34,7 +39,7 @@ class ActionAccountSetup extends Action
         $this->editable = $this->getEditable($task);
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
-//        $this->last_attache = $task->qr_attachments()->latest()->first();
+        $this->attache = $task->preload_qr_attachments()->latest()->first();
 //        dd($this->attache);
 
     }
@@ -42,7 +47,11 @@ class ActionAccountSetup extends Action
     public function submitQR()
     {
         $this->validate();
-        $this->storeAttache();
+        if($this->attache) {
+            $this->attache->changeType(TaskFile::QR_ATTACHMENTS);
+        } else {
+            $this->storeAttache();
+        }
         $this->updateTask();
         $this->updateBlocks();
     }

@@ -291,6 +291,10 @@ class Task extends Model
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
     }
+    public function preload_qr_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::PRELOAD_QR_ATTACHMENTS);
+    }
 
     public function content_attachments()
     {

@@ -230,4 +230,7 @@ class TaskFile extends Model
         $file->size = self::getPreloadQRAttachmentsFileSize($task);
         $file->save();
     }
+    public function changeType(string $type) {
+        $this->update(['type' => $type]);
+    }
 }
