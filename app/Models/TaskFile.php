@@ -195,7 +195,7 @@ class TaskFile extends Model
 
     static function getPreloadQRAttachmentsFileSize(Task $task): int
     {
-        return filesize(self::getPreloadQRAttachmentsFilePath($task));
+        return file_exists(self::getPreloadQRAttachmentsFilePath($task)) ? filesize(self::getPreloadQRAttachmentsFilePath($task)) : 0;
     }
 
     static function getPreloadQRAttachmentsFileStoragePath(Task $task): string

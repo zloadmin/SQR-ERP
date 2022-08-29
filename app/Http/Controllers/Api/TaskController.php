@@ -46,7 +46,7 @@ class TaskController extends Controller
                     GenerateQRCodeAttachment::dispatch($task, $card['url'], $card['slug'])->onQueue('high');
                 }
             }
-            GeneratePreloadQRAttachments::dispatch($task);
+            GeneratePreloadQRAttachments::dispatch($task)->afterCommit();
         }
         Log::info('API request save ', $data);
     }
