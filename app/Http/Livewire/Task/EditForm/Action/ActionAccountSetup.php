@@ -11,8 +11,8 @@ class ActionAccountSetup extends Action
 {
     use WithFileUploads;
 
-    public ?TaskFile $attache;
-    public ?TaskFile $preload_attache;
+    public $attache;
+    public ?TaskFile $preload_attache = null;
     public ?TaskFile $last_attache;
     public string $username = '';
     public string $password = '';
@@ -20,19 +20,12 @@ class ActionAccountSetup extends Action
     public Task $task;
     public bool $editable;
 
-
-    protected function rules()
-    {
-        $rules = [
-            'username'   => 'required|string|max:255',
-            'password'   => 'required|string|max:255',
-            'next_stage' => 'required|in:2,4'
-        ];
-        if(!$this->preload_attache) {
-            $rules['attache']    = 'required|file|max:204800';
-        }
-        return $rules;
-    }
+    protected $rules = [
+        'username'   => 'required|string|max:255',
+        'password'   => 'required|string|max:255',
+        'next_stage' => 'required|in:2,4',
+        'attache'    => 'required|file|max:204800',
+    ];
 
     public function mount(Task $task)
     {
@@ -41,25 +34,62 @@ class ActionAccountSetup extends Action
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
         $this->preload_attache = $task->preload_qr_attachments()->latest()->first();
-//        dd($this->attache);
+        if ($this->preload_attache) {
+            $this->attache = $this->preload_attache;
+        }
+
 
     }
 
     public function submitQR()
     {
-        $this->validate();
-        if($this->preload_attache) {
-            $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
-        } else {
+
+
+        if ($this->isUploadedAttachment()) {
+            $this->validate($this->rulesWithAttacheFile());
             $this->storeAttache();
+            $this->preload_attache->delete();
+        } else {
+            $this->validate($this->rulesWithoutAttacheFile());
+            $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
         }
         $this->updateTask();
         $this->updateBlocks();
     }
 
+
+    public function isUploadedAttachment(): bool
+    {
+        return !$this->isNotUploadedAttachment();
+    }
+
+    public function isNotUploadedAttachment(): bool
+    {
+        return $this->preload_attache && get_class($this->attache) === get_class($this->preload_attache);
+    }
+
     public function storeAttache()
     {
         $this->storeFile($this->attache, TaskFile::QR_ATTACHMENTS);
+    }
+
+    public function rulesWithAttacheFile(): array
+    {
+        return [
+            'username'   => 'required|string|max:255',
+            'password'   => 'required|string|max:255',
+            'next_stage' => 'required|in:2,4',
+            'attache'    => 'required|file|max:204800',
+        ];
+    }
+
+    public function rulesWithoutAttacheFile(): array
+    {
+        return [
+            'username'   => 'required|string|max:255',
+            'password'   => 'required|string|max:255',
+            'next_stage' => 'required|in:2,4'
+        ];
     }
 
     public function updateTask()
