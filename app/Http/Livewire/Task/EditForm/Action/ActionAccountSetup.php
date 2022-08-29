@@ -48,7 +48,9 @@ class ActionAccountSetup extends Action
         if ($this->isUploadedAttachment()) {
             $this->validate($this->rulesWithAttacheFile());
             $this->storeAttache();
-            $this->preload_attache->delete();
+            if($this->preload_attache) {
+                $this->preload_attache->delete();
+            }
         } else {
             $this->validate($this->rulesWithoutAttacheFile());
             $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
