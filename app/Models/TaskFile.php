@@ -190,17 +190,44 @@ class TaskFile extends Model
 
     static function getPreloadQRAttachmentsFilePath(Task $task)
     {
-        return sprintf('%s/%d.zip', self::getPreloadQRAttachmentsPath(), $task->id);
-//        return Storage::path('tasks/' . self::PRELOAD_QR_ATTACHMENTS . '/' . $task->id . '.zip');
+        return sprintf('%s/%s', self::getPreloadQRAttachmentsPath(), self::getPreloadQRAttachmentsFileName($task));
     }
 
-    static function getPreloadQRAttachmentsPath() : string
+    static function getPreloadQRAttachmentsFileSize(Task $task): int
+    {
+        return filesize(self::getPreloadQRAttachmentsFilePath($task));
+    }
+
+    static function getPreloadQRAttachmentsFileStoragePath(Task $task)
+    {
+        return sprintf('tasks/%s/%s', self::PRELOAD_QR_ATTACHMENTS, self::getPreloadQRAttachmentsFileName($task));
+    }
+
+    static function getPreloadQRAttachmentsFileName(Task $task)
+    {
+        return sprintf('%d.zip', $task->id);
+    }
+
+    static function getPreloadQRAttachmentsPath(): string
     {
         return Storage::path('tasks/' . self::PRELOAD_QR_ATTACHMENTS);
     }
-    static function getQRAttachmentsPath() : string
+
+    static function getQRAttachmentsPath(): string
     {
         return Storage::path('tasks/' . self::QR_ATTACHMENTS);
     }
 
+    static function savePreloadQRAttachments(Task $task)
+    {
+        $file = self::firstOrNew([
+            'task_id' => $task->id,
+            'type'    => self::PRELOAD_QR_ATTACHMENTS,
+        ]);
+
+        $file->path = self::getPreloadQRAttachmentsFileStoragePath($task);
+        $file->original_name = self::getPreloadQRAttachmentsFileName($task);
+        $file->size = self::getPreloadQRAttachmentsFileSize($task);
+        $file->save();
+    }
 }

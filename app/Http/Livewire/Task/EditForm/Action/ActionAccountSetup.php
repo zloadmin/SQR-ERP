@@ -34,7 +34,7 @@ class ActionAccountSetup extends Action
         $this->editable = $this->getEditable($task);
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
-        $this->last_attache = $task->qr_attachments()->latest()->first();
+//        $this->last_attache = $task->qr_attachments()->latest()->first();
 //        dd($this->attache);
 
     }

@@ -41,8 +41,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-\App\Jobs\GeneratePreloadQRAttachments::dispatchNow(\App\Models\Task::find(197));
-exit;
+//\App\Jobs\GeneratePreloadQRAttachments::dispatchNow(\App\Models\Task::find(197));
+//exit;
 Route::controller(LoginController::class)->group(function () {
     Route::get('login', 'showLoginForm')->name('login');
     Route::post('login', 'login');
