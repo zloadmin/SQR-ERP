@@ -11,6 +11,10 @@
             </div>
             <div class="col-md-4">
                @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_content_attache])
+                @if($this->design_file && $this->design_file->approved_comment)
+                    <h5 class="mt-0 mb-2 font-16">Comment</h5>
+                    <p>{{ $this->design_file->approved_comment }}</p>
+                @endif
             </div>
             <div class="col-md-4">
                 @if ($editable)

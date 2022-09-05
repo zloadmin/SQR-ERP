@@ -9,7 +9,12 @@
             <div class="col-md-4">
                 @include('livewire.task.edit-form.action.blocks.files')
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                @if($this->content_attache && $this->content_attache->approved_comment)
+                    <h5 class="mt-0 mb-2 font-16">Comment</h5>
+                    <p>{{ $this->content_attache->approved_comment }}</p>
+                @endif
+            </div>
             <div class="col-md-4">
                 @if($editable)
                     @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Print File'])
