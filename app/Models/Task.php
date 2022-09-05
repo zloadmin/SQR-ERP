@@ -523,4 +523,14 @@ class Task extends Model
         return $result;
     }
 
+    /**
+     * Set the user's first name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setWhatsappAttribute($value)
+    {
+        $this->attributes['whatsapp'] = preg_replace('/\s+/', '', $value);
+    }
 }
