@@ -37,6 +37,7 @@ class TaskController extends Controller
             'sqr_card_username' => $this->getValue($request, 'sqr_card_username'),
             'sqr_card_password' => $this->getValue($request, 'sqr_card_password'),
 
+            'google_attachments' => $this->getValue($request, 'google_attachments'),
         ];
         $task = Task::createAPI($data);
         if ($request->has('card_links') && is_array($request->get('card_links'))) {

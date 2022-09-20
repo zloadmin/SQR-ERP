@@ -31,6 +31,7 @@ class Task extends Model
         'card_details_attachments' => 'array',
         'qr_attachments'           => 'array',
         'tag_list'                 => 'array',
+        'google_attachments'       => 'array',
     ];
 //    protected $appends = [
 //        'tag_list',
@@ -291,6 +292,7 @@ class Task extends Model
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::QR_ATTACHMENTS);
     }
+
     public function preload_qr_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::PRELOAD_QR_ATTACHMENTS);
@@ -526,7 +528,7 @@ class Task extends Model
     /**
      * Set the user's first name.
      *
-     * @param  string  $value
+     * @param string $value
      * @return void
      */
     public function setWhatsappAttribute($value)
