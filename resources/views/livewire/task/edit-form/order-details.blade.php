@@ -104,6 +104,13 @@
                         @endif
                     </td>
                     <td>
+                        @if($task->google_attachments && is_array($task->google_attachments))
+                            <p><b>Google attachments:</b><br>
+                                @foreach($task->google_attachments as $google_attachment)
+                                    {!! WL($google_attachment) !!}
+                                @endforeach
+                            </p>
+                        @endif
 
                     </td>
                 </tr>

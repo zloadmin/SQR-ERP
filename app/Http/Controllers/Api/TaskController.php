@@ -37,7 +37,7 @@ class TaskController extends Controller
             'sqr_card_username' => $this->getValue($request, 'sqr_card_username'),
             'sqr_card_password' => $this->getValue($request, 'sqr_card_password'),
 
-            'google_attachments' => $this->getValue($request, 'google_attachments'),
+            'google_attachments' => $this->getArrayValue($request, 'google_attachments'),
         ];
         $task = Task::createAPI($data);
         if ($request->has('card_links') && is_array($request->get('card_links'))) {
@@ -62,7 +62,17 @@ class TaskController extends Controller
         if (is_array($value)) return self::getArrayText($value);
         return '';
     }
-
+    public function getArrayValue(Request $request, string $name) {
+        $result = [];
+         if($request->has($name) && is_array($request->get($name))) {
+             foreach ($request->get($name) as $value) {
+                 if(is_string($value)) {
+                     $result[] = htmlspecialchars($value);
+                 }
+             }
+         }
+        return $result ?? null;
+    }
     static function getArrayText(array $data): string
     {
         $result = '';
