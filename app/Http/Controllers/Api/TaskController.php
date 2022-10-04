@@ -25,7 +25,7 @@ class TaskController extends Controller
             'instruction'     => $this->getValue($request, 'instruction'),
             'background'      => $this->getValue($request, 'background'),
             'design_comments' => $this->getValue($request, 'design_comments'),
-            'card_details'    => $this->getValue($request, 'card_details'),
+            'card_details'    => $this->getCardDetails($request),
             'contact_name'    => $this->getValue($request, 'contact_name'),
             'contact_number'  => $this->getValue($request, 'contact_number'),
             'whatsapp'        => $this->getValue($request, 'whatsapp'),
@@ -62,17 +62,20 @@ class TaskController extends Controller
         if (is_array($value)) return self::getArrayText($value);
         return '';
     }
-    public function getArrayValue(Request $request, string $name) {
+
+    public function getArrayValue(Request $request, string $name)
+    {
         $result = [];
-         if($request->has($name) && is_array($request->get($name))) {
-             foreach ($request->get($name) as $value) {
-                 if(is_string($value)) {
-                     $result[] = htmlspecialchars($value);
-                 }
-             }
-         }
+        if ($request->has($name) && is_array($request->get($name))) {
+            foreach ($request->get($name) as $value) {
+                if (is_string($value)) {
+                    $result[] = htmlspecialchars($value);
+                }
+            }
+        }
         return $result ?? null;
     }
+
     static function getArrayText(array $data): string
     {
         $result = '';
@@ -89,5 +92,14 @@ class TaskController extends Controller
             $result .= PHP_EOL;
         }
         return $result;
+    }
+
+    private function getCardDetails(Request $request)
+    {
+        return $request->has('card_details') &&
+               $request->get('card_details') ?
+               $this->getValue($request, 'card_details') :
+               $this->getValue($request, 'cards');
+
     }
 }
