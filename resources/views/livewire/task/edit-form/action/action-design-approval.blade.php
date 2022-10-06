@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="card-body">
-
+            @include('livewire.task.edit-form.action.blocks.approve-text')
             <div class="row">
                 <div class="col-md-4">
                     @include('livewire.task.edit-form.action.blocks.files')
