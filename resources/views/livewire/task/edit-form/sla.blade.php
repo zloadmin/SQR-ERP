@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td>
-                    <p class="mb-0">Adjust time</p>
+                    <p class="mb-0">SLA time</p>
                 </td>
                 <td>
                     <p class="mb-0" wire:poll.60s>{{ $sla->total_time_text }}</p>
