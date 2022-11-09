@@ -1,6 +1,6 @@
 <div class="stage-task-card card mb-0" wire:click="$emit('showModal', 'task.edit-task', '{{ $task->id }}')">
     <div class="card-body p-3">
-        <small class="float-end text-muted">Time passed: {{ $task->getTimeLeft() }}</small>
+        <small class="float-end text-muted">Stage time: {{ $task->getCurrentSLATimeLeft() }}</small>
         <br>
 {{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
 {{--        <br>--}}
@@ -12,5 +12,6 @@
                 {{ $task->name ?: $task->company_name }}
             </a>
         </h5>
+        <small class="float-right text-muted">Created Time: {{ $task->getTimeLeft() }}</small>
     </div> <!-- end card-body -->
 </div>

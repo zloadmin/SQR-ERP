@@ -473,6 +473,7 @@ class Task extends Model
         return $this->created_at->longAbsoluteDiffForHumans(now());
     }
 
+
     public function getSQRCardClientLoginLink(): string
     {
         return sprintf('//%s/secret_login?secret=%s', $this->getSQRCardClientDomain(), urlencode($this->getSQRCardClientLoginSecret()));
