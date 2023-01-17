@@ -8,14 +8,17 @@ use Livewire\Component;
 class CreateTag extends Component
 {
     public string $name;
+    public string $color;
 
     protected $rules = [
-        'name' => 'required|max:255',
+        'name' => ['required', 'max:255'],
+        'color' => ['required', "regex:/^(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))$/i"]
     ];
 
     public function mount()
     {
         $this->name = '';
+        $this->color = '';
     }
 
     public function submit()

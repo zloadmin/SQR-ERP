@@ -13,6 +13,16 @@
                             </span>
                         @enderror
                     </div>
+                    <!--- Color Field --->
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <input class="form-control @error('color') is-invalid @enderror" type="color" wire:model="color">
+                        @error('color')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                     <!--- Save Field --->
                     <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="submit">
                         <div wire:loading.delay wire:target="submit">

@@ -13,7 +13,11 @@
                     {{ $task->name }}
                     <span class="tag-list ml-2">
                         @foreach($task->tags()->get() as $tag)
-                            <span class="badge bg-success">{{ $tag->name }}</span>
+                            @if ($tag->color)
+                                <span class="badge bg-success" style="background-color: {{ $tag->color }} !important; color: white">{{ $tag->name }}</span>
+                            @else
+                                <span class="badge bg-success">{{ $tag->name }}</span>
+                            @endif
                         @endforeach
                     </span>
                 </h5>

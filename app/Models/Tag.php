@@ -12,4 +12,5 @@ class Tag extends Model
     use HasLinks;
     protected $guarded = [];
 
+
 }

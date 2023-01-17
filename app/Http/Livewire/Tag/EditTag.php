@@ -10,13 +10,15 @@ class EditTag extends Component
     public Tag $tag;
     public string $name;
     protected $rules = [
-        'name'  => 'required|max:255',
+        'name' => ['required', 'max:255'],
+        'color' => ['required', "regex:/^(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))$/i"]
     ];
 
     public function mount(Tag $tag)
     {
 
         $this->name = $tag->name;
+        $this->color = $tag->color;
         $this->tag = $tag;
     }
 

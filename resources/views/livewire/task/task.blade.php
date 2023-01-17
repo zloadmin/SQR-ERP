@@ -5,7 +5,11 @@
 {{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
 {{--        <br>--}}
         @foreach($task->tags as $tag)
-            <span class="badge bg-success">{{ $tag->name }}</span>
+            @if ($tag->color)
+                <span class="badge bg-success" style="background-color: {{ $tag->color }} !important; color: white">{{ $tag->name }}</span>
+            @else
+                <span class="badge bg-success">{{ $tag->name }}</span>
+            @endif
         @endforeach
         <h5 class="mt-2 mb-2">
             <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">

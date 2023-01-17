@@ -15,6 +15,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Color</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -22,6 +23,11 @@
                         @foreach($tags as $tag)
                             <tr>
                                 <td>{{ $tag->name }}</td>
+                                <td>
+                                    @if ($tag->color)
+                                        <div disabled class="btn btn-primary" style="width: 200px; background-color: {{ $tag->color }}; border-color: {{ $tag->color }};"> {{ $tag->color }}</div>
+                                    @endif
+                                </td>
                                 <td align="right">
                                     <a href="{{ $tag->getEditLink() }}" class="action-icon  btn btn-link">
                                         <i class="mdi mdi-pencil"></i>
