@@ -9,6 +9,7 @@ use App\Jobs\EmailAlertCreateType;
 use App\Jobs\EmailAlertExpiredSLA;
 use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
+use App\Jobs\UpdateSQRCardOrderStatus;
 use App\Traits\HasUUID;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -90,6 +91,7 @@ class Task extends Model
             TaskMessage::addCreateTask($task);
             EmailAlertCreateType::dispatch($task);
             SendWebHooks::dispatch($task);
+            $task->updateSQRCardOrderStatus();
         });
         static::creating(function (Task $task) {
             $task->setStageStart();
@@ -101,12 +103,18 @@ class Task extends Model
                 TaskMessage::addChangeStageTask($task);
                 EmailAlertChangeStageType::dispatch($task);
                 SendWebHooks::dispatch($task);
+                $task->updateSQRCardOrderStatus();
             }
 //            $task->setStageStart();
         });
         static::updating(function (Task $task) {
             $task->setStageStart();
         });
+    }
+
+    public function updateSQRCardOrderStatus()
+    {
+        UpdateSQRCardOrderStatus::dispatch($this);
     }
 
     public function getEmailVariables(): array

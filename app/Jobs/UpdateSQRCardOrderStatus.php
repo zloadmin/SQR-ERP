@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Jobs;
+
+
+use App\Models\Task;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+
+class UpdateSQRCardOrderStatus implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct(public Task $task)
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        if ($this->task->sqr_card_username && $this->task->sqr_card_password) {
+            $data = [
+                'email'    => $this->task->sqr_card_username,
+                'password' => $this->task->sqr_card_password,
+                'order_id' => $this->task->id,
+                'stage_id' => $this->task->stage_id,
+            ];
+            $url = config('services.sqrcard.update_status_webhook');
+            $response = Http::post($url, $data);
+            if ($response->failed()) {
+                Log::warning('UpdateSQRCardOrderStatus ' . $response->reason());
+            }
+        }
+    }
+}
