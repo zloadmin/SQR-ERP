@@ -22,9 +22,10 @@ class ActionDone extends Action
 
     public function mount(Task $task)
     {
+//        dd($task);
         $this->task = $task;
-        $this->card_collected = $task->card_collected;
-        $this->delivery_reference = $task->delivery_reference;
+        $this->card_collected = $task->card_collected ?? '';
+        $this->delivery_reference = $task->delivery_reference ?? '';
         $this->qr_arrache = $task->getLastQRAttachment();
 //        $this->design_attache = $task->getLastDesignAttachment();
         $this->content_attache = $task->getLastContentAttachment();
