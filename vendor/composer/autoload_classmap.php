@@ -14,6 +14,7 @@ return array(
     'App\\Console\\Commands\\ShowUserRoleVariables' => $baseDir . '/app/Console/Commands/ShowUserRoleVariables.php',
     'App\\Console\\Commands\\TaskCreateEmptyTask' => $baseDir . '/app/Console/Commands/TaskCreateEmptyTask.php',
     'App\\Console\\Commands\\Task\\TaskCheckSla' => $baseDir . '/app/Console/Commands/Task/TaskCheckSla.php',
+    'App\\Console\\Commands\\Task\\UpdateAllSQRCardOrderStatus' => $baseDir . '/app/Console/Commands/Task/UpdateAllSQRCardOrderStatus.php',
     'App\\Console\\Commands\\Test\\TestChangeStageId' => $baseDir . '/app/Console/Commands/Test/TestChangeStageId.php',
     'App\\Console\\Commands\\Test\\TestEmail' => $baseDir . '/app/Console/Commands/Test/TestEmail.php',
     'App\\Console\\Commands\\Test\\TestMoveTasks' => $baseDir . '/app/Console/Commands/Test/TestMoveTasks.php',

@@ -703,6 +703,7 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Console\\Commands\\ShowUserRoleVariables' => __DIR__ . '/../..' . '/app/Console/Commands/ShowUserRoleVariables.php',
         'App\\Console\\Commands\\TaskCreateEmptyTask' => __DIR__ . '/../..' . '/app/Console/Commands/TaskCreateEmptyTask.php',
         'App\\Console\\Commands\\Task\\TaskCheckSla' => __DIR__ . '/../..' . '/app/Console/Commands/Task/TaskCheckSla.php',
+        'App\\Console\\Commands\\Task\\UpdateAllSQRCardOrderStatus' => __DIR__ . '/../..' . '/app/Console/Commands/Task/UpdateAllSQRCardOrderStatus.php',
         'App\\Console\\Commands\\Test\\TestChangeStageId' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestChangeStageId.php',
         'App\\Console\\Commands\\Test\\TestEmail' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestEmail.php',
         'App\\Console\\Commands\\Test\\TestMoveTasks' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestMoveTasks.php',
