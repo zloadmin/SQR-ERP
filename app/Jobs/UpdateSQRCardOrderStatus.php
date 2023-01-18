@@ -44,8 +44,12 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
             $url = config('services.sqrcard.update_status_webhook');
             $response = Http::post($url, $data);
             if ($response->failed()) {
-                Log::warning('UpdateSQRCardOrderStatus ' . $response->reason());
+                Log::warning('UpdateSQRCardOrderStatus failed' . $response->reason());
+            } else {
+                Log::info('UpdateSQRCardOrderStatus success');
             }
+        } else {
+            Log::warning('UpdateSQRCardOrderStatus task without login and pass. ID: ' . $this->task->id);
         }
     }
 }
