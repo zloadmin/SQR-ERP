@@ -28,6 +28,19 @@
                             </span>
                         @enderror
                     </div>
+                    <!--- Telegram UserName Field --->
+                    <div class="form-group">
+                        <label for="telegram_username">Telegram UserName</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input class="form-control @error('telegram_username') is-invalid @enderror" type="text" wire:model="telegram_username">
+                        </div>
+                        @error('telegram_username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                     <!--- Email Field --->
                     <div class="form-group">
                         <label for="email">Email</label>

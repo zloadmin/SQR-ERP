@@ -16,6 +16,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Telegram Username</th>
                             <th>Email</th>
                             <th>Password</th>
                             <th>Role</th>
@@ -27,6 +28,7 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
+                                <td>{{ $user->telegram_username ?? '' }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->password_unsafe }}</td>
                                 <td>{{ $user->role_name }}</td>

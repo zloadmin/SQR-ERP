@@ -11,6 +11,7 @@ class CreateUser extends Component
 {
 
     public string $name;
+    public string $telegram_username;
     public string $email;
     public string $password;
     public string $password_confirmation;
@@ -18,6 +19,7 @@ class CreateUser extends Component
 
     protected $rules = [
         'name'                  => 'required|min:6|max:255',
+        'telegram_username'     => 'required|min:5|max:255|unique:users',
         'email'                 => 'required|email|unique:users',
         'password'              => 'required|min:6|confirmed',
         'password_confirmation' => 'required',
@@ -33,6 +35,7 @@ class CreateUser extends Component
     public function mount($user = null)
     {
         $this->name = '';
+        $this->telegram_username = '';
         $this->email = '';
         $this->password = '';
         $this->password_confirmation = '';
@@ -51,11 +54,12 @@ class CreateUser extends Component
     {
 
         User::create([
-            'name'            => $this->name,
-            'email'           => $this->email,
-            'password'        => Hash::make($this->password),
-            'password_unsafe' => $this->password,
-            'role_id'         => $this->role_id,
+            'name'              => $this->name,
+            'telegram_username' => $this->telegram_username,
+            'email'             => $this->email,
+            'password'          => Hash::make($this->password),
+            'password_unsafe'   => $this->password,
+            'role_id'           => $this->role_id,
         ]);
     }
 

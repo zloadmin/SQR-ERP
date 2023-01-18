@@ -31,6 +31,7 @@ class EditUser extends Component
     {
         $this->user = $user;
         $this->name = $user->name;
+        $this->telegram_username = $user->telegram_username ?? '';
         $this->email = $user->email;
         $this->password = '';
         $this->password_confirmation = '';
@@ -50,6 +51,7 @@ class EditUser extends Component
     public function updateUser()
     {
         $this->user->name = $this->name;
+        $this->user->telegram_username = $this->telegram_username;
         $this->user->email = $this->email;
         $this->user->role_id = $this->role_id;
         if ($this->password) {
@@ -84,6 +86,10 @@ class EditUser extends Component
     {
         return [
             'name'     => 'required|min:6|max:255',
+            'telegram_username'    => [
+                'required',
+                Rule::unique('users')->ignore($this->user->id),
+            ],
             'email'    => [
                 'required',
                 Rule::unique('users')->ignore($this->user->id),
