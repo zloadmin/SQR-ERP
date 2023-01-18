@@ -12,6 +12,7 @@ class Log extends Component
     public Task $task;
     public bool $editable;
     public Collection $log_messages;
+    public array $telegram_usernames;
     public string $text = '';
     protected $rules = [
         'text'    => 'nullable|min:10',
@@ -22,8 +23,12 @@ class Log extends Component
     {
         $this->task = $task;
         $this->editable = $editable;
+        $this->telegram_usernames = $this->getTelegramUsernames();
         $this->setLogMessages();
-        $this->getUsers();
+    }
+    public function getTelegramUsernames() : array
+    {
+        return User::whereNotNull('telegram_username')->pluck('telegram_username', 'telegram_username')->toArray();
     }
     public function getListeners()
     {

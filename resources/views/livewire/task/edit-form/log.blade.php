@@ -12,11 +12,9 @@
                     <div class="mb-2 position-relative">
                             <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">
                             <datalist id="chatMessageInputList">
-                                <option value="@San_Francisco">
-                                <option value="@New_York">
-                                <option value="@Seattle">
-                                <option value="@Los_Angeles">
-                                <option value="@Chicago">
+                                @foreach($telegram_usernames as $telegram_username)
+                                    <option value="{{ '@' }}{{ $telegram_username }}">
+                                @endforeach
                             </datalist>
                             @error('text')
                             <span class="invalid-feedback" role="alert">
