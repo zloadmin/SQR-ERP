@@ -17,30 +17,6 @@ class Log extends Component
         'text'    => 'nullable|min:10',
     ];
 
-    public $name;
-    public $userId;
-    public $users;
-    public $user;
-
-    public function updatedUserId()
-    {
-        $this->user = User::find($this->userId);
-    }
-
-    public function updatedName()
-    {
-        $this->getUsers();
-    }
-
-    public function getUsers()
-    {
-        $this->users = User::query()
-            ->when($this->name, function ($query, $name) {
-                return $query->where('name', 'LIKE', '%' . $name . '%');
-            })
-            ->orderBy('name')
-            ->get();
-    }
 
     public function mount(Task $task, bool $editable)
     {

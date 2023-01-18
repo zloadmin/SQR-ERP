@@ -10,7 +10,6 @@
         "asika/autolink": "1.*",
         "beyondcode/laravel-websockets": "^1.13",
         "guzzlehttp/guzzle": "^7.4",
-        "joshhanley/livewire-autocomplete": "^0.1.7",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
