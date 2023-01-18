@@ -1,5 +1,63 @@
 ## Changelog
 
+## v2.1.1 (2023-01-17)
+
+## Bug Fixes
+- Fix `@template` in `Predis\Client` (#1017)
+- Fix support options array in `ZINTERSTORE` and `ZUNIONSTORE` (#1018)
+
+## v2.1.0 (2023-01-16)
+
+## New Features
+
+- Implemented `GETEX` command (#872)
+- Implemented `GETDEL` command (#869)
+- Implemented `COPY` command (#866)
+- Implemented `FAILOVER` command (#875)
+- Implemented `LMOVE` command (#863)
+- Implemented `LMPOP` command (#1013)
+- Implemented `HRANDFIELD` command (#870)
+- Implemented `SMISMEMBER` command (#871)
+- Implemented `ZMPOP` command (#831)
+- Implemented `BLMOVE` command (#865)
+- Implemented `BLMPOP` command (#1015)
+- Implemented `BZMPOP` command (#833)
+- Implemented `BZPOPMIN` command (#862)
+- Implemented `BZPOPMAX` command (#864)
+- Implemented `ZUNION` command (#860)
+- Implemented `ZINTER` command (#859)
+- Implemented `ZINTERCARD` command (#861)
+- Implemented `ZRANGESTORE` command (#829)
+- Implemented `ZDIFFSTORE` command (#828)
+- Implemented `ZDIFF` command (#826)
+- Implemented `ZRANDMEMBER` command (#825)
+- Implemented `ZMSCORE` (#823)
+- Implemented `GEOSEARCH` command (#867)
+- Implemented `GEOSEARCHSTORE` command (#873)
+
+## Bug Fixes
+- Added annotations to suppress PHP 8.1 return type deprecation warning (#810)
+
+## Maintenance
+- Added mixin annotations for traits (#835)
+
+## v2.0.3 (2022-10-11)
+
+- Improved PHP 8.2 support
+- Call `is_resource()` before reading/writing
+- Added partial support for Redis Stream commands
+- Fixed Sentinel authentication issue
+
+## v2.0.2 (2022-09-06)
+
+- Fixed PHP 8.2 deprecation notice: Use of "static" in callables
+
+## v2.0.1 (2022-09-04)
+
+- Added retry interval to `RedisCluster` with a default of `10ms`
+- Avoid PHP 8.2 warning in `Connection\Parameters`
+- Fixed Sentinel reconnect issue in long-running PHP processes
+
 ## v2.0.0 (2022-06-08)
 
 - Dropped support for PHP 7.1 and older
@@ -109,7 +167,7 @@
 
 - Support Pub/Sub and Pipelines when using replication
 
-- The class `Predis\Transaction\AbortedMultiExecException` now uses the correct 
+- The class `Predis\Transaction\AbortedMultiExecException` now uses the correct
   default types for the `$code` (integer) parameter.
 
 - __FIX__: using `strval` in `getScanOptions()` method, part of
@@ -117,7 +175,7 @@
   string value of `$this->match` and not passing `null` to `strlen()` function.
 
 - __FIX__: the value returned from `getArgument()` in `isReadOperation()` method,
-  part of `Predis\Replication\ReplicationStrategy` class, is checked to not pass 
+  part of `Predis\Replication\ReplicationStrategy` class, is checked to not pass
   `null` to `sha1` function.
 
 - __FIX__: the value returned from `getArgument()` in `parseResponse()`method,
