@@ -10,7 +10,7 @@
 
     <!-- App css -->
     <link href="/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/css/dashboard.css?v=2" rel="stylesheet" type="text/css" />
     {{--    <link href="/css/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css" />--}}
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">

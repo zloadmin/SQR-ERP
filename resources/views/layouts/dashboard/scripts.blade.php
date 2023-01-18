@@ -36,3 +36,8 @@
 
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
+{{--<script src="jquery.js"></script>--}}
+{{--<script src="/js/autocomplete.js"></script>--}}
+{{--<script src="/js/rangy-core.js"></script>--}}
+{{--<script src="/js/caret-position.js"></script>--}}
+{{--<script src="/js/bootstrap-tagautocomplete.js"></script>--}}

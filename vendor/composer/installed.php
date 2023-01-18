@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '80a72fb258d0c909728f871c1cd329e530f4c112',
+        'reference' => 'f76b5d77f057415f4a26732a87f8cdf1dc499219',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -423,6 +423,15 @@
                 0 => 'v9.26.1',
             ),
         ),
+        'joshhanley/livewire-autocomplete' => array(
+            'pretty_version' => 'v0.1.7',
+            'version' => '0.1.7.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../joshhanley/livewire-autocomplete',
+            'aliases' => array(),
+            'reference' => '0740a625f3c8de5ff9437d423af95594dcba19f7',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -444,7 +453,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '80a72fb258d0c909728f871c1cd329e530f4c112',
+            'reference' => 'f76b5d77f057415f4a26732a87f8cdf1dc499219',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

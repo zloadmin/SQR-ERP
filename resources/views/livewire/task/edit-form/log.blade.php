@@ -10,12 +10,20 @@
             @if ($editable)
                 <form wire:submit.prevent="createMessage">
                     <div class="mb-2 position-relative">
-                        <input wire:model="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text...">
-                        @error('text')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">
+                            <datalist id="chatMessageInputList">
+                                <option value="@San_Francisco">
+                                <option value="@New_York">
+                                <option value="@Seattle">
+                                <option value="@Los_Angeles">
+                                <option value="@Chicago">
+                            </datalist>
+                            @error('text')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                         <button class="action-icon btn chat-icon"  wire:loading.attr="disabled" wire:target="createMessage">
                             <div wire:loading.delay wire:target="createMessage">
                                 <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
@@ -29,6 +37,11 @@
             @endif
         </div>
     </div> <!-- end card-body -->
+{{--    <div class="row">--}}
+{{--        <div class="col-md-12">--}}
+{{--            --}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!--Chat -->
     <div class="row">
         <div class="col">

@@ -79,6 +79,7 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Livewire\\' => array($vendorDir . '/livewire/livewire/src'),
     'LivewireUI\\Modal\\' => array($vendorDir . '/wire-elements/modal/src'),
+    'LivewireAutocomplete\\' => array($vendorDir . '/joshhanley/livewire-autocomplete/src'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'League\\Config\\' => array($vendorDir . '/league/config/src'),

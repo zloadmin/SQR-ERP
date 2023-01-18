@@ -13,18 +13,18 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '972fda704d680a3a53c68e34e193cb22' => __DIR__ . '/..' . '/react/promise-timer/src/functions_include.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        'cea474b4340aa9fa53661e887a21a316' => __DIR__ . '/..' . '/react/promise-stream/src/functions_include.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        'cea474b4340aa9fa53661e887a21a316' => __DIR__ . '/..' . '/react/promise-stream/src/functions_include.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
@@ -152,6 +152,7 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         array (
             'Livewire\\' => 9,
             'LivewireUI\\Modal\\' => 17,
+            'LivewireAutocomplete\\' => 21,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
@@ -512,6 +513,10 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         array (
             0 => __DIR__ . '/..' . '/wire-elements/modal/src',
         ),
+        'LivewireAutocomplete\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/joshhanley/livewire-autocomplete/src',
+        ),
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
@@ -789,6 +794,7 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Jobs\\GenerateQRCodeAttachment' => __DIR__ . '/../..' . '/app/Jobs/GenerateQRCodeAttachment.php',
         'App\\Jobs\\SendWebHook' => __DIR__ . '/../..' . '/app/Jobs/SendWebHook.php',
         'App\\Jobs\\SendWebHooks' => __DIR__ . '/../..' . '/app/Jobs/SendWebHooks.php',
+        'App\\Jobs\\UpdateSQRCardOrderStatus' => __DIR__ . '/../..' . '/app/Jobs/UpdateSQRCardOrderStatus.php',
         'App\\Mail\\SimpleEmail' => __DIR__ . '/../..' . '/app/Mail/SimpleEmail.php',
         'App\\Models\\Email' => __DIR__ . '/../..' . '/app/Models/Email.php',
         'App\\Models\\EmailAlert' => __DIR__ . '/../..' . '/app/Models/EmailAlert.php',
@@ -3476,6 +3482,8 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+        'LivewireAutocomplete\\Components\\Autocomplete' => __DIR__ . '/..' . '/joshhanley/livewire-autocomplete/src/Components/Autocomplete.php',
+        'LivewireAutocomplete\\LivewireAutocompleteServiceProvider' => __DIR__ . '/..' . '/joshhanley/livewire-autocomplete/src/LivewireAutocompleteServiceProvider.php',
         'LivewireUI\\Modal\\Contracts\\ModalComponent' => __DIR__ . '/..' . '/wire-elements/modal/src/Contracts/ModalComponent.php',
         'LivewireUI\\Modal\\LivewireModalServiceProvider' => __DIR__ . '/..' . '/wire-elements/modal/src/LivewireModalServiceProvider.php',
         'LivewireUI\\Modal\\Modal' => __DIR__ . '/..' . '/wire-elements/modal/src/Modal.php',
