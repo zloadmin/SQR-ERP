@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
     'ZanySoft\\Zip\\' => array($vendorDir . '/zanysoft/laravel-zip/src'),
+    'Windwalker\\Utilities\\' => array($vendorDir . '/windwalker/utilities/src'),
     'Windwalker\\String\\' => array($vendorDir . '/windwalker/string'),
     'Windwalker\\Dom\\' => array($vendorDir . '/windwalker/dom'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),

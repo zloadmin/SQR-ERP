@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '09fbe3a66ad7f4619db6d09101d338306f93012e',
+        'reference' => 'b86060db8a043ac9f65a9d8bcdc61dbdfe190645',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -444,7 +444,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '09fbe3a66ad7f4619db6d09101d338306f93012e',
+            'reference' => 'b86060db8a043ac9f65a9d8bcdc61dbdfe190645',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1574,6 +1574,15 @@
             'install_path' => __DIR__ . '/../windwalker/string',
             'aliases' => array(),
             'reference' => '866ef7cd634a5b24e76327e502bf026852980c2b',
+            'dev_requirement' => false,
+        ),
+        'windwalker/utilities' => array(
+            'pretty_version' => '4.0.24',
+            'version' => '4.0.24.0',
+            'type' => 'windwalker-package',
+            'install_path' => __DIR__ . '/../windwalker/utilities',
+            'aliases' => array(),
+            'reference' => '1db189ed573fe2ed0c012a5bb82e8791448d36f1',
             'dev_requirement' => false,
         ),
         'wire-elements/modal' => array(

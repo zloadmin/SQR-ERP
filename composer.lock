@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8a27d1624b222762b1766955c66e5e2",
+    "content-hash": "e66aad7f17fe1d8fb266c3e3d5aa14a1",
     "packages": [
         {
             "name": "alighasemzadeh/livewire-bootstrap-modal",
@@ -7554,6 +7554,67 @@
                 "source": "https://github.com/ventoviro/windwalker-string/tree/3.5.23"
             },
             "time": "2021-01-12T09:05:23+00:00"
+        },
+        {
+            "name": "windwalker/utilities",
+            "version": "4.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/utilities.git",
+                "reference": "1db189ed573fe2ed0c012a5bb82e8791448d36f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/utilities/zipball/1db189ed573fe2ed0c012a5bb82e8791448d36f1",
+                "reference": "1db189ed573fe2ed0c012a5bb82e8791448d36f1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "myclabs/php-enum": "^1.8",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "symfony/options-resolver": "^5.0||^6.0",
+                "symfony/string": "^5.2||^6.0",
+                "windwalker/attributes": "^4.0",
+                "windwalker/scalars": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "laravel/serializable-closure": "Install ^1.0 to support serializable Closure.",
+                "symfony/string": "Install to use inflector."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Utilities\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Utilities package",
+            "homepage": "https://github.com/windwalker-io/utilities",
+            "keywords": [
+                "framework",
+                "utilities",
+                "windwalker"
+            ],
+            "support": {
+                "issues": "https://github.com/windwalker-io/utilities/issues",
+                "source": "https://github.com/windwalker-io/utilities/tree/4.0.24"
+            },
+            "time": "2023-01-01T15:29:29+00:00"
         },
         {
             "name": "wire-elements/modal",
