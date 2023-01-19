@@ -40,6 +40,12 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'password' => $this->task->sqr_card_password,
                 'order_id' => $this->task->id,
                 'stage_id' => $this->task->stage_id,
+                // details
+                'date' => $this->task->created_at,
+                'total_cards' => $this->task->total_cards,
+                'card_details' => $this->task->card_details,
+                'contact_email' => $this->task->contact_email,
+                'whatsapp' => $this->task->whatsapp
             ];
             $url = config('services.sqrcard.update_status_webhook');
             $response = Http::post($url, $data);
