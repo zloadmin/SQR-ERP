@@ -41,7 +41,7 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'order_id' => $this->task->id,
                 'stage_id' => $this->task->stage_id,
                 // details
-                'date' => $this->task->created_at,
+                'date' => $this->task->created_at->toDateTimeString(),
                 'total_cards' => $this->task->total_cards,
                 'card_details' => $this->task->card_details,
                 'contact_email' => $this->task->contact_email,
