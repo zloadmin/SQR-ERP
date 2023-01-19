@@ -21,13 +21,18 @@ class TaskMessage extends Model
     protected static function booted()
     {
         static::created(function (self $message) {
-            event(new CreateTaskMessage($message->task_id));
+            event(new CreateTaskMessage($message));
         });
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function task()
+    {
+        return $this->hasOne(Task::class, 'id', 'task_id');
     }
 
     static function addCreateTask(Task $task)
@@ -73,5 +78,32 @@ class TaskMessage extends Model
             'user_id' => $file->approved_user_id,
             'text'    => $file->getDeclineMessage(),
         ]);
+    }
+
+    public function getTelegramRecipients(): array
+    {
+        $result = [];
+        foreach (User::getTelegramUsernames() as $username) {
+            if (str_contains($this->text, '@' . $username)) {
+                $result[$username] = $username;
+            }
+        }
+        return $result;
+    }
+
+    public function getTelegramText()
+    {
+        $lines = [];
+        if ($this->user) {
+            $lines[] = 'Task message from:';
+            $lines[] = $this->user->getTelegramSender();
+        }
+        if ($this->task) {
+            $lines[] = 'Task:';
+            $lines[] = $this->task->company_name;
+        }
+        $lines[] = 'Message:';
+        $lines[] = $this->text;
+        return implode(PHP_EOL, $lines);
     }
 }

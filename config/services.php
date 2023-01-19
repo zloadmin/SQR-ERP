@@ -34,5 +34,10 @@ return [
         'key'                   => env('SQRCARD_KEY'),
         'client_domain'         => env('SQRCARD_CLIENT_DOMAIN'),
         'update_status_webhook' => env('SQRCARD_UPDATE_STATUS_WEBHOOK', 'https://sqrcard.com/api/v1/order/update_status')
-    ]
+    ],
+    'telegram_api' => [
+        'url' => env('TELEGRAM_API_URL', 'https://telegram-api.sqrneo.com/api/telegram/send-message'),
+        'login' => env('TELEGRAM_API_LOGIN', 'admin'),
+        'password' => env('TELEGRAM_API_PASSWORD')
+    ],
 ];
