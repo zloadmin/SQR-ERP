@@ -39,8 +39,8 @@ class GeneratePreloadQRAttachments implements ShouldQueue
     public function handle()
     {
         if ($file_names = $this->task->getQrAttachmentsFilePaths()) {
-            $zip = new Zip(TaskFile::getPreloadQRAttachmentsFilePath($this->task));
-//            $zip = $zipClass->create(TaskFile::getPreloadQRAttachmentsFilePath($this->task));
+            $zip = new Zip();
+            $zip->create(TaskFile::getPreloadQRAttachmentsFilePath($this->task));
             $zip->add($file_names);
             TaskFile::savePreloadQRAttachments($this->task);
             return;
