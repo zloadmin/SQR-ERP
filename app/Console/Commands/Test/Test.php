@@ -30,7 +30,7 @@ class Test extends Command
     public function handle()
     {
         $task = Task::find(568);
-        dd($task->getQrAttachmentsFilePaths());
+//        dd($task->getQrAttachmentsFilePaths());
 //        var_dump($task);
         GeneratePreloadQRAttachments::dispatchSync($task);
         return Command::SUCCESS;
