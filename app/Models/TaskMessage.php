@@ -95,12 +95,10 @@ class TaskMessage extends Model
     {
         $lines = [];
         if ($this->user) {
-            $lines[] = 'Task message from:';
-            $lines[] = $this->user->getTelegramSender();
+            $lines[] = 'Task message from: ' . $this->user->getTelegramSender();
         }
         if ($this->task) {
-            $lines[] = 'Task:';
-            $lines[] = $this->task->company_name;
+            $lines[] = 'Task: ' . $this->task->company_name;
         }
         $lines[] = 'Message:';
         $lines[] = $this->text;
