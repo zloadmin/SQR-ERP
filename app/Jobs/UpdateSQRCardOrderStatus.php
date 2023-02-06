@@ -49,7 +49,8 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'card_details' => $this->task->card_details,
                 'contact_email' => $this->task->contact_email,
                 'whatsapp' => $this->task->whatsapp,
-                'print_file' => $print_file ? $print_file->getUrl() : ''
+                'print_file' => $print_file ? $print_file->getUrl() : '',
+                'print_file_original_name' => $print_file ? $print_file->getClientOriginalName() : ''
             ];
 
             $url = config('services.sqrcard.update_status_webhook');
