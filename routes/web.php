@@ -22,6 +22,9 @@ use App\Http\Livewire\Task\EditForm\Actions;
 use App\Http\Livewire\Task\EditForm\ActionsSecret;
 use App\Http\Livewire\Task\EditForm\EditOrderDetails;
 use App\Http\Livewire\Task\EditTask;
+use App\Http\Livewire\TelegramAlert\CreateTelegramAlert;
+use App\Http\Livewire\TelegramAlert\EditTelegramAlert;
+use App\Http\Livewire\TelegramAlert\TelegramAlertList;
 use App\Http\Livewire\User\CreateUser;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Livewire\User\UserList;
@@ -104,6 +107,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/', WebHookList::class)->name('settings.webhook');
             Route::get('/create', CreateWebHook::class)->name('settings.webhook.create');
             Route::get('/edit/{webHook}', EditWebHook::class)->name('settings.webhook.edit');
+        });
+        Route::prefix('telegram_alerts')->group(function () {
+            Route::get('/', TelegramAlertList::class)->name('settings.telegram_alert');
+            Route::get('/create', CreateTelegramAlert::class)->name('settings.telegram_alert.create');
+            Route::get('/edit/{telegramAlert}', EditTelegramAlert::class)->name('settings.telegram_alert.edit');
         });
     });
 });

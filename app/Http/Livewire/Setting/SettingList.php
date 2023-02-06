@@ -43,6 +43,10 @@ class SettingList extends Component
             [
                 'title' => 'WebHook',
                 'link'  => route('settings.webhook')
+            ],
+            [
+                'title' => 'Telegram Alert',
+                'link'  => route('settings.telegram_alert')
             ]
         ];
     }
