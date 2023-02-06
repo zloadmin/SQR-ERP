@@ -52,7 +52,7 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'print_file' => $print_file ? $print_file->getUrl() : '',
                 'print_file_original_name' => $print_file ? $print_file->getClientOriginalName() : ''
             ];
-            Log::info('UpdateSQRCardOrderStatus', $data);
+//            Log::info('UpdateSQRCardOrderStatus', $data);
 
             $url = config('services.sqrcard.update_status_webhook');
             $response = Http::post($url, $data);
