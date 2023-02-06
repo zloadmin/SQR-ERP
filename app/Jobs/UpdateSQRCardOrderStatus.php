@@ -35,6 +35,9 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
     public function handle()
     {
         if ($this->task->sqr_card_username && $this->task->sqr_card_password) {
+
+            $print_file = $this->task->getLastPrintFileAttachment();
+
             $data = [
                 'email'    => $this->task->sqr_card_username,
                 'password' => $this->task->sqr_card_password,
@@ -45,8 +48,10 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'total_cards' => $this->task->total_cards,
                 'card_details' => $this->task->card_details,
                 'contact_email' => $this->task->contact_email,
-                'whatsapp' => $this->task->whatsapp
+                'whatsapp' => $this->task->whatsapp,
+                'print_file' => $print_file ? $print_file->getUrl() : ''
             ];
+
             $url = config('services.sqrcard.update_status_webhook');
             $response = Http::post($url, $data);
             if ($response->failed()) {
@@ -59,4 +64,5 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
             Log::warning('UpdateSQRCardOrderStatus task without login and pass. ID: ' . $this->task->id);
         }
     }
+
 }
