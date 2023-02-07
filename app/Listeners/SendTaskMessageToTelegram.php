@@ -30,7 +30,7 @@ class SendTaskMessageToTelegram implements ShouldQueue
     {
 
         foreach ($event->taskMessage->getTelegramRecipients() as $recipient) {
-            $response = TelegramApi::sendMessage($recipient, $event->taskMessage->getTelegramText());
+            $response = TelegramApi::sendMessage($recipient, $event->taskMessage->getTelegramText(), TelegramApi::SQRNEO_bot);
             Log::info('SendTaskMessageToTelegram', (array)$response);
         }
 

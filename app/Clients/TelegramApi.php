@@ -13,6 +13,8 @@ class TelegramApi
     public string $url;
     public string $login;
     public string $password;
+    const SQRNEO_bot = 'SQRNEO_bot';
+    const NEO_Alert_bot = 'NEO_Alert_bot';
 
     public function __construct()
     {
@@ -26,16 +28,16 @@ class TelegramApi
         return new self();
     }
 
-    private function sendMessageRequest(string $recipient, string $message)
+    private function sendMessageRequest(string $recipient, string $message, string $bot)
     {
         return Http::withBasicAuth($this->login, $this->password)
-            ->post($this->url, compact('recipient', 'message'))
+            ->post($this->url, compact('recipient', 'message', 'bot'))
             ->json();
     }
 
-    public static function sendMessage(string $recipient, string $message)
+    public static function sendMessage(string $recipient, string $message, string $bot)
     {
-        return self::createInstance()->sendMessageRequest($recipient, $message);
+        return self::createInstance()->sendMessageRequest($recipient, $message, $bot);
     }
 
 }
