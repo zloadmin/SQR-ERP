@@ -165,4 +165,8 @@ class User extends Authenticatable
     {
         return $this->telegram_username ? '@' . $this->telegram_username : $this->name;
     }
+    static function getWithTelegram()
+    {
+        return self::whereNotNull('telegram_username')->get();
+    }
 }

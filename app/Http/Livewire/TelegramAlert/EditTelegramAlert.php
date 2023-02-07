@@ -10,24 +10,33 @@ class EditTelegramAlert extends Component
 {
     public TelegramAlert $telegramAlert;
     public string $name;
-    public $stage_id;
-    public array $variables;
+    public int $stage_id;
+    public string $text;
+    public array $recipient_ids;
 
     protected function rules()
     {
         return [
             'name' => ['required', 'max:255'],
             'stage_id' => ['required', 'exists:stages,id'],
-            'variables' => ['required'],
+            'text' => ['required'],
+            'recipient_ids' => ['required', 'array'],
         ];
     }
+    protected $messages = [
+        'recipient_ids.required' => 'The recipient field is required.',
+    ];
+
+
+
 
     public function mount(TelegramAlert $telegramAlert)
     {
         $this->telegramAlert = $telegramAlert;
         $this->name = $telegramAlert->name;
         $this->stage_id = $telegramAlert->stage_id;
-        $this->variables = $telegramAlert->variables;
+        $this->text = $telegramAlert->text;
+        $this->recipient_ids = $telegramAlert->recipient_ids;
     }
 
     public function submit()

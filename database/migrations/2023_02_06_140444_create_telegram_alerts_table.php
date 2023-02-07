@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('telegram_alerts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('text');
             $table->unsignedBigInteger('stage_id');
             $table->foreign('stage_id')->on('stages')->references('id');
-            $table->json('variables');
+            $table->json('recipient_ids');
             $table->timestamps();
         });
     }

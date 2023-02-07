@@ -11,7 +11,7 @@ class TelegramAlert extends Model
     use HasFactory;
     use HasLinks;
     protected $casts = [
-        'variables' => 'json'
+        'recipient_ids' => 'json'
     ];
     protected $guarded = [];
     const VARIABLES = [
