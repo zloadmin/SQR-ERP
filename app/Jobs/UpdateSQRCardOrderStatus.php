@@ -37,6 +37,7 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
         if ($this->task->sqr_card_username && $this->task->sqr_card_password) {
 
             $print_file = $this->task->getLastPrintFileAttachment();
+            $content_file = $this->task->getLastContentAttachment();
 
             $data = [
                 'email'    => $this->task->sqr_card_username,
@@ -50,7 +51,9 @@ class UpdateSQRCardOrderStatus implements ShouldQueue
                 'contact_email' => $this->task->contact_email,
                 'whatsapp' => $this->task->whatsapp,
                 'print_file' => $print_file ? $print_file->getUrl() : '',
-                'print_file_original_name' => $print_file ? $print_file->getClientOriginalName() : ''
+                'print_file_original_name' => $print_file ? $print_file->getClientOriginalName() : '',
+                'content_file' => $content_file ? $content_file->getUrl() : '',
+                'content_file_original_name' => $content_file ? $content_file->getClientOriginalName() : ''
             ];
 //            Log::info('UpdateSQRCardOrderStatus', $data);
 
