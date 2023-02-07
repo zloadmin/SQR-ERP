@@ -41,7 +41,7 @@
                     </div>
                     <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show" role="alert">
                         You can use variables: <br>
-                        @foreach(\App\Models\WebHook::VARIABLES as $variable)
+                        @foreach(\App\Models\TelegramAlert::VARIABLES as $variable)
                             <strong>
                                 @php
                                     echo '{{' . $variable . '}}';

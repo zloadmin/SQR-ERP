@@ -233,4 +233,8 @@ class TaskFile extends Model
     public function changeType(string $type) {
         $this->update(['type' => $type]);
     }
+    public function toTelegramMessage()
+    {
+        return sprintf('File %s. Link: %s.', $this->getClientOriginalName(), $this->getUrl());
+    }
 }

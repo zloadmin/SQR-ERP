@@ -121,4 +121,8 @@ class Stage extends Model
     {
         return 'start-stage-' . self::getStageById($id)['key'];
     }
+    public function toTelegramMessage()
+    {
+        return $this->name;
+    }
 }

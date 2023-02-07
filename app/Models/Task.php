@@ -7,6 +7,7 @@ use App\Events\UpdateTaskStage;
 use App\Jobs\EmailAlertChangeStageType;
 use App\Jobs\EmailAlertCreateType;
 use App\Jobs\EmailAlertExpiredSLA;
+use App\Jobs\SendTelegramAlerts;
 use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
 use App\Jobs\UpdateSQRCardOrderStatus;
@@ -91,6 +92,7 @@ class Task extends Model
             TaskMessage::addCreateTask($task);
             EmailAlertCreateType::dispatch($task);
             SendWebHooks::dispatch($task);
+            SendTelegramAlerts::dispatch($task);
             $task->updateSQRCardOrderStatus();
         });
         static::creating(function (Task $task) {
@@ -103,6 +105,7 @@ class Task extends Model
                 TaskMessage::addChangeStageTask($task);
                 EmailAlertChangeStageType::dispatch($task);
                 SendWebHooks::dispatch($task);
+                SendTelegramAlerts::dispatch($task);
                 $task->updateSQRCardOrderStatus();
             }
 //            $task->setStageStart();
@@ -446,6 +449,37 @@ class Task extends Model
             }
         }
         return $data;
+    }
+
+    public function getTelegramAlertMessage(TelegramAlert $telegramAlert): string
+    {
+        $result = $telegramAlert->text;
+        foreach (TelegramAlert::VARIABLES as $variable) {
+            $variable_text = $this->getTelegramAlertVariableText($variable);
+            $result = str_replace('{{'.$variable.'}}', $variable_text, $result);
+        }
+        return $result;
+    }
+
+    public function getTelegramAlertVariableText($variable) : string
+    {
+        $result = '';
+
+        if (isset($this->{$variable})) {
+            if ($this->{$variable} instanceof \Illuminate\Database\Eloquent\Collection) {
+                foreach ($this->{$variable} as $item) {
+                    $result .= $item->toTelegramMessage() . PHP_EOL;
+                }
+            } elseif($this->{$variable} instanceof \Illuminate\Database\Eloquent\Model)  {
+                $result = $this->{$variable}->toTelegramMessage();
+            } elseif(is_array($this->{$variable}))  {
+                $result = implode(PHP_EOL, $this->{$variable});
+            } else {
+                $result = $this->{$variable};
+            }
+        }
+
+        return $result;
     }
 
     public function getTagListAttribute(): array

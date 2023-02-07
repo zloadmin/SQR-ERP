@@ -4,6 +4,7 @@ namespace App\Console\Commands\Test;
 
 use App\Jobs\GeneratePreloadQRAttachments;
 use App\Models\Task;
+use App\Models\TelegramAlert;
 use Illuminate\Console\Command;
 
 class Test extends Command
@@ -29,10 +30,13 @@ class Test extends Command
      */
     public function handle()
     {
+
+////        dd($task->getQrAttachmentsFilePaths());
+////        var_dump($task);
+//        GeneratePreloadQRAttachments::dispatchSync($task);
         $task = Task::find(568);
-//        dd($task->getQrAttachmentsFilePaths());
-//        var_dump($task);
-        GeneratePreloadQRAttachments::dispatchSync($task);
+        $telegamAlert = TelegramAlert::first();
+        dd($task->getTelegramAlertMessage($telegamAlert));
         return Command::SUCCESS;
     }
 }
