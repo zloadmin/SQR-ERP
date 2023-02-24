@@ -25,7 +25,7 @@
         ({
                 dataType: "json",
                 method: 'post',
-                url: '/test-socket'
+                url: 'https://petapidev.ratsysdev.com/test-socket'
             }
         );
     }
