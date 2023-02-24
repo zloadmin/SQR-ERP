@@ -9,7 +9,7 @@ window.Echo = new Echo({
 });
 
 
-window.Echo.channel('test-socket')
+window.Echo.channel('petapi:test-socket')
     .listen('.App\\Events\\TestSocket', (e) => {
         console.log('TestSocket WORK!!!! ');
         console.log(e);
