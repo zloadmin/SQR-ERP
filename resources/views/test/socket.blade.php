@@ -10,39 +10,7 @@
     <script src="//petapidev.ratsysdev.com:6001/socket.io/socket.io.js"></script>
 </head>
 <body>
-<div class="container mt-3">
-    <p>This test page. </p>
 
-
-
-
-    <p><strong>You have to use &quot;socket.io-client&quot;: &quot;2.3.0&quot; or less. Issues
-            https://github.com/tlaverdure/laravel-echo-server/issues/550</strong></p>
-    <p>We have two channel. For client "chat.session_uuid.{session_uuid}" , and private for operator
-        "operator.outlet_id.{outlet_id}"</p>
-    <p>Source code</p>
-
-    <div><pre><code class="language-javascrip">import Echo from "laravel-echo"
-
-window.io = require('socket.io-client');
-
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ':6001',
-    // auth: {headers: {'Authorization': 'Bearer ' + window.manager_token}}
-});
-
-
-window.Echo.channel('test-socket')
-    .listen('.App\\Events\\TestSocket', (e) => {
-        console.log('TestSocket WORK!!!! ');
-        console.log(e);
-    });
-
-</code></pre>
-    </div>
-
-</div>
 </body>
 <script
     src="https://code.jquery.com/jquery-3.4.1.js"
