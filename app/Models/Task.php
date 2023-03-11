@@ -74,6 +74,7 @@ class Task extends Model
         ],
     ];
 
+    const MATERIAL_REQUIRED_ERROR = 'You must set "Material" before change stage';
     /**
      * @var mixed|string
      */
@@ -456,12 +457,12 @@ class Task extends Model
         $result = $telegramAlert->text;
         foreach (TelegramAlert::VARIABLES as $variable) {
             $variable_text = $this->getTelegramAlertVariableText($variable);
-            $result = str_replace('{{'.$variable.'}}', $variable_text, $result);
+            $result = str_replace('{{' . $variable . '}}', $variable_text, $result);
         }
         return $result;
     }
 
-    public function getTelegramAlertVariableText($variable) : string
+    public function getTelegramAlertVariableText($variable): string
     {
         $result = '';
 
@@ -470,9 +471,9 @@ class Task extends Model
                 foreach ($this->{$variable} as $item) {
                     $result .= $item->toTelegramMessage() . PHP_EOL;
                 }
-            } elseif($this->{$variable} instanceof \Illuminate\Database\Eloquent\Model)  {
+            } elseif ($this->{$variable} instanceof \Illuminate\Database\Eloquent\Model) {
                 $result = $this->{$variable}->toTelegramMessage();
-            } elseif(is_array($this->{$variable}))  {
+            } elseif (is_array($this->{$variable})) {
                 $result = implode(PHP_EOL, $this->{$variable});
             } else {
                 $result = $this->{$variable};
@@ -578,4 +579,7 @@ class Task extends Model
     {
         $this->attributes['whatsapp'] = preg_replace('/\s+/', '', $value);
     }
+
+
+
 }

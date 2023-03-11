@@ -27,6 +27,10 @@ class ActionProduction extends Action
 
     public function nextActionProduction()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->nextAction();
         $this->updateBlocks();
     }

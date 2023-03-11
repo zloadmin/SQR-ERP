@@ -92,4 +92,12 @@ class Action extends Component
     {
         return auth()->user()->canEditActions($task);
     }
+    public function isRequiredMaterial() : bool
+    {
+        return !$this->task->material;
+    }
+    public function setRequiredMaterialError()
+    {
+        session()->flash('error', Task::MATERIAL_REQUIRED_ERROR);
+    }
 }

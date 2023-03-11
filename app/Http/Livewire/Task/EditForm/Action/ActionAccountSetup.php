@@ -44,7 +44,9 @@ class ActionAccountSetup extends Action
     public function submitQR()
     {
 
-
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
         if ($this->isUploadedAttachment()) {
             $this->validate($this->rulesWithAttacheFile());
             $this->storeAttache();

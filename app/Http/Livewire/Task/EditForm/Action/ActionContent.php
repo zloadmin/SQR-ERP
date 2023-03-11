@@ -32,6 +32,10 @@ class ActionContent extends Action
     }
     public function submitAttache()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->validate();
         $this->storeContentAttacheFile();
         $this->increaseTaskStageId();

@@ -31,6 +31,9 @@ class ActionDesign extends Action
     }
     public function submitAttache()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
         $this->validate();
         $this->storeDesignFile();
         $this->increaseTaskStageId();

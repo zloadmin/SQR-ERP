@@ -34,6 +34,10 @@ class ActionCollection extends Action
 
     public function submitDeliverySlip()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->validate();
         $this->storeAttache();
         $this->updateTask();

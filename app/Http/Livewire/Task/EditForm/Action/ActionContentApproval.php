@@ -28,12 +28,20 @@ class ActionContentApproval extends Action
 
     public function approve()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->content_attache->approve($this->comment);
         $this->increaseTaskStageId();
         $this->updateBlocks();
     }
     public function decline()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->validate();
         $this->content_attache->decline($this->comment);
         $this->decreaseTaskStageId();

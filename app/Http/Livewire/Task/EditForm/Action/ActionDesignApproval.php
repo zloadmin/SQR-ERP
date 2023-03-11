@@ -30,12 +30,20 @@ class ActionDesignApproval extends Action
     }
     public function approve()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->design_file->approve($this->comment);
         $this->increaseTaskStageId();
         $this->updateBlocks();
     }
     public function decline()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->validate();
         $this->design_file->decline($this->comment);
         $this->decreaseTaskStageId();

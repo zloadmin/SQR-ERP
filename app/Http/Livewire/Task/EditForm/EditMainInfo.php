@@ -48,7 +48,12 @@ class EditMainInfo extends Component
 
     public function editMainInfo()
     {
-        $this->validate();
+
+
+        if(!$this->task->material && $this->stage_id != 1) {
+          return session()->flash('error', Task::MATERIAL_REQUIRED_ERROR);
+        }
+        $this->validate();;
         $this->updateTask();
         $this->emit('refreshStage', $this->task->stage_id);
         $this->emit('showModal', 'task.edit-task', $this->task->id);

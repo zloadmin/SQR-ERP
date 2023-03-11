@@ -6,6 +6,11 @@
     </div>
     <div class="card-body">
         <div class="row">
+            <div class="col-md-12">
+                @include('livewire.task.edit-form.blocks.error')
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 @include('livewire.task.edit-form.action.blocks.files')
             </div>

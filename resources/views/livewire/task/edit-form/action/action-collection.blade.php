@@ -5,6 +5,7 @@
         </div>
     </div>
     <div class="card-body">
+        @include('livewire.task.edit-form.blocks.error')
         @if($editable)
             <form wire:submit.prevent="submitDeliverySlip" id="submitDeliverySlipForm">
                 <div class="row">

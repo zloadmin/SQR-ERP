@@ -34,6 +34,10 @@ class ActionPrintFile extends Action
     }
     public function submitAttache()
     {
+        if($this->isRequiredMaterial()) {
+            return $this->setRequiredMaterialError();
+        }
+
         $this->validate();
         $this->storePrintFileAttacheFile();
         $this->increaseTaskStageId();
