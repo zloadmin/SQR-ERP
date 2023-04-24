@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('text');
-            $table->unsignedBigInteger('stage_id');
+            $table->unsignedBigInteger('stage_id')->nullable();
             $table->foreign('stage_id')->on('stages')->references('id');
+            $table->unsignedBigInteger('inventory_id')->nullable();
+//            $table->foreign('inventory_id')->on('inventories')->references('id');
+            $table->unsignedBigInteger('available_less_then')->nullable();
             $table->json('recipient_ids');
             $table->timestamps();
         });

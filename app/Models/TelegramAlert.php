@@ -41,8 +41,17 @@ class TelegramAlert extends Model
         'is_api',
         'tag_list'
     ];
+    const VARIABLES_INVENTORY = [
+        'name',
+        'used',
+        'available',
+        'cumulative'
+    ];
     public function getEditLink(): string
     {
-        return route('settings.telegram_alert.edit', $this);
+        if($this->stage_id) {
+            return route('settings.telegram_alert.edit', $this);
+        }
+        return route('settings.telegram_alert.edit-inventory', $this);
     }
 }

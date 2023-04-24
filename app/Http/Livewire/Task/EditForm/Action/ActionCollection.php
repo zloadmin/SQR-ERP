@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Task\EditForm\Action;
 
+use App\Models\Inventory;
 use App\Models\Task;
 use App\Models\TaskFile;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,13 +18,28 @@ class ActionCollection extends Action
     public string $delivery_reference = '';
     public Task $task;
     public bool $editable;
+    public Collection $inventories;
+    public array $inventory_used;
 
 
     protected $rules = [
-        'card_collected' => 'required|string|max:255',
+//        'card_collected' => 'required|string|max:255',
         'delivery_reference' => 'required|string|max:255',
-        'attache'  => 'required|file|max:204800'
+        'attache'  => 'required|file|max:204800',
+//        'inventory_used' => 'required|array',
+        'inventory_used.*' => 'required|int|min:1|max:100000'
     ];
+
+    protected function rules()
+    {
+        $rules = [];
+        $rules['delivery_reference'] = ['required', 'string', 'max:255'];
+        $rules['attache'] = ['required', 'file', 'max:204800'];
+        foreach ($this->inventories as $inventory) {
+            $rules['inventory_used.' . $inventory->id] = ['required', 'int', 'min:1', 'max:100000'];
+        }
+        return $rules;
+    }
 
     public function mount(Task $task)
     {
@@ -30,10 +47,13 @@ class ActionCollection extends Action
         $this->editable = $this->getEditable($task);
         $this->card_collected = $task->card_collected ?? '';
         $this->delivery_reference = $task->delivery_reference ?? '';
+        $this->inventories = Inventory::query()->latest()->get();
+        $this->inventory_used = [];
     }
 
     public function submitDeliverySlip()
     {
+
         if($this->isRequiredMaterial()) {
             return $this->setRequiredMaterialError();
         }
@@ -41,6 +61,7 @@ class ActionCollection extends Action
         $this->validate();
         $this->storeAttache();
         $this->updateTask();
+        $this->updateInventories();
         $this->updateBlocks();
     }
 
@@ -49,9 +70,19 @@ class ActionCollection extends Action
         $this->storeFile($this->attache, TaskFile::DELIVERY_SLIP_ATTACHMENTS);
     }
 
+    public function updateInventories()
+    {
+        foreach ($this->inventory_used as $inventory_id => $used)
+        {
+            $inventory = Inventory::find($inventory_id);
+            if($inventory) {
+                $inventory->increaseUsed($used);
+            }
+        }
+    }
     public function updateTask()
     {
-        $this->task->card_collected = $this->card_collected;
+//        $this->task->card_collected = $this->card_collected;
         $this->task->delivery_reference = $this->delivery_reference;
         $this->task->stage_id = $this->task->getNextStageId();
         $this->task->update();

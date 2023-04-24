@@ -9,6 +9,10 @@ use App\Http\Livewire\Email\EmailList;
 use App\Http\Livewire\EmailAlert\CreateEmailAlert;
 use App\Http\Livewire\EmailAlert\EditEmailAlert;
 use App\Http\Livewire\EmailAlert\EmailAlertList;
+use App\Http\Livewire\Inventory\AddInventoryStock;
+use App\Http\Livewire\Inventory\CreateInventory;
+use App\Http\Livewire\Inventory\EditInventory;
+use App\Http\Livewire\Inventory\InventoryList;
 use App\Http\Livewire\KanbanDashboard;
 use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
@@ -23,6 +27,8 @@ use App\Http\Livewire\Task\EditForm\ActionsSecret;
 use App\Http\Livewire\Task\EditForm\EditOrderDetails;
 use App\Http\Livewire\Task\EditTask;
 use App\Http\Livewire\TelegramAlert\CreateTelegramAlert;
+use App\Http\Livewire\TelegramAlert\CreateTelegramInventoryAlert;
+use App\Http\Livewire\TelegramAlert\EditInventoryTelegramAlert;
 use App\Http\Livewire\TelegramAlert\EditTelegramAlert;
 use App\Http\Livewire\TelegramAlert\TelegramAlertList;
 use App\Http\Livewire\User\CreateUser;
@@ -111,7 +117,15 @@ Route::middleware('auth')->group(function () {
         Route::prefix('telegram_alerts')->group(function () {
             Route::get('/', TelegramAlertList::class)->name('settings.telegram_alert');
             Route::get('/create', CreateTelegramAlert::class)->name('settings.telegram_alert.create');
+            Route::get('/create-inventory', CreateTelegramInventoryAlert::class)->name('settings.telegram_alert.create-inventory');
             Route::get('/edit/{telegramAlert}', EditTelegramAlert::class)->name('settings.telegram_alert.edit');
+            Route::get('/edit-inventory/{telegramAlert}', EditInventoryTelegramAlert::class)->name('settings.telegram_alert.edit-inventory');
+        });
+        Route::prefix('inventory')->group(function () {
+            Route::get('/', InventoryList::class)->name('settings.inventory-list');
+            Route::get('/create', CreateInventory::class)->name('settings.inventory.create');
+            Route::get('/edit/{inventory}', EditInventory::class)->name('settings.inventory.edit');
+            Route::get('/edit/{inventory}/add-stock', AddInventoryStock::class)->name('settings.inventory.edit.add-stock');
         });
     });
 });

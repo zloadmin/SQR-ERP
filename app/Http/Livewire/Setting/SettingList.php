@@ -47,6 +47,10 @@ class SettingList extends Component
             [
                 'title' => 'Telegram Alert',
                 'link'  => route('settings.telegram_alert')
+            ],
+            [
+                'title' => 'Inventory',
+                'link'  => route('settings.inventory-list')
             ]
         ];
     }

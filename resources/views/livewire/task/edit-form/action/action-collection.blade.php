@@ -13,15 +13,35 @@
                         @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'Delivery Slip'])
                     </div>
                     <div class="col-md-3">
-                        <!--- card_collected Field --->
-                        <div class="form-group">
-                            <input class="form-control @error('card_collected') is-invalid @enderror" type="text" placeholder="Card Collected*" wire:model="card_collected">
-                            @error('card_collected')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                        @foreach($inventories as $inventory)
+                            <!--- card_collected Field --->
+                                <div class="form-group row">
+{{--                                    <div class="group">--}}
+
+
+                                        <label for="inventory_used_{{ $inventory->id }}" class="col-sm-6 col-form-label control-label">{{ $inventory->name }}</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control @error('inventory_used.' . $inventory->id) is-invalid @enderror" type="text" placeholder="Collected" id="inventory_used_{{ $inventory->id }}" wire:model="inventory_used.{{ $inventory->id }}">
+                                            @error('inventory_used.' . $inventory->id)
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
+                                        </div>
+{{--                                    </div>--}}
+
+                                </div>
+                        @endforeach
+
+{{--                        <!--- card_collected Field --->--}}
+{{--                        <div class="form-group">--}}
+{{--                            <input class="form-control @error('card_collected') is-invalid @enderror" type="text" placeholder="Card Collected*" wire:model="card_collected">--}}
+{{--                            @error('card_collected')--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                <strong>{{ $message }}</strong>--}}
+{{--                            </span>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
                     </div>
                     <div class="col-md-3">
                         <!--- delivery_reference Field --->

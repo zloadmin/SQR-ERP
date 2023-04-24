@@ -1,9 +1,14 @@
 <div class="card">
     <div class="card-body">
-        <div class="row justify-content-between mb-2">
-            <div class="col-sm-4">
+        <div class="row  mb-2">
+            <div class="col-sm-3">
                 <a href="{{ route('settings.telegram_alert.create') }}" class="btn btn-danger mb-2">
                     <i class="mdi mdi-plus-circle mr-2"></i> New Telegram Alert
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{ route('settings.telegram_alert.create-inventory') }}" class="btn btn-danger mb-2">
+                    <i class="mdi mdi-plus-circle mr-2"></i> New Telegram Inventory Alert
                 </a>
             </div>
         </div>
