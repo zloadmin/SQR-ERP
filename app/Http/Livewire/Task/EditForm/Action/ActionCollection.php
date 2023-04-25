@@ -35,8 +35,9 @@ class ActionCollection extends Action
         $rules = [];
         $rules['delivery_reference'] = ['required', 'string', 'max:255'];
         $rules['attache'] = ['required', 'file', 'max:204800'];
+        $rules['inventory_used'] = ['required', 'array', 'min:2'];
         foreach ($this->inventories as $inventory) {
-            $rules['inventory_used.' . $inventory->id] = ['required', 'int', 'min:1', 'max:100000'];
+            $rules['inventory_used.' . $inventory->id] = ['int', 'min:1', 'max:100000'];
         }
         return $rules;
     }

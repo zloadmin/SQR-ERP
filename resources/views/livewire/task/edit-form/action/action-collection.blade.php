@@ -21,11 +21,16 @@
 
                                         <label for="inventory_used_{{ $inventory->id }}" class="col-sm-6 col-form-label control-label">{{ $inventory->name }}</label>
                                         <div class="col-sm-6">
-                                            <input class="form-control @error('inventory_used.' . $inventory->id) is-invalid @enderror" type="text" placeholder="Collected" id="inventory_used_{{ $inventory->id }}" wire:model="inventory_used.{{ $inventory->id }}">
+                                            <input class="form-control @error('inventory_used.' . $inventory->id) is-invalid @enderror @error('inventory_used') is-invalid @enderror" type="text" placeholder="Collected" id="inventory_used_{{ $inventory->id }}" wire:model="inventory_used.{{ $inventory->id }}">
                                             @error('inventory_used.' . $inventory->id)
                                             <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            @error('inventory_used')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
 {{--                                    </div>--}}
