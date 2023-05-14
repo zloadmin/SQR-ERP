@@ -14,16 +14,20 @@ class ShowStage extends Component
     public Stage $stage;
     public Collection $tasks;
     public string $search_text = "";
+    public string $stage_start_key;
 
     function mount(Stage $stage)
     {
         $this->stage = $stage;
+        $this->stage_start_key = Stage::getStartKeyById($stage->id);
         $this->tasks = $this->getTasks();
+
     }
 
     private function getTasks(): Collection
     {
-        $result = $this->stage->tasks()->with('tags')->latest();
+
+        $result = $this->stage->tasks()->with('tags')->latest()->orderByDesc($this->stage_start_key);
 
         if ($this->search_text) {
             $result->where(function ($query) {
@@ -33,9 +37,34 @@ class ShowStage extends Component
                 $query->orWhere('contact_email', 'LIKE', '%' . $this->search_text . '%');
             });
         }
-        return $result->get();
+        $tasks  = $result->get();
+        if($this->stage->id != 9) {
+            $this->sortTaskCollection($tasks);
+        }
+        return $tasks;
     }
+    public function sortTaskCollection(Collection &$tasks) : void
+    {
+        $this->sortByTag($tasks, 'Priority');
+        $this->sortByTag($tasks, 'Critical');
 
+    }
+//    public function sortByPriorityTag(Collection &$tasks) : void
+//    {
+//        $tasks = $tasks->sortByDesc(function (Task $task) {
+//            return $task->tags()->where('name', 'Priority')->exists();
+//        });
+//    }
+    public function sortByTag(Collection &$tasks, string $tag) : void
+    {
+        $tasks = $tasks->sortByDesc(function (Task $task) use ($tag) {
+            return $task->tags()->where('name', $tag)->exists();
+        });
+    }
+//    public function sortByTags()
+//    {
+//
+//    }
     public function render()
     {
         return view('livewire.stage.stage');
