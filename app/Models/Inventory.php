@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
 
@@ -16,6 +17,7 @@ class Inventory extends Model
     {
         return $this->hasMany(InventoryStock::class);
     }
+
     public function increaseUsed(int $used)
     {
         $this->update([
@@ -23,14 +25,17 @@ class Inventory extends Model
         ]);
         SendTelegramInventoryAlerts::dispatch($this);
     }
-    public function getCumulativeAttribute() : int
+
+    public function getCumulativeAttribute(): int
     {
         return $this->stocks->sum('quantity');
     }
-    public function getAvailableAttribute() : int
+
+    public function getAvailableAttribute(): int
     {
         return $this->cumulative - $this->used;
     }
+
     public function getTelegramAlertMessage(TelegramAlert $telegramAlert): string
     {
         $result = $telegramAlert->text;
@@ -41,4 +46,16 @@ class Inventory extends Model
         return $result;
     }
 
+    static function getInventoryUsedTaskArray(array $inventory_used): array
+    {
+        $result = [];
+        foreach ($inventory_used as $inventory_id => $used) {
+            $inventory = Inventory::find($inventory_id);
+            if ($inventory) {
+                $result[$inventory->name] = $used;
+            }
+        }
+        return $result;
+
+    }
 }

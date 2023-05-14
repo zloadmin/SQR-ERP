@@ -86,6 +86,7 @@ class ActionCollection extends Action
 //        $this->task->card_collected = $this->card_collected;
         $this->task->delivery_reference = $this->delivery_reference;
         $this->task->stage_id = $this->task->getNextStageId();
+        $this->task->inventory_used = Inventory::getInventoryUsedTaskArray($this->inventory_used);
         $this->task->update();
     }
 

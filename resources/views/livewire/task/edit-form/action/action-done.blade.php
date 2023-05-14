@@ -10,7 +10,19 @@
             <div class="col-md-4">
                 @include('livewire.task.edit-form.action.blocks.files')
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                @if($task->inventory_used)
+                    <h5 class="mt-0 mb-2 font-16">Delivered</h5>
+                    <ul class="list-group list-group-flush">
+                        @foreach($task->inventory_used as $name => $used)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $name }}
+                                <span class="">{{ $used }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
             <div class="col-md-4">
                 <h5 class="mt-0 mb-2 font-16">Statistics</h5>
                 <ul class="list-group list-group-flush">
@@ -28,10 +40,10 @@
                         NET Date
                         <span class="">{{ $start_date->diffInDays($end_date) }}</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Delivered
-                        <span class="">{{ $card_collected }}</span>
-                    </li>
+{{--                    <li class="list-group-item d-flex justify-content-between align-items-center">--}}
+{{--                        Delivered--}}
+{{--                        <span class="">{{ $card_collected }}</span>--}}
+{{--                    </li>--}}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Reference
                         <span class="">{{ $delivery_reference }}</span>

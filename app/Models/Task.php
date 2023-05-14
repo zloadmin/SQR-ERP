@@ -34,6 +34,7 @@ class Task extends Model
         'qr_attachments'           => 'array',
         'tag_list'                 => 'array',
         'google_attachments'       => 'array',
+        'inventory_used'           => 'array',
     ];
 //    protected $appends = [
 //        'tag_list',
@@ -579,7 +580,6 @@ class Task extends Model
     {
         $this->attributes['whatsapp'] = preg_replace('/\s+/', '', $value);
     }
-
 
 
 }
