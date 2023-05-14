@@ -94,13 +94,20 @@ class TaskMessage extends Model
     public function getTelegramText()
     {
         $lines = [];
-        if ($this->user) {
-            $lines[] = 'Task message from: ' . $this->user->getTelegramSender();
-        }
+
         if ($this->task) {
-            $lines[] = 'Task: ' . $this->task->company_name;
+            $lines[] = 'Customer: ' . $this->task->company_name;
         }
-        $lines[] = 'Message:';
+        if ($this->task && $this->user) {
+            $lines[] = '_________________';
+        }
+
+        if ($this->user) {
+            $lines[] = 'From: ' . $this->user->getTelegramSender();
+        }
+
+        $lines[] = '';
+        $lines[] = '---------------';
         $lines[] = $this->text;
         return implode(PHP_EOL, $lines);
     }
