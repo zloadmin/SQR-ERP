@@ -44,8 +44,7 @@ class AuthCodeNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('OTP Code')
-                    ->line(sprintf('Your code: %s.', $this->code))
-                    ->line('Thank you for using our application!');
+                    ->line(sprintf('Your code: %s.', $this->code));
     }
 
 //    /**
