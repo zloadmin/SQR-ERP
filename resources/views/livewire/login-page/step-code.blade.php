@@ -1,7 +1,7 @@
 <div class="card-body p-4">
     <div class="text-center w-75 m-auto">
         <h4 class="text-dark-50 text-center mt-0 font-weight-bold">Sign In</h4>
-        <p class="text-muted mb-4">Code has been sent to <b>{{ $user->email }}</b>.</p>
+        <p class="text-muted mb-4">Code has been sent to <b>{{ $user->email }}</b>. Also check your spam folder.</p>
     </div>
     <form wire:submit.prevent="sendCode">
 
