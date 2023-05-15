@@ -27,7 +27,7 @@ class ShowStage extends Component
     private function getTasks(): Collection
     {
 
-        $result = $this->stage->tasks()->with('tags')->latest()->orderByDesc($this->stage_start_key);
+        $result = $this->stage->tasks()->with('tags');
 
         if ($this->search_text) {
             $result->where(function ($query) {
@@ -37,6 +37,12 @@ class ShowStage extends Component
                 $query->orWhere('contact_email', 'LIKE', '%' . $this->search_text . '%');
             });
         }
+        if($this->stage->id == 9) {
+            $result->orderByDesc($this->stage_start_key);
+        } else {
+            $result->orderBy($this->stage_start_key);
+        }
+
         $tasks  = $result->get();
         if($this->stage->id != 9) {
             $this->sortTaskCollection($tasks);
