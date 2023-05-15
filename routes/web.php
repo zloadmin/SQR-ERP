@@ -14,6 +14,7 @@ use App\Http\Livewire\Inventory\CreateInventory;
 use App\Http\Livewire\Inventory\EditInventory;
 use App\Http\Livewire\Inventory\InventoryList;
 use App\Http\Livewire\KanbanDashboard;
+use App\Http\Livewire\LoginPage;
 use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
 use App\Http\Livewire\SLA\EditSLA;
@@ -53,10 +54,12 @@ use Illuminate\Support\Facades\Route;
 //\App\Jobs\GeneratePreloadQRAttachments::dispatchNow(\App\Models\Task::find(206));
 //exit;
 Route::controller(LoginController::class)->group(function () {
-    Route::get('login', 'showLoginForm')->name('login');
-    Route::post('login', 'login');
+//    Route::get('login', 'showLoginForm')->name('login');
+//    Route::post('login', 'login');
     Route::post('logout', 'logout')->name('logout');
 });
+Route::middleware('guest')->get('login', LoginPage::class)->name('login');
+//Route::post('login', 'login');
 Route::prefix('task-secret')->group(function () {
     Route::get('/edit/{uuid}/actions', ActionsSecret::class)->name('task-secret.task.edit.action');
 });
