@@ -60,7 +60,7 @@ class LoginPage extends Component
 
     public function goToCodeStep(User $user)
     {
-        $this->user = User::query()->first();
+        $this->user = User::where('email', $this->email)->first();
         $this->sent_code = EmailCode::sendCode($this->user);
         $this->step = self::STEP_CODE;
     }
