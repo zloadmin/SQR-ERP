@@ -139,10 +139,10 @@
                     <tr>
                         <td>
                             <b>Printed Cards:</b>
-{{--                            @if ($task->image_of_printed_cards_attachments()->count())--}}
+                            @if ($task->image_of_printed_cards_attachments()->count())
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS]) }}">Download</a>
-{{--                            @endif--}}
+                            @endif
                         </td>
                     </tr>
                     </tbody>
