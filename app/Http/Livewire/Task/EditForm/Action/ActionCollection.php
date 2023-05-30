@@ -88,7 +88,7 @@ class ActionCollection extends Action
         foreach ($this->inventory_used as $inventory_id => $used)
         {
             $inventory = Inventory::find($inventory_id);
-            if($inventory) {
+            if($inventory && intval($used)) {
                 $inventory->increaseUsed($used);
             }
         }
