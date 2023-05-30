@@ -16,7 +16,7 @@ class TaskController extends Controller
     {
         Log::info('API request', $request->toArray());
         $data = [
-            'stage_id'        => 1,
+            'stage_id'        => 4,
             'name'            => $this->getValue($request, 'name'),
             'company_name'    => $this->getValue($request, 'company_name'),
             'it_is'           => $this->getValue($request, 'it_is'),

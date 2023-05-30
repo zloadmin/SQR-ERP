@@ -3,3 +3,5 @@
     @include('livewire.files-block.main_block', ['var_name' => 'card_details_attachments', 'title' => 'Card details attachments'])
     @include('livewire.files-block.main_block', ['var_name' => 'qr_attachments', 'title' => 'QR Attachments'])
 </div>
+
+

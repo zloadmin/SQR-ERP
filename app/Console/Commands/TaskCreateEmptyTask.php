@@ -29,7 +29,7 @@ class TaskCreateEmptyTask extends Command
     public function handle()
     {
         $task = new Task();
-        $task->stage_id = 1;
+        $task->stage_id = 4;
         $task->name = null;
         $task->company_name = null;
         $task->it_is = null;

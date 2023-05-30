@@ -37,6 +37,7 @@
             @enderror
         </div>
         <!--- Instruction* Field --->
+
         <div class="form-group">
             <input class="form-control form-control-light @error('instruction') is-invalid @enderror" type="text" wire:model.defer="instruction" placeholder="Print instruction">
             @error('instruction')
@@ -45,7 +46,17 @@
                         </span>
             @enderror
         </div>
-
+        <!--- Background Field --->
+        <div class="form-group">
+            <input class="form-control form-control-light @error('background') is-invalid @enderror" type="text" wire:model.defer="background" placeholder="Background">
+            @error('background')
+            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6">
         <!--- Design comments Field --->
         <div class="form-group">
             <textarea class="form-control form-control-light @error('design_comments') is-invalid @enderror" wire:model.defer="design_comments" placeholder="Design comments" rows="6"></textarea>
@@ -55,43 +66,6 @@
                         </span>
             @enderror
         </div>
-
-        <!--- Delivery method Field --->
-        <div class="form-group">
-            <input class="form-control form-control-light @error('delivery_method') is-invalid @enderror" type="text" wire:model.defer="delivery_method" placeholder="Delivery method">
-            @error('delivery_method')
-            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-            @enderror
-        </div>
-
-        <!--- Emirate Field --->
-        <div class="form-group">
-            <input class="form-control form-control-light @error('emirate') is-invalid @enderror" type="text" wire:model.defer="emirate" placeholder="Emirate">
-            @error('emirate')
-            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-            @enderror
-        </div>
-
-        <!--- Address Field --->
-        <div class="form-group">
-            <textarea class="form-control form-control-light @error('address') is-invalid @enderror" wire:model.defer="address" placeholder="Address" rows="3" style="height: 91px"></textarea>
-            @error('address')
-            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-            @enderror
-        </div>
-
-
-
-
-    </div>
-    <div class="col-md-6">
-
         <!--- Card details Field --->
         <div class="form-group">
             <textarea class="form-control form-control-light @error('card_details') is-invalid @enderror" wire:model.defer="card_details" placeholder="Card details" rows="6"></textarea>
@@ -102,9 +76,4 @@
             @enderror
         </div>
     </div>
-
-
-
-
-
 </div>

@@ -6,7 +6,7 @@
     <div class="content-page">
         <div class="content">
             @include('layouts.dashboard.topbar')
-            <div class="container-fluid" style="width: 100%; max-width:100%; /*background: #dbe9ff*/">
+            <div class="container-fluid" style="width: 100%; max-width:100%; background: #dbe9ff">
                 @include('layouts.dashboard.page-title')
                 @include('layouts.notifications')
                 {{ $slot }}
