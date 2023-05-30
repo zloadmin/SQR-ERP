@@ -21,7 +21,7 @@ class ActionPrintFile extends Action
 
 
     protected $rules = [
-        'attache'  => 'required|file|max:204800'
+        'attache'  => 'required|file|max:4194304'
     ];
 
     public function mount(Task $task)

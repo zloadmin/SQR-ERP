@@ -37,8 +37,9 @@
             @enderror
         </div>
         <!--- Instruction* Field --->
+
         <div class="form-group">
-            <input class="form-control form-control-light @error('instruction') is-invalid @enderror" type="text" wire:model.defer="instruction" placeholder="Instruction*">
+            <input class="form-control form-control-light @error('instruction') is-invalid @enderror" type="text" wire:model.defer="instruction" placeholder="Print instruction">
             @error('instruction')
             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

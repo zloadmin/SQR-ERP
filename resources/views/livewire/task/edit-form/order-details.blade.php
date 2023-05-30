@@ -1,263 +1,152 @@
-<div class="card">
-    <div class="card-header modal-colored-header bg-primary">
-        <div class="d-flex justify-content-between align-items-center">
-            <h4>Order details</h4>
-            @if ($editable)
-                <button type="button" class="btn btn-danger" wire:click="$emit('showModal', 'task.edit-form.edit-order-details', '{{ $task->id }}')" >
-                    Edit
-                </button>
-            @endif
-        </div>
-    </div>
-    <div class="card-body p-0">
-{{--        Table desktop--}}
-        <table class="table table-bordered table-centered mb-0 border-0 d-none d-lg-table" style="    margin-top: -1px;">
-            <tbody>
-                <tr>
-                    <td style="width: 33%">
-                        @if ($task->company_name)
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header modal-colored-header bg-primary">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>Order details</h4>
+                    @if ($editable)
+                        <button type="button" class="btn btn-danger"
+                                wire:click="$emit('showModal', 'task.edit-form.edit-order-details', '{{ $task->id }}')">
+                            Edit
+                        </button>
+                    @endif
+                </div>
+            </div>
+            <div class="card-body p-0">
+                {{--        Table desktop--}}
+                <table class="table table-bordered table-centered mb-0 border-0"
+                       style="    margin-top: -1px;">
+                    <tbody>
+                    <tr>
+                        <td style="width: 50%">
                             <p><b>Company name:</b> {{ $task->company_name }}</p>
-                        @endif
-                    </td>
-                    <td style="width: 33%">
-                        @if ($task->total_cards)
-                            <p><b>Total cards:</b> {{ $task->total_cards }}</p>
-                        @endif
-                    </td>
-                    <td style="width: 34%">
-                        @if ($task->design_attachments()->count())
-                            <p>
-                                <b>Design attachments:</b>
-                                {{ $task->design_attachments()->count() }} files
-                                @if($latest_design_attachments_attachment)
-                                    <br>
-                                    {!! $latest_design_attachments_attachment->getHTMLLink() !!}
-                                @endif
+                        </td>
+                        <td style="width: 50%; vertical-align: top !important;" rowspan="6">
+                            <p><b>Card details:</b><br>
+                                {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
                             </p>
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @if ($task->it_is)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <p><b>It is:</b> {{ $task->it_is }}</p>
-                        @endif
-                    </td>
-                    <td>
-                        @if ($task->background)
-                            <p><b>Background:</b> {{ $task->background }}</p>
-                        @endif
-                    </td>
-                    <td>
-                        @if ($task->card_details_attachments()->count())
-                            <p>
-                                <b>Details attachments:</b>
-                                {{ $task->card_details_attachments()->count() }} files
-                                @if($latest_card_details_attachment)
-                                    <br>
-                                    {!! $latest_card_details_attachment->getHTMLLink() !!}
-                                @endif
-                            </p>
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @if($task->material)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <p><b>Material:</b> {{ $task->material }}</p>
-                        @endif
-                    </td>
-                    <td>
-                        @if ($task->instruction)
-                            <p><b>Instruction:</b> {!! WL($task->instruction) !!}</p>
-                        @endif
-                    </td>
-                    <td>
-                        @if($task->qr_attachments()->count())
-                            <p>
-                                <b>QR attachments:</b>
-                                <br>
-                                @foreach($task->qr_attachments()->get() as $attachment)
-                                    {!! $attachment->getHTMLLink() !!}
-                                    <br>
-                                @endforeach
-                                {{ $task->qr_attachments()->count() }} files
-                            </p>
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @if($task->design_comments)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><b>Total cards:</b> {{ $task->total_cards }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><b>Print instruction:</b> {!! WL($task->instruction) !!}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height: 150px; vertical-align: top!important;">
                             <p>
                                 <b>Design comments:</b>
                                 <br>
                                 {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
                             </p>
-                        @endif
-                    </td>
-                    <td>
-                        @if ($task->card_details)
-                            <p><b>Card details:</b><br>
-                                {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
-                            </p>
-                        @endif
-                    </td>
-                    <td>
-                        @if($task->google_attachments && is_array($task->google_attachments))
-                            <p><b>Google attachments:</b><br>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!-- end card-body -->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="height: 558px">
+            <div class="card-header modal-colored-header bg-primary">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>Attachments</h4>
+                    @if ($editable)
+                        <button type="button" class="btn btn-danger"
+                                wire:click="$emit('showModal', 'task.edit-form.edit-order-details', '{{ $task->id }}')">
+                            Edit
+                        </button>
+                    @endif
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered table-centered mb-0 border-0"
+                       style="    margin-top: -1px; height: 100%">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <b>QR attachments:</b>
+                            @if($task->qr_attachments()->count())
+                                <a target="_blank" style="font-weight: bold"
+                                   href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::QR_ATTACHMENTS]) }}">Download</a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Details attachments:</b>
+                            @if ($task->card_details_attachments()->count())
+                                <a target="_blank" style="font-weight: bold"
+                                   href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::CARD_DETAILS_ATTACHMENTS]) }}">Download</a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Design attachments:</b>
+                            @if ($task->design_attachments()->count())
+                                <a target="_blank" style="font-weight: bold"
+                                   href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::DESIGN_ATTACHMENTS]) }}">Download</a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Google attachments:</b>
+                            @if($task->google_attachments && is_array($task->google_attachments))
                                 @foreach($task->google_attachments as $google_attachment)
-                                    {!! WL($google_attachment) !!}
+                                    <a href="{{ $google_attachment }}" target="_blank" style="font-weight: bold">Open</a>
                                 @endforeach
-                            </p>
-                        @endif
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Approved Content:</b>
+                            @if($latest_content_file_attachment)
+                                <p>
+                                    @if($latest_content_file_attachment)
+                                        <a href="{{ $latest_content_file_attachment->getUrl() }}" target="_blank" style="font-weight: bold">Open</a>
+                                    @endif
+                                </p>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Print File:</b>
+                            <a target="_blank" style="font-weight: bold"
+                               href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::PRINTING_FILE_ATTACHMENTS]) }}">Download</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Printed Cards:</b>
+                            @if ($task->image_of_printed_cards_attachments()->count())
+                                <a target="_blank" style="font-weight: bold"
+                                   href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS]) }}">Download</a>
+                            @endif
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!-- end card-body -->
+        </div>
+    </div>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @if($latest_design_file_attachment)
-                            <p>
-                                <b>Approved Design:</b>
-                                @if($latest_design_file_attachment)
-                                    <br>
-                                    {!!  $latest_design_file_attachment->getHTMLLink()  !!}
-                                @endif
-                            </p>
-                        @endif
-                    </td>
-                    <td>
-                        @if($latest_content_file_attachment)
-                            <p>
-                                <b>Approved Content:</b>
-                                @if($latest_content_file_attachment)
-                                    <br>
-                                    {!! $latest_content_file_attachment->getHTMLLink()  !!}
-                                @endif
-                            </p>
-                        @endif
-                    </td>
-                    <td>
-                        @if($latest_print_file_attachment)
-                            <p>
-                                <b>Print File:</b>
-                                @if($latest_print_file_attachment)
-                                    <br>
-                                    {!! $latest_print_file_attachment->getHTMLLink() !!}
-                                @endif
-                            </p>
-                        @endif
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-{{--        Table mobile--}}
-        <table class="table table-bordered table-centered mb-0 border-0 d-lg-none d-table" style="    margin-top: -1px;">
-            <tbody>
-            <tr>
-                <td style="width: 50%">
-                    <p><b>Company name:</b> {{ $task->company_name }}</p>
-                </td>
-                <td style="width: 50%">
-                    <p><b>Total cards:</b> {{ $task->total_cards }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <b>Design attachments:</b>
-                        {{ $task->design_attachments()->count() }} files
-                        @if($latest_design_attachments_attachment)
-                            <br>
-                            {!! $latest_design_attachments_attachment->getHTMLLink() !!}
-                        @endif
-                    </p>
-                </td>
-                <td>
-                    <p><b>It is:</b> {{ $task->it_is }}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><b>Background:</b> {{ $task->background }}</p>
-                </td>
-                <td>
-                    <p>
-                        <b>Details attachments:</b>
-                        {{ $task->card_details_attachments()->count() }} files
-                        @if($latest_card_details_attachment)
-                            <br>
-                            {!! $latest_card_details_attachment->getHTMLLink() !!}
-                        @endif
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><b>Material:</b> {{ $task->material }}</p>
-                </td>
-                <td>
-                    <p><b>Instruction:</b> {!! WL($task->instruction) !!}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <b>QR attachments:</b>
-                        {{ $task->qr_attachments()->count() }} files
-                        @if($latest_qr_attachments_attachment)
-                            <br>
-                            {!! $latest_qr_attachments_attachment->getHTMLLink() !!}
-                        @endif
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <b>Design comments:</b>
-                        <br>
-                        {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
-                    </p>
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <p><b>Card details:</b><br>
-                        {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <b>Approved Design:</b>
-                        @if($latest_design_file_attachment)
-                            <br>
-                            {!!  $latest_design_file_attachment->getHTMLLink()  !!}
-                        @endif
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        <b>Approved Content:</b>
-                        @if($latest_content_file_attachment)
-                            <br>
-                            {!! $latest_content_file_attachment->getHTMLLink()  !!}
-                        @endif
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        <b>Print File:</b>
-                        @if($latest_print_file_attachment)
-                            <br>
-                            {!! $latest_print_file_attachment->getHTMLLink() !!}
-                        @endif
-                    </p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div> <!-- end card-body -->
 </div>

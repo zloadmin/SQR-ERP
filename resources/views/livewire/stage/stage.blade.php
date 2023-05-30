@@ -1,6 +1,6 @@
 <div class="tasks">
 
-    <h5 class="mt-0 task-header text-uppercase">
+    <h5 class="mt-0 task-header text-uppercase" style="/*background: #b2d2ff*/">
         <div class="d-flex justify-content-between align-items-center">
             <span>{{ $stage->name }} ({{ count($this->tasks) }})</span>
             @if ($stage->id == 1)

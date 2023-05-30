@@ -15,6 +15,7 @@ class ActionDone extends Action
     public $content_attache;
     public $print_file_attache;
     public $delivery_slip_attache;
+    public $image_of_printed_cards_attache;
     public Carbon $start_date;
     public $end_date;
     public string $card_collected;
@@ -31,6 +32,7 @@ class ActionDone extends Action
         $this->content_attache = $task->getLastContentAttachment();
         $this->print_file_attache = $task->getLastPrintFileAttachment();
         $this->delivery_slip_attache = $task->getLastDeliverySlipAttachment();
+        $this->image_of_printed_cards_attache = $task->getLastImageOfPrintedCardsAttachments();
         $this->start_date = $this->getStartDate();
         $this->end_date = $this->getEndDate();
     }

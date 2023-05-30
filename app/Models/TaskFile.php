@@ -28,6 +28,7 @@ class TaskFile extends Model
     const CONTENT_ATTACHMENTS = 'content_attachments';
     const PRINTING_FILE_ATTACHMENTS = 'printing_file_attachments';
     const DELIVERY_SLIP_ATTACHMENTS = 'delivery_slip_attachments';
+    const IMAGE_OF_PRINTED_CARDS_ATTACHMENTS = 'image_of_printed_cards_attachments';
 
     const TYPES = [
         self::DESIGN_ATTACHMENTS,
@@ -40,6 +41,7 @@ class TaskFile extends Model
         self::CONTENT_ATTACHMENTS,
         self::PRINTING_FILE_ATTACHMENTS,
         self::DELIVERY_SLIP_ATTACHMENTS,
+        self::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS,
 
     ];
     const MAIN_FIELDS = [

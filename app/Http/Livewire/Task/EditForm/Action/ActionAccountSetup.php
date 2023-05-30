@@ -24,7 +24,7 @@ class ActionAccountSetup extends Action
         'username'   => 'required|string|max:255',
         'password'   => 'required|string|max:255',
         'next_stage' => 'required|in:2,4',
-        'attache'    => 'required|file|max:204800',
+        'attache'    => 'required|file|max:4194304',
     ];
 
     public function mount(Task $task)
@@ -83,7 +83,7 @@ class ActionAccountSetup extends Action
             'username'   => 'required|string|max:255',
             'password'   => 'required|string|max:255',
             'next_stage' => 'required|in:2,4',
-            'attache'    => 'required|file|max:204800',
+            'attache'    => 'required|file|max:4194304',
         ];
     }
 

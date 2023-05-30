@@ -14,7 +14,12 @@
             <div class="col-md-4">
                 @include('livewire.task.edit-form.action.blocks.files')
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                @if($task->instruction)
+                    <h5 class="mt-0 mb-2 font-16">Print instruction</h5>
+                    <p>{{ $task->instruction }}</p>
+                @endif
+            </div>
             <div class="col-md-4">
                 @if ($editable)
                     @include('livewire.task.edit-form.action.blocks.approve-form')

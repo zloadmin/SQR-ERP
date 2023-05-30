@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', CreateTask::class)->name('task.create');
         Route::get('/edit/{task}', EditTask::class)->name('task.edit');
         Route::get('/edit/{task_uuid}/actions', EditOrderDetails::class)->name('task.edit.edit-order-detail');
+        Route::get('/download/{task_uuid}/{type}', [AttachmentController::class, 'download'])->name('task.download-attachments');
     });
     // TODO: Delete end
 

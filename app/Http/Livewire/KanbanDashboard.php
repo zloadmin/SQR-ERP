@@ -13,7 +13,8 @@ class KanbanDashboard extends Component
     public function render()
     {
         return view('livewire.kanban-dashboard')
-            ->layout('layouts.dashboard-kanban');
+            ->layout('layouts.dashboard-kanban')
+            ;
     }
 
 }

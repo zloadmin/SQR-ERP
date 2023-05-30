@@ -21,6 +21,10 @@ trait HasUUID
     {
         return self::uuid($slug)->first();
     }
+    static function firstOrFailByUUID(string $slug)
+    {
+        return self::uuid($slug)->firstOrFail();
+    }
     public function scopeUuid($query, $slug)
     {
         $query->where('uuid', $slug);

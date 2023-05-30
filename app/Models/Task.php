@@ -286,9 +286,17 @@ class Task extends Model
         return $this->getFilesByType(TaskFile::QR_ATTACHMENTS);
     }
 
+    public function attachments()
+    {
+        return $this->hasMany(TaskFile::class);
+    }
     public function design_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_ATTACHMENTS);
+    }
+    public function image_of_printed_cards_attachments()
+    {
+        return $this->hasMany(TaskFile::class)->where('type', TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
     }
 
     public function design_files()
@@ -379,6 +387,10 @@ class Task extends Model
     public function getLastDeliverySlipAttachment()
     {
         return $this->getLastFile(TaskFile::DELIVERY_SLIP_ATTACHMENTS);
+    }
+    public function getLastImageOfPrintedCardsAttachments()
+    {
+        return $this->getLastFile(TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
     }
 
     public function getLastNotApproveDesignFile()

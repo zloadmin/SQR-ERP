@@ -13,6 +13,8 @@ class ActionCollection extends Action
 {
     use WithFileUploads;
 
+    public $delivery_slip;
+    public $image_of_printed_cards;
     public $attache;
     public string $card_collected = '';
     public string $delivery_reference = '';
@@ -25,7 +27,7 @@ class ActionCollection extends Action
     protected $rules = [
 //        'card_collected' => 'required|string|max:255',
         'delivery_reference' => 'required|string|max:255',
-        'attache'  => 'required|file|max:204800',
+        'attache'  => 'required|file|max:4194304',
 //        'inventory_used' => 'required|array',
         'inventory_used.*' => 'required|int|min:1|max:100000'
     ];
@@ -34,7 +36,8 @@ class ActionCollection extends Action
     {
         $rules = [];
         $rules['delivery_reference'] = ['required', 'string', 'max:255'];
-        $rules['attache'] = ['required', 'file', 'max:204800'];
+        $rules['delivery_slip'] = ['required', 'file', 'max:4194304'];
+        $rules['image_of_printed_cards'] = ['required', 'file', 'max:4194304'];
         $rules['inventory_used'] = ['required', 'array', 'min:2'];
         foreach ($this->inventories as $inventory) {
             $rules['inventory_used.' . $inventory->id] = ['int', 'min:1', 'max:100000'];
@@ -60,15 +63,24 @@ class ActionCollection extends Action
         }
 
         $this->validate();
-        $this->storeAttache();
+        $this->storeAttachments();
         $this->updateTask();
         $this->updateInventories();
         $this->updateBlocks();
     }
 
-    public function storeAttache()
+    public function storeAttachments()
     {
-        $this->storeFile($this->attache, TaskFile::DELIVERY_SLIP_ATTACHMENTS);
+        $this->storeDeliverySlip();
+        $this->storeImageOfPrintedCards();
+    }
+    public function storeDeliverySlip()
+    {
+        $this->storeFile($this->delivery_slip, TaskFile::DELIVERY_SLIP_ATTACHMENTS);
+    }
+    public function storeImageOfPrintedCards()
+    {
+        $this->storeFile($this->image_of_printed_cards, TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
     }
 
     public function updateInventories()

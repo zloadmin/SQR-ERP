@@ -4,7 +4,7 @@
             <livewire:task.edit-form.actions :task="$task" :editable="auth()->user()->canEditActions($task)" />
         @endif
         @if(auth()->user()->canShowOrderDetails($task))
-            <livewire:task.edit-form.order-details :task="$task" :editable="auth()->user()->canEditOrderDetails($task)" />
+                <livewire:task.edit-form.order-details :task="$task" :editable="auth()->user()->canEditOrderDetails($task)" />
         @endif
         @if(auth()->user()->canShowDeliveryDetails($task))
             <livewire:task.edit-form.delivery-details :task="$task" :editable="auth()->user()->canEditDeliveryDetails($task)" />
