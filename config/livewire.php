@@ -107,6 +107,7 @@ return [
         ],
         'max_upload_time' => 60, // Max duration (in minutes) before an upload gets invalidated.
 
+
     ],
 
     /*
