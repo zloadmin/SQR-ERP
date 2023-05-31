@@ -68,7 +68,7 @@
                     <h4>Attachments</h4>
                     @if ($editable)
                         <button type="button" class="btn btn-danger"
-                                wire:click="$emit('showModal', 'task.edit-form.edit-order-details', '{{ $task->id }}')">
+                                wire:click="$emit('showModal', 'task.edit-form.edit-order-attachments', '{{ $task->id }}')">
                             Edit
                         </button>
                     @endif

@@ -7,7 +7,11 @@
             </button>
         </div>
         <div class="modal-body">
-            @include('livewire.task.edit-form.order-details-form')
+            <form wire:submit.prevent="editOrderDetails" id="editOrderDetailsForm">
+                @include('livewire.task.create-task-form.rows.main-row')
+
+            </form>
+
         </div>
         <div class="modal-footer">
             <!--- Create Field --->
