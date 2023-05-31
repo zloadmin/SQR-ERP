@@ -19,40 +19,54 @@
                     <tbody>
                     <tr>
                         <td style="width: 50%">
-                            <p><b>Company name:</b> {{ $task->company_name }}</p>
+                            @if($task->company_name)
+                                <p><b>Company name:</b> {{ $task->company_name }}</p>
+                            @endif
                         </td>
                         <td style="width: 50%; vertical-align: top !important;" rowspan="6">
-                            <p><b>Card details:</b><br>
-                                {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
-                            </p>
+                            @if($task->card_details)
+                                <p><b>Card details:</b><br>
+                                    {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
+                                </p>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p><b>It is:</b> {{ $task->it_is }}</p>
+                            @if($task->it_is)
+                                <p><b>It is:</b> {{ $task->it_is }}</p>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p><b>Material:</b> {{ $task->material }}</p>
+                            @if($task->material)
+                                <p><b>Material:</b> {{ $task->material }}</p>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p><b>Total cards:</b> {{ $task->total_cards }}</p>
+                            @if($task->total_cards)
+                                <p><b>Total cards:</b> {{ $task->total_cards }}</p>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p><b>Print instruction:</b> {!! WL($task->instruction) !!}</p>
+                            @if($task->instruction)
+                                <p><b>Print instruction:</b> {!! WL($task->instruction) !!}</p>
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td style="height: 150px; vertical-align: top!important;">
                             <p>
-                                <b>Design comments:</b>
-                                <br>
-                                {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
+                                @if($task->design_comments)
+                                    <b>Design comments:</b>
+                                    <br>
+                                    {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
+                                @endif
                             </p>
                         </td>
                     </tr>
@@ -80,8 +94,8 @@
                     <tbody>
                     <tr>
                         <td>
-                            <b>QR attachments:</b>
                             @if($task->qr_attachments()->count())
+                                <b>QR attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::QR_ATTACHMENTS]) }}">Download</a>
                             @endif
@@ -89,8 +103,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Details attachments:</b>
                             @if ($task->card_details_attachments()->count())
+                                <b>Details attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::CARD_DETAILS_ATTACHMENTS]) }}">Download</a>
                             @endif
@@ -98,8 +112,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Design attachments:</b>
                             @if ($task->design_attachments()->count())
+                                <b>Design attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::DESIGN_ATTACHMENTS]) }}">Download</a>
                             @endif
@@ -107,8 +121,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Google attachments:</b>
                             @if($task->google_attachments && is_array($task->google_attachments))
+                                <b>Google attachments:</b>
                                 @foreach($task->google_attachments as $google_attachment)
                                     <a href="{{ $google_attachment }}" target="_blank" style="font-weight: bold">Open</a>
                                 @endforeach
@@ -117,8 +131,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Approved Content:</b>
                             @if($latest_content_file_attachment)
+                                <b>Approved Content:</b>
                                 <p>
                                     @if($latest_content_file_attachment)
                                         <a href="{{ $latest_content_file_attachment->getUrl() }}" target="_blank" style="font-weight: bold">Open</a>
@@ -129,8 +143,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Print File:</b>
                             @if ($task->print_file_attachments()->count())
+                                <b>Print File:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::PRINTING_FILE_ATTACHMENTS]) }}">Download</a>
                             @endif
@@ -138,8 +152,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>Printed Cards:</b>
                             @if ($task->image_of_printed_cards_attachments()->count())
+                                <b>Printed Cards:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS]) }}">Download</a>
                             @endif

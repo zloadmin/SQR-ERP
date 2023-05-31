@@ -1,5 +1,5 @@
 <div class="modal-dialog modal-full-width modal-dialog-scrollable">
-    <div class="modal-content">
+    <div class="modal-content" style="background: #dbe9ff">
         <div class="modal-header">
             <div class="d-flex justify-content-between align-items-center">
                 @if (auth()->user()->canEditTask($task))

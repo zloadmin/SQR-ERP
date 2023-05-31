@@ -17,7 +17,9 @@
             <div class="col-md-4">
                 @if($task->instruction)
                     <h5 class="mt-0 mb-2 font-16">Print instruction</h5>
-                    <p>{{ $task->instruction }}</p>
+                    <div class="alert alert-danger">
+                        {{ $task->instruction }}
+                    </div>
                 @endif
             </div>
             <div class="col-md-4">
