@@ -22,13 +22,20 @@ class TaskFile extends Model
     const CARD_DETAILS_ATTACHMENTS = 'card_details_attachments';
     const QR_ATTACHMENTS = 'qr_attachments';
     const PRELOAD_QR_ATTACHMENTS = 'preload_qr_attachments';
-    const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
-    const EXIST_CARD_DETAILS_ATTACHMENTS = 'exist_card_details_attachments';
-    const EXIST_QR_ATTACHMENTS = 'exist_qr_attachments';
     const CONTENT_ATTACHMENTS = 'content_attachments';
     const PRINTING_FILE_ATTACHMENTS = 'printing_file_attachments';
     const DELIVERY_SLIP_ATTACHMENTS = 'delivery_slip_attachments';
     const IMAGE_OF_PRINTED_CARDS_ATTACHMENTS = 'image_of_printed_cards_attachments';
+
+
+    const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
+    const EXIST_CARD_DETAILS_ATTACHMENTS = 'exist_card_details_attachments';
+    const EXIST_QR_ATTACHMENTS = 'exist_qr_attachments';
+
+    const EXIST_CONTENT_ATTACHMENTS = 'exist_content_attachments';
+    const EXIST_PRINTING_FILE_ATTACHMENTS = 'exist_printing_file_attachments';
+    const EXIST_IMAGE_OF_PRINTED_CARDS_ATTACHMENTS = 'exist_image_of_printed_cards_attachments';
+
 
     const TYPES = [
         self::DESIGN_ATTACHMENTS,
@@ -49,10 +56,26 @@ class TaskFile extends Model
         self::CARD_DETAILS_ATTACHMENTS,
         self::QR_ATTACHMENTS,
     ];
+    const ALL_FIELDS = [
+        self::DESIGN_ATTACHMENTS,
+        self::CARD_DETAILS_ATTACHMENTS,
+        self::QR_ATTACHMENTS,
+        self::CONTENT_ATTACHMENTS,
+        self::PRINTING_FILE_ATTACHMENTS,
+        self::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS
+    ];
     const EXIST_MAIN_FIELDS = [
         self::EXIST_DESIGN_ATTACHMENTS,
         self::EXIST_CARD_DETAILS_ATTACHMENTS,
         self::EXIST_QR_ATTACHMENTS,
+    ];
+    const EXIST_ALL_FIELDS = [
+        self::EXIST_DESIGN_ATTACHMENTS,
+        self::EXIST_CARD_DETAILS_ATTACHMENTS,
+        self::EXIST_QR_ATTACHMENTS,
+        self::EXIST_CONTENT_ATTACHMENTS,
+        self::EXIST_PRINTING_FILE_ATTACHMENTS,
+        self::EXIST_IMAGE_OF_PRINTED_CARDS_ATTACHMENTS,
     ];
 
     /**

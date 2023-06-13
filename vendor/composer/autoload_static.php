@@ -7,43 +7,43 @@ namespace Composer\Autoload;
 class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
 {
     public static $files = array (
+        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        '972fda704d680a3a53c68e34e193cb22' => __DIR__ . '/..' . '/react/promise-timer/src/functions_include.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '972fda704d680a3a53c68e34e193cb22' => __DIR__ . '/..' . '/react/promise-timer/src/functions_include.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
-        '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
-        '3109cb1a231dcd04bee1f9f620d46975' => __DIR__ . '/..' . '/paragonie/sodium_compat/autoload.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         'cea474b4340aa9fa53661e887a21a316' => __DIR__ . '/..' . '/react/promise-stream/src/functions_include.php',
-        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
-        'b2dcc844ff5a323a022b9b68cf5e2378' => __DIR__ . '/..' . '/windwalker/string/functions.php',
+        '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
+        '7b43e7494e8d43b65b21fcb3798c1b14' => __DIR__ . '/..' . '/windwalker/utilities/src/bootstrap.php',
+        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
+        '3109cb1a231dcd04bee1f9f620d46975' => __DIR__ . '/..' . '/paragonie/sodium_compat/autoload.php',
+        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
+        'b2dcc844ff5a323a022b9b68cf5e2378' => __DIR__ . '/..' . '/windwalker/string/functions.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '601bf5295f4f86b2c9aa6885006f8ce5' => __DIR__ . '/..' . '/werneckbh/qr-code/src/helpers/constants.php',
         '550b6372332081faf3fe4980a1884cf2' => __DIR__ . '/..' . '/werneckbh/qr-code/src/helpers/functions.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
-        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
-        '7b43e7494e8d43b65b21fcb3798c1b14' => __DIR__ . '/..' . '/windwalker/utilities/src/bootstrap.php',
         '37164d67dfa3e1f8f5aadbef99b24337' => __DIR__ . '/../..' . '/app/Helpers/autolinker.php',
     );
 
@@ -54,7 +54,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         ),
         'Z' => 
         array (
-            'ZipStream\\' => 10,
             'ZanySoft\\Zip\\' => 13,
         ),
         'W' => 
@@ -108,7 +107,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
             'Spatie\\Ignition\\' => 16,
             'Spatie\\FlareClient\\' => 19,
             'Spatie\\Backtrace\\' => 17,
-            'STS\\ZipStream\\' => 14,
         ),
         'R' => 
         array (
@@ -151,7 +149,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         ),
         'M' => 
         array (
-            'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
         ),
         'L' => 
@@ -228,10 +225,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
-        ),
-        'ZipStream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
         ),
         'ZanySoft\\Zip\\' => 
         array (
@@ -409,10 +402,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
         ),
-        'STS\\ZipStream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src',
-        ),
         'RingCentral\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/ringcentral/psr7/src',
@@ -521,10 +510,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
-        ),
-        'MyCLabs\\Enum\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'Monolog\\' => 
         array (
@@ -737,7 +722,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Events\\UpdateTaskStage' => __DIR__ . '/../..' . '/app/Events/UpdateTaskStage.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Api\\TaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TaskController.php',
-        'App\\Http\\Controllers\\AttachmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AttachmentController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -757,12 +741,7 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Http\\Livewire\\EmailAlert\\EditEmailAlert' => __DIR__ . '/../..' . '/app/Http/Livewire/EmailAlert/EditEmailAlert.php',
         'App\\Http\\Livewire\\EmailAlert\\EmailAlertList' => __DIR__ . '/../..' . '/app/Http/Livewire/EmailAlert/EmailAlertList.php',
         'App\\Http\\Livewire\\Email\\EmailList' => __DIR__ . '/../..' . '/app/Http/Livewire/Email/EmailList.php',
-        'App\\Http\\Livewire\\Inventory\\AddInventoryStock' => __DIR__ . '/../..' . '/app/Http/Livewire/Inventory/AddInventoryStock.php',
-        'App\\Http\\Livewire\\Inventory\\CreateInventory' => __DIR__ . '/../..' . '/app/Http/Livewire/Inventory/CreateInventory.php',
-        'App\\Http\\Livewire\\Inventory\\EditInventory' => __DIR__ . '/../..' . '/app/Http/Livewire/Inventory/EditInventory.php',
-        'App\\Http\\Livewire\\Inventory\\InventoryList' => __DIR__ . '/../..' . '/app/Http/Livewire/Inventory/InventoryList.php',
         'App\\Http\\Livewire\\KanbanDashboard' => __DIR__ . '/../..' . '/app/Http/Livewire/KanbanDashboard.php',
-        'App\\Http\\Livewire\\LoginPage' => __DIR__ . '/../..' . '/app/Http/Livewire/LoginPage.php',
         'App\\Http\\Livewire\\Modal\\ConfirmDeleteModal' => __DIR__ . '/../..' . '/app/Http/Livewire/Modal/ConfirmDeleteModal.php',
         'App\\Http\\Livewire\\SLA\\CreateSLA' => __DIR__ . '/../..' . '/app/Http/Livewire/SLA/CreateSLA.php',
         'App\\Http\\Livewire\\SLA\\EditSLA' => __DIR__ . '/../..' . '/app/Http/Livewire/SLA/EditSLA.php',
@@ -801,10 +780,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Http\\Livewire\\Task\\EditTask' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditTask.php',
         'App\\Http\\Livewire\\Task\\ShowEmptyTask' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/ShowEmptyTask.php',
         'App\\Http\\Livewire\\Task\\ShowTask' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/ShowTask.php',
-        'App\\Http\\Livewire\\TelegramAlert\\CreateTelegramAlert' => __DIR__ . '/../..' . '/app/Http/Livewire/TelegramAlert/CreateTelegramAlert.php',
-        'App\\Http\\Livewire\\TelegramAlert\\CreateTelegramInventoryAlert' => __DIR__ . '/../..' . '/app/Http/Livewire/TelegramAlert/CreateTelegramInventoryAlert.php',
-        'App\\Http\\Livewire\\TelegramAlert\\EditInventoryTelegramAlert' => __DIR__ . '/../..' . '/app/Http/Livewire/TelegramAlert/EditInventoryTelegramAlert.php',
-        'App\\Http\\Livewire\\TelegramAlert\\EditTelegramAlert' => __DIR__ . '/../..' . '/app/Http/Livewire/TelegramAlert/EditTelegramAlert.php',
         'App\\Http\\Livewire\\TelegramAlert\\TelegramAlertList' => __DIR__ . '/../..' . '/app/Http/Livewire/TelegramAlert/TelegramAlertList.php',
         'App\\Http\\Livewire\\Traits\\HasTaskFiles' => __DIR__ . '/../..' . '/app/Http/Livewire/Traits/HasTaskFiles.php',
         'App\\Http\\Livewire\\User\\CreateUser' => __DIR__ . '/../..' . '/app/Http/Livewire/User/CreateUser.php',
@@ -827,10 +802,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Jobs\\EmailAlertExpiredSLA' => __DIR__ . '/../..' . '/app/Jobs/EmailAlertExpiredSLA.php',
         'App\\Jobs\\GeneratePreloadQRAttachments' => __DIR__ . '/../..' . '/app/Jobs/GeneratePreloadQRAttachments.php',
         'App\\Jobs\\GenerateQRCodeAttachment' => __DIR__ . '/../..' . '/app/Jobs/GenerateQRCodeAttachment.php',
-        'App\\Jobs\\SendTelegramAlert' => __DIR__ . '/../..' . '/app/Jobs/SendTelegramAlert.php',
-        'App\\Jobs\\SendTelegramAlerts' => __DIR__ . '/../..' . '/app/Jobs/SendTelegramAlerts.php',
-        'App\\Jobs\\SendTelegramInventoryAlert' => __DIR__ . '/../..' . '/app/Jobs/SendTelegramInventoryAlert.php',
-        'App\\Jobs\\SendTelegramInventoryAlerts' => __DIR__ . '/../..' . '/app/Jobs/SendTelegramInventoryAlerts.php',
         'App\\Jobs\\SendWebHook' => __DIR__ . '/../..' . '/app/Jobs/SendWebHook.php',
         'App\\Jobs\\SendWebHooks' => __DIR__ . '/../..' . '/app/Jobs/SendWebHooks.php',
         'App\\Jobs\\UpdateSQRCardOrderStatus' => __DIR__ . '/../..' . '/app/Jobs/UpdateSQRCardOrderStatus.php',
@@ -838,9 +809,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Mail\\SimpleEmail' => __DIR__ . '/../..' . '/app/Mail/SimpleEmail.php',
         'App\\Models\\Email' => __DIR__ . '/../..' . '/app/Models/Email.php',
         'App\\Models\\EmailAlert' => __DIR__ . '/../..' . '/app/Models/EmailAlert.php',
-        'App\\Models\\EmailCode' => __DIR__ . '/../..' . '/app/Models/EmailCode.php',
-        'App\\Models\\Inventory' => __DIR__ . '/../..' . '/app/Models/Inventory.php',
-        'App\\Models\\InventoryStock' => __DIR__ . '/../..' . '/app/Models/InventoryStock.php',
         'App\\Models\\Module' => __DIR__ . '/../..' . '/app/Models/Module.php',
         'App\\Models\\SLA' => __DIR__ . '/../..' . '/app/Models/SLA.php',
         'App\\Models\\Stage' => __DIR__ . '/../..' . '/app/Models/Stage.php',
@@ -852,7 +820,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UserRole' => __DIR__ . '/../..' . '/app/Models/UserRole.php',
         'App\\Models\\WebHook' => __DIR__ . '/../..' . '/app/Models/WebHook.php',
-        'App\\Notifications\\AuthCodeNotification' => __DIR__ . '/../..' . '/app/Notifications/AuthCodeNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -3903,8 +3870,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
-        'MyCLabs\\Enum\\Enum' => __DIR__ . '/..' . '/myclabs/php-enum/src/Enum.php',
-        'MyCLabs\\Enum\\PHPUnit\\Comparator' => __DIR__ . '/..' . '/myclabs/php-enum/src/PHPUnit/Comparator.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DirectoryNotFoundException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
@@ -5613,21 +5578,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'RingCentral\\Psr7\\StreamDecoratorTrait' => __DIR__ . '/..' . '/ringcentral/psr7/src/StreamDecoratorTrait.php',
         'RingCentral\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/ringcentral/psr7/src/StreamWrapper.php',
         'RingCentral\\Psr7\\Uri' => __DIR__ . '/..' . '/ringcentral/psr7/src/Uri.php',
-        'STS\\ZipStream\\Contracts\\FileContract' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Contracts/FileContract.php',
-        'STS\\ZipStream\\Events\\ZipSizePredictionFailed' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Events/ZipSizePredictionFailed.php',
-        'STS\\ZipStream\\Events\\ZipStreamed' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Events/ZipStreamed.php',
-        'STS\\ZipStream\\Events\\ZipStreaming' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Events/ZipStreaming.php',
-        'STS\\ZipStream\\Exceptions\\FilenameMissingException' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Exceptions/FilenameMissingException.php',
-        'STS\\ZipStream\\Exceptions\\NotWritableException' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Exceptions/NotWritableException.php',
-        'STS\\ZipStream\\Models\\File' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Models/File.php',
-        'STS\\ZipStream\\Models\\HttpFile' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Models/HttpFile.php',
-        'STS\\ZipStream\\Models\\LocalFile' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Models/LocalFile.php',
-        'STS\\ZipStream\\Models\\S3File' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Models/S3File.php',
-        'STS\\ZipStream\\Models\\TempFile' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/Models/TempFile.php',
-        'STS\\ZipStream\\ZipStream' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/ZipStream.php',
-        'STS\\ZipStream\\ZipStreamFacade' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/ZipStreamFacade.php',
-        'STS\\ZipStream\\ZipStreamFile' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/ZipStreamFile.php',
-        'STS\\ZipStream\\ZipStreamServiceProvider' => __DIR__ . '/..' . '/stechstudio/laravel-zipstream/src/ZipStreamServiceProvider.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',
@@ -5978,7 +5928,7 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
         'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
         'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
-        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Bridge\\PsrHttpMessage\\ArgumentValueResolver\\PsrServerRequestResolver' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/ArgumentValueResolver/PsrServerRequestResolver.php',
         'Symfony\\Bridge\\PsrHttpMessage\\EventListener\\PsrResponseListener' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/EventListener/PsrResponseListener.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
@@ -7158,22 +7108,6 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'ZanySoft\\Zip\\Zip' => __DIR__ . '/..' . '/zanysoft/laravel-zip/src/Zip.php',
         'ZanySoft\\Zip\\ZipManager' => __DIR__ . '/..' . '/zanysoft/laravel-zip/src/ZipManager.php',
         'ZanySoft\\Zip\\ZipServiceProvider' => __DIR__ . '/..' . '/zanysoft/laravel-zip/src/ZipServiceProvider.php',
-        'ZipStream\\Bigint' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Bigint.php',
-        'ZipStream\\DeflateStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/DeflateStream.php',
-        'ZipStream\\Exception' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception.php',
-        'ZipStream\\Exception\\EncodingException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/EncodingException.php',
-        'ZipStream\\Exception\\FileNotFoundException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/FileNotFoundException.php',
-        'ZipStream\\Exception\\FileNotReadableException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/FileNotReadableException.php',
-        'ZipStream\\Exception\\IncompatibleOptionsException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/IncompatibleOptionsException.php',
-        'ZipStream\\Exception\\OverflowException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/OverflowException.php',
-        'ZipStream\\Exception\\StreamNotReadableException' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Exception/StreamNotReadableException.php',
-        'ZipStream\\File' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/File.php',
-        'ZipStream\\Option\\Archive' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Archive.php',
-        'ZipStream\\Option\\File' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/File.php',
-        'ZipStream\\Option\\Method' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Method.php',
-        'ZipStream\\Option\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Version.php',
-        'ZipStream\\Stream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Stream.php',
-        'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

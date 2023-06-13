@@ -286,14 +286,31 @@ class Task extends Model
         return $this->getFilesByType(TaskFile::QR_ATTACHMENTS);
     }
 
+    public function getContentAttachments(): Collection
+    {
+        return $this->getFilesByType(TaskFile::CONTENT_ATTACHMENTS);
+    }
+
+    public function getPrintFileAttachments(): Collection
+    {
+        return $this->getFilesByType(TaskFile::PRINTING_FILE_ATTACHMENTS);
+    }
+
+    public function getImageOfPrintedCardsAttachments(): Collection
+    {
+        return $this->getFilesByType(TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
+    }
+
     public function attachments()
     {
         return $this->hasMany(TaskFile::class);
     }
+
     public function design_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::DESIGN_ATTACHMENTS);
     }
+
     public function image_of_printed_cards_attachments()
     {
         return $this->hasMany(TaskFile::class)->where('type', TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
@@ -388,6 +405,7 @@ class Task extends Model
     {
         return $this->getLastFile(TaskFile::DELIVERY_SLIP_ATTACHMENTS);
     }
+
     public function getLastImageOfPrintedCardsAttachments()
     {
         return $this->getLastFile(TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
@@ -593,5 +611,14 @@ class Task extends Model
         $this->attributes['whatsapp'] = preg_replace('/\s+/', '', $value);
     }
 
+    public function getGoogleAttachmentsTextAttribute(): string
+    {
+        return $this->is_google_attachments ? implode(PHP_EOL, $this->google_attachments) : '';
+    }
+
+    public function getIsGoogleAttachmentsAttribute(): bool
+    {
+        return is_array($this->google_attachments) && $this->google_attachments;
+    }
 
 }

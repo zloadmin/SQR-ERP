@@ -20,16 +20,28 @@ class EditOrderAttachments extends Component
     public $design_attachments = [];
     public $card_details_attachments = [];
     public $qr_attachments = [];
+    public $content_attachments = [];
+    public $printing_file_attachments = [];
+    public $image_of_printed_cards_attachments = [];
 
     public $exist_design_attachments = [];
     public $exist_card_details_attachments = [];
     public $exist_qr_attachments = [];
-
+    public $exist_content_attachments = [];
+    public $exist_printing_file_attachments = [];
+    public $exist_image_of_printed_cards_attachments = [];
+    public string $google_attachments_text = '';
 
     protected $rules = [
-        'design_attachments.*'       => 'file|max:4194304',
-        'card_details_attachments.*' => 'file|max:4194304',
-        'qr_attachments.*'           => 'file|max:4194304',
+        'design_attachments.*'                 => 'file|max:4194304',
+        'card_details_attachments.*'           => 'file|max:4194304',
+        'qr_attachments.*'                     => 'file|max:4194304',
+        // Approval content
+        'content_attachments.*'                => 'file|max:4194304',
+        // Print file
+        'printing_file_attachments.*'          => 'file|max:4194304',
+        // Printed card
+        'image_of_printed_cards_attachments.*' => 'file|max:4194304',
     ];
 
     public function mount(Task $task)
@@ -37,15 +49,32 @@ class EditOrderAttachments extends Component
         $this->exist_design_attachments = $task->getDesignAttachments();
         $this->exist_card_details_attachments = $task->getCardDetailsAttachments();;
         $this->exist_qr_attachments = $task->getQrAttachments();
+        $this->exist_content_attachments = $task->getContentAttachments();
+        $this->exist_printing_file_attachments = $task->getPrintFileAttachments();
+        $this->exist_image_of_printed_cards_attachments = $task->getImageOfPrintedCardsAttachments();
+        $this->google_attachments_text = $task->google_attachments_text;
         $this->task = $task;
     }
+
 
     public function editOrderDetails()
     {
         $this->validate();
-        $this->storeFiles($this->task);
+        $this->storeFiles($this->task, TaskFile::ALL_FIELDS);
+        $this->updateGoogleAttachments($this->task);
         $this->deleteExistFiles();
         $this->emit('showModal', 'task.edit-task', $this->task->id);
+    }
+
+    public function updateGoogleAttachments(Task $task): void
+    {
+        $result = [];
+        if ($this->google_attachments_text) {
+            foreach (explode(PHP_EOL, $this->google_attachments_text) as $line) {
+                if (trim($line)) $result[] = $line;
+            }
+        }
+        $task->update([ 'google_attachments' => $result ]);
     }
 
 
@@ -66,5 +95,6 @@ class EditOrderAttachments extends Component
     {
         return view('livewire.task.edit-form.modal-edit-order-attachments');
     }
+
 
 }

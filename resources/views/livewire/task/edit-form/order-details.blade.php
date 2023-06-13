@@ -92,73 +92,106 @@
                 <table class="table table-bordered table-centered mb-0 border-0"
                        style="    margin-top: -1px; height: 100%">
                     <tbody>
-                    <tr>
-                        <td>
-                            @if($task->qr_attachments()->count())
+                    @php
+                        $trs = 0;
+                    @endphp
+                    @if($task->qr_attachments()->count())
+                        <tr>
+                            <td>
                                 <b>QR attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::QR_ATTACHMENTS]) }}">Download</a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if ($task->card_details_attachments()->count())
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if ($task->card_details_attachments()->count())
+                        <tr>
+                            <td>
                                 <b>Details attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::CARD_DETAILS_ATTACHMENTS]) }}">Download</a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if ($task->design_attachments()->count())
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if ($task->design_attachments()->count())
+                        <tr>
+                            <td>
                                 <b>Design attachments:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::DESIGN_ATTACHMENTS]) }}">Download</a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if($task->google_attachments && is_array($task->google_attachments))
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if($task->google_attachments && is_array($task->google_attachments))
+                        <tr>
+                            <td>
                                 <b>Google attachments:</b>
                                 @foreach($task->google_attachments as $google_attachment)
                                     <a href="{{ $google_attachment }}" target="_blank" style="font-weight: bold">Open</a>
                                 @endforeach
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if($latest_content_file_attachment)
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if($latest_content_file_attachment)
+                        <tr>
+                            <td>
                                 <b>Approved Content:</b>
                                 <p>
                                     @if($latest_content_file_attachment)
                                         <a href="{{ $latest_content_file_attachment->getUrl() }}" target="_blank" style="font-weight: bold">Open</a>
                                     @endif
                                 </p>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if ($task->print_file_attachments()->count())
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if ($task->print_file_attachments()->count())
+                        <tr>
+                            <td>
                                 <b>Print File:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::PRINTING_FILE_ATTACHMENTS]) }}">Download</a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if ($task->image_of_printed_cards_attachments()->count())
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if ($task->image_of_printed_cards_attachments()->count())
+                        <tr>
+                            <td>
                                 <b>Printed Cards:</b>
                                 <a target="_blank" style="font-weight: bold"
                                    href="{{ route('task.download-attachments', [$task->uuid, \App\Models\TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS]) }}">Download</a>
-                            @endif
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        @php
+                            $trs++;
+                        @endphp
+                    @endif
+                    @if($trs < 7)
+                        @for($i = 0; $i < 7 - $trs; $i++)
+                            <tr>
+                                <td>
+
+                                </td>
+                            </tr>
+                        @endfor
+                    @endif
                     </tbody>
                 </table>
             </div> <!-- end card-body -->
