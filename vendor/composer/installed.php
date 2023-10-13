@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'c71b1ef3cc2f8a6e20de22ab798028a74193f626',
+        'reference' => '67598b1319f62f357e66ff0df9a3fb877389f97c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -423,6 +423,24 @@
                 0 => 'v9.48.0',
             ),
         ),
+        'jaybizzle/crawler-detect' => array(
+            'pretty_version' => 'v1.2.116',
+            'version' => '1.2.116.0',
+            'reference' => '97e9fe30219e60092e107651abb379a38b342921',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jaybizzle/crawler-detect',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'jenssegers/agent' => array(
+            'pretty_version' => 'v2.6.4',
+            'version' => '2.6.4.0',
+            'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jenssegers/agent',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -441,7 +459,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c71b1ef3cc2f8a6e20de22ab798028a74193f626',
+            'reference' => '67598b1319f62f357e66ff0df9a3fb877389f97c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -849,8 +867,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache' => array(

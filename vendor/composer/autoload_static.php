@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
+class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -166,6 +166,11 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'LaravelQRCode\\' => 14,
+        ),
+        'J' => 
+        array (
+            'Jenssegers\\Agent\\' => 17,
+            'Jaybizzle\\CrawlerDetect\\' => 24,
         ),
         'I' => 
         array (
@@ -485,8 +490,8 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -567,6 +572,14 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'LaravelQRCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/werneckbh/laravel-qr-code/src',
+        ),
+        'Jenssegers\\Agent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/agent/src',
+        ),
+        'Jaybizzle\\CrawlerDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -3174,6 +3187,14 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Jaybizzle\\CrawlerDetect\\CrawlerDetect' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/CrawlerDetect.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\AbstractProvider' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/AbstractProvider.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
+        'Jenssegers\\Agent\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Agent.php',
+        'Jenssegers\\Agent\\AgentServiceProvider' => __DIR__ . '/..' . '/jenssegers/agent/src/AgentServiceProvider.php',
+        'Jenssegers\\Agent\\Facades\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Facades/Agent.php',
         'LaravelQRCode\\Exceptions\\EmptyTextException' => __DIR__ . '/..' . '/werneckbh/laravel-qr-code/src/Exceptions/EmptyTextException.php',
         'LaravelQRCode\\Exceptions\\MalformedUrlException' => __DIR__ . '/..' . '/werneckbh/laravel-qr-code/src/Exceptions/MalformedUrlException.php',
         'LaravelQRCode\\Facades\\QRCode' => __DIR__ . '/..' . '/werneckbh/laravel-qr-code/src/Facades/QRCode.php',
@@ -7159,10 +7180,10 @@ class ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit444c3a3ebc5b059866830ff2c8cb417d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,4 +1,4 @@
-@mobile
+@if((new \Jenssegers\Agent\Agent())->isMobile())
     <div style="position: fixed; bottom: 0; left: 0; right: 0; height: 10%">
         <div class="d-flex justify-content-between align-items-center"  style="height: 100%">
 
@@ -14,4 +14,4 @@
             </div>
         </div>
     </div>
-@endmobile
+@endif
