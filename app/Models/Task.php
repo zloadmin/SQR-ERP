@@ -7,6 +7,7 @@ use App\Events\UpdateTaskStage;
 use App\Jobs\EmailAlertChangeStageType;
 use App\Jobs\EmailAlertCreateType;
 use App\Jobs\EmailAlertExpiredSLA;
+use App\Jobs\SendCreatedWebHooks;
 use App\Jobs\SendTelegramAlerts;
 use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
@@ -93,6 +94,7 @@ class Task extends Model
             self::createdStageTasksUpdatedListener($task);
             TaskMessage::addCreateTask($task);
             EmailAlertCreateType::dispatch($task);
+            SendCreatedWebHooks::dispatch($task);
             SendWebHooks::dispatch($task);
             SendTelegramAlerts::dispatch($task);
             $task->updateSQRCardOrderStatus();

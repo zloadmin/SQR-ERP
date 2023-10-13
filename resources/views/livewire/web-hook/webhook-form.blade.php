@@ -27,6 +27,8 @@
                     <div class="form-group">
                         <label for="stage_id">Witch Phase</label>
                         <select class="form-control @error('stage_id') is-invalid @enderror" wire:model.defer="stage_id">
+                            <option value="">When Created</option>
+
                             @foreach(\App\Models\Stage::all() as $stage)
                                 <option value="{{ $stage->id }}">{{ $stage->name }}</option>
                             @endforeach
@@ -36,6 +38,8 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">

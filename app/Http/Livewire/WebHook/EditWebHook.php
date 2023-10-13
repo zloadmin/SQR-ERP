@@ -18,7 +18,7 @@ class EditWebHook extends Component
         return [
             'name' => ['required', 'max:255'],
             'url' => ['required', 'url'],
-            'stage_id' => ['required', 'exists:stages,id'],
+            'stage_id' => ['nullable', 'integer', 'exists:stages,id'],
             'variables' => ['required'],
         ];
     }
@@ -35,6 +35,7 @@ class EditWebHook extends Component
     public function submit()
     {
         $data = $this->validate();
+        $data['stage_id'] = $data['stage_id'] > 0 ? intval($data['stage_id']) : null;
         $this->webHook->update($data);
         session()->flash('status', 'Webhook has been created');
         return redirect()->route('settings.webhook');

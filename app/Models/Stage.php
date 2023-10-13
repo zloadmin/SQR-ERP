@@ -56,9 +56,11 @@ class Stage extends Model
         ],
     ];
     use HasFactory;
-
     protected $guarded = [];
-
+//    const STAGE_CREATED  = 10000;
+//    const SPECIFIC_STAGES = [
+//        self::STAGE_CREATED
+//    ];
     static function init()
     {
         foreach (self::LIST as $stage) {
@@ -71,9 +73,18 @@ class Stage extends Model
         return self::pluck('name');
     }
 
-    static function getListIDs()
+//    static function getListIDs()
+//    {
+//        return self::pluck('id');
+//    }
+//
+//    static function getListIDsArray() : array
+//    {
+//        return self::getListIDs()->toArray();
+//    }
+    static function getAllStageIds() : array
     {
-        return self::pluck('id');
+        return array_merge(self::getListIDsArray(), self::SPECIFIC_STAGES);
     }
 
     public function tasks(): HasMany

@@ -1,3 +1,4 @@
+@include('layouts.dashboard.zoom')
 {{--<script src="/js/jquery.js"></script>--}}
 {{--<script src="/js/bootstrap.bundle.js"></script>--}}
 
@@ -36,6 +37,27 @@
 
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
+<script>
+    let current_zoom = 100;
+    function zoomOut()
+    {
+        setZoom(getCurrentZoom() - 10);
+    }
+    function zoomIn()
+    {
+        setZoom(getCurrentZoom() + 10);
+    }
+    function getCurrentZoom()
+    {
+        let zoom = document.body.style.zoom;
+        return zoom ? parseInt(zoom) : 100;
+    }
+    function setZoom(zoom)
+    {
+        console.log('Set zoom is ' + zoom);
+        document.body.style.zoom = zoom + '%';
+    }
+</script>
 {{--<script src="jquery.js"></script>--}}
 {{--<script src="/js/autocomplete.js"></script>--}}
 {{--<script src="/js/rangy-core.js"></script>--}}

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('url');
-            $table->unsignedBigInteger('stage_id');
+            $table->unsignedBigInteger('stage_id')->nullable();
             $table->foreign('stage_id')->on('stages')->references('id');
             $table->json('variables');
             $table->timestamps();
