@@ -75,7 +75,8 @@
     {
         let topOffset =  window.pageYOffset;
         let currentTop = getZoomTop();
-        let setTop = topOffset + currentTop;
+        let setTop = getZoomTop();
+        // let setTop = topOffset + currentTop;
         console.log('topOffset ' + topOffset);
         console.log('currentTop ' + currentTop);
         console.log('setTop ' + setTop);
