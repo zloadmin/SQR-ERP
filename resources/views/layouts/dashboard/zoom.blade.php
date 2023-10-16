@@ -1,5 +1,5 @@
 @if((new \Jenssegers\Agent\Agent())->isMobile())
-    <div style="position: fixed; top: 90%; left: 0; right: 0; height: 10%" id="zoomDiv">
+    <div style="position: fixed; top: 90%; left: 0; right: 0; height: 10%; display: none" id="zoomDiv">
         <div class="d-flex justify-content-between align-items-center"  style="height: 100%">
 
             <div class="h-100 w-15" onclick="zoomOut();">

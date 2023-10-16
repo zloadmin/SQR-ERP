@@ -78,10 +78,11 @@
         if(!body_height_percent) {
             body_height_percent = 100;
         }
-        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.93;
+        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.92;
         console.log(body_height_percent);
         console.log(top_px);
         document.getElementById('zoomDiv').style.top = top_px + 'px';
+        document.getElementById('zoomDiv').style.display = 'block';
     }
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
