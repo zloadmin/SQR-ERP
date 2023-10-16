@@ -89,7 +89,7 @@
         if(!body_height_percent) {
             body_height_percent = 100;
         }
-        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.9;
+        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.8;
         console.log(body_height_percent);
         console.log(top_px);
         document.getElementById('zoomDiv').style.top = top_px + 'px';
