@@ -74,7 +74,7 @@
     function scrollZoomDivStyle()
     {
         let topOffset =  window.pageYOffset;
-        let currentTop = parseInt(document.getElementById('zoomDiv').style.top);
+        let currentTop = getZoomTop();
         let setTop = topOffset + currentTop;
         console.log('topOffset ' + topOffset);
         console.log('currentTop ' + currentTop);
@@ -83,6 +83,13 @@
     }
     function initZoomDivStyle()
     {
+        let top_px = getZoomTop();
+        document.getElementById('zoomDiv').style.top = top_px + 'px';
+        document.getElementById('zoomDiv').style.display = 'block';
+    }
+    function getZoomTop()
+    {
+
         let body_height_percent = document.getElementsByTagName('body')[0].style.height;
         if(!body_height_percent) {
             body_height_percent = 100;
@@ -90,8 +97,7 @@
         let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.92;
         console.log(body_height_percent);
         console.log(top_px);
-        document.getElementById('zoomDiv').style.top = top_px + 'px';
-        document.getElementById('zoomDiv').style.display = 'block';
+        return top_px;
     }
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
