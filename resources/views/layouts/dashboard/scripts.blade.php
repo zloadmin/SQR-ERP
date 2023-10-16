@@ -96,6 +96,7 @@
 
         console.log(body_height_percent);
         console.log(top_px);
+        document.getElementById('zoomDiv').style.top = top_px + 'px';
 
         // document.body.style.webkitTransform =         // Chrome, Opera, Safari
         //     document.body.style.msTransform =           // IE 9
