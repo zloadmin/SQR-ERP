@@ -118,6 +118,8 @@
         console.log('DOMContentLoaded');
         initZoomDivStyle();
     });
+    window.onscroll = initZoomDivStyle; /* Call the function when the user scrolls */
+    window.onresize = initZoomDivStyle; /* Call the function when the window resizes */
 </script>
 {{--<script src="jquery.js"></script>--}}
 {{--<script src="/js/autocomplete.js"></script>--}}
