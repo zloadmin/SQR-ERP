@@ -92,7 +92,8 @@
         if(!body_height_percent) {
             body_height_percent = 100;
         }
-        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.9;
+        // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.9;
+        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100);
 
 
         console.log(body_height_percent);
