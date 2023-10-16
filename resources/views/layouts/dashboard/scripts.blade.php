@@ -92,13 +92,19 @@
     {
 
         let body_height_percent = document.getElementsByTagName('body')[0].style.height;
+        let topOffset = 0;
         if(!body_height_percent) {
             body_height_percent = 100;
+        } else {
+            topOffset =  window.pageYOffset;
+            if(topOffset > 0) {
+                topOffset = topOffset * (body_height_percent / 100);
+            }
         }
         let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.92;
         console.log(body_height_percent);
         console.log(top_px);
-        return top_px;
+        return top_px + topOffset;
     }
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
