@@ -4,8 +4,7 @@
 {{--        <br>--}}
 {{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
 {{--        <br>--}}
-        <h5 class="mb-2">
-
+        <h5 class="mt-0">
             <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">
                 {{ $task->name ?: $task->company_name }}
             </a>
