@@ -98,6 +98,7 @@
 
         // console.log(body_height_percent);
         let top_px = document.getElementsByTagName('body')[0].clientHeight * 0.9;
+
         console.log(top_px);
         document.getElementById('zoomDiv').style.top = top_px + 'px';
 
