@@ -49,6 +49,7 @@
     function zoomOut() {
         // setZoom(getCurrentZoom() - 10);
         setZoomScale(getCurrentZoomScale() - 0.5);
+
     }
 
     function zoomIn() {
