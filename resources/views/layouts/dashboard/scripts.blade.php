@@ -48,12 +48,12 @@
 
     function zoomOut() {
         // setZoom(getCurrentZoom() - 10);
-        setZoomScale(getCurrentZoomScale() - 0.1);
+        setZoomScale(getCurrentZoomScale() - 0.5);
     }
 
     function zoomIn() {
         // setZoom(getCurrentZoom() + 10);
-        setZoomScale(getCurrentZoomScale() + 0.1);
+        setZoomScale(getCurrentZoomScale() + 0.5);
     }
 
     function getCurrentZoom() {
