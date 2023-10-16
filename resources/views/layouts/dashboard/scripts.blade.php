@@ -37,18 +37,23 @@
 
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
+<style>
+    body {
+        -webkit-text-size-adjust: none;
+    }
+</style>
 <script>
     let current_zoom = 100;
     let current_zoom_scale = 1.0;
 
     function zoomOut() {
-        // setZoom(getCurrentZoom() - 10);
-        setZoomScale(getCurrentZoomScale() - 0.1);
+        setZoom(getCurrentZoom() - 10);
+        // setZoomScale(getCurrentZoomScale() - 0.1);
     }
 
     function zoomIn() {
-        // setZoom(getCurrentZoom() + 10);
-        setZoomScale(getCurrentZoomScale() + 0.1);
+        setZoom(getCurrentZoom() + 10);
+        // setZoomScale(getCurrentZoomScale() + 0.1);
     }
 
     function getCurrentZoom() {
