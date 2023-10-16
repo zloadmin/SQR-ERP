@@ -47,13 +47,13 @@
     let current_zoom_scale = 1.0;
 
     function zoomOut() {
-        setZoom(getCurrentZoom() - 10);
-        // setZoomScale(getCurrentZoomScale() - 0.1);
+        // setZoom(getCurrentZoom() - 10);
+        setZoomScale(getCurrentZoomScale() - 0.1);
     }
 
     function zoomIn() {
-        setZoom(getCurrentZoom() + 10);
-        // setZoomScale(getCurrentZoomScale() + 0.1);
+        // setZoom(getCurrentZoom() + 10);
+        setZoomScale(getCurrentZoomScale() + 0.1);
     }
 
     function getCurrentZoom() {
@@ -70,12 +70,16 @@
         document.body.style.zoom = zoom + '%';
     }
 
-    function setZoomScale(zoom) {
-        let scale = 'scale(' + zoom + ')';
+    function setZoomScale(scale) {
+        // let scale = 'scale(' + zoom + ')';
         console.log(scale);
-        document.body.style.webkitTransform =         // Chrome, Opera, Safari
-            document.body.style.msTransform =           // IE 9
-                document.body.style.transform = scale;
+        document.body.style.transform = "scale(" + scale + ")";
+        document.body.style.transformOrigin = "top left";
+        document.body.style.width = (100 / scale) + "%";
+        document.body.style.height = (100 / scale) + "%";
+        // document.body.style.webkitTransform =         // Chrome, Opera, Safari
+        //     document.body.style.msTransform =           // IE 9
+        //         document.body.style.transform = scale;
         // console.log(scale);
         // document.body.style.webkitTransform = scale;
         // document.body.style.MozTransform = scale;
