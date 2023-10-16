@@ -83,7 +83,7 @@
     }
     function initZoomDivStyle()
     {
-
+        let top_px = getZoomTop();
         document.getElementById('zoomDiv').style.top = top_px + 'px';
         document.getElementById('zoomDiv').style.display = 'block';
     }
