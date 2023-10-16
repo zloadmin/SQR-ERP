@@ -72,6 +72,17 @@
         document.body.style.zoom = zoom + '%';
     }
 
+    function initZoomDivStyle()
+    {
+        let body_height_percent = document.getElementsByTagName('body')[0].style.height;
+        if(!body_height_percent) {
+            body_height_percent = 100;
+        }
+        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.93;
+        console.log(body_height_percent);
+        console.log(top_px);
+        document.getElementById('zoomDiv').style.top = top_px + 'px';
+    }
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
         if(scale < 0.1 || scale > 2) {
@@ -85,20 +96,10 @@
         document.body.style.transformOrigin = "top left";
         document.body.style.width = (100 / scale) + "%";
         document.body.style.height = (100 / scale) + "%";
+        initZoomDivStyle();
 
 
 
-        let body_height_percent = document.getElementsByTagName('body')[0].style.height;
-        if(!body_height_percent) {
-            body_height_percent = 100;
-        }
-        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.93;
-        // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100);
-
-
-        console.log(body_height_percent);
-        console.log(top_px);
-        document.getElementById('zoomDiv').style.top = top_px + 'px';
 
         // document.body.style.webkitTransform =         // Chrome, Opera, Safari
         //     document.body.style.msTransform =           // IE 9
@@ -112,6 +113,10 @@
         // console.log('Set zoom is ' + zoom);
         // document.body.style.zoom = zoom + '%';
     }
+    document.addEventListener("DOMContentLoaded", function(){
+        console.log('DOMContentLoaded');
+        initZoomDivStyle();
+    });
 </script>
 {{--<script src="jquery.js"></script>--}}
 {{--<script src="/js/autocomplete.js"></script>--}}
