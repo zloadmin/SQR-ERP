@@ -88,17 +88,15 @@
 
 
 
-        // let body_height_percent = document.getElementsByTagName('body')[0].style.height;
-        // if(!body_height_percent) {
-        //     body_height_percent = 100;
-        // }
-        // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.95;
+        let body_height_percent = document.getElementsByTagName('body')[0].style.height;
+        if(!body_height_percent) {
+            body_height_percent = 100;
+        }
+        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.95;
         // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100);
 
 
-        // console.log(body_height_percent);
-        let top_px = document.getElementsByTagName('body')[0].clientHeight * 0.9;
-
+        console.log(body_height_percent);
         console.log(top_px);
         document.getElementById('zoomDiv').style.top = top_px + 'px';
 
