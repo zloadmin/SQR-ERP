@@ -67,6 +67,7 @@
 
     function setZoomScale(zoom) {
         let scale = 'scale(' + zoom + ')';
+        console.log(scale);
         document.body.style.webkitTransform = scale;
         document.body.style.MozTransform = scale;
         document.body.style.OTransform = scale;
