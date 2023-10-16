@@ -71,7 +71,16 @@
         console.log('Set zoom is ' + zoom);
         document.body.style.zoom = zoom + '%';
     }
-
+    function scrollZoomDivStyle()
+    {
+        let topOffset =  window.pageYOffset;
+        let currentTop = parseInt(document.getElementById('zoomDiv').style.top);
+        let setTop = topOffset + currentTop;
+        console.log('topOffset ' + topOffset);
+        console.log('currentTop ' + currentTop);
+        console.log('setTop ' + setTop);
+        document.getElementById('zoomDiv').style.top = setTop + 'px';
+    }
     function initZoomDivStyle()
     {
         let body_height_percent = document.getElementsByTagName('body')[0].style.height;
@@ -118,8 +127,8 @@
         console.log('DOMContentLoaded');
         initZoomDivStyle();
     });
-    window.onscroll = initZoomDivStyle; /* Call the function when the user scrolls */
-    window.onresize = initZoomDivStyle; /* Call the function when the window resizes */
+    window.onscroll = scrollZoomDivStyle; /* Call the function when the user scrolls */
+    // window.onresize = initZoomDivStyle; /* Call the function when the window resizes */
 </script>
 {{--<script src="jquery.js"></script>--}}
 {{--<script src="/js/autocomplete.js"></script>--}}
