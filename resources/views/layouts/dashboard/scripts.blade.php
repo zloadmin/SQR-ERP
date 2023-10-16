@@ -42,13 +42,13 @@
     let current_zoom_scale = 1.0;
 
     function zoomOut() {
-        setZoom(getCurrentZoom() - 10);
-        // setZoomScale(getCurrentZoomScale() - 0.1);
+        // setZoom(getCurrentZoom() - 10);
+        setZoomScale(getCurrentZoomScale() - 0.1);
     }
 
     function zoomIn() {
-        setZoom(getCurrentZoom() + 10);
-        // setZoomScale(getCurrentZoomScale() + 0.1);
+        // setZoom(getCurrentZoom() + 10);
+        setZoomScale(getCurrentZoomScale() + 0.1);
     }
 
     function getCurrentZoom() {
