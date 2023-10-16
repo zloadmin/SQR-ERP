@@ -74,7 +74,13 @@
 
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
-        console.log(scale);
+        if(scale < 0.1 || scale > 2) {
+            console.log('skip');
+            return;
+        } else {
+            console.log(scale);
+        }
+
         current_zoom_scale = scale;
         document.body.style.transform = "scale(" + scale + ")";
         document.body.style.transformOrigin = "top left";
