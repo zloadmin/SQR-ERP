@@ -74,7 +74,7 @@
     function scrollZoomDivStyle()
     {
         let topOffset =  window.pageYOffset;
-        let currentTop = getZoomTop();
+        let currentTop = parseInt(document.getElementById('zoomDiv').style.top);
         let setTop = topOffset + currentTop;
         console.log('topOffset ' + topOffset);
         console.log('currentTop ' + currentTop);
@@ -83,7 +83,7 @@
     }
     function initZoomDivStyle()
     {
-        let top_px = getZoomTop();
+
         document.getElementById('zoomDiv').style.top = top_px + 'px';
         document.getElementById('zoomDiv').style.display = 'block';
     }
@@ -133,7 +133,7 @@
         console.log('DOMContentLoaded');
         initZoomDivStyle();
     });
-    window.onscroll = scrollZoomDivStyle; /* Call the function when the user scrolls */
+    // window.onscroll = scrollZoomDivStyle; /* Call the function when the user scrolls */
     // window.onresize = initZoomDivStyle; /* Call the function when the window resizes */
 </script>
 {{--<script src="jquery.js"></script>--}}
