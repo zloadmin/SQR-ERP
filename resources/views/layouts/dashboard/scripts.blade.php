@@ -98,7 +98,7 @@
         } else {
             topOffset =  window.pageYOffset;
             if(topOffset > 0) {
-                topOffset = topOffset * (body_height_percent / 100);
+                topOffset = topOffset * (parseInt(body_height_percent) / 100);
                 console.log('body_height_percent ' + body_height_percent);
                 console.log('Real offset ' + window.pageYOffset);
                 console.log('Add offset ' + topOffset);
