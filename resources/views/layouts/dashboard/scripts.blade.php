@@ -39,23 +39,41 @@
 <script type="text/javascript" src="/js/app.js"></script>
 <script>
     let current_zoom = 100;
-    function zoomOut()
-    {
-        setZoom(getCurrentZoom() - 10);
+    let current_zoom_scale = 1.0;
+
+    function zoomOut() {
+        // setZoom(getCurrentZoom() - 10);
+        setZoomScale(getCurrentZoomScale() - 0.1);
     }
-    function zoomIn()
-    {
-        setZoom(getCurrentZoom() + 10);
+
+    function zoomIn() {
+        // setZoom(getCurrentZoom() + 10);
+        setZoomScale(getCurrentZoomScale() + 0.1);
     }
-    function getCurrentZoom()
-    {
+
+    function getCurrentZoom() {
         let zoom = document.body.style.zoom;
         return zoom ? parseInt(zoom) : 100;
     }
-    function setZoom(zoom)
-    {
+
+    function getCurrentZoomScale() {
+        return current_zoom_scale;
+    }
+
+    function setZoom(zoom) {
         console.log('Set zoom is ' + zoom);
         document.body.style.zoom = zoom + '%';
+    }
+
+    function setZoomScale(zoom) {
+        let scale = 'scale(' + zoom + ')';
+        document.body.style.webkitTransform = scale;
+        document.body.style.MozTransform = scale;
+        document.body.style.OTransform = scale;
+        document.body.style.msTransform = scale;
+        document.body.style.transform = scale;
+        // console.log('Set zoom is ' + zoom);
+        // document.body.style.zoom = zoom + '%';
     }
 </script>
 {{--<script src="jquery.js"></script>--}}
