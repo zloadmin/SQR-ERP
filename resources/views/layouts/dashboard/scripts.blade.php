@@ -85,12 +85,13 @@
         document.body.style.transformOrigin = "top left";
         document.body.style.width = (100 / scale) + "%";
         document.body.style.height = (100 / scale) + "%";
-        let body_height_percent = document.getElementsByTagName('body')[0].style.height;
-        if(!body_height_percent) {
-            body_height_percent = 100;
-        }
-        let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.8;
-        console.log(body_height_percent);
+        // let body_height_percent = document.getElementsByTagName('body')[0].style.height;
+        // if(!body_height_percent) {
+        //     body_height_percent = 100;
+        // }
+        // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.8;
+        // console.log(body_height_percent);
+        let top_px = (window.innerHeight / 100) * 90;
         console.log(top_px);
         document.getElementById('zoomDiv').style.top = top_px + 'px';
         // document.body.style.webkitTransform =         // Chrome, Opera, Safari
