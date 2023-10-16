@@ -91,9 +91,9 @@
         // }
         // let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.8;
         // console.log(body_height_percent);
-        let top_px = (window.innerHeight / 100) * 90;
-        console.log(top_px);
-        document.getElementById('zoomDiv').style.top = top_px + 'px';
+        // let top_px = (window.innerHeight / 100) * 90;
+        // console.log(top_px);
+        // document.getElementById('zoomDiv').style.top = top_px + 'px';
         // document.body.style.webkitTransform =         // Chrome, Opera, Safari
         //     document.body.style.msTransform =           // IE 9
         //         document.body.style.transform = scale;
