@@ -84,8 +84,8 @@
         current_zoom_scale = scale;
         document.body.style.transform = "scale(" + scale + ")";
         document.body.style.transformOrigin = "top left";
-        document.body.style.width = (100 / scale) + "%";
-        document.body.style.height = (100 / scale) + "%";
+        // document.body.style.width = (100 / scale) + "%";
+        // document.body.style.height = (100 / scale) + "%";
         // document.body.style.webkitTransform =         // Chrome, Opera, Safari
         //     document.body.style.msTransform =           // IE 9
         //         document.body.style.transform = scale;
