@@ -99,7 +99,11 @@
             topOffset =  window.pageYOffset;
             if(topOffset > 0) {
                 topOffset = topOffset * (body_height_percent / 100);
+                console.log('Real offset ' + window.pageYOffset);
+                console.log('Add offset ' + topOffset);
+
             }
+
         }
         let top_px = window.innerHeight * (parseInt(body_height_percent) / 100) * 0.92;
         console.log(body_height_percent);
