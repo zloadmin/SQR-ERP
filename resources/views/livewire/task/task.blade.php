@@ -4,6 +4,12 @@
 {{--        <br>--}}
 {{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
 {{--        <br>--}}
+        <h5 class="mb-2">
+
+            <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">
+                {{ $task->name ?: $task->company_name }}
+            </a>
+        </h5>
         @foreach($task->tags as $tag)
             @if ($tag->color)
                 <span class="badge bg-success" style="background-color: {{ $tag->color }} !important; color: white">{{ $tag->name }}</span>
@@ -11,12 +17,7 @@
                 <span class="badge bg-success">{{ $tag->name }}</span>
             @endif
         @endforeach
-        <h5 class="mb-2">
 
-            <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">
-                {{ $task->name ?: $task->company_name }}
-            </a>
-        </h5>
 
         <div class="d-flex justify-content-between">
             <small><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
