@@ -73,6 +73,7 @@
     function setZoomScale(scale) {
         // let scale = 'scale(' + zoom + ')';
         console.log(scale);
+        current_zoom_scale = scale;
         document.body.style.transform = "scale(" + scale + ")";
         document.body.style.transformOrigin = "top left";
         document.body.style.width = (100 / scale) + "%";
