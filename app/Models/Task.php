@@ -101,6 +101,7 @@ class Task extends Model
         });
         static::creating(function (Task $task) {
             $task->setStageStart();
+            $task->setStageUpdate();
             $task->setDefaultName();
         });
         static::updated(function (Task $task) {
@@ -116,6 +117,7 @@ class Task extends Model
         });
         static::updating(function (Task $task) {
             $task->setStageStart();
+            $task->setStageUpdate();
         });
     }
 
@@ -151,6 +153,10 @@ class Task extends Model
     {
         return Stage::getStartKeyById($this->stage_id);
     }
+    public function getUpdateStageKey(): string
+    {
+        return Stage::getUpdateKeyById($this->stage_id);
+    }
 
     public function getExpiredNotifyKey(): string
     {
@@ -162,6 +168,10 @@ class Task extends Model
     {
         return Carbon::parse($this->{$this->getStartStageKey()});
     }
+    public function getStageUpdate(): Carbon
+    {
+        return Carbon::parse($this->{$this->getUpdateStageKey()});
+    }
 
     public function setStageStart()
     {
@@ -169,6 +179,11 @@ class Task extends Model
         if (is_null($this->{$key})) {
             $this->{$key} = now()->toDateTimeString();
         }
+    }
+    public function setStageUpdate()
+    {
+        $key = $this->getUpdateStageKey();
+        $this->{$key} = now()->toDateTimeString();
     }
 
     public function setDefaultName()
@@ -541,6 +556,9 @@ class Task extends Model
 
     public function getCurrentSLATimeLeft()
     {
+        if($this->{$this->getUpdateStageKey()}) {
+            return $this->getStageUpdate()->longAbsoluteDiffForHumans(now());
+        }
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());
     }
 

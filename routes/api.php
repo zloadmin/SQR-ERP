@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/hNsVPep3ZHJ2pEGvqNWG4YhGCdPYWKquAkvuuyWyndBRcSytPvR6FM2kZgczrdnQdJ7ttPerCbB3uuCvyNsXcrk6BtBiMDkQuUB6ro77TPXMNvB4MuXbV56jzzGtwv3n/')->group(function () {
-    Route::post('/task/create', [TaskController::class, 'create'])->name('api.create.task');
+    Route::post('/task/create', [TaskController::class, 'createInContentStage'])->name('api.create.task');
+    Route::post('/task/create_account_setup', [TaskController::class, 'createInAccountSetupStage'])->name('api.create_account_setup.task');
 });
 
 Route::post('test-webhook', function (Request $request) {

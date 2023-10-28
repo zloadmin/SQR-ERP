@@ -45,6 +45,7 @@ return new class extends Migration
             $table->json('inventory_used')->nullable();
             foreach (Stage::LIST as $stage) {
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
+                $table->dateTime('update-stage-' . $stage['key'])->nullable();
                 $table->boolean('expired-notify-stage-' . $stage['key'])->default(false);
             }
 

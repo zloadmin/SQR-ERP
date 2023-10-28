@@ -12,11 +12,26 @@ use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-    public function create(Request $request)
+//    public function create(Request $request)
+//    {
+//
+//    }
+
+    public function createInContentStage(Request $request)
+    {
+        $this->create($request, 4);
+    }
+
+    public function createInAccountSetupStage(Request $request)
+    {
+        $this->create($request, 1);
+    }
+
+    private function create(Request $request, int $stage_id)
     {
         Log::info('API request', $request->toArray());
         $data = [
-            'stage_id'        => 4,
+            'stage_id'        => $stage_id,
             'name'            => $this->getValue($request, 'name'),
             'company_name'    => $this->getValue($request, 'company_name'),
             'it_is'           => $this->getValue($request, 'it_is'),
@@ -97,9 +112,9 @@ class TaskController extends Controller
     private function getCardDetails(Request $request)
     {
         return $request->has('card_details') &&
-               $request->get('card_details') ?
-               $this->getValue($request, 'card_details') :
-               $this->getValue($request, 'cards');
+        $request->get('card_details') ?
+            $this->getValue($request, 'card_details') :
+            $this->getValue($request, 'cards');
 
     }
 }
