@@ -11,19 +11,8 @@ class TriggerEventController extends Controller
     public function __invoke(Request $request)
     {
         $this->ensureValidSignature($request);
-        $payload = $request->json();
 
-        if ($payload->has('channel')) {
-            $channels = [$payload->get('channel')];
-        } else {
-            $channels = $payload->get('channels', []);
-
-            if (is_string($channels)) {
-                $channels = [$channels];
-            }
-        }
-
-        foreach ($channels as $channelName) {
+        foreach ($request->json()->get('channels', []) as $channelName) {
             $channel = $this->channelManager->find($request->appId, $channelName);
 
             optional($channel)->broadcastToEveryoneExcept([

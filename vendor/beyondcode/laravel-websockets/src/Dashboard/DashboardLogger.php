@@ -85,7 +85,7 @@ class DashboardLogger
             'channel' => $channelName,
             'data' => [
                 'type' => $type,
-                'time' => date('H:i:s'),
+                'time' => strftime('%H:%M:%S'),
             ] + $attributes,
         ]);
     }
