@@ -117,7 +117,9 @@ class Task extends Model
         });
         static::updating(function (Task $task) {
             $task->setStageStart();
-            $task->setStageUpdate();
+            if($task->stage_id !== $task->getOriginal('stage_id')) {
+                $task->setStageUpdate();
+            }
         });
     }
 
