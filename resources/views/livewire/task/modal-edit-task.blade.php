@@ -10,7 +10,7 @@
 
 
                 <h5 class=" modal-title">
-                    {{ $task->name }}
+                    {{ $task->company_name }}
                     <span class="tag-list ml-2">
                         @foreach($task->tags()->get() as $tag)
                             @if ($tag->color)

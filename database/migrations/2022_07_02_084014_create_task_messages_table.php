@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('task_id')->on('tasks')->references('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->on('users')->references('id');
+            $table->boolean('is_human')->default(false);
             $table->text('text');
             $table->timestamps();
         });

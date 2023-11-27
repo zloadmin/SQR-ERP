@@ -9,8 +9,9 @@
                 Guest
             @endif
         </h5>
-        <p class="mt-1 mb-0 text-muted font-14">
-            <span class="w-100">{!! $log_message->text !!}</span>
+        <p class="mt-1 mb-0 text-muted font-14" >
+            <span class="w-100" style="{{ $log_message->is_human ? 'color: red !important; font-weight: bolder !important;' : '' }}">{!! $log_message->text !!}</span>
+
         </p>
     </div>
 </div>

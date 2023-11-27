@@ -53,6 +53,7 @@ class Log extends Component
         $this->task->messages()->create([
             'user_id' => auth()->id(),
             'text' => $this->text,
+            'is_human' => true
         ]);
     }
     public function cleanLogMessageForm()
