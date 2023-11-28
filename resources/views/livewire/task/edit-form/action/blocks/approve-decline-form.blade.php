@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <button type="button" class="btn btn-success w-100" wire:loading.attr="disabled" wire:target="approve" wire:click="approve">
+        <button type="button" class="btn btn-success w-100" wire:loading.attr="disabled" wire:target="approve" wire:click="approve" @if(isset($approve_button_disable) && $approve_button_disable) disabled="disabled" @endif>
             <div wire:loading.delay wire:target="approve">
                 <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
                 Loading...

@@ -36,10 +36,10 @@ class InstallApp extends Command
 //        $this->exec('npm install');
 //        $this->exec('npm run dev');
 //        $this->call('migrate:refresh');
-//        Stage::init();
+        Stage::init();
 //        SLA::init();
 //        UserRole::init();
-        User::init();
+//        User::init();
 //        $this->call('db:seed');
 
         return 0;

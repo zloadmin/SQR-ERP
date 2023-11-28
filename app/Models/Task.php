@@ -36,6 +36,8 @@ class Task extends Model
         'tag_list'                 => 'array',
         'google_attachments'       => 'array',
         'inventory_used'           => 'array',
+        'qa_orders'                => 'array',
+        'qa_cards'                 => 'array',
     ];
 //    protected $appends = [
 //        'tag_list',
@@ -74,6 +76,17 @@ class Task extends Model
             'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
             'text' => 'sqr card password'
         ],
+    ];
+    const QA_CARDS = [
+        1 => 'Quantity',
+        2 => 'Material',
+        3 => 'QR\'s',
+        4 => 'Details',
+    ];
+    const QA_ORDERS = [
+        1 => 'Contacts',
+        2 => 'Delivery',
+        3 => 'Log',
     ];
 
     const MATERIAL_REQUIRED_ERROR = 'You must set "Material" before change stage';
@@ -117,7 +130,7 @@ class Task extends Model
         });
         static::updating(function (Task $task) {
             $task->setStageStart();
-            if($task->stage_id !== $task->getOriginal('stage_id')) {
+            if ($task->stage_id !== $task->getOriginal('stage_id')) {
                 $task->setStageUpdate();
             }
         });
@@ -155,6 +168,7 @@ class Task extends Model
     {
         return Stage::getStartKeyById($this->stage_id);
     }
+
     public function getUpdateStageKey(): string
     {
         return Stage::getUpdateKeyById($this->stage_id);
@@ -170,6 +184,7 @@ class Task extends Model
     {
         return Carbon::parse($this->{$this->getStartStageKey()});
     }
+
     public function getStageUpdate(): Carbon
     {
         return Carbon::parse($this->{$this->getUpdateStageKey()});
@@ -182,6 +197,7 @@ class Task extends Model
             $this->{$key} = now()->toDateTimeString();
         }
     }
+
     public function setStageUpdate()
     {
         $key = $this->getUpdateStageKey();
@@ -558,7 +574,7 @@ class Task extends Model
 
     public function getCurrentSLATimeLeft()
     {
-        if($this->{$this->getUpdateStageKey()}) {
+        if ($this->{$this->getUpdateStageKey()}) {
             return $this->getStageUpdate()->longAbsoluteDiffForHumans(now());
         }
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());

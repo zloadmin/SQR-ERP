@@ -43,6 +43,7 @@ return new class extends Migration
             $table->text('delivery_reference')->nullable();
             $table->boolean('is_api')->default(false);
             $table->json('inventory_used')->nullable();
+            $table->text('qa_comment')->nullable();
             foreach (Stage::LIST as $stage) {
                 $table->dateTime('start-stage-' . $stage['key'])->nullable();
                 $table->dateTime('update-stage-' . $stage['key'])->nullable();

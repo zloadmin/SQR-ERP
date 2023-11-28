@@ -19,6 +19,12 @@
                     <h5 class="mt-0 mb-2 font-16">Comment</h5>
                     <p>{{ $this->content_attache->approved_comment }}</p>
                 @endif
+                    @if($task->qa_comment)
+                        <h5 class="mt-0 mb-2 font-16">QA comment</h5>
+                        <div class="alert alert-danger">
+                            {{ $task->qa_comment }}
+                        </div>
+                    @endif
             </div>
             <div class="col-md-4">
                 @if($editable)

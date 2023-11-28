@@ -19,6 +19,9 @@
         @case('print-file')
             <livewire:task.edit-form.action.action-print-file :task="$task" />
         @break
+        @case('qa')
+            <livewire:task.edit-form.action.action-q-a :task="$task" />
+        @break
         @case('production')
             <livewire:task.edit-form.action.action-production :task="$task" />
         @break

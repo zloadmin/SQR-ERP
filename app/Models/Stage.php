@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Stage extends Model
 {
@@ -12,55 +13,85 @@ class Stage extends Model
         [
             'id'   => 1,
             'key'  => 'account-setup',
-            'name' => 'Account Setup'
+            'name' => 'Account Setup',
+            'order' => 1,
         ],
         [
             'id'   => 2,
             'key'  => 'design',
-            'name' => 'Design'
+            'name' => 'Design',
+            'order' => 2,
         ],
         [
             'id'   => 3,
             'key'  => 'design-approval',
-            'name' => 'Design Approval'
+            'name' => 'Design Approval',
+            'order' => 3,
         ],
         [
             'id'   => 4,
             'key'  => 'content',
-            'name' => 'Content'
+            'name' => 'Content',
+            'order' => 4,
         ],
         [
             'id'   => 5,
             'key'  => 'content-approval',
-            'name' => 'Content Approval'
+            'name' => 'Content Approval',
+            'order' => 5,
         ],
         [
             'id'   => 6,
             'key'  => 'print-file',
-            'name' => 'Print File'
+            'name' => 'Print File',
+            'order' => 6,
+        ],
+        [
+            'id'   => 10,
+            'key'  => 'qa',
+            'name' => 'QA',
+            'order' => 7,
         ],
         [
             'id'   => 7,
             'key'  => 'production',
-            'name' => 'Production'
+            'name' => 'Production',
+            'order' => 8,
         ],
         [
             'id'   => 8,
             'key'  => 'collection',
-            'name' => 'Collection'
+            'name' => 'Collection',
+            'order' => 9,
         ],
         [
             'id'   => 9,
             'key'  => 'done',
-            'name' => 'Done'
+            'name' => 'Done',
+            'order' => 10,
         ],
     ];
     use HasFactory;
+
     protected $guarded = [];
 //    const STAGE_CREATED  = 10000;
 //    const SPECIFIC_STAGES = [
 //        self::STAGE_CREATED
 //    ];
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('ordering', function (Builder $builder) {
+            $builder->orderBy('order');
+        });
+    }
+
     static function init()
     {
         foreach (self::LIST as $stage) {
@@ -82,7 +113,7 @@ class Stage extends Model
 //    {
 //        return self::getListIDs()->toArray();
 //    }
-    static function getAllStageIds() : array
+    static function getAllStageIds(): array
     {
         return array_merge(self::getListIDsArray(), self::SPECIFIC_STAGES);
     }
@@ -92,30 +123,33 @@ class Stage extends Model
         return $this->hasMany(Task::class);
     }
 
+    static function getArrayIDS()
+    {
+        return self::pluck('id')->toArray();
+    }
+
     static function getNextStageId(int $id): int
     {
-        return $id + 1 <= self::getLastStageId() ? ++$id : $id;
+        $order = self::find($id)->order;
+        $next = self::where('order', '=', $order + 1)->first();
+        return $next ? $next->id : self::getLastStageId();
     }
 
     static function getPrevStageId(int $id): int
     {
-        return $id - 1 >= self::getFirstStageId() ? --$id : $id;
+        $order = self::find($id)->order;
+        $prev = self::where('order', '=', $order - 1)->first();
+        return $prev ? $prev->id : self::getPrevStageId();
     }
 
     static function getFirstStageId(): int
     {
-        return 1;
+        return self::query()->first()->id;
     }
 
     static function getLastStageId(): int
     {
-        $result = 1;
-        foreach (self::LIST as $stage) {
-            if ($stage['id'] > $result) {
-                $result = $stage['id'];
-            }
-        }
-        return $result;
+        return self::query()->orderByDesc('order')->first()->id;
     }
 
     static function getStageById(int $id): array
@@ -132,10 +166,12 @@ class Stage extends Model
     {
         return 'start-stage-' . self::getStageById($id)['key'];
     }
+
     static function getUpdateKeyById(int $id)
     {
         return 'update-stage-' . self::getStageById($id)['key'];
     }
+
     public function toTelegramMessage()
     {
         return $this->name;
