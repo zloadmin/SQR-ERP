@@ -25,10 +25,12 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 final class AsyncContext
 {
+    /** @var callable|null */
     private $passthru;
-    private $client;
-    private $response;
+    private HttpClientInterface $client;
+    private ResponseInterface $response;
     private array $info = [];
+    /** @var resource|null */
     private $content;
     private int $offset;
 

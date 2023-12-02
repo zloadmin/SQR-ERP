@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -34,6 +33,7 @@ return new class extends Migration
             $table->text('contact_email')->nullable();
             $table->text('delivery_method')->nullable();
             $table->text('emirate')->nullable();
+            $table->text('country')->nullable();
             $table->text('address')->nullable();
 
             $table->text('sqr_card_username')->nullable();
@@ -49,6 +49,9 @@ return new class extends Migration
                 $table->dateTime('update-stage-' . $stage['key'])->nullable();
                 $table->boolean('expired-notify-stage-' . $stage['key'])->default(false);
             }
+
+            $table->boolean('aramex_submitted')->default(false);
+            $table->json('aramex_response')->nullable();
 
             $table->timestamps();
         });
