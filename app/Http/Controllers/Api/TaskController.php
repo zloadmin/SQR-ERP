@@ -47,6 +47,7 @@ class TaskController extends Controller
             'contact_email'   => $this->getValue($request, 'contact_email'),
             'delivery_method' => $this->getValue($request, 'delivery_method'),
             'emirate'         => $this->getValue($request, 'emirate'),
+            'country'         => $this->getValue($request, 'country'),
             'address'         => $this->getValue($request, 'address'),
 
             'sqr_card_username' => $this->getValue($request, 'sqr_card_username'),

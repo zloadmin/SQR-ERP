@@ -39,11 +39,11 @@ class Action extends Component
     {
         TaskFile::create([
             'task_id' => $this->task->id,
-            'type'          => $type,
-            'path'          => $file->store('tasks/' . $type),
+            'type' => $type,
+            'path' => $file->store('tasks/' . $type),
             'original_name' => $file->getClientOriginalName(),
-            'size'          => $file->getSize(),
-            'user_id'       => auth()->check() ? auth()->id() : null,
+            'size' => $file->getSize(),
+            'user_id' => auth()->check() ? auth()->id() : null
         ]);
 
     }
@@ -52,34 +52,41 @@ class Action extends Component
     {
         $this->storeFile($this->attache, $type);
     }
+
     public function storeDesignFile()
     {
         $this->storeAttacheFile(TaskFile::DESIGN_FILE);
     }
+
     public function storeContentAttacheFile()
     {
         $this->storeAttacheFile(TaskFile::CONTENT_ATTACHMENTS);
     }
+
     public function storePrintFileAttacheFile()
     {
         $this->storeAttacheFile(TaskFile::PRINTING_FILE_ATTACHMENTS);
     }
+
     public function render()
     {
         return view('livewire.task.edit-form.action.action');
     }
+
     public function decreaseTaskStageId()
     {
         $this->task->stage_id = $this->task->getPrevStageId();
         $this->task->update();
         $this->mount($this->task->refresh(), $this->editable);
     }
+
     public function increaseTaskStageId()
     {
         $this->task->stage_id = $this->task->getNextStageId();
         $this->task->update();
         $this->mount($this->task->refresh(), $this->editable);
     }
+
     public function updateBlocks()
     {
         $this->emit('updateEditCardSQRCardBlock');
@@ -88,14 +95,17 @@ class Action extends Component
         $this->emit('updateEditTaskLog');
         $this->emit('refreshStage', $this->task->stage_id);
     }
-    public function getEditable(Task $task) : bool
+
+    public function getEditable(Task $task): bool
     {
         return auth()->user()->canEditActions($task);
     }
-    public function isRequiredMaterial() : bool
+
+    public function isRequiredMaterial(): bool
     {
         return !$this->task->material;
     }
+
     public function setRequiredMaterialError()
     {
         session()->flash('error', Task::MATERIAL_REQUIRED_ERROR);

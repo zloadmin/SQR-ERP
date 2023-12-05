@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Clients\Aramex;
+use App\Models\TaskFile;
 use Illuminate\Bus\Queueable;
 use App\Models\Task;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -10,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Http\UploadedFile;
 
 class TaskCreateShipment implements ShouldQueue
 {
@@ -36,6 +38,7 @@ class TaskCreateShipment implements ShouldQueue
     {
         $aramex = (new Aramex($this->task))->sendCreateShipmentsRequest();
         $aramex_response = json_decode($aramex->body(), true);
+
         $this->task->update(['aramex_submitted' => true]);
         $this->task->aramexRequests()->create([
             'aramex_body' => $aramex->body(),
@@ -49,11 +52,26 @@ class TaskCreateShipment implements ShouldQueue
         }
         $labelURL = $this->getLabelURL($aramex_response);
         if ($labelURL) {
-            $this->task->messages()->create([
-                'text' => 'Aramex: Label URL - ' . $labelURL
-            ]);
+            $file = $this->createFromUrl($labelURL, pathinfo($labelURL, PATHINFO_BASENAME));
+            TaskFile::storeUploadFile($this->task, TaskFile::DELIVERY_SLIP_ATTACHMENTS, $file, true);
+                $this->task->messages()->create([
+                    'text' => 'Aramex: Label URL - ' . $labelURL
+                ]);
         }
 
+    }
+
+    public function createFromUrl(string $url, string $originalName = '', string $mimeType = null, int $error = null, bool $test = false): UploadedFile
+    {
+        if (!$stream = @fopen($url, 'r')) {
+            throw new \Exception('Cannot open url ' . $url);
+        }
+
+        $tempFile = tempnam(sys_get_temp_dir(), 'url-file-');
+
+        file_put_contents($tempFile, $stream);
+
+        return new UploadedFile($tempFile, $originalName, $mimeType, $error, $test);
     }
 
     private function getErrorsText($aramex): string

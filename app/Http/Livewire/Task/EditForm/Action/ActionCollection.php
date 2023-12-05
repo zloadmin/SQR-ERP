@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Task\EditForm\Action;
 use App\Models\Inventory;
 use App\Models\Task;
 use App\Models\TaskFile;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,6 +15,7 @@ class ActionCollection extends Action
     use WithFileUploads;
 
     public $delivery_slip;
+    public bool $delivery_slip_attached;
     public $image_of_printed_cards;
     public $attache;
     public string $card_collected = '';
@@ -27,7 +29,7 @@ class ActionCollection extends Action
     protected $rules = [
 //        'card_collected' => 'required|string|max:255',
         'delivery_reference' => 'required|string|max:255',
-        'attache'  => 'required|file|max:4194304',
+        'attache' => 'required|file|max:4194304',
 //        'inventory_used' => 'required|array',
         'inventory_used.*' => 'required|int|min:1|max:100000'
     ];
@@ -36,7 +38,11 @@ class ActionCollection extends Action
     {
         $rules = [];
         $rules['delivery_reference'] = ['required', 'string', 'max:255'];
-        $rules['delivery_slip'] = ['required', 'file', 'max:4194304'];
+        if ($this->isNeedDeliverySlipAttached()) {
+            $rules['delivery_slip'] = ['required', 'file', 'max:4194304'];
+        } else {
+            $rules['delivery_slip'] = ['nullable'];
+        }
         $rules['image_of_printed_cards'] = ['required', 'file', 'max:4194304'];
         $rules['inventory_used'] = ['required', 'array', 'min:2'];
         foreach ($this->inventories as $inventory) {
@@ -53,12 +59,16 @@ class ActionCollection extends Action
         $this->delivery_reference = $task->delivery_reference ?? '';
         $this->inventories = Inventory::query()->latest()->get();
         $this->inventory_used = [];
+        $delivery_slip = $this->task->getLastDeliverySlipAttachment();
+        if ($delivery_slip->is_aramex) {
+            $this->delivery_slip = $delivery_slip;
+        }
     }
 
     public function submitDeliverySlip()
     {
 
-        if($this->isRequiredMaterial()) {
+        if ($this->isRequiredMaterial()) {
             return $this->setRequiredMaterialError();
         }
 
@@ -69,15 +79,25 @@ class ActionCollection extends Action
         $this->updateBlocks();
     }
 
+    public function isNeedDeliverySlipAttached(): bool
+    {
+
+        return is_object($this->delivery_slip) && get_class($this->delivery_slip) != TaskFile::class;
+    }
+
     public function storeAttachments()
     {
-        $this->storeDeliverySlip();
+        if ($this->isNeedDeliverySlipAttached()) {
+            $this->storeDeliverySlip();
+        }
         $this->storeImageOfPrintedCards();
     }
+
     public function storeDeliverySlip()
     {
         $this->storeFile($this->delivery_slip, TaskFile::DELIVERY_SLIP_ATTACHMENTS);
     }
+
     public function storeImageOfPrintedCards()
     {
         $this->storeFile($this->image_of_printed_cards, TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
@@ -85,14 +105,14 @@ class ActionCollection extends Action
 
     public function updateInventories()
     {
-        foreach ($this->inventory_used as $inventory_id => $used)
-        {
+        foreach ($this->inventory_used as $inventory_id => $used) {
             $inventory = Inventory::find($inventory_id);
-            if($inventory && intval($used)) {
+            if ($inventory && intval($used)) {
                 $inventory->increaseUsed($used);
             }
         }
     }
+
     public function updateTask()
     {
 //        $this->task->card_collected = $this->card_collected;

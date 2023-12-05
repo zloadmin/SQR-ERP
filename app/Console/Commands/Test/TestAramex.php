@@ -30,6 +30,9 @@ class TestAramex extends Command
      */
     public function handle()
     {
+
+        TaskCreateShipment::dispatchSync(Task::find(1562));
+        exit;
         $tasks = Task::all();
         $bar = $this->output->createProgressBar($tasks->count());
         foreach ($tasks as $task) {

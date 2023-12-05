@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->text('approved_comment')->nullable();
             $table->unsignedBigInteger('approved_user_id')->nullable();
             $table->foreign('approved_user_id')->on('users')->references('id');
+            $table->boolean('is_aramex')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

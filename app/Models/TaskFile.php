@@ -189,7 +189,7 @@ class TaskFile extends Model
         return sprintf('%s file %s has been decline.%s', $this->getTypeTitle(), $this->getHTMLLink(), $this->getApproveDeclineComment());
     }
 
-    static function storeUploadFile(Task $task, string $type, UploadedFile $file)
+    static function storeUploadFile(Task $task, string $type, UploadedFile $file, bool $is_aramex = false)
     {
         self::create([
             'task_id'       => $task->id,
@@ -198,6 +198,7 @@ class TaskFile extends Model
             'original_name' => $file->getClientOriginalName(),
             'size'          => $file->getSize(),
             'user_id'       => auth()->check() ? auth()->id() : null,
+            'is_aramex' => $is_aramex
         ]);
     }
 
