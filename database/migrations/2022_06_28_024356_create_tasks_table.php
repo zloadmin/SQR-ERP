@@ -51,8 +51,6 @@ return new class extends Migration {
             }
 
             $table->boolean('aramex_submitted')->default(false);
-            $table->json('aramex_response')->nullable();
-
             $table->timestamps();
         });
     }

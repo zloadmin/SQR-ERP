@@ -30,14 +30,14 @@ class Task extends Model
 
     protected $guarded = [];
     protected $casts = [
-        'design_attachments'       => 'array',
+        'design_attachments' => 'array',
         'card_details_attachments' => 'array',
-        'qr_attachments'           => 'array',
-        'tag_list'                 => 'array',
-        'google_attachments'       => 'array',
-        'inventory_used'           => 'array',
-        'qa_orders'                => 'array',
-        'qa_cards'                 => 'array',
+        'qr_attachments' => 'array',
+        'tag_list' => 'array',
+        'google_attachments' => 'array',
+        'inventory_used' => 'array',
+        'qa_orders' => 'array',
+        'qa_cards' => 'array',
     ];
 //    protected $appends = [
 //        'tag_list',
@@ -61,19 +61,19 @@ class Task extends Model
     ];
     const EMAIL_VARIABLE_BLOCK = [
         [
-            'key'  => self::EMAIL_VARIABLE_ACTION_URL,
+            'key' => self::EMAIL_VARIABLE_ACTION_URL,
             'text' => 'action url link'
         ],
         [
-            'key'  => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+            'key' => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
             'text' => 'name of client of card'
         ],
         [
-            'key'  => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
+            'key' => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
             'text' => 'sqr card username'
         ],
         [
-            'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
+            'key' => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
             'text' => 'sqr card password'
         ],
     ];
@@ -270,10 +270,10 @@ class Task extends Model
 
 //            $result[] =  new TemporaryUploadedFile(Storage::path($file), 'local');
             $result[] = [
-                'source'  => $key,
+                'source' => $key,
                 'options' => [
-                    'type'     => 'local',
-                    'file'     => [
+                    'type' => 'local',
+                    'file' => [
                         'name' => $key,
                         'size' => 1,
                         'type' => 'jpeg',
@@ -334,6 +334,11 @@ class Task extends Model
     public function getImageOfPrintedCardsAttachments(): Collection
     {
         return $this->getFilesByType(TaskFile::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS);
+    }
+
+    public function aramexRequests()
+    {
+        return $this->hasMany(AramexRequest::class);
     }
 
     public function attachments()

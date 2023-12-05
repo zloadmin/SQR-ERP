@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Test;
 
 use App\Clients\Aramex;
+use App\Jobs\TaskCreateShipment;
 use App\Models\Task;
 use Illuminate\Console\Command;
 
@@ -29,20 +30,14 @@ class TestAramex extends Command
      */
     public function handle()
     {
-        $task = Task::find(1561);
-        $aramex = (new Aramex($task))->sendCreateShipmentsRequest();
-        dd($aramex);
-        if(isset($aramex['HasErrors']) && $aramex['HasErrors']) {
-            $errors = [];
-            if(isset($aramex['Shipments'][0]['Notifications']) && is_array($aramex['Shipments'][0]['Notifications'])) {
-                foreach ($aramex['Shipments'][0]['Notifications'] as $data) {
-                    if(isset($data['Message'])) {
-                        $errors[] = $data['Message'];
-                    }
-                }
-            }
+        $tasks = Task::all();
+        $bar = $this->output->createProgressBar($tasks->count());
+        foreach ($tasks as $task) {
+            TaskCreateShipment::dispatchSync($task);
+            $bar->advance();
         }
-        $this->info(implode(PHP_EOL, $errors));
+        $bar->finish();
+
         return Command::SUCCESS;
     }
 }
