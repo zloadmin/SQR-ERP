@@ -11,6 +11,7 @@ use App\Jobs\SendCreatedWebHooks;
 use App\Jobs\SendTelegramAlerts;
 use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
+use App\Jobs\TaskCreateShipment;
 use App\Jobs\UpdateSQRCardOrderStatus;
 use App\Traits\HasUUID;
 use Carbon\Carbon;
@@ -125,6 +126,10 @@ class Task extends Model
                 SendWebHooks::dispatch($task);
                 SendTelegramAlerts::dispatch($task);
                 $task->updateSQRCardOrderStatus();
+
+                if($task->isNewStageCollection() && $task->isNotAramexSubmitted()) {
+                    TaskCreateShipment::dispatchSync($task);
+                }
             }
 //            $task->setStageStart();
         });
@@ -250,6 +255,15 @@ class Task extends Model
     {
         return $this->stage_id != $this->getOriginal('stage_id');
     }
+    public function isNewStageCollection(): bool
+    {
+        return $this->stage_id == 8;
+    }
+    public function isNotAramexSubmitted(): bool
+    {
+        return !$this->aramex_submitted;
+    }
+
 
     static function createdStageTasksUpdatedListener(Task $task)
     {

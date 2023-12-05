@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SendWebHook implements ShouldQueue
 {
@@ -24,6 +25,7 @@ class SendWebHook implements ShouldQueue
     public $tries = 5;
     public WebHook $webHook;
     public Task $task;
+
     /**
      * Create a new job instance.
      *
@@ -42,7 +44,11 @@ class SendWebHook implements ShouldQueue
      */
     public function handle()
     {
-        Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
+        try {
+            Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
+        } catch (\Exception $exception) {
+            Log::error('SendWebHook::handle ' . $exception->getMessage());
+        }
 //        $response = Http::post($this->webHook->url, $this->task->getWebHookData($this->webHook));
 //        if(!$response->ok()) {
 //            $this->release(5);
