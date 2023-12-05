@@ -33,6 +33,7 @@ class CreateTask extends ModalComponent
     public string $contact_email = '';
     public string $delivery_method = '';
     public string $emirate = '';
+    public string $country = '';
     public string $address = '';
     public $design_attachments = [];
     public $card_details_attachments = [];
@@ -54,6 +55,7 @@ class CreateTask extends ModalComponent
         'contact_email'   => 'nullable|max:255',
         'delivery_method' => 'nullable|max:255',
         'emirate'         => 'nullable|max:255',
+        'country'         => 'nullable|max:255',
         'address'         => 'nullable',
         'design_attachments.*' => 'file|max:4194304',
         'card_details_attachments.*' => 'file|max:4194304',
@@ -114,6 +116,7 @@ class CreateTask extends ModalComponent
         $task->contact_email = $this->contact_email;
         $task->delivery_method = $this->delivery_method;
         $task->emirate = $this->emirate;
+        $task->country = $this->country;
         $task->address = $this->address;
         $task->save();
         return $task;

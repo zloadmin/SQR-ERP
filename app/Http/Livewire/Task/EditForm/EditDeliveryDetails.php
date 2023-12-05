@@ -14,6 +14,7 @@ class EditDeliveryDetails extends Component
     public string $contact_email = '';
     public string $delivery_method = '';
     public string $emirate = '';
+    public string $country = '';
     public string $address = '';
 
     protected $rules = [
@@ -23,6 +24,7 @@ class EditDeliveryDetails extends Component
         'contact_email'   => 'nullable|max:255',
         'delivery_method' => 'nullable|max:255',
         'emirate'         => 'nullable|max:255',
+        'country'         => 'nullable|max:255',
         'address'         => 'nullable',
     ];
 
@@ -35,6 +37,7 @@ class EditDeliveryDetails extends Component
         $this->contact_email = $task->contact_email ?? '';
         $this->delivery_method = $task->delivery_method ?? '';
         $this->emirate = $task->emirate ?? '';
+        $this->country = $task->country ?? '';
         $this->address = $task->address ?? '';
 
     }
@@ -56,6 +59,7 @@ class EditDeliveryDetails extends Component
         $this->task->contact_email = $this->contact_email;
         $this->task->delivery_method = $this->delivery_method;
         $this->task->emirate = $this->emirate;
+        $this->task->country = $this->country;
         $this->task->address = $this->address;
         $this->task->update();
     }

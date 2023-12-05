@@ -21,7 +21,7 @@
                     <p><b>Contact email:</b> {{ $task->contact_email }}</p>
                 </td>
                 <td style="width: 34%">
-                    <p><b>Emirate:</b> {{ $task->emirate }}</p>
+                    <p><b>City:</b> {{ $task->emirate }}</p>
                 </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                     <p><b>WhatsApp:</b> {{ $task->whatsapp }}</p>
                 </td>
                 <td>
-
+                    <p><b>Country:</b> {{ $task->country }}</p>
                 </td>
             </tr>
 
