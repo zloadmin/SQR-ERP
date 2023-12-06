@@ -458,175 +458,16 @@ class Aramex
         return Http::withHeaders($this->getHeaders())
             ->post($this->url, $this->getCreateShipmentsData());
     }
+    public function sendTestCreateShipmentsRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+    {
+
+        var_dump($this->getTestCreateShipmentsData());
+        return Http::withHeaders($this->getHeaders())
+            ->post($this->url, $this->getTestCreateShipmentsData());
+    }
 
     private function getCreateShipmentsData(): array
     {
-//        return [
-//            "Shipments" => [
-//                [
-//                    "Reference1" => "Shipment Reference",
-//                    "Reference2" => null,
-//                    "Reference3" => null,
-//                    "Shipper" => [
-//                        "Reference1" => "Shipper Reference -{{testname}}",
-//                        "Reference2" => null,
-//                        "AccountNumber" => "45796",
-//                        "PartyAddress" => [
-//                            "Line1" => "Test Shipper Address Line1{{testname}}",
-//                            "Line2" => "Test Shipper Address Line2{{testname}}",
-//                            "Line3" => "",
-//                            "City" => "Dubai",
-//                            "StateOrProvinceCode" => "",
-//                            "PostCode" => "000000",
-//                            "CountryCode" => "AE",
-//                            "Longitude" => 0,
-//                            "Latitude" => 0,
-//                            "BuildingNumber" => null,
-//                            "BuildingName" => null,
-//                            "Floor" => null,
-//                            "Apartment" => null,
-//                            "POBox" => null,
-//                            "Description" => null
-//                        ],
-//                        "Contact" => [
-//                            "Department" => null,
-//                            "PersonName" => "Test Shipper Name",
-//                            "Title" => null,
-//                            "CompanyName" => "Test Shipper Name/Test Shipper Company Name",
-//                            "PhoneNumber1" => "048707766",
-//                            "PhoneNumber1Ext" => "",
-//                            "PhoneNumber2" => "",
-//                            "PhoneNumber2Ext" => "",
-//                            "FaxNumber" => null,
-//                            "CellPhone" => "971556893100",
-//                            "EmailAddress" => "test@aramex.com",
-//                            "Type" => ""
-//                        ]
-//                    ],
-//                    "Consignee" => [
-//                        "Reference1" => null,
-//                        "Reference2" => null,
-//                        "AccountNumber" => null,
-//                        "PartyAddress" => [
-//                            "Line1" => "Test Consignee Address Line1",
-//                            "Line2" => "Test Consignee Address Line2",
-//                            "Line3" => "Test Consignee Address Line3",
-//                            "City" => "Dubai",
-//                            "StateOrProvinceCode" => "FU",
-//                            "PostCode" => "",
-//                            "CountryCode" => "AE",
-//                            "Longitude" => 0,
-//                            "Latitude" => 0,
-//                            "BuildingNumber" => null,
-//                            "BuildingName" => null,
-//                            "Floor" => null,
-//                            "Apartment" => null,
-//                            "POBox" => null,
-//                            "Description" => null
-//                        ],
-//                        "Contact" => [
-//                            "Department" => null,
-//                            "PersonName" => "Test Consignee Name",
-//                            "Title" => null,
-//                            "CompanyName" => "Test Consignee/Company Name",
-//                            "PhoneNumber1" => "048707766",
-//                            "PhoneNumber1Ext" => "",
-//                            "PhoneNumber2" => "",
-//                            "PhoneNumber2Ext" => "",
-//                            "FaxNumber" => null,
-//                            "CellPhone" => "971556893100",
-//                            "EmailAddress" => "tets@hotmail.com",
-//                            "Type" => ""
-//                        ]
-//                    ],
-//                    "ThirdParty" => null,
-//                    "ShippingDateTime" => "/Date(" .now()->getTimestampMs(). ")/",
-//                    "DueDate" => "/Date(1701937486195)/",
-//                    "Comments" => null,
-//                    "PickupLocation" => null,
-//                    "OperationsInstructions" => null,
-//                    "AccountingInstrcutions" => null,
-//                    "Details" => [
-//                        "Dimensions" => [
-//                            "Length" => 0,
-//                            "Width" => 0,
-//                            "Height" => 0,
-//                            "Unit" => "CM"
-//                        ],
-//                        "ActualWeight" => [
-//                            "Unit" => "KG",
-//                            "Value" => 0.1
-//                        ],
-//                        "ChargeableWeight" => [
-//                            "Unit" => "KG",
-//                            "Value" => 0
-//                        ],
-//                        "DescriptionOfGoods" => "Items",
-//                        "GoodsOriginCountry" => "AE",
-//                        "NumberOfPieces" => 1,
-//                        "ProductGroup" => "DOM",
-//                        "ProductType" => "ONP",
-//                        "PaymentType" => "P",
-//                        "PaymentOptions" => "ACCT",
-//                        "CustomsValueAmount" => [
-//                            "CurrencyCode" => "AED",
-//                            "Value" => 10
-//                        ],
-//                        "CashOnDeliveryAmount" => [
-//                            "CurrencyCode" => "AED",
-//                            "Value" => 0
-//                        ],
-//                        "InsuranceAmount" => [
-//                            "CurrencyCode" => "AED",
-//                            "Value" => 0
-//                        ],
-//                        "CashAdditionalAmount" => [
-//                            "CurrencyCode" => "AED",
-//                            "Value" => 0
-//                        ],
-//                        "CashAdditionalAmountDescription" => null,
-//                        "CollectAmount" => [
-//                            "CurrencyCode" => "AED",
-//                            "Value" => 0
-//                        ],
-//                        "Services" => "",
-//                        "Items" => [
-//                            [
-//                                "PackageType" => "item",
-//                                "Quantity" => 1,
-//                                "Weight" => [
-//                                    "Unit" => "CM",
-//                                    "Value" => 0
-//                                ],
-//                                "Comments" => "no description",
-//                                "Reference" => "no barcode",
-//                                "PiecesDimensions" => null,
-//                                "CommodityCode" => null,
-//                                "GoodsDescription" => null,
-//                                "CountryOfOrigin" => null,
-//                                "CustomsValue" => null,
-//                                "ContainerNumber" => null
-//                            ]
-//                        ],
-//                        "DeliveryInstructions" => null,
-//                        "AdditionalProperties" => null,
-//                        "ContainsDangerousGoods" => false
-//                    ],
-//                    "Attachments" => null,
-//                    "ForeignHAWB" => null,
-//                    "TransportType " => 0,
-//                    "PickupGUID" => null,
-//                    "Number" => null,
-//                    "ScheduledDelivery" => null
-//                ]
-//            ],
-//            "LabelInfo" => [
-//                "ReportID" => 9729,
-//                "ReportType" => "URL"
-//            ],
-//            "ClientInfo" => $this->getClientInfoData(),
-//            "Transaction" => null
-//        ];
         return [
             'Shipments' => [$this->getShipmentsData()],
             'LabelInfo' => [
@@ -635,6 +476,12 @@ class Aramex
             ],
             'ClientInfo' => $this->getClientInfoData(),
             'Transaction' => $this->getTransactionData(),
+        ];
+    }
+    private function getTestCreateShipmentsData(): array
+    {
+        return [
+            'ClientInfo' => $this->getClientInfoData(),
         ];
     }
 
