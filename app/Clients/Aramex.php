@@ -558,7 +558,7 @@ class Aramex
     {
         return [
             'Department' => null,
-            'PersonName' => $this->task->company_name,
+            'PersonName' => $this->task->contact_name,
             'Title' => null,
             'CompanyName' => $this->task->company_name,
             'PhoneNumber1' => str_replace('+', '', $this->task->whatsapp),
