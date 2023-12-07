@@ -28,10 +28,10 @@ class ActionCollection extends Action
 
     protected $rules = [
 //        'card_collected' => 'required|string|max:255',
-        'delivery_reference' => 'required|string|max:255',
-        'attache' => 'required|file|max:4194304',
+'delivery_reference' => 'required|string|max:255',
+'attache'            => 'required|file|max:4194304',
 //        'inventory_used' => 'required|array',
-        'inventory_used.*' => 'required|int|min:1|max:100000'
+'inventory_used.*'   => 'required|int|min:1|max:100000'
     ];
 
     protected function rules()
@@ -60,7 +60,7 @@ class ActionCollection extends Action
         $this->inventories = Inventory::query()->latest()->get();
         $this->inventory_used = [];
         $delivery_slip = $this->task->getLastDeliverySlipAttachment();
-        if ($delivery_slip->is_aramex) {
+        if ($delivery_slip && $delivery_slip->is_aramex) {
             $this->delivery_slip = $delivery_slip;
         }
     }
