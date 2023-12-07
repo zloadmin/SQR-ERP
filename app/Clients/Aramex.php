@@ -12,7 +12,8 @@ class Aramex
 
     private array $config;
     private Task $task;
-    private string $url = 'https://ws.sbx.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/CreateShipments'; // TOOD: make function
+//    private string $url = 'https://ws.sbx.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/CreateShipments'; // TOOD: make function
+    private string $url = 'https://ws.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/CreateShipments'; // TOOD: make function
     private $countries = [
         'AF' => 'Afghanistan',
         'AX' => 'Aland Islands',
