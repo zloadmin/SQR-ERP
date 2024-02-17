@@ -31,14 +31,14 @@ class Task extends Model
 
     protected $guarded = [];
     protected $casts = [
-        'design_attachments' => 'array',
+        'design_attachments'       => 'array',
         'card_details_attachments' => 'array',
-        'qr_attachments' => 'array',
-        'tag_list' => 'array',
-        'google_attachments' => 'array',
-        'inventory_used' => 'array',
-        'qa_orders' => 'array',
-        'qa_cards' => 'array',
+        'qr_attachments'           => 'array',
+        'tag_list'                 => 'array',
+        'google_attachments'       => 'array',
+        'inventory_used'           => 'array',
+        'qa_orders'                => 'array',
+        'qa_cards'                 => 'array',
     ];
 //    protected $appends = [
 //        'tag_list',
@@ -62,19 +62,19 @@ class Task extends Model
     ];
     const EMAIL_VARIABLE_BLOCK = [
         [
-            'key' => self::EMAIL_VARIABLE_ACTION_URL,
+            'key'  => self::EMAIL_VARIABLE_ACTION_URL,
             'text' => 'action url link'
         ],
         [
-            'key' => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
+            'key'  => self::EMAIL_VARIABLE_CARD_CLIENT_NAME,
             'text' => 'name of client of card'
         ],
         [
-            'key' => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
+            'key'  => self::EMAIL_VARIABLE_SQR_CARD_USERNAME,
             'text' => 'sqr card username'
         ],
         [
-            'key' => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
+            'key'  => self::EMAIL_VARIABLE_SQR_CARD_PASSWORD,
             'text' => 'sqr card password'
         ],
     ];
@@ -127,7 +127,7 @@ class Task extends Model
                 SendTelegramAlerts::dispatch($task);
                 $task->updateSQRCardOrderStatus();
 
-                if($task->isNewStageCollection() && $task->isNotAramexSubmitted()) {
+                if ($task->isNewStageCollection() && $task->isNotAramexSubmitted()) {
                     TaskCreateShipment::dispatchSync($task);
                 }
             }
@@ -255,10 +255,12 @@ class Task extends Model
     {
         return $this->stage_id != $this->getOriginal('stage_id');
     }
+
     public function isNewStageCollection(): bool
     {
         return $this->stage_id == 8;
     }
+
     public function isNotAramexSubmitted(): bool
     {
         return !$this->aramex_submitted;
@@ -284,10 +286,10 @@ class Task extends Model
 
 //            $result[] =  new TemporaryUploadedFile(Storage::path($file), 'local');
             $result[] = [
-                'source' => $key,
+                'source'  => $key,
                 'options' => [
-                    'type' => 'local',
-                    'file' => [
+                    'type'     => 'local',
+                    'file'     => [
                         'name' => $key,
                         'size' => 1,
                         'type' => 'jpeg',
@@ -676,6 +678,63 @@ class Task extends Model
     public function getIsGoogleAttachmentsAttribute(): bool
     {
         return is_array($this->google_attachments) && $this->google_attachments;
+    }
+
+    public function getCardDetailsLines()
+    {
+        return explode(PHP_EOL, $this->card_details ?? '');
+    }
+
+    public function getCardDetailsFirstNameValue(): string
+    {
+        $data = explode(": ", $this->getCardDetailsFirstNameLine());
+
+        return count($data) ? end($data) : '';
+    }
+    public function getCardDetailsLastNameValue(): string
+    {
+        $data = explode(": ", $this->getCardDetailsLastNameLine());
+
+        return count($data) ? end($data) : '';
+    }
+
+    public function getCardDetailsFirstNameLine(): string
+    {
+
+        foreach ($this->getCardDetailsLines() as $line) {
+            if (str_contains(strtolower($line), 'first') && str_contains(strtolower($line), 'name')) {
+                return $line;
+            }
+        }
+        return '';
+    }
+
+    public function getCardDetailsLastNameLine(): string
+    {
+
+        foreach ($this->getCardDetailsLines() as $line) {
+            if (str_contains(strtolower($line), 'last') && str_contains(strtolower($line), 'name')) {
+                return $line;
+            }
+        }
+        return '';
+    }
+
+    public function getCardDetailNewName() : string
+    {
+        return sprintf('Name: %s %s', $this->getCardDetailsFirstNameValue(), $this->getCardDetailsLastNameValue());
+    }
+    public function updateCardDetailsName() : void
+    {
+        $fist_name = $this->getCardDetailsFirstNameLine(); $last_name = $this->getCardDetailsLastNameLine();
+        if($fist_name || $last_name) {
+            $new_name = $this->getCardDetailNewName();
+            $new_card_details = $this->card_details;
+            $new_card_details = str_replace($this->getCardDetailsFirstNameLine(), '', $new_card_details);
+            $new_card_details = str_replace($this->getCardDetailsLastNameLine(), '', $new_card_details);
+            $new_card_details = trim($new_card_details) . PHP_EOL . $new_name;
+            $this->update(['card_details' => $new_card_details]);
+        }
     }
 
 }

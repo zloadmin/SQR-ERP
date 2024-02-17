@@ -34,9 +34,18 @@ class Test extends Command
 ////        dd($task->getQrAttachmentsFilePaths());
 ////        var_dump($task);
 //        GeneratePreloadQRAttachments::dispatchSync($task);
-        $task = Task::find(568);
-        $telegamAlert = TelegramAlert::first();
-        dd($task->getTelegramAlertMessage($telegamAlert));
+//        $task = Task::find(568);
+//        $telegamAlert = TelegramAlert::first();
+//        dd($task->getTelegramAlertMessage($telegamAlert));
+        $tasks = Task::orWhere('card_details', 'LIKE', '%last_name%')->orWhere('card_details', 'LIKE', '%first_name%')->get();
+
+        foreach ($tasks as $task) {
+            $task->updateCardDetailsName();
+        }
+
+//        dd($c);
+
+//        dd($task->getCardDetailsFirstNameLine(), $task->getCardDetailsLastNameLine());
         return Command::SUCCESS;
     }
 }
