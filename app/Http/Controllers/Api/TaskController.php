@@ -65,7 +65,7 @@ class TaskController extends Controller
             }
             GeneratePreloadQRAttachments::dispatch($task)->afterCommit();
         }
-        $task->updateCardDetailsName();
+//        $task->updateCardDetailsName();
         Log::info('API request save ', $data);
     }
 
