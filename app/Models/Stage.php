@@ -11,63 +11,63 @@ class Stage extends Model
 {
     const LIST = [
         [
-            'id'   => 1,
-            'key'  => 'account-setup',
-            'name' => 'Account Setup',
+            'id'    => 1,
+            'key'   => 'account-setup',
+            'name'  => 'Account Setup',
             'order' => 1,
         ],
         [
-            'id'   => 2,
-            'key'  => 'design',
-            'name' => 'Design',
+            'id'    => 2,
+            'key'   => 'design',
+            'name'  => 'Design',
             'order' => 2,
         ],
         [
-            'id'   => 3,
-            'key'  => 'design-approval',
-            'name' => 'Design Approval',
+            'id'    => 3,
+            'key'   => 'design-approval',
+            'name'  => 'Design Approval',
             'order' => 3,
         ],
         [
-            'id'   => 4,
-            'key'  => 'content',
-            'name' => 'Content',
+            'id'    => 4,
+            'key'   => 'content',
+            'name'  => 'Content',
             'order' => 4,
         ],
         [
-            'id'   => 5,
-            'key'  => 'content-approval',
-            'name' => 'Content Approval',
+            'id'    => 5,
+            'key'   => 'content-approval',
+            'name'  => 'Content Approval',
             'order' => 5,
         ],
         [
-            'id'   => 6,
-            'key'  => 'print-file',
-            'name' => 'Print File',
+            'id'    => 6,
+            'key'   => 'print-file',
+            'name'  => 'Print File',
             'order' => 6,
         ],
         [
-            'id'   => 10,
-            'key'  => 'qa',
-            'name' => 'QA',
+            'id'    => 10,
+            'key'   => 'qa',
+            'name'  => 'QA',
             'order' => 7,
         ],
         [
-            'id'   => 7,
-            'key'  => 'production',
-            'name' => 'Production',
+            'id'    => 7,
+            'key'   => 'production',
+            'name'  => 'Production',
             'order' => 8,
         ],
         [
-            'id'   => 8,
-            'key'  => 'collection',
-            'name' => 'Collection',
+            'id'    => 8,
+            'key'   => 'collection',
+            'name'  => 'Collection',
             'order' => 9,
         ],
         [
-            'id'   => 9,
-            'key'  => 'done',
-            'name' => 'Done',
+            'id'    => 9,
+            'key'   => 'done',
+            'name'  => 'Done',
             'order' => 10,
         ],
     ];
@@ -137,6 +137,8 @@ class Stage extends Model
 
     static function getPrevStageId(int $id): int
     {
+        if ($id == 4) return 1;
+
         $order = self::find($id)->order;
         $prev = self::where('order', '=', $order - 1)->first();
         return $prev ? $prev->id : self::getPrevStageId();

@@ -14,6 +14,7 @@ class ActionAccountSetup extends Action
     public $attache;
     public ?TaskFile $preload_attache = null;
     public ?TaskFile $last_attache;
+    public $not_approve_qr_attache;
     public string $username = '';
     public string $password = '';
     public ?int $next_stage = null;
@@ -34,23 +35,22 @@ class ActionAccountSetup extends Action
         $this->username = $task->sqr_card_username ?? '';
         $this->password = $task->sqr_card_password ?? '';
         $this->preload_attache = $task->preload_qr_attachments()->latest()->first();
+        $this->not_approve_qr_attache = $task->getLastNotApproveQRAttachment();
         if ($this->preload_attache) {
             $this->attache = $this->preload_attache;
         }
-
-
     }
 
     public function submitQR()
     {
 
-        if($this->isRequiredMaterial()) {
+        if ($this->isRequiredMaterial()) {
             return $this->setRequiredMaterialError();
         }
         if ($this->isUploadedAttachment()) {
             $this->validate($this->rulesWithAttacheFile());
             $this->storeAttache();
-            if($this->preload_attache) {
+            if ($this->preload_attache) {
                 $this->preload_attache->delete();
             }
         } else {

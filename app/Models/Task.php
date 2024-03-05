@@ -476,6 +476,10 @@ class Task extends Model
     {
         return $this->getLastNotApproveFile(TaskFile::CONTENT_ATTACHMENTS);
     }
+    public function getLastNotApproveQRAttachment()
+    {
+        return $this->getLastNotApproveFile(TaskFile::QR_ATTACHMENTS);
+    }
 
     public function getLastNotApprovePrintFileAttachment()
     {

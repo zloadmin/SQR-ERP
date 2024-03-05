@@ -1,7 +1,6 @@
 <h5 class="mt-0 mb-2 font-16">Comment</h5>
 <!--- Comment Field --->
 <div class="form-group">
-{{--    <label for="comment">Comment</label>--}}
     <textarea class="form-control @error('comment') is-invalid @enderror" wire:model="comment"></textarea>
     @error('comment')
         <span class="invalid-feedback" role="alert">

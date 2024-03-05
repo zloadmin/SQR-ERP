@@ -75,6 +75,11 @@
                         </button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_qr_attache])
+                    </div>
+                </div>
             </form>
         @endif
     </div> <!-- end card-body -->

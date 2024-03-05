@@ -16,6 +16,7 @@ class ActionContent extends Action
     public $qr_arrache;
     public $design_file;
     public $not_approve_content_attache;
+    public string $comment = '';
 
 
     protected $rules = [
@@ -39,6 +40,15 @@ class ActionContent extends Action
         $this->validate();
         $this->storeContentAttacheFile();
         $this->increaseTaskStageId();
+        $this->updateBlocks();
+    }
+    public function decline()
+    {
+        $this->validate([
+            'comment' => 'required'
+        ]);
+        $this->qr_arrache->decline($this->comment);
+        $this->decreaseTaskStageId();
         $this->updateBlocks();
     }
     public function render()
