@@ -51,7 +51,9 @@ class ActionContent extends Action
             'comment'    => ['required'],
             'next_stage' => ['required', 'in:1,11'], // 1 Account Setup, 11 RM Support
         ]);
-        $this->qr_arrache->decline($this->comment);
+        if($this->qr_arrache) {
+            $this->qr_arrache->decline($this->comment);
+        }
         $this->setTaskStageId($this->next_stage);
         $this->updateBlocks();
     }

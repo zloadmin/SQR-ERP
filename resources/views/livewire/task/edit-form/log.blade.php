@@ -10,7 +10,9 @@
             @if ($editable)
                 <form wire:submit.prevent="createMessage">
                     <div class="mb-2 position-relative">
-                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">
+{{--                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">--}}
+                            <textarea wire:model.lazy="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" style="resize: none" id="chatMessageInput" list="chatMessageInputList"></textarea>
+{{--                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">--}}
                             <datalist id="chatMessageInputList">
                                 @foreach($telegram_usernames as $telegram_username)
                                     <option value="{{ '@' }}{{ $telegram_username }}">

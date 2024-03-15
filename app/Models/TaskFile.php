@@ -176,7 +176,7 @@ class TaskFile extends Model
 
     public function getApproveDeclineComment(): string
     {
-        return $this->approved_comment ? sprintf(' Comment %s.', $this->approved_comment) : '';
+        return $this->approved_comment ? sprintf(' Comment <b style="color:red">%s</b>.', $this->approved_comment) : '';
     }
 
     public function getApproveMessage(): string

@@ -49,7 +49,7 @@ class TaskMessage extends Model
         self::create([
             'task_id' => $task->id,
             'user_id' => auth()->check() ? auth()->id() : null,
-            'text'    => 'Card stage has been changed.'
+            'text'    => sprintf('Card stage has been changed to <b>%s</b>.', $task->stage->name)
         ]);
     }
 
