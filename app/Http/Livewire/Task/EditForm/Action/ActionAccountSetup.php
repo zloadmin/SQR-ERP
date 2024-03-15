@@ -17,14 +17,13 @@ class ActionAccountSetup extends Action
     public $not_approve_qr_attache;
     public string $username = '';
     public string $password = '';
-    public ?int $next_stage = null;
     public Task $task;
     public bool $editable;
 
     protected $rules = [
         'username'   => 'required|string|max:255',
         'password'   => 'required|string|max:255',
-        'next_stage' => 'required|in:2,4',
+//        'next_stage' => 'required|in:2,4',
         'attache'    => 'required|file|max:4194304',
     ];
 
@@ -82,7 +81,7 @@ class ActionAccountSetup extends Action
         return [
             'username'   => 'required|string|max:255',
             'password'   => 'required|string|max:255',
-            'next_stage' => 'required|in:2,4',
+//            'next_stage' => 'required|in:2,4',
             'attache'    => 'required|file|max:4194304',
         ];
     }
@@ -92,7 +91,7 @@ class ActionAccountSetup extends Action
         return [
             'username'   => 'required|string|max:255',
             'password'   => 'required|string|max:255',
-            'next_stage' => 'required|in:2,4'
+//            'next_stage' => 'required|in:2,4'
         ];
     }
 
@@ -101,7 +100,7 @@ class ActionAccountSetup extends Action
 
         $this->task->sqr_card_username = $this->username;
         $this->task->sqr_card_password = $this->password;
-        $this->task->stage_id = $this->next_stage;
+        $this->task->stage_id = 4; // Content
         $this->task->update();
     }
 

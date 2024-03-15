@@ -4,6 +4,9 @@
         @case('account-setup')
             <livewire:task.edit-form.action.action-account-setup :task="$task" />
         @break
+        @case('rm-support')
+            <livewire:task.edit-form.action.action-r-m-support :task="$task" />
+        @break
         @case('design')
             <livewire:task.edit-form.action.action-design :task="$task" />
         @break
