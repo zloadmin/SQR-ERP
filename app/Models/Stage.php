@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Stage extends Model
 {
+    // You need refresh migration after change and after add to DB.
     const LIST = [
         [
             'id'    => 1,
@@ -17,58 +18,64 @@ class Stage extends Model
             'order' => 1,
         ],
         [
+            'id'    => 11,
+            'key'   => 'rm-support',
+            'name'  => 'RM Support',
+            'order' => 2,
+        ],
+        [
             'id'    => 2,
             'key'   => 'design',
             'name'  => 'Design',
-            'order' => 2,
+            'order' => 3,
         ],
         [
             'id'    => 3,
             'key'   => 'design-approval',
             'name'  => 'Design Approval',
-            'order' => 3,
+            'order' => 4,
         ],
         [
             'id'    => 4,
             'key'   => 'content',
             'name'  => 'Content',
-            'order' => 4,
+            'order' => 5,
         ],
         [
             'id'    => 5,
             'key'   => 'content-approval',
             'name'  => 'Content Approval',
-            'order' => 5,
+            'order' => 6,
         ],
         [
             'id'    => 6,
             'key'   => 'print-file',
             'name'  => 'Print File',
-            'order' => 6,
+            'order' => 7,
         ],
         [
             'id'    => 10,
             'key'   => 'qa',
             'name'  => 'QA',
-            'order' => 7,
+            'order' => 8,
         ],
         [
             'id'    => 7,
             'key'   => 'production',
             'name'  => 'Production',
-            'order' => 8,
+            'order' => 9,
         ],
         [
             'id'    => 8,
             'key'   => 'collection',
             'name'  => 'Collection',
-            'order' => 9,
+            'order' => 10,
         ],
         [
             'id'    => 9,
             'key'   => 'done',
             'name'  => 'Done',
-            'order' => 10,
+            'order' => 11,
         ],
     ];
     use HasFactory;
