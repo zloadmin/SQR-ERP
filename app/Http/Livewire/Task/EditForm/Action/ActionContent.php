@@ -17,10 +17,11 @@ class ActionContent extends Action
     public $design_file;
     public $not_approve_content_attache;
     public string $comment = '';
+    public ?int $next_stage;
 
 
     protected $rules = [
-        'attache'  => 'required|file|max:4194304'
+        'attache' => 'required|file|max:4194304'
     ];
 
     public function mount(Task $task)
@@ -31,9 +32,10 @@ class ActionContent extends Action
         $this->design_file = $task->getLastDesignFile();
         $this->not_approve_content_attache = $task->getLastNotApproveContentAttachment();
     }
+
     public function submitAttache()
     {
-        if($this->isRequiredMaterial()) {
+        if ($this->isRequiredMaterial()) {
             return $this->setRequiredMaterialError();
         }
 
@@ -42,15 +44,18 @@ class ActionContent extends Action
         $this->increaseTaskStageId();
         $this->updateBlocks();
     }
+
     public function decline()
     {
         $this->validate([
-            'comment' => 'required'
+            'comment'    => ['required'],
+            'next_stage' => ['required', 'in:1,11'], // 1 Account Setup, 11 RM Support
         ]);
         $this->qr_arrache->decline($this->comment);
-        $this->decreaseTaskStageId();
+        $this->setTaskStageId($this->next_stage);
         $this->updateBlocks();
     }
+
     public function render()
     {
         return view('livewire.task.edit-form.action.action-content');

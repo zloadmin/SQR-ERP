@@ -79,6 +79,13 @@ class Action extends Component
         $this->task->update();
         $this->mount($this->task->refresh(), $this->editable);
     }
+    public function setTaskStageId(int $stage_id)
+    {
+        $this->task->stage_id = $stage_id;
+        $this->task->update();
+        $this->mount($this->task->refresh(), $this->editable);
+
+    }
 
     public function increaseTaskStageId()
     {
