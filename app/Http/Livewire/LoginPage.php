@@ -15,7 +15,7 @@ class LoginPage extends Component
     public string $step;
     public ?User $user;
     public string $sent_code;
-    public string $code;
+    public string $code = '';
     public string $email = '';
     public string $password = '';
     public bool $remember = false;
