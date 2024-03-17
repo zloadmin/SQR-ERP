@@ -44,12 +44,12 @@ class TaskMessage extends Model
         ]);
     }
 
-    static function addChangeStageTask(Task $task)
+    static function addChangeStageTask(Task $task) : void
     {
         self::create([
             'task_id' => $task->id,
             'user_id' => auth()->check() ? auth()->id() : null,
-            'text'    => sprintf('Card stage has been changed to <b>%s</b>.', $task->stage->name)
+            'text'    => sprintf('Card stage has been changed to <b>%s</b>.', $task->refresh()->stage->name)
         ]);
     }
 
