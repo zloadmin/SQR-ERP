@@ -169,4 +169,12 @@ class User extends Authenticatable
     {
         return self::whereNotNull('telegram_username')->get();
     }
+    static function getTelegramUsernamesJson() : string
+    {
+        return self::whereNotNull('telegram_username')->pluck('telegram_username')->map(function ($telegram_username) {
+//            return $telegram_username;
+            return sprintf('@%s', $telegram_username);
+        })->toJson();
+//        return json_encode($data);
+    }
 }

@@ -37,21 +37,78 @@
 
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<link href="/css/summernote.min.css" rel="stylesheet">
+<script src="/js/summernote.min.js"></script>
+
 <style>
     body {
         -webkit-text-size-adjust: none;
     }
 </style>
 <script>
-    function expandTextarea(id) {
-        document.getElementById(id).addEventListener('keyup', function() {
-            this.style.overflow = 'hidden';
-            this.style.height = 0;
-            this.style.height = this.scrollHeight + 'px';
-        }, false);
+    {{--let telegramUsernames = {!! \App\Models\User::getTelegramUsernamesJson() !!};--}}
+    function initSummerNote() {
+        $("#summernote").summernote('destroy');
+        $("#summernote").summernote({
+            // height: 100,
+            disableGrammar: true,
+            lineHeight: 10,
+            toolbar: false,
+            placeholder: 'Type text... Start @ for PM',
+            backColor: 'red',
+            foreColor: 'red',
+            backgroundColor: '#f1f3fa',
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    document.getElementById('summernote_hidden').value = contents;
+                    document.getElementById('summernote_hidden').dispatchEvent(new Event('input'));
+                }
+            },
+            hint: {
+                words: {!! \App\Models\User::getTelegramUsernamesJson() !!},
+                match: /(.*)$/,
+                search: function (keyword, callback) {
+                    callback($.grep(this.words, function (item) {
+                        return item.indexOf(keyword) === 0;
+                    }));
+                }
+            }
+        });
     }
 
-    expandTextarea('chatMessageInput');
+    function initSummerNoteOnce() {
+        let initAttr = 'data-summernote-initialized';
+        let el = $("#summernote");
+        if (el.length && !el.attr(initAttr)) {
+            el.attr(initAttr, 1);
+            initSummerNote();
+        } else {
+            console.log(el.length);
+            console.log(el.attr(initAttr));
+        }
+    }
+    function beforeSubmitSummer() {
+        $('#summernote_hidden').text($('#summernote').summernote('code'));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        Livewire.hook('component.initialized', (component) => {
+                initSummerNoteOnce();
+        });
+        Livewire.hook('message.processed', (message, component) => {
+            initSummerNoteOnce();
+        });
+    });
+    // function expandTextarea(id) {
+    //     document.getElementById(id).addEventListener('keyup', function() {
+    //         this.style.overflow = 'hidden';
+    //         this.style.height = 0;
+    //         this.style.height = this.scrollHeight + 'px';
+    //     }, false);
+    // }
+    //
+    // expandTextarea('chatMessageInput');
 </script>
 @include('layouts.dashboard.zoom-scripts')
 

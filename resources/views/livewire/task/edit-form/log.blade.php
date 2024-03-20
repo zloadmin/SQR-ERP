@@ -10,23 +10,19 @@
             @if ($editable)
                 <form wire:submit.prevent="createMessage">
                     <div class="mb-2 position-relative">
-{{--                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">--}}
-                            <textarea wire:model.lazy="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" style="resize: none" id="chatMessageInput" list="chatMessageInputList"></textarea>
-{{--                            <input  wire:model.lazy="text" type="text" class="form-control @error('text') is-invalid @enderror" placeholder="Type text... Start @ for PM" id="chatMessageInput" list="chatMessageInputList">--}}
-                            <datalist id="chatMessageInputList">
-                                @foreach($telegram_usernames as $telegram_username)
-                                    <option value="{{ '@' }}{{ $telegram_username }}">
-                                @endforeach
-                            </datalist>
-                            @error('text')
+                        <textarea class="hint2basic form-control" id="summernote" style="resize: none"></textarea>
+                        <input type="hidden" id="summernote_hidden" wire:model.defer="text">
+                        @error('text')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
+                        @enderror
 
-                        <button class="action-icon btn chat-icon"  wire:loading.attr="disabled" wire:target="createMessage">
+                        <button class="action-icon btn chat-icon" wire:loading.attr="disabled"
+                                wire:target="createMessage">
                             <div wire:loading.delay wire:target="createMessage">
-                                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                <span class="spinner-border spinner-border-sm me-1" role="status"
+                                      aria-hidden="true"></span>
                             </div>
                             <div wire:loading.delay.remove wire:target="createMessage">
                                 <span class="mdi mdi-send"></span>
@@ -37,11 +33,11 @@
             @endif
         </div>
     </div> <!-- end card-body -->
-{{--    <div class="row">--}}
-{{--        <div class="col-md-12">--}}
-{{--            --}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="row">--}}
+    {{--        <div class="col-md-12">--}}
+    {{--            --}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!--Chat -->
     <div class="row">
         <div class="col">
@@ -78,3 +74,5 @@
 
 
 </div>
+
+
