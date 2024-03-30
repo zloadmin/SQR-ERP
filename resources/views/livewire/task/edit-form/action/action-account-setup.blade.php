@@ -16,7 +16,7 @@
                             </p>
                             <br>
                         @endif
-                        @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'QR\'s'])
+{{--                        @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'QR\'s'])--}}
                     </div>
                     <div class="col-md-3">
                         <!--- Username Field --->

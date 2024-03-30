@@ -46,16 +46,17 @@ class ActionAccountSetup extends Action
         if ($this->isRequiredMaterial()) {
             return $this->setRequiredMaterialError();
         }
-        if ($this->isUploadedAttachment()) {
-            $this->validate($this->rulesWithAttacheFile());
-            $this->storeAttache();
-            if ($this->preload_attache) {
-                $this->preload_attache->delete();
-            }
-        } else {
-            $this->validate($this->rulesWithoutAttacheFile());
-            $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
-        }
+//        if ($this->isUploadedAttachment()) {
+//            $this->validate($this->rulesWithAttacheFile());
+//            $this->storeAttache();
+//            if ($this->preload_attache) {
+//                $this->preload_attache->delete();
+//            }
+//        } else {
+//            $this->validate($this->rulesWithoutAttacheFile());
+//            $this->preload_attache->changeType(TaskFile::QR_ATTACHMENTS);
+//        }
+        $this->validate($this->rulesWithoutAttacheFile());
         $this->updateTask();
         $this->updateBlocks();
     }
