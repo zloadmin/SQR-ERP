@@ -104,6 +104,7 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
             'Spatie\\Ignition\\' => 16,
             'Spatie\\FlareClient\\' => 19,
             'Spatie\\Backtrace\\' => 17,
+            'Soundasleep\\' => 12,
         ),
         'R' => 
         array (
@@ -154,6 +155,7 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
             'Livewire\\' => 9,
             'LivewireUI\\Modal\\' => 17,
             'League\\MimeTypeDetection\\' => 25,
+            'League\\HTMLToMarkdown\\' => 22,
             'League\\Flysystem\\Local\\' => 23,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
@@ -402,6 +404,10 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
         ),
+        'Soundasleep\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/soundasleep/html2text/src',
+        ),
         'Riverskies\\Laravel\\MobileDetect\\' => 
         array (
             0 => __DIR__ . '/..' . '/riverskies/laravel-mobile-detect/src',
@@ -529,6 +535,10 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
+        ),
+        'League\\HTMLToMarkdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/html-to-markdown/src',
         ),
         'League\\Flysystem\\Local\\' => 
         array (
@@ -725,9 +735,11 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         'App\\Console\\Commands\\Task\\UpdateAllSQRCardOrderStatus' => __DIR__ . '/../..' . '/app/Console/Commands/Task/UpdateAllSQRCardOrderStatus.php',
         'App\\Console\\Commands\\Test\\Test' => __DIR__ . '/../..' . '/app/Console/Commands/Test/Test.php',
         'App\\Console\\Commands\\Test\\TestAramex' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestAramex.php',
+        'App\\Console\\Commands\\Test\\TestAramexConnection' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestAramexConnection.php',
         'App\\Console\\Commands\\Test\\TestChangeStageId' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestChangeStageId.php',
         'App\\Console\\Commands\\Test\\TestEmail' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestEmail.php',
         'App\\Console\\Commands\\Test\\TestMoveTasks' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestMoveTasks.php',
+        'App\\Console\\Commands\\Test\\TestTaskMessageTelegramText' => __DIR__ . '/../..' . '/app/Console/Commands/Test/TestTaskMessageTelegramText.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\CreateTaskMessage' => __DIR__ . '/../..' . '/app/Events/CreateTaskMessage.php',
         'App\\Events\\StageTasksUpdated' => __DIR__ . '/../..' . '/app/Events/StageTasksUpdated.php',
@@ -785,6 +797,7 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         'App\\Http\\Livewire\\Task\\EditForm\\Action\\ActionPrintFile' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/Action/ActionPrintFile.php',
         'App\\Http\\Livewire\\Task\\EditForm\\Action\\ActionProduction' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/Action/ActionProduction.php',
         'App\\Http\\Livewire\\Task\\EditForm\\Action\\ActionQA' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/Action/ActionQA.php',
+        'App\\Http\\Livewire\\Task\\EditForm\\Action\\ActionRMSupport' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/Action/ActionRMSupport.php',
         'App\\Http\\Livewire\\Task\\EditForm\\Actions' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/Actions.php',
         'App\\Http\\Livewire\\Task\\EditForm\\ActionsSecret' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/ActionsSecret.php',
         'App\\Http\\Livewire\\Task\\EditForm\\DeliveryDetails' => __DIR__ . '/../..' . '/app/Http/Livewire/Task/EditForm/DeliveryDetails.php',
@@ -3536,6 +3549,33 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         'League\\Flysystem\\UrlGeneration\\TemporaryUrlGenerator' => __DIR__ . '/..' . '/league/flysystem/src/UrlGeneration/TemporaryUrlGenerator.php',
         'League\\Flysystem\\Visibility' => __DIR__ . '/..' . '/league/flysystem/src/Visibility.php',
         'League\\Flysystem\\WhitespacePathNormalizer' => __DIR__ . '/..' . '/league/flysystem/src/WhitespacePathNormalizer.php',
+        'League\\HTMLToMarkdown\\Coerce' => __DIR__ . '/..' . '/league/html-to-markdown/src/Coerce.php',
+        'League\\HTMLToMarkdown\\Configuration' => __DIR__ . '/..' . '/league/html-to-markdown/src/Configuration.php',
+        'League\\HTMLToMarkdown\\ConfigurationAwareInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/ConfigurationAwareInterface.php',
+        'League\\HTMLToMarkdown\\Converter\\BlockquoteConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/BlockquoteConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\CodeConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/CodeConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\CommentConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/CommentConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ConverterInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ConverterInterface.php',
+        'League\\HTMLToMarkdown\\Converter\\DefaultConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/DefaultConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\DivConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/DivConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\EmphasisConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/EmphasisConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HardBreakConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HardBreakConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HeaderConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HeaderConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HorizontalRuleConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HorizontalRuleConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ImageConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ImageConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\LinkConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/LinkConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ListBlockConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ListBlockConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ListItemConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ListItemConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ParagraphConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ParagraphConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\PreformattedConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/PreformattedConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\TableConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/TableConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\TextConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/TextConverter.php',
+        'League\\HTMLToMarkdown\\Element' => __DIR__ . '/..' . '/league/html-to-markdown/src/Element.php',
+        'League\\HTMLToMarkdown\\ElementInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/ElementInterface.php',
+        'League\\HTMLToMarkdown\\Environment' => __DIR__ . '/..' . '/league/html-to-markdown/src/Environment.php',
+        'League\\HTMLToMarkdown\\HtmlConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/HtmlConverter.php',
+        'League\\HTMLToMarkdown\\HtmlConverterInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/HtmlConverterInterface.php',
+        'League\\HTMLToMarkdown\\PreConverterInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/PreConverterInterface.php',
         'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\ExtensionLookup' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionLookup.php',
         'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
@@ -5986,6 +6026,8 @@ class ComposerStaticInit94df1eb02f31d7c49140a73e5bc43c2e
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Soundasleep\\Html2Text' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2Text.php',
+        'Soundasleep\\Html2TextException' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2TextException.php',
         'Spatie\\Backtrace\\Arguments\\ArgumentReducers' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ArgumentReducers.php',
         'Spatie\\Backtrace\\Arguments\\ProvidedArgument' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ProvidedArgument.php',
         'Spatie\\Backtrace\\Arguments\\ReduceArgumentPayloadAction' => __DIR__ . '/..' . '/spatie/backtrace/src/Arguments/ReduceArgumentPayloadAction.php',

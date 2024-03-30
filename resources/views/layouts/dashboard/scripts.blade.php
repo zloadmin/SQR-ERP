@@ -1,38 +1,7 @@
 @include('layouts.dashboard.zoom')
-{{--<script src="/js/jquery.js"></script>--}}
-{{--<script src="/js/bootstrap.bundle.js"></script>--}}
-
 <!-- Alpine v3 -->
 <script defer src="/js/alpine.js"></script>
-
-{{--    <script src="/js/metisMenu.js"></script>--}}
-{{--    <script src="/js/jquery.slimscroll.js"></script>--}}
-{{--    <script src="/js/jquery.toast.js"></script>--}}
-{{--    <script src="/js/jquery.mask.min.js"></script>--}}
-{{--    <script src="/js/select2.js"></script>--}}
-{{--    <script src="/js/moment.js"></script>--}}
-{{--    <script src="/js/hyper.js"></script>--}}
-{{--<script src="/js/functions.js"></script>--}}
-{{--<script src="/js/app.js"></script>--}}
-{{--<script src="/js/laravel-echo.js"></script>--}}
-{{--    <script src="/js/jquery.datetimepicker.full.min.js"></script>--}}
-{{--    <script>--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--    @include('layouts.dashboard.notifications')--}}
-{{--@livewireScripts--}}
-<!--livewire:modals-->
-{{--<livewire:modals/>--}}
-<!--livewire:modals-->
-{{--@livewire('livewire-ui-modal')--}}
-{{--@stack('scripts')--}}
-
 <livewire:modals/>
-
 <livewire:scripts/>
 
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
@@ -47,14 +16,11 @@
     }
 </style>
 <script>
-    {{--let telegramUsernames = {!! \App\Models\User::getTelegramUsernamesJson() !!};--}}
     function cleanSummerNote() {
         $('#summernote').summernote('code', '');
     }
     function initSummerNote() {
-        // $("#summernote").summernote('destroy');
         $("#summernote").summernote({
-            // height: 100,
             disableGrammar: true,
             lineHeight: 10,
             toolbar: false,
@@ -86,9 +52,6 @@
         if (el.length && !el.attr(initAttr)) {
             el.attr(initAttr, 1);
             initSummerNote();
-        } else {
-            console.log(el.length);
-            console.log(el.attr(initAttr));
         }
     }
 
@@ -96,33 +59,13 @@
     document.addEventListener("DOMContentLoaded", () => {
         Livewire.hook('component.initialized', (component) => {
             if(component.name === 'task.edit-form.log') {
-                console.log('component.initialized task.edit-form.log');
                 initSummerNoteOnce();
             }
         });
         Livewire.on('messageCreated', () => {
-            console.log('messageCreated');
             cleanSummerNote();
         })
-        // Livewire.hook('message.processed', (message, component) => {
-        //     console.log('component.processed');
-        //     initSummerNoteOnce();
-        // });
     });
-    // function expandTextarea(id) {
-    //     document.getElementById(id).addEventListener('keyup', function() {
-    //         this.style.overflow = 'hidden';
-    //         this.style.height = 0;
-    //         this.style.height = this.scrollHeight + 'px';
-    //     }, false);
-    // }
-    //
-    // expandTextarea('chatMessageInput');
+
 </script>
 @include('layouts.dashboard.zoom-scripts')
-
-{{--<script src="jquery.js"></script>--}}
-{{--<script src="/js/autocomplete.js"></script>--}}
-{{--<script src="/js/rangy-core.js"></script>--}}
-{{--<script src="/js/caret-position.js"></script>--}}
-{{--<script src="/js/bootstrap-tagautocomplete.js"></script>--}}

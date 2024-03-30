@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Events\CreateTaskMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Soundasleep\Html2Text;
+
 
 class TaskMessage extends Model
 {
@@ -44,7 +46,7 @@ class TaskMessage extends Model
         ]);
     }
 
-    static function addChangeStageTask(Task $task) : void
+    static function addChangeStageTask(Task $task): void
     {
         self::create([
             'task_id' => $task->id,
@@ -95,6 +97,7 @@ class TaskMessage extends Model
     {
         $lines = [];
 
+
         if ($this->task) {
             $lines[] = 'Customer: ' . $this->task->company_name;
         }
@@ -108,7 +111,7 @@ class TaskMessage extends Model
 
         $lines[] = '';
         $lines[] = '---------------';
-        $lines[] = $this->text;
+        $lines[] = Html2Text::convert($this->text);
         return implode(PHP_EOL, $lines);
     }
 }
