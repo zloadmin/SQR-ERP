@@ -12,9 +12,9 @@
     @isset($print_file_attache)
         @include('livewire.task.edit-form.action.blocks.file', ['file' => $print_file_attache, 'name' => 'Print File'])
     @endisset
-    @isset($image_of_printed_cards_attache)
-        @include('livewire.task.edit-form.action.blocks.file', ['file' => $image_of_printed_cards_attache, 'name' => 'Image Of Printed Cards'])
-    @endisset
+{{--    @isset($image_of_printed_cards_attache)--}}
+{{--        @include('livewire.task.edit-form.action.blocks.file', ['file' => $image_of_printed_cards_attache, 'name' => 'Image Of Printed Cards'])--}}
+{{--    @endisset--}}
     @isset($delivery_slip_attache)
         @include('livewire.task.edit-form.action.blocks.file', ['file' => $delivery_slip_attache, 'name' => 'Delivery Slip'])
     @endisset
