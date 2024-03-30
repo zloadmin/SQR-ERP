@@ -9,7 +9,7 @@
         <div class="app-chat">
             @if ($editable)
                 <form wire:submit.prevent="createMessage">
-                    <div class="mb-2 position-relative">
+                    <div class="mb-2 position-relative" wire:ignore>
                         <textarea class="hint2basic form-control" id="summernote" style="resize: none"></textarea>
                         <input type="hidden" id="summernote_hidden" wire:model.defer="text">
                         @error('text')

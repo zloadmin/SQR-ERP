@@ -48,8 +48,11 @@
 </style>
 <script>
     {{--let telegramUsernames = {!! \App\Models\User::getTelegramUsernamesJson() !!};--}}
+    function cleanSummerNote() {
+        $('#summernote').summernote('code', '');
+    }
     function initSummerNote() {
-        $("#summernote").summernote('destroy');
+        // $("#summernote").summernote('destroy');
         $("#summernote").summernote({
             // height: 100,
             disableGrammar: true,
@@ -60,7 +63,7 @@
             foreColor: 'red',
             backgroundColor: '#f1f3fa',
             callbacks: {
-                onChange: function(contents, $editable) {
+                onChange: function (contents, $editable) {
                     document.getElementById('summernote_hidden').value = contents;
                     document.getElementById('summernote_hidden').dispatchEvent(new Event('input'));
                 }
@@ -88,17 +91,23 @@
             console.log(el.attr(initAttr));
         }
     }
-    function beforeSubmitSummer() {
-        $('#summernote_hidden').text($('#summernote').summernote('code'));
-    }
+
 
     document.addEventListener("DOMContentLoaded", () => {
         Livewire.hook('component.initialized', (component) => {
+            if(component.name === 'task.edit-form.log') {
+                console.log('component.initialized task.edit-form.log');
                 initSummerNoteOnce();
+            }
         });
-        Livewire.hook('message.processed', (message, component) => {
-            initSummerNoteOnce();
-        });
+        Livewire.on('messageCreated', () => {
+            console.log('messageCreated');
+            cleanSummerNote();
+        })
+        // Livewire.hook('message.processed', (message, component) => {
+        //     console.log('component.processed');
+        //     initSummerNoteOnce();
+        // });
     });
     // function expandTextarea(id) {
     //     document.getElementById(id).addEventListener('keyup', function() {
