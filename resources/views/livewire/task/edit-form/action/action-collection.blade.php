@@ -9,16 +9,14 @@
         @if($editable)
             <form wire:submit.prevent="submitDeliverySlip" id="submitDeliverySlipForm">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="col-md-12 mb-2">
-                            @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'Delivery Slip', 'model_name' => 'delivery_slip'])
-                        </div>
-                        <div class="col-md-12">
-                            @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'Image of Printed Cards', 'model_name' => 'image_of_printed_cards'])
-                        </div>
-
-
-                    </div>
+{{--                    <div class="col-md-3">--}}
+{{--                        <div class="col-md-12 mb-2">--}}
+{{--                            @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'Delivery Slip', 'model_name' => 'delivery_slip'])--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            @include('livewire.task.edit-form.action.blocks.attache-file', ['name' => 'Image of Printed Cards', 'model_name' => 'image_of_printed_cards'])--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-md-3">
                         @foreach($inventories as $inventory)
                             <!--- card_collected Field --->
@@ -55,6 +53,7 @@
 {{--                            @enderror--}}
 {{--                        </div>--}}
                     </div>
+                    <div class="col-md-3"></div>
                     <div class="col-md-3">
                         <!--- delivery_reference Field --->
                         <div class="form-group">

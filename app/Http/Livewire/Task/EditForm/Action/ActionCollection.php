@@ -27,23 +27,21 @@ class ActionCollection extends Action
 
 
     protected $rules = [
-//        'card_collected' => 'required|string|max:255',
-'delivery_reference' => 'required|string|max:255',
-'attache'            => 'required|file|max:4194304',
-//        'inventory_used' => 'required|array',
-'inventory_used.*'   => 'required|int|min:1|max:100000'
+        'delivery_reference' => 'required|string|max:255',
+        'attache'            => 'required|file|max:4194304',
+        'inventory_used.*'   => 'required|int|min:1|max:100000'
     ];
 
     protected function rules()
     {
         $rules = [];
-        $rules['delivery_reference'] = ['required', 'string', 'max:255'];
-        if ($this->isNeedDeliverySlipAttached()) {
-            $rules['delivery_slip'] = ['required', 'file', 'max:4194304'];
-        } else {
-            $rules['delivery_slip'] = ['nullable'];
-        }
-        $rules['image_of_printed_cards'] = ['required', 'file', 'max:4194304'];
+//        $rules['delivery_reference'] = ['required', 'string', 'max:255'];
+//        if ($this->isNeedDeliverySlipAttached()) {
+//            $rules['delivery_slip'] = ['required', 'file', 'max:4194304'];
+//        } else {
+//            $rules['delivery_slip'] = ['nullable'];
+//        }
+//        $rules['image_of_printed_cards'] = ['required', 'file', 'max:4194304'];
         $rules['inventory_used'] = ['required', 'array', 'min:2'];
         foreach ($this->inventories as $inventory) {
             $rules['inventory_used.' . $inventory->id] = ['int', 'min:1', 'max:100000'];
@@ -73,7 +71,7 @@ class ActionCollection extends Action
         }
 
         $this->validate();
-        $this->storeAttachments();
+//        $this->storeAttachments();
         $this->updateTask();
         $this->updateInventories();
         $this->updateBlocks();
