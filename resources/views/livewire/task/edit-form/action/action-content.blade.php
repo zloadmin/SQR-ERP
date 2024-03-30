@@ -11,10 +11,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                @include('livewire.task.edit-form.action.blocks.files')
-            </div>
-            <div class="col-md-5">
+
+            <div class="col-md-8">
                 @include('livewire.task.edit-form.action.blocks.decline-form')
                @include('livewire.task.edit-form.action.blocks.comment-alert', ['file' => $not_approve_content_attache])
                 @if($this->design_file && $this->design_file->approved_comment)
@@ -22,7 +20,10 @@
                     <p>{{ $this->design_file->approved_comment }}</p>
                 @endif
             </div>
-            <div class="col-md-1"></div>
+{{--            <div class="col-md-2">--}}
+{{--                @include('livewire.task.edit-form.action.blocks.files')--}}
+{{--            </div>--}}
+{{--            <div class="col-md-1"></div>--}}
             <div class="col-md-4">
                 @if ($editable)
                     @include('livewire.task.edit-form.action.blocks.attach-form', ['name' => 'Content'])
