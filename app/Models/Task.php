@@ -13,6 +13,7 @@ use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
 use App\Jobs\TaskCreateShipment;
 use App\Jobs\UpdateSQRCardOrderStatus;
+use App\Models\Task\HasAramexDocument;
 use App\Traits\HasUUID;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,7 +28,7 @@ class Task extends Model
 {
     use HasFactory;
     use HasUUID;
-
+    use HasAramexDocument;
 
     protected $guarded = [];
     protected $casts = [
@@ -740,5 +741,16 @@ class Task extends Model
             $this->update(['card_details' => $new_card_details]);
         }
     }
+
+    public function getPostCode() : string
+    {
+        foreach (explode(' ', $this->address ?? '') as $word) {
+            if(preg_match('/[0-9]{5,9}/', $word)) {
+                return $word;
+            }
+        }
+        return '';
+    }
+
 
 }
