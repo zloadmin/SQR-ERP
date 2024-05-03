@@ -56,8 +56,8 @@ class Test extends Command
 //        $phpWord = IOFactory::load(resource_path('templates/aramex_template.docx'));
 //        $phpWord->save(resource_path('templates/aramex_template.pdf'), 'PDF');
 //        dd($doc);
-        $task = Task::findOrFail(1918);
-        TaskCreateShipment::dispatchSync($task);
+//        $task = Task::findOrFail(1918);
+//        TaskCreateShipment::dispatchSync($task);
 //        $aramex = (new Aramex($task));
 //        $createShipmentResponse = $aramex->sendCreateShipmentsRequest();
 //        $this->info('Create shipment');
@@ -71,6 +71,12 @@ class Test extends Command
 //            $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $filePath);
 //            $this->info((string)$addShipmentAttachmentResponse->body());
 //        }
+
+        $task = Task::findOrFail(1918);
+        $aramex = (new Aramex($task));
+        $filePath = $task->createAramexDocument();
+        $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest(35295622924, $filePath);
+        $this->info((string)$addShipmentAttachmentResponse->body());
 
         return Command::SUCCESS;
     }
