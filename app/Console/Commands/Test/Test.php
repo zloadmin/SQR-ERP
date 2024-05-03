@@ -56,7 +56,11 @@ class Test extends Command
 //        $phpWord->save(resource_path('templates/aramex_template.pdf'), 'PDF');
 //        dd($doc);
         $task = Task::findOrFail(1918);
-        $aramex = (new Aramex($task))->sendCreateShipmentsRequest();
+        $aramex = (new Aramex($task));
+        $response = $aramex->sendCreateShipmentsRequest();
+        if($aramex->isInternational()) {
+            $aramex->sendAddShipmentAttachmentRequest();
+        }
         $this->info((string)$aramex->body());
         return Command::SUCCESS;
     }

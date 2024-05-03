@@ -13,10 +13,10 @@ class Aramex
 
     private array $config;
     private Task $task;
-    private string $urlTest = 'https://ws.sbx.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/CreateShipments'; // TOOD: make function
-    private string $urlProd = 'https://ws.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/CreateShipments'; // TOOD: make function
+    private string $urlTemplateTest = 'https://ws.sbx.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/%s'; // TOOD: make function
+    private string $urlTemplateProd = 'https://ws.aramex.net/shippingapi.v2/shipping/service_1_0.svc/json/%s'; // TOOD: make function
 
-    private string $url;
+    private string $urlTemplate;
     private $countries = [
         'AF' => 'Afghanistan',
         'AX' => 'Aland Islands',
@@ -446,7 +446,7 @@ class Aramex
     {
         $this->config = $this->getConfig();
         $this->task = $task;
-        $this->url = $this->getUrl();
+        $this->urlTemplate = $this->getUrlTemplate();
     }
 
 
@@ -461,10 +461,14 @@ class Aramex
 
     public function sendCreateShipmentsRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
     {
-
-        File::put(resource_path('templates/1.json'), json_encode($this->getCreateShipmentsData()));
         return Http::withHeaders($this->getHeaders())
-            ->post($this->url, $this->getCreateShipmentsData());
+            ->post($this->getUrl('CreateShipments'), $this->getCreateShipmentsData());
+    }
+
+    public function sendAddShipmentAttachmentRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+    {
+        return Http::withHeaders($this->getHeaders())
+            ->post($this->url, $this->getAddShipmentAttachmentData());
     }
 
     public function sendTestCreateShipmentsRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
@@ -484,6 +488,13 @@ class Aramex
             ],
             'ClientInfo'  => $this->getClientInfoData(),
             'Transaction' => $this->getTransactionData(),
+        ];
+    }
+
+    private function getAddShipmentAttachmentData(): array
+    {
+        return [
+
         ];
     }
 
@@ -649,15 +660,15 @@ class Aramex
 
     private function getShipperAttachments(): ?array
     {
-        if($this->isInternational()) {
-            return [
-                [
-                    'FileName'      => $this->task->id,
-                    'FileExtension' => 'rtf',
-                    'FileContents'  => self::getByteArrayByContent($this->task->getAramexDocument())
-                ]
-            ];
-        }
+//        if($this->isInternational()) {
+//            return [
+//                [
+//                    'FileName'      => $this->task->id,
+//                    'FileExtension' => 'rtf',
+//                    'FileContents'  => self::getByteArrayByContent($this->task->getAramexDocument())
+//                ]
+//            ];
+//        }
 
         return null;
     }
@@ -671,6 +682,7 @@ class Aramex
     {
         return array_map('ord', str_split(File::get($path)));
     }
+
     static function getByteArrayByContent(string $content): array
     {
         return array_map('ord', str_split($content));
@@ -746,7 +758,7 @@ class Aramex
         ];
     }
 
-    private function isInternational() : bool
+    public function isInternational(): bool
     {
         return $this->getCountryCode() != 'AE';
     }
@@ -774,13 +786,25 @@ class Aramex
         return 'AE';
     }
 
-    private function getUrl(): string
+    private function getUrlTemplate(): string
     {
         if ($this->getEnvironment() == 'prod') {
-            return $this->urlProd;
+            return $this->urlTemplateProd;
         }
-        return $this->urlTest;
+        return $this->urlTemplateTest;
     }
 
+    private function getUrl(string $action): string
+    {
+        return sprintf($this->getUrlTemplate(), $action);
+    }
+    private function getUrlCreateShipments() : string
+    {
+        return $this->getUrl('CreateShipments');
+    }
+    private function getUrlAddShipmentAttachment() : string
+    {
+        return $this->getUrl('AddShipmentAttachment');
+    }
 
 }

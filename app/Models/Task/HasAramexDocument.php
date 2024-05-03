@@ -23,10 +23,8 @@ trait HasAramexDocument
         $file = str_replace('___ADDRESS___', $this->address ?? '', $file);
         $file = str_replace('___TELEPHONE___', str_replace('+', '', $this->contact_number ?? ''), $file);
         $file = str_replace('___COUNTRY___', $this->country ?? '', $file);
-        $file = str_replace('___AWB___', '', $file);
         $file = str_replace('___QTY___', strval($totalCards), $file);
         $file = str_replace('___AMOUNT___', strval($totalCards * 10), $file);
-        $file = str_replace('___TOTALAMOUNT___', strval($totalCards * 10), $file);
     }
     private function getTemplate() : string
     {
@@ -35,6 +33,6 @@ trait HasAramexDocument
 
     private function getTemplatePath() : string
     {
-        return resource_path('templates/aramex.rtf');
+        return resource_path('templates/aramex2.pdf');
     }
 }
