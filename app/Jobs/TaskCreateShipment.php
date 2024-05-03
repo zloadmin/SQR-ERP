@@ -36,27 +36,43 @@ class TaskCreateShipment implements ShouldQueue
      */
     public function handle()
     {
-        $aramex = (new Aramex($this->task))->sendCreateShipmentsRequest();
-        $aramex_response = json_decode($aramex->body(), true);
+
+        $aramex = (new Aramex($this->task));
+        $filePath = '';
+        $createShipmentResponse = $aramex->sendCreateShipmentsRequest();
+        $aramexResponse = [];
+        $createShipmentResponseArray = json_decode((string)$createShipmentResponse->body(), true) ?? [];
+        $aramexResponse['createShipment'] = $createShipmentResponseArray;
+
+        if ($aramex->isInternational() && isset($createShipmentResponseArray['Shipments'][0]['ID'])) {
+            $filePath = $this->task->createAramexDocument();
+            $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $filePath);
+            $addShipmentAttachmentResponseArray = json_decode((string)$addShipmentAttachmentResponse->body(), true) ?? [];
+            $aramexResponse['addShipmentAttachment'] = $addShipmentAttachmentResponseArray;
+        }
+
+//        $aramex = (new Aramex($this->task))->sendCreateShipmentsRequest();
+//        $aramex_response = json_decode($aramex->body(), true);
 
         $this->task->update(['aramex_submitted' => true]);
         $this->task->aramexRequests()->create([
-            'aramex_body' => $aramex->body(),
-            'aramex_response' => $aramex_response
+            'aramex_body'     => $createShipmentResponse->body(),
+            'aramex_response' => $aramexResponse,
+            'file_path'       => $filePath
         ]);
-        $errors = $this->getErrorsText($aramex_response);
+        $errors = $this->getErrorsText($createShipmentResponseArray);
         if ($errors) {
             $this->task->messages()->create([
                 'text' => 'Aramex: Errors ' . $errors
             ]);
         }
-        $labelURL = $this->getLabelURL($aramex_response);
+        $labelURL = $this->getLabelURL($createShipmentResponseArray);
         if ($labelURL) {
             $file = $this->createFromUrl($labelURL, pathinfo($labelURL, PATHINFO_BASENAME));
             TaskFile::storeUploadFile($this->task, TaskFile::DELIVERY_SLIP_ATTACHMENTS, $file, true);
-                $this->task->messages()->create([
-                    'text' => 'Aramex: Label URL - ' . $labelURL
-                ]);
+            $this->task->messages()->create([
+                'text' => 'Aramex: Label URL - ' . $labelURL
+            ]);
         }
 
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->text('aramex_body')->nullable();
             $table->json('aramex_response')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

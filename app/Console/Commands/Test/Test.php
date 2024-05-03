@@ -4,6 +4,7 @@ namespace App\Console\Commands\Test;
 
 use App\Clients\Aramex;
 use App\Jobs\GeneratePreloadQRAttachments;
+use App\Jobs\TaskCreateShipment;
 use App\Models\Task;
 use App\Models\TelegramAlert;
 use Illuminate\Console\Command;
@@ -56,12 +57,21 @@ class Test extends Command
 //        $phpWord->save(resource_path('templates/aramex_template.pdf'), 'PDF');
 //        dd($doc);
         $task = Task::findOrFail(1918);
-        $aramex = (new Aramex($task));
-        $response = $aramex->sendCreateShipmentsRequest();
-        if($aramex->isInternational()) {
-            $aramex->sendAddShipmentAttachmentRequest();
-        }
-        $this->info((string)$aramex->body());
+        TaskCreateShipment::dispatchSync($task);
+//        $aramex = (new Aramex($task));
+//        $createShipmentResponse = $aramex->sendCreateShipmentsRequest();
+//        $this->info('Create shipment');
+//        $this->info((string)$createShipmentResponse->body());
+//        $createShipmentResponseArray = json_decode((string)$createShipmentResponse, true) ?? [];
+
+//        if($aramex->isInternational() && isset($createShipmentResponseArray['Shipments'][0]['ID'])) {
+//            $this->info('Add shipment attachment');
+//            $filePath = $task->createAramexDocument();
+//            $this->info('Generated file ' . $filePath);
+//            $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $filePath);
+//            $this->info((string)$addShipmentAttachmentResponse->body());
+//        }
+
         return Command::SUCCESS;
     }
 }

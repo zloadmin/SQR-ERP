@@ -465,17 +465,17 @@ class Aramex
             ->post($this->getUrl('CreateShipments'), $this->getCreateShipmentsData());
     }
 
-    public function sendAddShipmentAttachmentRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
+    public function sendAddShipmentAttachmentRequest(int $shipmentNumber, string $filePath): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
     {
         return Http::withHeaders($this->getHeaders())
-            ->post($this->url, $this->getAddShipmentAttachmentData());
+            ->post($this->getUrlAddShipmentAttachment(), $this->getAddShipmentAttachmentData($shipmentNumber, $filePath));
     }
 
     public function sendTestCreateShipmentsRequest(): \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
     {
 
         return Http::withHeaders($this->getHeaders())
-            ->post($this->url, $this->getTestCreateShipmentsData());
+            ->post($this->getUrlCreateShipments(), $this->getTestCreateShipmentsData());
     }
 
     private function getCreateShipmentsData(): array
@@ -491,10 +491,15 @@ class Aramex
         ];
     }
 
-    private function getAddShipmentAttachmentData(): array
+    private function getAddShipmentAttachmentData(int $shipmentNumber, string $filePath): array
     {
         return [
-
+            'ClientInfo'  => $this->getClientInfoData(),
+            'Transaction' => $this->getTransactionData(),
+            'ShipmentNumber' => $shipmentNumber,
+            'ProductGroup' => $this->getProductGroup(),
+            'ProductType' => $this->getProductType(),
+            'AttachmentInfo' => $this->getAttachmentInfoData($filePath)
         ];
     }
 
@@ -637,6 +642,16 @@ class Aramex
             'PreferredLanguageCode' => null,
         ];
     }
+//    private function getTransactionData(): array
+//    {
+//        return [
+//            'Reference1' => '',
+//            'Reference2' => '',
+//            'Reference3' => '',
+//            'Reference4' => '',
+//            'Reference5' => '',
+//        ];
+//    }
 
     public function getTransactionData()
     {
@@ -805,6 +820,15 @@ class Aramex
     private function getUrlAddShipmentAttachment() : string
     {
         return $this->getUrl('AddShipmentAttachment');
+    }
+
+    private function getAttachmentInfoData(string $filePath) : array
+    {
+        return [
+            'FileName' => File::name($filePath),
+            'FileExtension' => File::extension($filePath),
+            'FileContentsAsBase64String' => base64_encode(File::get($filePath)),
+        ];
     }
 
 }
