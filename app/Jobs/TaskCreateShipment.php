@@ -17,6 +17,13 @@ class TaskCreateShipment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * The number of seconds the job can run before timing out.
+     *
+     * @var int
+     */
+    public $timeout = 60 * 5 + 120;
+
     private Task $task;
 
     /**
@@ -45,14 +52,12 @@ class TaskCreateShipment implements ShouldQueue
         $aramexResponse['createShipment'] = $createShipmentResponseArray;
 
         if ($aramex->isInternational() && isset($createShipmentResponseArray['Shipments'][0]['ID'])) {
+            sleep(60 * 5);
             $filePath = $this->task->createAramexDocument();
             $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $filePath);
             $addShipmentAttachmentResponseArray = json_decode((string)$addShipmentAttachmentResponse->body(), true) ?? [];
             $aramexResponse['addShipmentAttachment'] = $addShipmentAttachmentResponseArray;
         }
-
-//        $aramex = (new Aramex($this->task))->sendCreateShipmentsRequest();
-//        $aramex_response = json_decode($aramex->body(), true);
 
         $this->task->update(['aramex_submitted' => true]);
         $this->task->aramexRequests()->create([
