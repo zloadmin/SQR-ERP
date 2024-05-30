@@ -18,16 +18,27 @@
                        style="    margin-top: -1px;">
                     <tbody>
                     <tr>
-                        <td style="width: 50%">
-                            @if($task->company_name)
-                                <p><b>Company name:</b> {{ $task->company_name }}</p>
-                            @endif
+                        <td style="height: 150px; vertical-align: top!important;">
+                            <p>
+                                @if($task->design_comments)
+                                    <b>Design comments:</b>
+                                    <br>
+                                    {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
+                                @endif
+                            </p>
                         </td>
                         <td style="width: 50%; vertical-align: top !important;" rowspan="6">
                             @if($task->card_details)
                                 <p><b>Card details:</b><br>
                                     {!! str_replace("\n", '<br />', WL($task->card_details)) !!}
                                 </p>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%">
+                            @if($task->company_name)
+                                <p><b>Company name:</b> {{ $task->company_name }}</p>
                             @endif
                         </td>
                     </tr>
@@ -59,17 +70,17 @@
                             @endif
                         </td>
                     </tr>
-                    <tr>
-                        <td style="height: 150px; vertical-align: top!important;">
-                            <p>
-                                @if($task->design_comments)
-                                    <b>Design comments:</b>
-                                    <br>
-                                    {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}
-                                @endif
-                            </p>
-                        </td>
-                    </tr>
+{{--                    <tr>--}}
+{{--                        <td style="height: 150px; vertical-align: top!important;">--}}
+{{--                            <p>--}}
+{{--                                @if($task->design_comments)--}}
+{{--                                    <b>Design comments:</b>--}}
+{{--                                    <br>--}}
+{{--                                    {!! str_replace("\n", '<br />', WL($task->design_comments)) !!}--}}
+{{--                                @endif--}}
+{{--                            </p>--}}
+{{--                        </td>--}}
+{{--                    </tr>--}}
                     </tbody>
                 </table>
             </div> <!-- end card-body -->
