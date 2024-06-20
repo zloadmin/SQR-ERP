@@ -15,4 +15,3 @@ yarn-error.log
 .DS_Store
 laravel-echo-server.json
 laravel-echo-server.lock
-storage
