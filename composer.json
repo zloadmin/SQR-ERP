@@ -17,6 +17,7 @@
         "laravel/ui": "^4.2",
         "livewire/livewire": "*",
         "phpoffice/phpword": "^1.2",
+        "pragmarx/countries": "^0.8.2",
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^5.0",
         "riverskies/laravel-mobile-detect": "^1.3",
