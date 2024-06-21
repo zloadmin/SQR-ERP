@@ -6,7 +6,7 @@ use App\Jobs\TaskSetCountryCode;
 use App\Models\Task;
 use Illuminate\Console\Command;
 
-class TasksSetCoountryCode extends Command
+class TasksSetCountryCode extends Command
 {
     /**
      * The name and signature of the console command.
