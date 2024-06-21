@@ -31,7 +31,7 @@ class TasksSetCountryCode extends Command
     {
         foreach (Task::all() as $task) {
             $this->info('Add task ' . $task->id);
-            TaskSetCountryCode::dispatchSync($task);
+            TaskSetCountryCode::dispatch($task);
         }
         return Command::SUCCESS;
     }
