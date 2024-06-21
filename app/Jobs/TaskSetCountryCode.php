@@ -35,6 +35,7 @@ class TaskSetCountryCode implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('TaskSetCountryCode');
 
         if ($this->task->country) {
             $code = CountryCode::parseCode($this->task->country);
