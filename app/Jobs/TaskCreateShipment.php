@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Clients\Aramex;
 use App\Models\TaskFile;
+use App\Models\TaskMessage;
 use Illuminate\Bus\Queueable;
 use App\Models\Task;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -53,10 +54,12 @@ class TaskCreateShipment implements ShouldQueue
 
         if ($aramex->isInternational() && isset($createShipmentResponseArray['Shipments'][0]['ID'])) {
             sleep(60 * 5);
-            $filePath = $this->task->createAramexDocument();
-            $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $filePath);
+            $taskFile = $this->task->createAramexDocumentTaskFile();
+            $filePath = $taskFile->real_path;
+            $addShipmentAttachmentResponse = $aramex->sendAddShipmentAttachmentRequest($createShipmentResponseArray['Shipments'][0]['ID'], $taskFile->real_path);
             $addShipmentAttachmentResponseArray = json_decode((string)$addShipmentAttachmentResponse->body(), true) ?? [];
             $aramexResponse['addShipmentAttachment'] = $addShipmentAttachmentResponseArray;
+            TaskMessage::addCreateFile($taskFile);
         }
 
         $this->task->update(['aramex_submitted' => true]);

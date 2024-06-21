@@ -790,15 +790,16 @@ class Aramex
 
     private function getCountryCode()
     {
-        if ($this->task->country) {
-            foreach ($this->countries as $code => $country) {
-                if (strtolower($country) == trim(strtolower($this->task->country))) {
-                    return $code;
-                }
-            }
-        }
-
-        return 'AE';
+        return  $this->task->country_code;
+//        if ($this->task->country) {
+//            foreach ($this->countries as $code => $country) {
+//                if (strtolower($country) == trim(strtolower($this->task->country))) {
+//                    return $code;
+//                }
+//            }
+//        }
+//
+//        return 'AE';
     }
 
     private function getUrlTemplate(): string

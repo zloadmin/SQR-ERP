@@ -26,6 +26,7 @@ class TaskFile extends Model
     const PRINTING_FILE_ATTACHMENTS = 'printing_file_attachments';
     const DELIVERY_SLIP_ATTACHMENTS = 'delivery_slip_attachments';
     const IMAGE_OF_PRINTED_CARDS_ATTACHMENTS = 'image_of_printed_cards_attachments';
+    const ARAMEX_INVOICE = 'aramex_invoice';
 
 
     const EXIST_DESIGN_ATTACHMENTS = 'exist_design_attachments';
@@ -49,6 +50,8 @@ class TaskFile extends Model
         self::PRINTING_FILE_ATTACHMENTS,
         self::DELIVERY_SLIP_ATTACHMENTS,
         self::IMAGE_OF_PRINTED_CARDS_ATTACHMENTS,
+
+        self::ARAMEX_INVOICE
 
     ];
     const MAIN_FIELDS = [
