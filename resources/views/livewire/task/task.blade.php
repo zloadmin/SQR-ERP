@@ -26,6 +26,17 @@
             <small><b>Cards:</b> {{ $task->total_cards }}</small>
             <small class="text-muted">Created Time: {{ $task->getTimeLeft() }}</small>
         </div>
+        <div class="d-flex justify-content-between">
+                <small>
+                    @if ($task->country)
+                        <b>Country:</b> {{ $task->country }}
+                    @else
+                        &nbsp;
+                    @endif
+                </small>
+
+            <small class="text-muted">Revisions: {{ $task->getRevisions() }} </small>
+        </div>
 
     </div> <!-- end card-body -->
 </div>
