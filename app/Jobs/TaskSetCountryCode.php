@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class TaskSetCountryCode implements ShouldQueue
 {
@@ -36,6 +37,10 @@ class TaskSetCountryCode implements ShouldQueue
     {
         if ($this->task->country) {
             $code = CountryCode::parseCode($this->task->country);
+            Log::info('TaskSetCountryCode', [
+                'country' => $this->task->country,
+                'code' => $code
+            ]);
             if ($code) {
                 $this->task->update([
                     'country_code' => $code,

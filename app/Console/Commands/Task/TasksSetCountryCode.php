@@ -30,6 +30,7 @@ class TasksSetCountryCode extends Command
     public function handle()
     {
         foreach (Task::all() as $task) {
+            $this->info('Add task ' . $task->id);
             TaskSetCountryCode::dispatch($task);
         }
         return Command::SUCCESS;
