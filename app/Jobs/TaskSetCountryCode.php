@@ -25,6 +25,7 @@ class TaskSetCountryCode implements ShouldQueue
      */
     public function __construct(Task $task)
     {
+        Log::info('TaskSetCountryCode::__construct');
         $this->task = $task;
     }
 
