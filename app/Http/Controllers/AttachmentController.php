@@ -13,16 +13,19 @@ class AttachmentController extends Controller
     {
         $task = Task::firstOrFailByUUID($task_uuid);
         $files = $task->attachments()->where('type', $type);
-        if(!$files->count()) abort(404, 'Files not found');
-        if($files->count() == 1) {
-            return response()->download($files->first()->real_path);
+
+        if (!$files->count()) abort(404, 'Files not found');
+        if ($files->count() == 1) {
+            return response()->download($files->first()->real_path, null, [
+                'Cache-Control' => 'no-store,no-cache, must-revalidate, post-check=0, pre-check=0'
+            ]);
         }
 
         $zip = new \ZanySoft\Zip\Zip();
         $zip_path = $this->getZipPath($type);
         $zip->create($zip_path);
         foreach ($files->get() as $file) {
-            if(file_exists($file->real_path)) {
+            if (file_exists($file->real_path)) {
                 $zip->add($file->real_path);
             }
         }
@@ -32,6 +35,7 @@ class AttachmentController extends Controller
         return response()->download($zip_path);
 
     }
+
     private function getZipPath(string $type)
     {
         return storage_path(sprintf('app/task/download_attachments_zips/%s_%d.zip', $type, time()));
