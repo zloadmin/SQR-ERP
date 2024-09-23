@@ -26,10 +26,11 @@ class ShowStage extends Component
 
     private function getTasks(): Collection
     {
-
+        $isSearch = false;
         $result = $this->stage->tasks()->with('tags');
 
         if ($this->search_text) {
+            $isSearch = true;
             $result->where(function ($query) {
                 $query->orWhere('company_name', 'LIKE', '%' . $this->search_text . '%');
                 $query->orWhere('contact_name', 'LIKE', '%' . $this->search_text . '%');
@@ -37,19 +38,23 @@ class ShowStage extends Component
                 $query->orWhere('contact_email', 'LIKE', '%' . $this->search_text . '%');
             });
         }
-        if($this->stage->id == 9) {
+        if ($this->stage->id == 9) {
             $result->orderByDesc($this->stage_start_key);
         } else {
             $result->orderBy($this->stage_start_key);
         }
+        if (!$isSearch && $this->stage->id == 9) {
+            $result->take(20);
+        }
 
-        $tasks  = $result->get();
-        if($this->stage->id != 9) {
+        $tasks = $result->get();
+        if ($this->stage->id != 9) {
             $this->sortTaskCollection($tasks);
         }
         return $tasks;
     }
-    public function sortTaskCollection(Collection &$tasks) : void
+
+    public function sortTaskCollection(Collection &$tasks): void
     {
         $this->sortByTag($tasks, 'Priority');
         $this->sortByTag($tasks, 'Critical');
@@ -61,7 +66,7 @@ class ShowStage extends Component
 //            return $task->tags()->where('name', 'Priority')->exists();
 //        });
 //    }
-    public function sortByTag(Collection &$tasks, string $tag) : void
+    public function sortByTag(Collection &$tasks, string $tag): void
     {
         $tasks = $tasks->sortByDesc(function (Task $task) use ($tag) {
             return $task->tags()->where('name', $tag)->exists();
