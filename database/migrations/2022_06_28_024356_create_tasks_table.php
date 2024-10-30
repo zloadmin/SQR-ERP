@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->text('delivery_method')->nullable();
             $table->text('emirate')->nullable();
             $table->text('country')->nullable();
+            $table->string('country_code', 2)->default('AE');
             $table->text('address')->nullable();
 
             $table->text('sqr_card_username')->nullable();

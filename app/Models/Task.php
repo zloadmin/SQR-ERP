@@ -12,6 +12,7 @@ use App\Jobs\SendTelegramAlerts;
 use App\Jobs\SendWebHook;
 use App\Jobs\SendWebHooks;
 use App\Jobs\TaskCreateShipment;
+use App\Jobs\TaskSetCountryCode;
 use App\Jobs\UpdateSQRCardOrderStatus;
 use App\Models\Task\HasAramexDocument;
 use App\Traits\HasUUID;
@@ -112,6 +113,7 @@ class Task extends Model
             SendCreatedWebHooks::dispatch($task);
             SendWebHooks::dispatch($task);
             SendTelegramAlerts::dispatch($task);
+            TaskSetCountryCode::dispatch($task);
             $task->updateSQRCardOrderStatus();
         });
         static::creating(function (Task $task) {
@@ -132,6 +134,7 @@ class Task extends Model
                     TaskCreateShipment::dispatchSync($task);
                 }
             }
+            TaskSetCountryCode::dispatch($task);
 //            $task->setStageStart();
         });
         static::updating(function (Task $task) {
