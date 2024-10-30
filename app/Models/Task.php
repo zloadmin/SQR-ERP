@@ -17,11 +17,13 @@ use App\Jobs\UpdateSQRCardOrderStatus;
 use App\Models\Task\HasAramexDocument;
 use App\Traits\HasUUID;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\TemporaryUploadedFile;
 
@@ -480,6 +482,7 @@ class Task extends Model
     {
         return $this->getLastNotApproveFile(TaskFile::CONTENT_ATTACHMENTS);
     }
+
     public function getLastNotApproveQRAttachment()
     {
         return $this->getLastNotApproveFile(TaskFile::QR_ATTACHMENTS);
@@ -609,6 +612,36 @@ class Task extends Model
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());
     }
 
+    public function getCurrentSLATimeLeftWorkHours()
+    {
+
+        if ($this->{$this->getUpdateStageKey()}) {
+            $hours = self::getDiffByNowWorkHours($this->getStageUpdate());
+            if($hours < 1) {
+                return  'less then an hour';
+            }
+            return now()->subHours($hours)->longAbsoluteDiffForHumans(now());
+        }
+        $hours = self::getDiffByNowWorkHours($this->getStageStart());
+        if($hours < 1) {
+            return  'less then an hour';
+        }
+        return now()->subHours($hours)->longAbsoluteDiffForHumans(now());
+    }
+
+    static function getDiffWorkHours(Carbon $start, Carbon $end): int
+    {
+        return $start->diffInHoursFiltered(function (Carbon $date) {
+            if ($date->isWeekend()) return false;
+            return $date->hour >= 10 && $date->hour <= 17;
+        }, $end);
+    }
+
+    static function getDiffByNowWorkHours(Carbon $start): int
+    {
+        return self::getDiffWorkHours($start, now());
+    }
+
     public function getTimeLeft()
     {
         return $this->created_at->longAbsoluteDiffForHumans(now());
@@ -699,6 +732,7 @@ class Task extends Model
 
         return count($data) ? end($data) : '';
     }
+
     public function getCardDetailsLastNameValue(): string
     {
         $data = explode(": ", $this->getCardDetailsLastNameLine());
@@ -728,14 +762,16 @@ class Task extends Model
         return '';
     }
 
-    public function getCardDetailNewName() : string
+    public function getCardDetailNewName(): string
     {
         return sprintf('Name: %s %s', $this->getCardDetailsFirstNameValue(), $this->getCardDetailsLastNameValue());
     }
-    public function updateCardDetailsName() : void
+
+    public function updateCardDetailsName(): void
     {
-        $fist_name = $this->getCardDetailsFirstNameLine(); $last_name = $this->getCardDetailsLastNameLine();
-        if($fist_name || $last_name) {
+        $fist_name = $this->getCardDetailsFirstNameLine();
+        $last_name = $this->getCardDetailsLastNameLine();
+        if ($fist_name || $last_name) {
             $new_name = $this->getCardDetailNewName();
             $new_card_details = $this->card_details;
             $new_card_details = str_replace($this->getCardDetailsFirstNameLine(), '', $new_card_details);
@@ -745,10 +781,10 @@ class Task extends Model
         }
     }
 
-    public function getPostCode() : string
+    public function getPostCode(): string
     {
         foreach (explode(' ', $this->address ?? '') as $word) {
-            if(preg_match('/[0-9]{5,9}/', $word)) {
+            if (preg_match('/[0-9]{5,9}/', $word)) {
                 return $word;
             }
         }

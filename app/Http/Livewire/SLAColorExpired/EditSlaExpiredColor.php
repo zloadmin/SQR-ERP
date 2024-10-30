@@ -20,14 +20,11 @@ class EditSlaExpiredColor extends Component
     protected $rules = [
         'name'         => 'required|max:255',
         'stage_id'     => 'required|integer|exists:stages,id',
-        'time_minutes' => 'required|integer|min:0',
         'time_hours'   => 'required|integer|min:0',
         'time_days'    => 'required|integer|min:0',
         'color'        => ['required', 'regex:/^(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))$/i']
     ];
-//    protected $messages = [
-//        'time.min' => 'The time field is required.',
-//    ];
+
 
 
     public function mount(SlaExpiredColor $slaExpiredColor)
@@ -37,7 +34,6 @@ class EditSlaExpiredColor extends Component
         $this->stage_id = $slaExpiredColor->stage_id;
         $this->time_days = $slaExpiredColor->time_days;
         $this->time_hours = $slaExpiredColor->time_hours;
-        $this->time_minutes = $slaExpiredColor->time_minutes;
         $this->color = $slaExpiredColor->color;
     }
 
@@ -73,7 +69,7 @@ class EditSlaExpiredColor extends Component
     {
         $this->slaExpiredColor->name = $this->name;
         $this->slaExpiredColor->stage_id = $this->stage_id;
-        $this->slaExpiredColor->time = ($this->time_days * (60 * 60 * 24)) + ($this->time_hours * (60 * 60)) + ($this->time_minutes * 60);
+        $this->slaExpiredColor->time = $this->time_days * 24 + $this->time_hours;
         $this->slaExpiredColor->color = $this->color;
         $this->slaExpiredColor->update();
     }

@@ -30,18 +30,18 @@
                         @enderror
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <!--- Time minutes Field --->
-                            <div class="form-group">
-                                <label for="time_minutes">Time minutes</label>
-                                <input class="form-control @error('time_minutes') is-invalid @enderror" type="text" wire:model="time_minutes">
-                                @error('time_minutes')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+{{--                        <div class="col-md-4">--}}
+{{--                            <!--- Time minutes Field --->--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="time_minutes">Time minutes</label>--}}
+{{--                                <input class="form-control @error('time_minutes') is-invalid @enderror" type="text" wire:model="time_minutes">--}}
+{{--                                @error('time_minutes')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="col-md-4">
                             <!--- Time hours Field --->
                             <div class="form-group">

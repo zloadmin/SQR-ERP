@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Stage;
 
+use App\Models\SlaExpiredColor;
 use App\Models\Stage;
 use App\Models\Task;
 use Illuminate\Support\Collection;
@@ -15,12 +16,14 @@ class ShowStage extends Component
     public Collection $tasks;
     public string $search_text = "";
     public string $stage_start_key;
+    public Collection $slaExpiredColors;
 
     function mount(Stage $stage)
     {
         $this->stage = $stage;
         $this->stage_start_key = Stage::getStartKeyById($stage->id);
         $this->tasks = $this->getTasks();
+        $this->slaExpiredColors = SlaExpiredColor::where('stage_id', $this->stage->id)->orderBy('time')->get();
 
     }
 
