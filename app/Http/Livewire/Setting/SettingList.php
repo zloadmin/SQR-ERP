@@ -10,14 +10,14 @@ class SettingList extends Component
 
     public function render()
     {
-        return view('livewire.setting.setting-list', [ 'items' => $this->getItems() ])
+        return view('livewire.setting.setting-list', ['items' => $this->getItems()])
             ->layoutData([
                 'title'      => 'Settings',
                 'breadcrumb' => $this->getBreadcrumb()
             ]);
     }
 
-    private function getItems() : array
+    private function getItems(): array
     {
         return [
             [
@@ -31,6 +31,10 @@ class SettingList extends Component
             [
                 'title' => 'SLA',
                 'link'  => route('settings.sla')
+            ],
+            [
+                'title' => 'SLA expired colors',
+                'link'  => route('settings.sla-expired-color')
             ],
             [
                 'title' => 'Tag',

@@ -20,6 +20,9 @@ use App\Http\Livewire\Setting\SettingList;
 use App\Http\Livewire\SLA\CreateSLA;
 use App\Http\Livewire\SLA\EditSLA;
 use App\Http\Livewire\SLA\SLAList;
+use App\Http\Livewire\SLAColorExpired\CreateSlaExpiredColor;
+use App\Http\Livewire\SLAColorExpired\EditSlaExpiredColor;
+use App\Http\Livewire\SLAColorExpired\SlaExpiredColorList;
 use App\Http\Livewire\Tag\CreateTag;
 use App\Http\Livewire\Tag\EditTag;
 use App\Http\Livewire\Tag\TagList;
@@ -105,6 +108,11 @@ Route::middleware('auth')->group(function () {
 //            Route::get('/create', CreateSLA::class)->name('settings.sla.create');
             Route::get('/edit/{sla}', EditSLA::class)->name('settings.sla.edit');
         });
+        Route::prefix('sla-expired-color')->group(function () {
+            Route::get('/', SlaExpiredColorList::class)->name('settings.sla-expired-color');
+            Route::get('/create', CreateSlaExpiredColor::class)->name('settings.sla-expired-color.create');
+            Route::get('/edit/{slaExpiredColor}', EditSlaExpiredColor::class)->name('settings.sla-expired-color.edit');
+        });
         Route::prefix('tag')->group(function () {
             Route::get('/', TagList::class)->name('settings.tag');
             Route::get('/create', CreateTag::class)->name('settings.tag.create');
@@ -136,10 +144,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/test-socket', function (){
+Route::get('/test-socket', function () {
     return view('test.socket');
 });
-Route::post('/test-socket', function (){
+Route::post('/test-socket', function () {
     event(new \App\Events\TestSocket());
 });
 //Route::post('/test-webhook', function (){
