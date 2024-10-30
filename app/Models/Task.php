@@ -612,21 +612,19 @@ class Task extends Model
         return $this->getStageStart()->longAbsoluteDiffForHumans(now());
     }
 
-    public function getCurrentSLATimeLeftWorkHours()
+    public function getCurrentSLATimeLeftWorkHoursText(): string
+    {
+        return now()->subHours($this->getCurrentSLATimeLeftWorkHours())->longAbsoluteDiffForHumans(now());
+    }
+
+    public function getCurrentSLATimeLeftWorkHours(): int
     {
 
         if ($this->{$this->getUpdateStageKey()}) {
-            $hours = self::getDiffByNowWorkHours($this->getStageUpdate());
-            if($hours < 1) {
-                return  'less then an hour';
-            }
-            return now()->subHours($hours)->longAbsoluteDiffForHumans(now());
+            return self::getDiffByNowWorkHours($this->getStageUpdate());
+
         }
-        $hours = self::getDiffByNowWorkHours($this->getStageStart());
-        if($hours < 1) {
-            return  'less then an hour';
-        }
-        return now()->subHours($hours)->longAbsoluteDiffForHumans(now());
+        return self::getDiffByNowWorkHours($this->getStageStart());
     }
 
     static function getDiffWorkHours(Carbon $start, Carbon $end): int

@@ -1,13 +1,14 @@
 @php
-    $color = '';
+
     $currentSLATimeLeftWorkHours = $task->getCurrentSLATimeLeftWorkHours();
     foreach ($slaExpiredColors as $slaExpiredColor) {
-        if($currentSLATimeLeftWorkHours >= $slaExpiredColor->time) {
+        if($currentSLATimeLeftWorkHours > $slaExpiredColor->time) {
             $color = $slaExpiredColor->color;
         }
     }
 @endphp
-<div class="stage-task-card card mb-0" wire:click="$emit('showModal', 'task.edit-task', '{{ $task->id }}')" @if($color) style="background: {{ $color }}" @endif>
+<div class="stage-task-card card mb-0" wire:click="$emit('showModal', 'task.edit-task', '{{ $task->id }}')"
+     @if($color) style="background: {{ $color }}" @endif>
     <div class="card-body p-3">
         {{--        <small class="float-end text-muted">Stage time: {{ $task->getCurrentSLATimeLeft() }}</small>--}}
         {{--        <br>--}}
@@ -31,7 +32,9 @@
         <div class="d-flex justify-content-between">
             <small><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
             <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeft() }}
-{{--                ({{ $currentSLATimeLeftWorkHours }})--}}
+{{--                ({{ $task->getCurrentSLATimeLeftWorkHoursText() }})--}}
+{{--                {{ $s ? $s->id : ''  }}--}}
+{{--                {{ $i ? json_encode($i) : ''  }}--}}
             </small>
             {{--            <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeftWorkHours() }}</small>--}}
         </div>
