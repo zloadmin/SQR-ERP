@@ -31,7 +31,7 @@
 
         <div class="d-flex justify-content-between">
             <small><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
-            <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeft() }}
+            <small class="text-muted text-black">Stage time: {{ $task->getCurrentSLATimeLeft() }}
 {{--                ({{ $task->getCurrentSLATimeLeftWorkHoursText() }})--}}
 {{--                {{ $s ? $s->id : ''  }}--}}
 {{--                {{ $i ? json_encode($i) : ''  }}--}}
@@ -40,7 +40,7 @@
         </div>
         <div class="d-flex justify-content-between">
             <small><b>Cards:</b> {{ $task->total_cards }}</small>
-            <small class="text-muted">Created Time: {{ $task->getTimeLeft() }}</small>
+            <small class="text-muted text-black">Created Time: {{ $task->getTimeLeft() }}</small>
         </div>
         <div class="d-flex justify-content-between">
             <small>
@@ -51,7 +51,7 @@
                 @endif
             </small>
 
-            <small class="text-muted">Revisions: {{ $task->getRevisions() }} </small>
+            <small class="text-muted  text-black">Revisions: {{ $task->getRevisions() }} </small>
         </div>
 
     </div> <!-- end card-body -->
