@@ -31,7 +31,8 @@
         <div class="d-flex justify-content-between">
             <small><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
             <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeft() }}
-                ({{ $currentSLATimeLeftWorkHours }})</small>
+{{--                ({{ $currentSLATimeLeftWorkHours }})--}}
+            </small>
             {{--            <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeftWorkHours() }}</small>--}}
         </div>
         <div class="d-flex justify-content-between">
