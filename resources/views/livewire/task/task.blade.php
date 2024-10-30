@@ -1,5 +1,5 @@
 @php
-
+    $color = '';
     $currentSLATimeLeftWorkHours = $task->getCurrentSLATimeLeftWorkHours();
     foreach ($slaExpiredColors as $slaExpiredColor) {
         if($currentSLATimeLeftWorkHours > $slaExpiredColor->time) {
