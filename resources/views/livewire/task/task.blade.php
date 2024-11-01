@@ -15,7 +15,7 @@
         {{--        <small class="float-end text-muted">Created at: {{ $task->created_at }}</small>--}}
         {{--        <br>--}}
         <h5 class="mt-0">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#task-detail-modal" class="text-body text-black">
                 {{ $task->name ?: $task->company_name }}
             </a>
         </h5>
@@ -30,7 +30,7 @@
 
 
         <div class="d-flex justify-content-between">
-            <small><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
+            <small class=""><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
             <small class="text-muted text-black">Stage time: {{ $task->getCurrentSLATimeLeft() }}
 {{--                ({{ $task->getCurrentSLATimeLeftWorkHoursText() }})--}}
 {{--                {{ $s ? $s->id : ''  }}--}}
@@ -39,11 +39,11 @@
             {{--            <small class="text-muted">Stage time: {{ $task->getCurrentSLATimeLeftWorkHours() }}</small>--}}
         </div>
         <div class="d-flex justify-content-between">
-            <small><b>Cards:</b> {{ $task->total_cards }}</small>
+            <small class="text-black"><b>Cards:</b> {{ $task->total_cards }}</small>
             <small class="text-muted text-black">Created Time: {{ $task->getTimeLeft() }}</small>
         </div>
         <div class="d-flex justify-content-between">
-            <small>
+            <small class="text-black">
                 @if ($task->country)
                     <b>Country:</b> {{ $task->country }}
                 @else
