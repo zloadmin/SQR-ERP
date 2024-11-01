@@ -30,7 +30,7 @@
 
 
         <div class="d-flex justify-content-between">
-            <small class=""><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
+            <small class="text-black"><b>Materials:</b> {{ \Illuminate\Support\Str::limit($task->material, 12) }}</small>
             <small class="text-muted text-black">Stage time: {{ $task->getCurrentSLATimeLeft() }}
 {{--                ({{ $task->getCurrentSLATimeLeftWorkHoursText() }})--}}
 {{--                {{ $s ? $s->id : ''  }}--}}
