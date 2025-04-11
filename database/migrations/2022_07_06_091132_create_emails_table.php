@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('email_alert_id')->references('id')->on('email_alerts');
             $table->string('recipient');
             $table->string('subject');
-            $table->string('text');
+            $table->text('text');
             $table->boolean('sent')->default(false);
             $table->timestamps();
         });
