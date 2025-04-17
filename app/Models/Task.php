@@ -125,6 +125,7 @@ class Task extends Model
         });
         static::updated(function (Task $task) {
             if ($task->isChangedStage()) {
+                Log::info('Task::updated (isChangedStage) ' . $task->id);
                 self::updatedStageTasksUpdatedListener($task);
                 TaskMessage::addChangeStageTask($task);
                 EmailAlertChangeStageType::dispatch($task);
