@@ -62,7 +62,7 @@ class TaskCreateShipment implements ShouldQueue
             TaskMessage::addCreateFile($taskFile);
         }
 
-        $this->task->update(['aramex_submitted' => true]);
+        $this->task->updateQuietly(['aramex_submitted' => true]);
         $this->task->aramexRequests()->create([
             'aramex_body'     => $createShipmentResponse->body(),
             'aramex_response' => $aramexResponse,
