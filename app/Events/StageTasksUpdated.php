@@ -23,7 +23,7 @@ class StageTasksUpdated implements ShouldBroadcast
     public function __construct(int $stage_id = 1)
     {
         $this->stage_id = $stage_id;
-        \Illuminate\Support\Facades\Log::info('class StageTasksUpdated implements ShouldBroadcast ' . $this->stage_id);
+//        \Illuminate\Support\Facades\Log::info('class StageTasksUpdated implements ShouldBroadcast ' . $this->stage_id);
     }
 
     /**
