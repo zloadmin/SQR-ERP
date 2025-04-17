@@ -525,9 +525,12 @@ class Task extends Model
 
     public function setExpiredSLA()
     {
-        $this->{$this->getExpiredNotifyKey()} = true;
-        $this->updateQuietly();
-        EmailAlertExpiredSLA::dispatch($this);
+        if(!$this->{$this->getExpiredNotifyKey()}) {
+            $this->{$this->getExpiredNotifyKey()} = true;
+            $this->updateQuietly();
+            EmailAlertExpiredSLA::dispatch($this);
+        }
+
     }
 
     static function createAPI(array $data)
