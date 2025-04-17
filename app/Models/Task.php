@@ -526,7 +526,7 @@ class Task extends Model
     public function setExpiredSLA()
     {
         $this->{$this->getExpiredNotifyKey()} = true;
-        $this->update();
+        $this->updateQuietly();
         EmailAlertExpiredSLA::dispatch($this);
     }
 
